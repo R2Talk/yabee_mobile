@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">asap</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="iw_activities">Atividades IW</string>
+    <string name="projects">Projetos</string>
+    <string name="notifications">Notificações</string>
+    <string name="action_settings">Configurações</string>
+    <string name="initiative_resume">Relatório</string>
+    <string name="report">Relatório</string>
+    <string name="todo_list">Minha Lista</string>
+
+    <string name="login">Login</string>
+    <string name="name">nome</string>
+    <string name="password">senha</string>
+    <string name="title_activity_login">Login</string>
+
+    <string name="adm">adm</string>
+    <string name="demo">demo</string>
+
+    <string name="total_number_of_wi">Total de Entregas:</string>
+    <string name="total_number_of_late_wi">Atrasadas:</string>
+    <string name="total_number_of_last_day_wi">Vencem hoje:</string>
+    <string name="total_number_of_with_admin">Com Adm.:</string>
+
+
+    <string name="wrongNameOrPwd">Nome de usuário ou senha inválidos</string>
+    <string name="device_not_connect">Dispositivo não conectado à rede</string>
+    <string name="synchronizing_operation">Por favor, aguarde. Sincronizando as informações.</string>
+
+
+    <string name="notImplemented">Não disponível</string>
+    <string name="demoVersion">Executando em modo demonstração</string>
+
+    <string name="initiativesText">Iniciativas</string>
+    <string name="deliverablesText">Entegas</string>
+
+    <string name="onTime">NO PRAZO</string>
+    <string name="late">ATRASADO</string>
+
+    <string name="totalPrefix">T:</string>
+    <string name="onTimePrefix">P:</string>
+    <string name="latePrefix">A:</string>
+
+
+
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_work_itens">WorkItensActivity</string>
+    <string name="title_activity_initiative_report">InitiativeReportActivity</string>
+    <string name="title_activity_initiatives_report">InitiativesReportActivity</string>
+</resources>

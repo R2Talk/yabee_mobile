@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".OpenView">
+
+    <!-- should appear as action button -->
+    <item android:id="@+id/action_notification"
+        android:icon="@drawable/ic_message"
+        android:title="@string/notifications"
+        app:showAsAction="ifRoom" />
+
+</menu>

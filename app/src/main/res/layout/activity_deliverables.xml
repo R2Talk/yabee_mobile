@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.com.ca.asap.activity.DeliverablesActivity"
+    android:background="#80CBC4"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="INIITIATIVE"
+        android:id="@+id/initiativeTextView"
+        android:background="#010101"
+        android:textColor="#FFFFFF" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/deliverables_listView"
+        android:layout_below="@+id/initiativeTextView"
+         />
+
+
+
+</LinearLayout>
