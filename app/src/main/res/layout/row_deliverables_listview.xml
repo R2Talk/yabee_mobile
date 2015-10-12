@@ -44,7 +44,6 @@
         android:id="@+id/deliverable_responsibleTextView"
         android:layout_below="@+id/deliverable_due_dateTextView" />
 
-
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,10 +52,5 @@
         android:layout_below="@+id/deliverable_responsibleTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-
-
-
-
 
 </RelativeLayout>

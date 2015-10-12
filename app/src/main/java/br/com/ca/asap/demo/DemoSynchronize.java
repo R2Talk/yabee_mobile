@@ -65,6 +65,15 @@ public class DemoSynchronize {
         //
 
         initiativeVoList.add(new InitiativeVo("TEAMWORK","TEAMWORK","Team Initiative."));
+        initiativeVoList.add(new InitiativeVo("TEAMWORK01","TEAMWORK01","Team Initiative."));
+        initiativeVoList.add(new InitiativeVo("TEAMWORK02","TEAMWORK02","Team Initiative."));
+        initiativeVoList.add(new InitiativeVo("TEAMWORK03","TEAMWORK03","Team Initiative."));
+        initiativeVoList.add(new InitiativeVo("TEAMWORK04","TEAMWORK04","Team Initiative."));
+        initiativeVoList.add(new InitiativeVo("TEAMWORK05","TEAMWORK05","Team Initiative."));
+        initiativeVoList.add(new InitiativeVo("TEAMWORK06","TEAMWORK06","Team Initiative."));
+        initiativeVoList.add(new InitiativeVo("TEAMWORK07","TEAMWORK07","Team Initiative."));
+        initiativeVoList.add(new InitiativeVo("TEAMWORK08","TEAMWORK08","Team Initiative."));
+        initiativeVoList.add(new InitiativeVo("TEAMWORK09","TEAMWORK09","Team Initiative."));
 
 
 
@@ -87,7 +96,16 @@ public class DemoSynchronize {
         //
 
         deliverableVoList.add(new DeliverableVo("001", "TEAMWORK", "DELIVERY 01", "DELIVERY 01 DESCRIPTION", "TODO ACTION", "Open", "2015-10-10", "RODRIGO CARVALHO DOS SANTOS", "5"));
-        deliverableVoList.add(new DeliverableVo("002", "TEAMWORK", "DELIVERY 02", "DELIVERY 02 DESCRIPTION", "TODO ACTION", "Open", "2015-10-10", "RODRIGO CARVALHO DOS SANTOS", "5"));
+        deliverableVoList.add(new DeliverableVo("002", "TEAMWORK", "DELIVERY 02", "DELIVERY 02 DESCRIPTION", "TODO ACTION", "Open", "2015-10-12", "RODRIGO CARVALHO DOS SANTOS", "5"));
+        deliverableVoList.add(new DeliverableVo("003", "TEAMWORK", "DELIVERY 03", "DELIVERY 03 DESCRIPTION", "TODO ACTION", "Open", "2015-10-13", "RODRIGO CARVALHO DOS SANTOS", "5"));
+        deliverableVoList.add(new DeliverableVo("004", "TEAMWORK", "DELIVERY 04", "DELIVERY 04 DESCRIPTION", "TODO ACTION", "Open", "2015-10-13", "RODRIGO CARVALHO DOS SANTOS", "5"));
+        deliverableVoList.add(new DeliverableVo("005", "TEAMWORK", "DELIVERY 05", "DELIVERY 05 DESCRIPTION", "TODO ACTION", "Open", "2015-10-13", "RODRIGO CARVALHO DOS SANTOS", "5"));
+        deliverableVoList.add(new DeliverableVo("006", "TEAMWORK", "DELIVERY 06", "DELIVERY 06 DESCRIPTION", "TODO ACTION", "Open", "2015-10-10", "RODRIGO CARVALHO DOS SANTOS", "5"));
+        deliverableVoList.add(new DeliverableVo("007", "TEAMWORK", "DELIVERY 07", "DELIVERY 06 DESCRIPTION", "TODO ACTION", "Open", "2015-10-10", "RODRIGO CARVALHO DOS SANTOS", "5"));
+        deliverableVoList.add(new DeliverableVo("008", "TEAMWORK", "DELIVERY 08", "DELIVERY 06 DESCRIPTION", "TODO ACTION", "Open", "2015-10-10", "RODRIGO CARVALHO DOS SANTOS", "5"));
+        deliverableVoList.add(new DeliverableVo("009", "TEAMWORK", "DELIVERY 09", "DELIVERY 06 DESCRIPTION", "TODO ACTION", "Open", "2015-10-10", "RODRIGO CARVALHO DOS SANTOS", "5"));
+
+
 
 
         //insert list of work items

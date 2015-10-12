@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -16,6 +15,7 @@ import java.util.List;
 
 import br.com.ca.asap.adapter.DeliverablesAdapter;
 import br.com.ca.asap.database.DeliverableDAO;
+import br.com.ca.asap.email.EmailChannel;
 import br.com.ca.asap.vo.DeliverableVo;
 import br.com.ca.shareview.R;
 
@@ -26,7 +26,8 @@ import br.com.ca.shareview.R;
 public class DeliverablesActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE = "INITIATIVE_ID";
-    String initiativeId;
+    String initiativeId = null;
+    DeliverablesAdapter adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +35,14 @@ public class DeliverablesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_deliverables);
 
         Intent myIntent = getIntent(); // gets the previously created intent
-        initiativeId = myIntent.getStringExtra(InitiativesActivity.EXTRA_MESSAGE);
-
         TextView initiativeTextView = (TextView) this.findViewById(R.id.initiativeTextView);
+        initiativeId = myIntent.getStringExtra(InitiativesActivity.EXTRA_MESSAGE);
         initiativeTextView.setText(initiativeId);
 
+        //action bar title
+        //getActionBar().setTitle(initiativeId);
         // 1. pass context and data to the custom adapter
-        DeliverablesAdapter adapter = new DeliverablesAdapter(this, generateData(initiativeId));
+        adapter = new DeliverablesAdapter(this, generateData(initiativeId));
         // 2. Get ListView from activity_main.xml
         ListView listView = (ListView) findViewById(R.id.deliverables_listView);
         // 3. setListAdapter
@@ -59,20 +61,86 @@ public class DeliverablesActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_notification:
+                String to = getString(R.string.emailTo);
+                String cc = "";
+                String subject = getString(R.string.emailSubject);
+                String emailText;
 
-        int id = item.getItemId();
+                emailText = prepareReportEmailText();
+                EmailChannel emailChannel= new EmailChannel();
+                emailChannel.callEmailApp(this, to, cc, subject, emailText);
 
-        if (id == R.id.initiative_resume) {
-
-            Intent intent = new Intent(DeliverablesActivity.this, InitiativeReportActivity.class);
-            intent.putExtra(EXTRA_MESSAGE, initiativeId);
-            startActivity(intent);
-
-            return true;
+                return true;
+            case R.id.initiative_resume:
+                Intent intent = new Intent(DeliverablesActivity.this, InitiativeReportActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, initiativeId);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
+    //
+    // prepareReportEmailText
+    //
+    private String prepareReportEmailText(){
+        String text = "";
+        List<DeliverableVo> deliverableVoList;
+        Context context = getApplicationContext();
+
+        DeliverableDAO deliverableDAO = new DeliverableDAO(context);
+        deliverableVoList = deliverableDAO.selectWorkItemsByInitiativeId(initiativeId);
+
+        //
+        // Write Header
+        //
+        text = text + getString(R.string.emailHeader) + " " + initiativeId;
+        text = text + "\n";
+        text = text + "\n";
+        //
+        // Write Late Activities
+        //
+        text = text + getString(R.string.late);
+        text = text + "\n";
+        text = text + "\n";
+        Iterator iterator = deliverableVoList.iterator();
+        while(iterator.hasNext()){
+            DeliverableVo deliverableVo = (DeliverableVo) iterator.next();
+            if (deliverableVo.getDeliverable_isLate().equals("true")) {
+                text = text + getString(R.string.title) + " " + deliverableVo.getDeliverable_title() + "\n";
+                text = text + getString(R.string.responsible) + " " + deliverableVo.getDeliverable_responsible() + "\n";
+                text = text + getString(R.string.date) + " " + deliverableVo.getDeliverable_due_date() + "\n\n";
+            }
+        }
+        //
+        //Write OnTime Activities
+        //
+        text = text + getString(R.string.onTime);
+        text = text + "\n";
+        text = text + "\n";
+        Iterator iterator2  = deliverableVoList.iterator();
+        while(iterator2.hasNext()){
+            DeliverableVo deliverableVo = (DeliverableVo) iterator2.next();
+            if (!deliverableVo.getDeliverable_isLate().equals("true")) {
+                text = text + getString(R.string.title) + " " + deliverableVo.getDeliverable_title() + "\n";
+                text = text + getString(R.string.responsible) + " " + deliverableVo.getDeliverable_responsible() + "\n";
+                text = text + getString(R.string.date) + " " + deliverableVo.getDeliverable_due_date() + "\n\n";
+            }
+        }
+        //
+        // Write Footer
+        //
+        text = text + "\n";
+        text = text + "\n";
+        text = text + getString(R.string.emailFooter);
+
+        return text;
+    }
+
 
     //
     // generateData
@@ -80,9 +148,10 @@ public class DeliverablesActivity extends AppCompatActivity {
     //
     private ArrayList<DeliverableVo> generateData(String initiativeId){
 
-        ArrayList<DeliverableVo> items = new ArrayList<>();
-        Context context = getApplicationContext();
+        ArrayList<DeliverableVo> deliverableVoArrayList = new ArrayList<>();
         List<DeliverableVo> deliverableVoList;
+
+        Context context = getApplicationContext();
 
         DeliverableDAO deliverableDAO = new DeliverableDAO(context);
         deliverableVoList = deliverableDAO.selectWorkItemsByInitiativeId(initiativeId);
@@ -92,9 +161,10 @@ public class DeliverablesActivity extends AppCompatActivity {
         while(iterator.hasNext()){
             DeliverableVo deliverableVo = (DeliverableVo) iterator.next();
             //add into ArrayList
-            items.add(deliverableVo);
+            deliverableVoArrayList.add(deliverableVo);
         }
 
-        return items;
+        return deliverableVoArrayList;
     }
+
 }

@@ -3,6 +3,7 @@ package br.com.ca.asap.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import java.util.List;
 
 import br.com.ca.asap.adapter.InitiativeAdapter;
 import br.com.ca.asap.database.InitiativeDAO;
+import br.com.ca.asap.email.EmailChannel;
 import br.com.ca.asap.vo.InitiativeVo;
 import br.com.ca.shareview.R;
 
@@ -79,12 +81,21 @@ public class InitiativesActivity extends AppCompatActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_notification:
+                /*
                 Resources res = getResources();
                 Context context = getApplicationContext();
                 String text = res.getString(string.notImplemented);
                 int duration = Toast.LENGTH_SHORT;
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
+                */
+
+                String to = "rcarvalho89@hotmail.com";
+                String cc = "";
+
+                EmailChannel emailChannel= new EmailChannel();
+                emailChannel.callEmailApp(this, to, cc, "Teste", "Teste");
+
                 return true;
             /*
             case R.id.action_settings:
@@ -133,7 +144,7 @@ public class InitiativesActivity extends AppCompatActivity {
 
         InitiativeDAO initiativeDAO = new InitiativeDAO(context);
         initiativeVoList = initiativeDAO.selectInitiatives();
-        String[] initiativesNamesArray = null;
+        String[] initiativesNamesArray;
         List<String> listOfString = new ArrayList<String>();
 
         //access initiative list via Iterator
