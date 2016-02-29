@@ -21,7 +21,7 @@ import br.com.ca.shareview.R;
 
 /*
  * Deliverables Activity
- * Show deliverables list associated with a identified Initiative.
+ * Show deliverables list associated with an identified Initiative.
  */
 public class DeliverablesActivity extends AppCompatActivity {
 
