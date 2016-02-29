@@ -24,7 +24,7 @@ import java.net.URL;
 
 import br.com.ca.shareview.R;
 import br.com.ca.asap.demo.DemoSynchronize;
-import br.com.ca.asap.vo.LoginStatusVo;
+import br.com.ca.asap.vo.UserVo;
 
 /*
  * SynchronizeActivity
@@ -99,11 +99,11 @@ public class SynchronizeActivity extends AppCompatActivity {
                     try {
                         Gson gson = new Gson();
 
-                        //loginStatusVo usar data
-                        LoginStatusVo loginStatusVo = new LoginStatusVo(params[0], params[1], false);
+                        //userVo usar data
+                        UserVo userVo = new UserVo(params[0], params[1], false);
 
                         //format request URL
-                        URL url = new URL("http://192.168.0.7:8080/CAWebApp/DoLoginServlet" + "?" + "loginData=" + gson.toJson(loginStatusVo));
+                        URL url = new URL("http://192.168.0.7:8080/CAWebApp/DoLoginServlet" + "?" + "loginData=" + gson.toJson(userVo));
 
                         //open connection and prepare request parameters
                         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

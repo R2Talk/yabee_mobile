@@ -17,18 +17,6 @@ public class DeliverableDAO {
     private DatabaseOpenHelper databaseOpenHelper;
     private SQLiteDatabase db;
 
-    //WORK ITEM TABLE
-    private String DATABASE_TABLE_DELIVERABLE = "deliverable";
-    private String KEY_DELIVERABLE_ID = "deliverable_id";
-    private String KEY_INITIATIVE_FK = "initiative_id_fk";
-    private String KEY_DELIVERABLE_TITLE = "deliverable_title";
-    private String KEY_DELIVERABLE_DESCRIPTION = "deliverable_description";
-    private String KEY_DELIVERABLE_COMMENTS = "deliverable_comments";
-    private String KEY_DELIVERABLE_STATUS = "deliverable_status";
-    private String KEY_DELIVERABLE_DUE_DATE = "deliverable_due_date";
-    private String KEY_DELIVERABLE_RESPONSIBLE = "deliverable_responsible";
-    private String KEY_DELIVERABLE_RATING = "deliverable_rating";
-
     //Constructor
     public DeliverableDAO(Context context){
         this.databaseOpenHelper = DatabaseOpenHelper.getInstance(context);
@@ -44,18 +32,18 @@ public class DeliverableDAO {
 
         ContentValues values = new ContentValues();
 
-        values.put(KEY_DELIVERABLE_ID, deliverableVo.getDeliverable_id());
-        values.put(KEY_INITIATIVE_FK, deliverableVo.getInitiative_id_fk());
-        values.put(KEY_DELIVERABLE_TITLE, deliverableVo.getDeliverable_title());
-        values.put(KEY_DELIVERABLE_DESCRIPTION, deliverableVo.getDeliverable_description());
-        values.put(KEY_DELIVERABLE_COMMENTS, deliverableVo.getDeliverable_comments());
-        values.put(KEY_DELIVERABLE_STATUS, deliverableVo.getDeliverable_status());
-        values.put(KEY_DELIVERABLE_DUE_DATE, deliverableVo.getDeliverable_due_date());
-        values.put(KEY_DELIVERABLE_RESPONSIBLE, deliverableVo.getDeliverable_responsible());
-        values.put(KEY_DELIVERABLE_RATING, deliverableVo.getDeliverable_rating());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_ID, deliverableVo.getDeliverable_id());
+        values.put(DatabaseOpenHelper.KEY_INITIATIVE_FK, deliverableVo.getInitiative_id_fk());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_TITLE, deliverableVo.getDeliverable_title());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_DESCRIPTION, deliverableVo.getDeliverable_description());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_COMMENTS, deliverableVo.getDeliverable_comments());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_STATUS, deliverableVo.getDeliverable_status());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_DUE_DATE, deliverableVo.getDeliverable_due_date());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_RESPONSIBLE, deliverableVo.getDeliverable_responsible());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_RATING, deliverableVo.getDeliverable_rating());
 
         // Inserting Row
-        db.insert(DATABASE_TABLE_DELIVERABLE, null, values);
+        db.insert(DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE, null, values);
         db.close(); // Closing database connection
     }
 
@@ -65,7 +53,7 @@ public class DeliverableDAO {
         SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_DELIVERABLE;
+        String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE;
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -99,7 +87,7 @@ public class DeliverableDAO {
         SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_DELIVERABLE + " WHERE initiative_id_fk = \"" + initiativeId + "\"";
+        String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE initiative_id_fk = \"" + initiativeId + "\"";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 

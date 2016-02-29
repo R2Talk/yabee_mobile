@@ -3,15 +3,15 @@ package br.com.ca.asap.vo;
 /**
  * AdminVo
  *
+ * Represents the identity of an administrator for reporting purposes
  */
 public class AdminVo {
 
     private String pmoId;
     private String name;
 
-
     public AdminVo(String id, String name){
-        this.pmoId = pmoId;
+        this.pmoId = id;
         this.name = name;
     }
 

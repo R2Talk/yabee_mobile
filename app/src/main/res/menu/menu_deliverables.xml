@@ -5,10 +5,13 @@
 
     <!-- should appear as action button -->
     <item android:id="@+id/action_notification"
-        android:icon="@drawable/ic_message"
-        android:title="@string/notifications"
+        android:icon="@drawable/ic_mail"
+        android:title="@string/sendEmail"
         app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/initiative_resume" android:title="@string/initiative_resume"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/initiative_resume"
+        android:icon="@drawable/ic_pie_chart_outlined_white_24dp"
+        android:title="@string/initiative_resume"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
 </menu>

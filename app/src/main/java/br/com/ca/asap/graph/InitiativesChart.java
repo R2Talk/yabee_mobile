@@ -19,6 +19,10 @@ import br.com.ca.shareview.R;
 /**
  * InitiativesChart
  *
+ * Prepares and return a View object with chart image using the ACHARTENGINE libray.
+ *
+ * The Bar Chart represents the state of the initiatives.
+ *
  */
 public class InitiativesChart {
 

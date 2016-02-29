@@ -10,6 +10,9 @@ import java.util.Date;
 /**
  * DeliverableVo
  *
+ * Represents the data of a deliverable.
+ * Note that the information about the late state is calculated based on the deliverable due date and current date.
+ *
  */
 public class DeliverableVo {
 
@@ -22,9 +25,21 @@ public class DeliverableVo {
     private String deliverable_due_date;
     private String deliverable_responsible;
     private String deliverable_rating;
-
     private String deliverable_isLate;
 
+    /**
+     * Constructor
+     *
+     * @param deliverable_id
+     * @param initiative_id_fk
+     * @param deliverable_title
+     * @param deliverable_description
+     * @param deliverable_comments
+     * @param deliverable_status
+     * @param deliverable_due_date
+     * @param deliverable_responsible
+     * @param deliverable_rating
+     */
     public DeliverableVo(String deliverable_id,
                          String initiative_id_fk,
                          String deliverable_title,
@@ -51,6 +66,22 @@ public class DeliverableVo {
         }
     }
 
+    /**
+     * Constructor
+     *
+     * Creates with the isLate information informed
+     *
+     * @param deliverable_id
+     * @param initiative_id_fk
+     * @param deliverable_title
+     * @param deliverable_description
+     * @param deliverable_comments
+     * @param deliverable_status
+     * @param deliverable_due_date
+     * @param deliverable_responsible
+     * @param deliverable_rating
+     * @param deliverable_isLate
+     */
     public DeliverableVo(String deliverable_id,
                          String initiative_id_fk,
                          String deliverable_title,
@@ -73,14 +104,20 @@ public class DeliverableVo {
         this.deliverable_isLate = deliverable_isLate;
     }
 
-
-
+    /**
+     * Calculate if is late based on the deliverable date and current date
+     *
+     * @param dueDateStr
+     * @return
+     *
+     */
     private Boolean isLate(String dueDateStr){
 
         Date dueDate = null;
         Date currentDate = new Date();
         Date yesterday = null;
-        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        //SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
 
         try {
             dueDate = ft.parse(dueDateStr);
@@ -101,9 +138,10 @@ public class DeliverableVo {
         return false;
     }
 
-    //
-    //getter / setter
-    //
+    /**
+     * Getter/ Setter methods
+     *
+     **/
 
     public String getDeliverable_id() {
         return deliverable_id;

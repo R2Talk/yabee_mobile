@@ -13,12 +13,27 @@ import org.achartengine.renderer.SimpleSeriesRenderer;
 /**
  * DeliverablesChart
  *
+ * Prepares and return a View object with chart image using the ACHARTENGINE libray.
+ *
+ * The Pie Chart represents the state of the deliverables.
+ *
  */
 public class DeliverablesChart {
 
     private static int[] COLORS = new int[] { Color.GREEN, Color.RED};
 
 
+    /**
+     * getDeliverablesPieChart
+     *
+     * Receives arrays of values and names for pie chart preparation.
+     * Also receives the context of the application thats is required by the chart view factory.
+     *
+     * @param values
+     * @param names
+     * @param context
+     * @return
+     */
     public View getDeliverablesPieChart(double[] values, String[] names, Context context) {
 
         CategorySeries mSeries = new CategorySeries("");

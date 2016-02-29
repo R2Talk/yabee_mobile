@@ -4,7 +4,7 @@
 
     <!-- should appear as action button -->
     <item android:id="@+id/action_notification"
-        android:icon="@drawable/ic_message"
+        android:icon="@drawable/ic_action_messages"
         android:title="@string/notifications"
         app:showAsAction="ifRoom" />
 

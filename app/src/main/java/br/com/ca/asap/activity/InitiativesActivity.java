@@ -81,20 +81,12 @@ public class InitiativesActivity extends AppCompatActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_notification:
-                /*
-                Resources res = getResources();
-                Context context = getApplicationContext();
-                String text = res.getString(string.notImplemented);
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-                */
+                //Intent
+                Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
+                //Start Intent
+                startActivity(intent);
 
-                String to = "rcarvalho89@hotmail.com";
-                String cc = "";
 
-                EmailChannel emailChannel= new EmailChannel();
-                emailChannel.callEmailApp(this, to, cc, "Teste", "Teste");
 
                 return true;
             /*

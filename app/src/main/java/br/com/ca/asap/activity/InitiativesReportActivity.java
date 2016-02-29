@@ -28,6 +28,8 @@ import br.com.ca.shareview.R;
 /*
  * InitiativesReport Activity
  * Show Initiatives status report
+ *
+ * TODO: need re-factory
  */
 public class InitiativesReportActivity extends AppCompatActivity {
 

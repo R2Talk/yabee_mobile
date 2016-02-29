@@ -19,12 +19,6 @@ public class InitiativeDAO {
     private DatabaseOpenHelper databaseOpenHelper;
     private SQLiteDatabase db;
 
-    //INITIATIVE TABLE
-    private String DATABASE_TABLE_INITIATIVE = "initiative";
-    private String KEY_INITIATIVE_ID = "initiative_id";
-    private String KEY_TITLE = "title";
-    private String KEY_DESCRIPTION = "description";
-
     //Constructor
     public InitiativeDAO(Context context){
         this.databaseOpenHelper = DatabaseOpenHelper.getInstance(context);
@@ -40,12 +34,12 @@ public class InitiativeDAO {
         SQLiteDatabase db = this.databaseOpenHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_INITIATIVE_ID, initiativeVo.getInitiativeId());
-        values.put(KEY_TITLE, initiativeVo.getInitiativeTitle());
-        values.put(KEY_DESCRIPTION, initiativeVo.getInitiativeDescription());
+        values.put(DatabaseOpenHelper.KEY_INITIATIVE_INITIATIVE_ID, initiativeVo.getInitiativeId());
+        values.put(DatabaseOpenHelper.KEY_INITIATIVE_TITLE, initiativeVo.getInitiativeTitle());
+        values.put(DatabaseOpenHelper.KEY_INITIATIVE_DESCRIPTION, initiativeVo.getInitiativeDescription());
 
         // Inserting Row
-        db.insert(DATABASE_TABLE_INITIATIVE, null, values);
+        db.insert(DatabaseOpenHelper.DATABASE_TABLE_INITIATIVE, null, values);
         db.close(); // Closing database connection
     }
 
@@ -56,7 +50,7 @@ public class InitiativeDAO {
 
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_INITIATIVE;
+        String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_INITIATIVE;
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 

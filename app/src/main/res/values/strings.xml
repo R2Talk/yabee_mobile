@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">asap</string>
+    <string name="app_name">Ya Bee</string>
+
+    <string name="welcome_login">"Bem-vindo.\n\nAcompanhe as suas tarefas e as iniciativas com o seu time!"</string>
+
+    <string name="identify_yourself">A sua identificação é necessária para iniciar a sessão."</string>
 
     <string name="initiativesActivityLabel">Iniciativas</string>
     <string name="deliverablesActivityLabel">Entregas</string>
@@ -7,14 +11,14 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="iw_activities">Atividades IW</string>
-    <string name="projects">Projetos</string>
+    <string name="projects">Projetos</string>C:\AndroidStudioProjects\asap-project\app
     <string name="notifications">Notificações</string>
     <string name="action_settings">Configurações</string>
     <string name="initiative_resume">Relatório</string>
     <string name="report">Relatório</string>
     <string name="todo_list">Minha Lista</string>
 
-    <string name="login">Login</string>
+    <string name="login">Sign In</string>
     <string name="name">nome</string>
     <string name="password">senha</string>
     <string name="title_activity_login">Login</string>
@@ -44,15 +48,27 @@
     <string name="onTimePrefix">P:</string>
     <string name="latePrefix">A:</string>
 
-    <string name="sendEmail">Enviar email Asap...</string>
+    <string name="sendEmail">enviar email...</string>
     <string name="missingEmailClient">Nenhum aplicativo de email está configurado</string>
     <string name="emailTo">rcarvalho89@hotmail.com</string>
-    <string name="emailSubject">Asap</string>
+    <string name="emailSubject">Ya Bee</string>
     <string name="emailHeader">Olá, por favor avaliar o status das entregas da iniciativa.</string>
     <string name="emailFooter">Obrigado.</string>
 
     <string name="title">Titulo:</string>
     <string name="responsible">Responsável:</string>
     <string name="date">Data:</string>
+
+    <string name="send_message_to_group">Envie mensagem para o grupo ya bees</string>
+    <string name="send_message_ok">Mensegem enviada.</string>
+    <string name="send_message_error">Invelizmente não foi possível enviar a emsagem devido a problema técnico.</string>
+
+
+
+    <string name="title_activity_send_message">Send Message</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+
 
 </resources>

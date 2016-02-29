@@ -3,6 +3,8 @@ package br.com.ca.asap.vo;
 /**
  * InitiativeReportVo
  *
+ * Represents the summary of the state of an initiative considering its deliverables.
+ *
  */
 public class InitiativeReportVo {
 
@@ -12,9 +14,22 @@ public class InitiativeReportVo {
     private double lateNum = 0;
     private double lastDayNum = 0;
 
+    /**
+     * Constructor
+     *
+     */
     public InitiativeReportVo(){
     }
 
+    /**
+     * Constructor
+     *
+     * @param initiativeId
+     * @param totalNum
+     * @param onTimeNum
+     * @param lateNum
+     * @param lastDayNum
+     */
     public InitiativeReportVo(String initiativeId,
             double totalNum,
             double onTimeNum,
@@ -27,6 +42,11 @@ public class InitiativeReportVo {
         this.lateNum = lateNum;
         this.lastDayNum = lastDayNum;
     }
+
+    /**
+     * Getter/Setter Methods
+     *
+     */
 
     public String getInitiativeId() {
         return initiativeId;
@@ -67,8 +87,4 @@ public class InitiativeReportVo {
     public void setLastDayNum(double lastDayNum) {
         this.lastDayNum = lastDayNum;
     }
-
-
-
-
 }

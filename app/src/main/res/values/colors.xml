@@ -1,0 +1,12 @@
+<resources>
+
+    <color name="black_overlay">#66000000</color>
+
+
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="accent">#00C853</color>
+
+    <color name="activity_background">#FFFFFF</color>
+
+</resources>

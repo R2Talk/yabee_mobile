@@ -13,9 +13,25 @@ import br.com.ca.shareview.R;
  */
 public class EmailChannel {
 
+    /**
+     * Constructor
+     *
+     */
     public EmailChannel() {
     }
 
+    /**
+     * callEmailApp
+     *
+     * Receive email recipients and message text to acitivate, with use of intent, the existing applications that listen to ACTION_SEND.
+     * It's primary intention is activate an email application to send plain text as message.
+     *
+     * @param context
+     * @param to
+     * @param cc
+     * @param subject
+     * @param text
+     */
     public void callEmailApp(Context context,
                              String to,
                              String cc,

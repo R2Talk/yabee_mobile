@@ -65,9 +65,6 @@ public class InitiativeReportActivity extends AppCompatActivity {
         TextView lastDayValueTextView = (TextView) this.findViewById(R.id.lastDayValueTextView);
         lastDayValueTextView.setText(String.valueOf(lastDayNum));
 
-        //SET TOTAL OF LAST DAY WORK ITEMS
-        TextView withPmoValueTextView = (TextView) this.findViewById(R.id.withPmoValueTextView);
-        withPmoValueTextView.setText(String.valueOf(pendingRequestNum));
 
         //SET CHART
 

@@ -17,15 +17,29 @@ import br.com.ca.asap.vo.InitiativeReportVo;
 /**
  * InitiativeReport
  *
+ * Query the state of the deliverables of an initiative and returns the summary in an InitiativeReportVo.
+ *
  */
 public class InitiativeReport {
 
+    /**
+     * Constructor
+     *
+     */
     public InitiativeReport(){
     }
 
-    //
-    // Check the number of total of work items and number of late work items
-    //
+    /**
+     * getInitiativeReportData
+     *
+     * Receives the Context and the id of an initiative for querying the data base and return the summary of the initiative in an InitiativeReportVo.
+     *
+     * Uses DAO for querying the data base.
+     *
+     * @param context
+     * @param initiativeId
+     * @return
+     */
     public InitiativeReportVo getInitiativeReportData(Context context, String initiativeId){
 
         double totalNum = 0;
@@ -97,6 +111,14 @@ public class InitiativeReport {
         return initiativeReportVo;
     }
 
+
+    /**
+     * Check if the responsible for the deliverable is an PMO.
+     * TODO: Change of fixed data to the database to query information when they are present in the data model.
+     *
+     * @param name
+     * @return
+     */
     private Boolean isPmo(String name) {
 
         switch (name) {
