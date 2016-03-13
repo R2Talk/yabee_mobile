@@ -69,11 +69,13 @@ public class SynchronizeActivity extends AppCompatActivity {
             //
             //TODO: This Thread.sleep code is for application test only. Should be removed in the final version
             //
+            /*
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            */
 
             if (params[0].equals("demo")) {
 

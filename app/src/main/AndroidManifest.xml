@@ -20,12 +20,10 @@
         android:icon="@mipmap/ic_beelogo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
         <activity
             android:name="br.com.ca.asap.activity.InitiativesActivity"
             android:label="@string/initiativesActivityLabel" >
         </activity>
-
         <activity
             android:name="br.com.ca.asap.activity.SynchronizeActivity"
             android:label="@string/app_name" >
@@ -40,31 +38,34 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="br.com.ca.asap.activity.DeliverablesActivity"
             android:label="@string/deliverablesActivityLabel" >
         </activity>
-
         <activity
             android:name="br.com.ca.asap.activity.InitiativeReportActivity"
             android:label="@string/app_name" >
         </activity>
-
         <activity
             android:name="br.com.ca.asap.activity.InitiativesReportActivity"
             android:label="@string/initiaitveReportActivityLabel" >
         </activity>
-
         <activity
             android:name="br.com.ca.asap.activity.SendMessageActivity"
             android:label="@string/title_activity_send_message"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-
+        <activity
+            android:name="br.com.ca.asap.activity.ShowMessagesActivity"
+            android:label="@string/title_activity_show_messages"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity android:name="br.com.ca.asap.activity.SynchronizeMessagesActivity" android:noHistory="true">
+        </activity>
     </application>
 
 </manifest>

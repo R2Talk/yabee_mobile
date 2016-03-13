@@ -82,7 +82,8 @@ public class InitiativesActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_notification:
                 //Intent
-                Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
+                //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
+                Intent intent = new Intent(InitiativesActivity.this, SynchronizeMessagesActivity.class);
                 //Start Intent
                 startActivity(intent);
 
