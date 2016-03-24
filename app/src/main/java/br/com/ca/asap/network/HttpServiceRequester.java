@@ -13,6 +13,7 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.com.ca.asap.vo.MessageVo;
@@ -51,6 +52,8 @@ public class HttpServiceRequester {
      */
     public String executeHttpGetRequest(String urlString) throws DeviceNotConnectedException {
 
+        /*
+
         String returnString;
 
         List<MessageVo> messageVoList;
@@ -61,13 +64,20 @@ public class HttpServiceRequester {
         messageVoList = new ArrayList<>();
 
         messageVo = new MessageVo();
-        messageVo.setText("Rodrigo");
+        messageVo.setText("Olá, não esquecer de enviar a apresentaçao das açoes incrmentais da Receita.");
+        messageVo.setDatetime(new Date());
         messageVoList.add(messageVo);
         messageVo = new MessageVo();
-        messageVo.setText("Carvalho");
+        messageVo.setText("Rodrigo, já temos a estimativa de prazo para o desenvolvimento da automação ZB1? Precisamos avaliar alguma alterenativa paliativa caso passe de Junho.");
         messageVoList.add(messageVo);
         messageVo = new MessageVo();
-        messageVo.setText("dos Santos");
+        messageVo.setText("Recebida a avaliação das alternativas de abastecimento de aparelhos. Por favor atualizar pontos críticos.");
+        messageVoList.add(messageVo);
+        messageVo = new MessageVo();
+        messageVo.setText("Atualizar a tarefa 4663.");
+        messageVoList.add(messageVo);
+        messageVo = new MessageVo();
+        messageVo.setText("Olá, Precisamos revisar a forma de apresentar as mensagens. Por favor avalie se a nova interface Cards não é a mais adequada. As listas já criadas terão que passar por refactoring.");
         messageVoList.add(messageVo);
 
         //serialize generic type for List of MessageVo
@@ -77,7 +87,9 @@ public class HttpServiceRequester {
 
         return returnString;
 
-        /*
+        */
+
+
         HttpURLConnection conn = null;
         InputStream inputStream = null;
         BufferedReader reader = null;
@@ -105,8 +117,8 @@ public class HttpServiceRequester {
             conn = (HttpURLConnection) url.openConnection();
 
             //prepare request parameters
-            conn.setReadTimeout(50000);// milliseconds
-            conn.setConnectTimeout(50000);// milliseconds
+            conn.setReadTimeout(4000);// milliseconds
+            conn.setConnectTimeout(4000);// milliseconds
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Accept", "application/json");
             conn.setRequestMethod("GET");
@@ -130,7 +142,7 @@ public class HttpServiceRequester {
             Log.d("HttpServiceRequester", "read from http connection: " + returnString);
 
         } catch (Exception e) {
-
+            Log.d("HttpServiceRequester", e.getMessage());
         } finally {
             // makes sure that the InputStream is closed after the app is
             // finished using it.
@@ -147,7 +159,6 @@ public class HttpServiceRequester {
         }
 
         return returnString;
-        */
 
     }
 }

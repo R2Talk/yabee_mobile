@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import br.com.ca.asap.hiveservices.HiveGetAllMessages;
+import br.com.ca.asap.hiveservices.HiveGetMessages;
 import br.com.ca.asap.vo.MessageVo;
 import br.com.ca.shareview.R;
 
@@ -38,12 +38,17 @@ public class SynchronizeMessagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_synchronize_messages);
 
+        Log.d("Synchronize", "onCreate");
+
         //start synchronization right after creation basic steps
         doMessagesSynchronize();
     }
 
     // Do messages synchronization, reading from hive cloud server
     private void doMessagesSynchronize(){
+
+        Log.d("Synchronize", "onCreate");
+
         new DoAsyncMessagesSynchronize().execute("demo");
     }
 
@@ -67,15 +72,16 @@ public class SynchronizeMessagesActivity extends AppCompatActivity {
             ArrayList<MessageVo> items = new ArrayList<>();
             Context context = getApplicationContext();
 
-            HiveGetAllMessages hiveGetAllMessages;
+            HiveGetMessages hiveGetMessages;
             //
             // uses hive services to get all messages from server
             //
             List<MessageVo> messageVoList;
 
-            hiveGetAllMessages = new HiveGetAllMessages(context);
+            Log.d("Synchronize","call HiveGetMessages");
+            hiveGetMessages = new HiveGetMessages(context);
 
-            messageVoList = hiveGetAllMessages.getAllMessages();
+            messageVoList = hiveGetMessages.getMessages();
 
             //access initiative list via Iterator
             Iterator iterator = messageVoList.iterator();

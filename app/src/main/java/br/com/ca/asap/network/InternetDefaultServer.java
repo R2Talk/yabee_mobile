@@ -8,6 +8,12 @@ package br.com.ca.asap.network;
  */
 public class InternetDefaultServer {
 
-    static String defaultServer = "192.168.0.8:8080"; // local
-    //static String defaultServer = "54.94.205.241:8080"; // remote
+    public static String getDefaultServer() {
+        return defaultServer;
+    }
+
+    //public static String defaultServer = "192.168.0.6:8080"; // local
+    static String defaultServer = "54.94.205.241:8080"; // remote
+
+
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import br.com.ca.asap.network.DeviceNotConnectedException;
 import br.com.ca.asap.network.HttpServiceRequester;
+import br.com.ca.asap.network.InternetDefaultServer;
 import br.com.ca.asap.vo.MessageVo;
 
 /**
@@ -42,27 +44,31 @@ public class HiveGetMessages {
     }
 
     /**
-     * getAllMessages
+     * getMessages
      *
      * @return
      */
-    public List<MessageVo> getAllMessages(){
+    public List<MessageVo> getMessages(){
         String url;
         String serviceReturn;
         List<MessageVo> messageVoList;
-        Gson gson = new Gson();
+        Gson gson;
+
+        Log.d("HiveGetMessages","getMessages");
 
         //prepare URL
-        String urlGetMsgString = "http://54.94.205.241:8080/AsapServer/getMessages";
+        String urlGetMsgString = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/getMessages";
 
         //execute rest call
         HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
 
         try {
+            Log.d("hiveGetMessages","call httpServiceRequester");
             serviceReturn = httpServiceRequester.executeHttpGetRequest(urlGetMsgString);
 
             //deserialize generic type for List of MessageVo
-            Type messagesListType = new TypeToken<List<MessageVo>>() {}.getType(); //this is necessary because we are deserializing a generic class type
+            gson = new GsonBuilder().setDateFormat("MMM dd, yyyy").create();
+            Type messagesListType = new TypeToken<List<MessageVo>>(){}.getType(); //this is necessary because we are deserializing a generic class type
             messageVoList = gson.fromJson(serviceReturn, messagesListType);
 
             //access initiative list via Iterator
@@ -73,7 +79,7 @@ public class HiveGetMessages {
             }
 
         } catch (DeviceNotConnectedException e){
-            Log.d("hiveGetAllMessages", "device not connected");
+            Log.d("hiveGetMessages", "device not connected");
             return null;
         }
 

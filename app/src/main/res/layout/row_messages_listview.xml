@@ -7,13 +7,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Message from:"
+        android:text="Message Text"
+        android:id="@+id/messageTextView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/message_from"
         android:id="@+id/textView3" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Message Text"
-        android:id="@+id/messageTextView" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="name"
+        android:id="@+id/textView4" />
+
+
 </LinearLayout>

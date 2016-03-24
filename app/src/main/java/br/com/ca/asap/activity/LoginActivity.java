@@ -26,6 +26,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import br.com.ca.asap.network.InternetDefaultServer;
 import br.com.ca.asap.vo.UserVo;
 import br.com.ca.shareview.R;
 
@@ -141,24 +142,24 @@ public class LoginActivity extends AppCompatActivity {
 
         //possible returned states of network query login
         public final int NOT_CONNECTED = 0;
-        public final int VALID_USER    = 1;
-        public final int INVALID_USER  = 3;
+        public final int VALID_USER = 1;
+        public final int INVALID_USER = 3;
 
         /**
          * onPreExecute
-         *
+         * <p/>
          * Prepare environment before initiate the background execution.
          * Can be used to change a view element (as a progress bar) indicating that is running a background task.
          */
         @Override
-        protected void onPreExecute(){
+        protected void onPreExecute() {
         }
 
         /**
          * doInBackgroud
-         *
+         * <p/>
          * AsyncExecution. Executes in its own thread in background.
-         *
+         * <p/>
          * If it is not demo user, query a REST service to check the state of the user. Returns true if it is a valid user.
          *
          * @param params
@@ -199,6 +200,7 @@ public class LoginActivity extends AppCompatActivity {
                     InputStream inputStream = null;
                     BufferedReader reader = null;
                     StringBuffer stringBuffer = null;
+
                     try {
                         Gson gson = new Gson(); // example: String string = gson.toJson(userVo)
 
@@ -206,23 +208,23 @@ public class LoginActivity extends AppCompatActivity {
                         UserVo userVo = new UserVo(params[0], params[1], false);
 
                         //format request URL
-                        //URL url = new URL("http://192.168.0.8:8080/AsapServer/login");
-                        // String urlString = "http://54.94.205.241:8080/AsapServer/sendMessage?msg=" + URLEncoder.encode("LOGIN MESSAGE","UTF-8");
-                        String urlString = "http://192.168.0.8:8080/AsapServer/signin?name=" + URLEncoder.encode(userVo.getName(),"UTF-8") + "&"+ "password=" + URLEncoder.encode(userVo.getPassword(),"UTF-8");
+                        //String urlString = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/signin?name=" + URLEncoder.encode(userVo.getName(), "UTF-8") + "&" + "password=" + URLEncoder.encode(userVo.getPassword(), "UTF-8");
+                        String urlString = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/login?name=" + URLEncoder.encode(userVo.getName(), "UTF-8") + "&" + "password=" + URLEncoder.encode(userVo.getPassword(), "UTF-8");
 
                         //URL encoded text
                         URL url = new URL(urlString);
                         //open connection...
                         conn = (HttpURLConnection) url.openConnection();
                         //... prepare request parameters
-                        conn.setReadTimeout(50000);// milliseconds
-                        conn.setConnectTimeout(50000);// milliseconds
+                        conn.setReadTimeout(4000);// milliseconds
+                        conn.setConnectTimeout(4000);// milliseconds
                         conn.setRequestProperty("Content-Type", "application/json");
                         conn.setRequestProperty("Accept", "application/json");
                         conn.setRequestMethod("GET");
-                        //conn.setDoInput(true);
+
                         //starts the query
-                        Log.d("LoginActivity", "CA: trying to connect using created HttpURLConnection");
+                        Log.d("LoginActivity", "CA: trying to connect using created HttpURLConnection " + urlString);
+                        //conn.connect();
                         int responseCode = conn.getResponseCode();
                         Log.d("LoginActivity", "CA Says: The response code is: " + responseCode);
                         //...read input stream
@@ -232,7 +234,7 @@ public class LoginActivity extends AppCompatActivity {
                         stringBuffer = new StringBuffer();
                         // Convert the InputStream into a String
                         String line = "";
-                        while ((line = reader.readLine()) != null){
+                        while ((line = reader.readLine()) != null) {
                             stringBuffer.append(line);
                         }
                         Log.d("LoginActivity", "CA: read from http connection: " + stringBuffer.toString());
@@ -251,7 +253,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     } finally {
                         try {
-                            if (conn != null){
+                            if (conn != null) {
                                 conn.disconnect();
                             }
                             if (inputStream != null) {
@@ -273,9 +275,9 @@ public class LoginActivity extends AppCompatActivity {
 
         /**
          * onPostExecute
-         *
+         * <p/>
          * Executes in the original thread and receives the result of the background execution.
-         *
+         * <p/>
          * Displays the results of the AsyncTask.
          *
          * @param result
@@ -287,7 +289,7 @@ public class LoginActivity extends AppCompatActivity {
 
             //check if the result, sent as a Boolean by doInBackGround, is true
             //...and call initiatives activity
-            if(result == VALID_USER) {
+            if (result == VALID_USER) {
                 Intent intent = new Intent(context, SynchronizeActivity.class);
                 startActivity(intent);
             } else if (result == NOT_CONNECTED) {
@@ -295,73 +297,11 @@ public class LoginActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
             } else { //...otherwise just shows message informing that the user is not valid
-                    String text = res.getString(R.string.wrongNameOrPwd);
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                String text = res.getString(R.string.wrongNameOrPwd);
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
             }
         }
 
-        /**
-         * readMessage
-         *
-         * Test method for reading json message
-         *
-         */
-        private void readMessages() {
-            //Queries user state using http REST request for login validation.
-            HttpURLConnection conn = null;
-            InputStream inputStream = null;
-            BufferedReader reader = null;
-            StringBuffer stringBuffer = null;
-            try {
-                //format request URL
-                //URL url = new URL("http://192.168.0.8:8080/AsapServer/login");
-                //String urlGetMsgslString = "http://192.168.0.8:8080/AsapServer/getMessages";
-                String urlGetMsgslString = "http://54.94.205.241:8080/AsapServer/getMessages";
-
-                //URL encoded text
-                URL url = new URL(urlGetMsgslString);
-                //open connection...
-
-                conn = (HttpURLConnection) url.openConnection();
-                //... prepare request parameters
-                conn.setReadTimeout(50000);// milliseconds
-                conn.setConnectTimeout(50000);// milliseconds
-                conn.setRequestProperty("Content-Type", "application/json");
-                conn.setRequestProperty("Accept", "application/json");
-                conn.setRequestMethod("GET");
-                //starts the query
-                Log.d("LoginActivity", "CA: trying to connect using created HttpURLConnection");
-                int responseCode = conn.getResponseCode();
-                Log.d("LoginActivity", "CA Says: The response code is: " + responseCode);
-                //...read input stream
-                Log.d("LoginActivity", "CA: trying to get input stream using conn.getInputStream");
-                inputStream = conn.getInputStream();
-                reader = new BufferedReader(new InputStreamReader(inputStream));
-                stringBuffer = new StringBuffer();
-                // Convert the InputStream into a String
-                String line = "";
-                while ((line = reader.readLine()) != null){
-                    stringBuffer.append(line);
-                }
-                Log.d("LoginActivity", "CA: read from http connection: " + stringBuffer.toString());
-
-                // Makes sure that the InputStream is closed after the app is
-                // finished using it.
-            } catch (Exception e) {
-                Log.d("DoAsyncLogin", e.getMessage());
-            } finally {
-                try {
-                    if (conn != null){
-                        conn.disconnect();
-                    }
-                    if (inputStream != null) {
-                        inputStream.close();
-                    }
-                } catch (java.io.IOException e) {
-                    Log.d("DoAsyncLogin", e.getMessage());
-                }
-            }
-        }
     }
 }

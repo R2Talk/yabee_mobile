@@ -62,6 +62,7 @@
     <string name="send_message_to_group">Envie mensagem para o grupo ya bees</string>
     <string name="send_message_ok">Mensegem enviada.</string>
     <string name="send_message_error">Invelizmente não foi possível enviar a emsagem devido a problema técnico.</string>
+    <string name="message_from">de:</string>
 
 
 

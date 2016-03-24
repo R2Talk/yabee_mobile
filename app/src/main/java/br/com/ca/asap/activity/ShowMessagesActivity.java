@@ -1,27 +1,22 @@
 package br.com.ca.asap.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import br.com.ca.asap.adapter.MessagesAdapter;
-import br.com.ca.asap.hiveservices.HiveGetAllMessages;
 import br.com.ca.asap.vo.MessageVo;
 import br.com.ca.shareview.R;
 
@@ -48,7 +43,7 @@ public class ShowMessagesActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Wait: under construction.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -76,5 +71,4 @@ public class ShowMessagesActivity extends AppCompatActivity {
         //
         listView.setAdapter(adapter);
     }
-
 }
