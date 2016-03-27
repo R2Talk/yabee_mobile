@@ -208,8 +208,7 @@ public class LoginActivity extends AppCompatActivity {
                         UserVo userVo = new UserVo(params[0], params[1], false);
 
                         //format request URL
-                        //String urlString = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/signin?name=" + URLEncoder.encode(userVo.getName(), "UTF-8") + "&" + "password=" + URLEncoder.encode(userVo.getPassword(), "UTF-8");
-                        String urlString = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/login?name=" + URLEncoder.encode(userVo.getName(), "UTF-8") + "&" + "password=" + URLEncoder.encode(userVo.getPassword(), "UTF-8");
+                        String urlString = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/signin?name=" + URLEncoder.encode(userVo.getName(), "UTF-8") + "&" + "password=" + URLEncoder.encode(userVo.getPassword(), "UTF-8");
 
                         //URL encoded text
                         URL url = new URL(urlString);

@@ -87,23 +87,8 @@ public class InitiativesActivity extends AppCompatActivity {
                 //Start Intent
                 startActivity(intent);
 
+                return true;
 
-
-                return true;
-            /*
-            case R.id.action_settings:
-                //call method or action
-                return true;
-            case id.action_report:
-                Intent intent = new Intent(this, InitiativesReportActivity.class);
-                //prepare initiatives names array
-                String[] initiativesNamesArray = getInitiativeNamesArray();
-                //save as extra intent parameter
-                intent.putExtra(EXTRA_MESSAGE_01, initiativesNamesArray);
-                //start activity
-                startActivity(intent);
-                return true;
-            */
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -43,8 +43,18 @@ public class ShowMessagesActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                /*
                 Snackbar.make(view, "Wait: under construction.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                        */
+
+                //Intent
+                //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
+                Intent intent = new Intent(ShowMessagesActivity.this, SendMessageActivity.class);
+                //Start Intent
+                startActivity(intent);
+
             }
         });
 

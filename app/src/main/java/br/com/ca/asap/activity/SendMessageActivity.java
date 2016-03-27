@@ -21,6 +21,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import br.com.ca.asap.hiveservices.HiveSendMessage;
+import br.com.ca.asap.vo.MessageVo;
 import br.com.ca.shareview.R;
 
 /**
@@ -50,8 +52,8 @@ public class SendMessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                  //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                String msg = (String) (((EditText) findViewById(R.id.msgEditText)).getText()).toString();
-                new AsyncSendMessage().execute(String.valueOf(msg));
+                String msgText = (String) (((EditText) findViewById(R.id.msgEditText)).getText()).toString();
+                new AsyncSendMessage().execute(String.valueOf(msgText));
 
             }
         });
@@ -97,84 +99,21 @@ public class SendMessageActivity extends AppCompatActivity {
         protected Integer doInBackground(String... params) {
 
             // variable thats maintains return status for original thread
-            int sendMessageStatus = SEND_MESSAGE_ERROR;
+            int sendMessageStatus = SEND_MESSAGE_OK;
 
-            // get information about the network state using ConnectivityManager
-            ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+            Context context = getApplicationContext();
 
-            //check if the device has a valid internet connection
-            if (networkInfo != null && networkInfo.isConnected()) {//..if it has, do login in CA Server
+            //message sent as parameter for the async class
+            String msgText = (String) params[0];
 
-                Log.d("LoginActivity", "CA: Network Connection Found");
+            MessageVo messageVo = new MessageVo();
+            messageVo.setText(msgText);
+            //TODO: before sending the message set all values, except idMessage
 
-                //Queries user state using http REST request for login validation.
-                HttpURLConnection conn = null;
-                InputStream inputStream = null;
-                BufferedReader reader = null;
-                StringBuffer stringBuffer = null;
+            HiveSendMessage hiveSendMessage = new HiveSendMessage(context);
 
-                try {
+            hiveSendMessage.sendMessage(messageVo);
 
-                    //message sent as parameter for the async class
-                    String msg = (String) params[0];
-
-                    //format request URL
-                    //TODO: include the userId (name?) as a parameter. Uses the singleton class to obtain logged user.
-
-                    //String urlString = "http://192.168.0.8:8080/AsapServer/sendMessage?msg=" + URLEncoder.encode(msg, "UTF-8");
-                    String urlString = "http://54.94.205.241:8080/AsapServer/sendMessage?msg=" + URLEncoder.encode(msg, "UTF-8");
-
-                    //URL encoded text
-                    URL url = new URL(urlString);
-                    //open connection...
-                    conn = (HttpURLConnection) url.openConnection();
-                    //... prepare request parameters
-                    conn.setReadTimeout(50000);// milliseconds
-                    conn.setConnectTimeout(50000);// milliseconds
-                    conn.setRequestProperty("Content-Type", "application/json");
-                    conn.setRequestProperty("Accept", "application/json");
-                    conn.setRequestMethod("GET");
-
-                    //starts the http request
-                    Log.d("SendMessageActivity", "CA: trying to connect using created HttpURLConnection");
-                    int responseCode = conn.getResponseCode();
-                    Log.d("SendMessageActivity", "CA Says: The response code is: " + responseCode);
-                    //...read input stream
-                    Log.d("SendMessageActivity", "CA: trying to get input stream using conn.getInputStream");
-                    inputStream = conn.getInputStream();
-                    reader = new BufferedReader(new InputStreamReader(inputStream));
-                    stringBuffer = new StringBuffer();
-                    // Convert the InputStream into a String
-                    String line = "";
-                    while ((line = reader.readLine()) != null) {
-                        stringBuffer.append(line);
-                    }
-                    Log.d("SendMessageActivity", "CA: read from http connection: " + stringBuffer.toString());
-                    sendMessageStatus = SEND_MESSAGE_OK;
-
-                    // Makes sure that the InputStream is closed after the app is
-                    // finished using it.
-                } catch (Exception e) {
-                    Log.d("SendMessageActivity", e.getMessage());
-                    sendMessageStatus = SEND_MESSAGE_ERROR;
-                } finally {
-                    try {
-                        if (conn != null) {
-                            conn.disconnect();
-                        }
-                        if (inputStream != null) {
-                            inputStream.close();
-                        }
-                    } catch (java.io.IOException e) {
-                        Log.d("SendMessageActivity", e.getMessage());
-                    }
-                }
-            } else {
-                //Device not connected
-                Log.d("SendMessageActivity", "CA: Network Connection Not Found");
-                sendMessageStatus = NOT_CONNECTED;
-            }
 
             return new Integer(sendMessageStatus);
         }

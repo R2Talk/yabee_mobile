@@ -69,13 +69,6 @@ public class SynchronizeActivity extends AppCompatActivity {
             //
             //TODO: This Thread.sleep code is for application test only. Should be removed in the final version
             //
-            /*
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            */
 
             if (params[0].equals("demo")) {
 
@@ -87,75 +80,6 @@ public class SynchronizeActivity extends AppCompatActivity {
                 return true;
 
             } else {
-
-                ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-                //check if the device has a valid internet connection
-                if (networkInfo != null && networkInfo.isConnected()) {//..if it has, do login in CA Server
-                    Log.d("SynchronizeActivity", "CA: Network Connection Found");
-                    //
-                    //CA server login
-                    //
-                    //Send CA Server http request for login validation
-                    try {
-                        Gson gson = new Gson();
-
-                        //userVo usar data
-                        UserVo userVo = new UserVo(params[0], params[1], false);
-
-                        //format request URL
-                        URL url = new URL("http://192.168.0.7:8080/CAWebApp/DoLoginServlet" + "?" + "loginData=" + gson.toJson(userVo));
-
-                        //open connection and prepare request parameters
-                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                        conn.setReadTimeout(10000 /* milliseconds */);
-                        conn.setConnectTimeout(5000 /* milliseconds */);
-                        conn.setRequestMethod("GET");
-                        //conn.setDoInput(true);
-                        //starts the query
-                        //conn.connect();
-                        //int response = conn.getResponseCode();
-                        //Log.d("LoginActivity", "server response is: " + response);
-
-                        Log.d("SynchronizeActivity", "CA: trying conn.getInputStream");
-
-                        //do the http request
-                        is = conn.getInputStream();
-
-                        // Convert the InputStream into a string
-                        String contentAsString = readIt(is, len);
-                        Log.d("SynchronizeActivity", "CA: reade from http connection: " + contentAsString);
-
-
-                        //If the user is valid, do call to Synchronize
-                        Log.d("SynchronizeActivity", "CA: ...here must call Synchronization object");
-
-                        //else, indicates de user is not valid
-
-
-                        // Makes sure that the InputStream is closed after the app is
-                        // finished using it.
-
-                    } catch (Exception e) {
-                        Log.d("SynchronizeActivity", e.getMessage());
-                    } finally {
-                        try {
-                            if (is != null) {
-                                is.close();
-                            }
-                        } catch (IOException e) {
-                            Log.d("SynchronizeActivity", e.getMessage());
-                        }
-                    }
-
-                } else {
-                    //Device not connected
-                    Log.d("SynchronizeActivity", "CA: Network Connection Not Found");
-                    String text = res.getString(R.string.device_not_connect);
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-                }
 
                 return true;
             }

@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.List;
 
@@ -54,26 +55,27 @@ public class HiveSendMessage {
         String jsonMessageVo;
         Gson gson = new Gson();
 
-        //prepare URL
-        //  convert MessageVo to Jason string format
-        //  send as get parameter the message in jason format
-        //deserialize generic type for List of MessageVo
-        Type messageVoType = new TypeToken<MessageVo>() {}.getType(); //this is necessary because we are deserializing a generic class type
-        jsonMessageVo = gson.toJson(messageVo, messageVoType);
-        url = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/sendMessage?jasonMessageVo=" + jsonMessageVo;
-
-        //execute rest call
-        HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
-
         try {
+            //prepare URL
+            //  convert MessageVo to Jason string format
+            //  send as get parameter the message in jason format
+            //deserialize generic type for List of MessageVo
+            Type messageVoType = new TypeToken<MessageVo>() {}.getType(); //this is necessary because we are deserializing a generic class type
+            jsonMessageVo = gson.toJson(messageVo, messageVoType);
+            url = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/sendMessage?msg=" + URLEncoder.encode(jsonMessageVo, "UTF-8");
+
+            //execute rest call
+            HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
+
             serviceReturn = httpServiceRequester.executeHttpGetRequest(url);
 
-            //check status return
-            // if (serviceReturn...
+            //TODO: check status return in the string serviceReturn
 
         } catch (DeviceNotConnectedException e){
             Log.d("hiveSendMessage", "device not connected");
             return false;
+        } catch (Exception e){
+            Log.d("hiveSendMessage",e.getMessage());
         }
 
         return true;
