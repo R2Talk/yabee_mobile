@@ -11,7 +11,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="iw_activities">Atividades IW</string>
-    <string name="projects">Projetos</string>C:\AndroidStudioProjects\asap-project\app
+    <string name="projects">Projetos</string>
     <string name="notifications">Notificações</string>
     <string name="action_settings">Configurações</string>
     <string name="initiative_resume">Relatório</string>
@@ -36,7 +36,7 @@
     <string name="synchronizing_operation">Por favor, aguarde. Sincronizando as informações.</string>
 
     <string name="notImplemented">Não disponível</string>
-    <string name="demoVersion">Executando em modo demonstração</string>
+    <string name="demoVersion">versão de demonstração</string>
 
     <string name="initiativesText">Iniciativas</string>
     <string name="deliverablesText">Entegas</string>
@@ -63,13 +63,16 @@
     <string name="send_message_ok">Mensegem enviada.</string>
     <string name="send_message_error">Invelizmente não foi possível enviar a emsagem devido a problema técnico.</string>
     <string name="message_from">de:</string>
+    <string name="onDate">em:</string>
 
 
-
-    <string name="title_activity_send_message">Send Message</string>
+    <string name="title_activity_send_message">ENVIAR MENSAGEM</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="title_activity_show_messages">ShowMessagesActivity</string>
+    <string name="title_activity_show_messages">MENSAGENS</string>
+    <string name="title_activity_show_day_priorities">ShowDayPrioritiesActivity</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_deliverable_update">DeliverableUpdateActivity</string>
 
 
 

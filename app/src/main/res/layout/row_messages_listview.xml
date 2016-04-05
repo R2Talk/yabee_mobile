@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,21 +8,43 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Message Text"
-        android:id="@+id/messageTextView" />
+        android:id="@+id/messageTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="38dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/message_from"
-        android:id="@+id/textView3" />
+        android:id="@+id/textView3"
+        android:layout_below="@+id/messageTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="name"
-        android:id="@+id/textView4" />
+        android:text="@string/demoVersion"
+        android:id="@+id/textViewFrom"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/onDate"
+        android:id="@+id/textViewDate"
+        android:layout_below="@+id/messageTextView"
+        android:layout_toRightOf="@+id/textViewFrom"
+        android:layout_toEndOf="@+id/textViewFrom"
+        android:layout_marginLeft="47dp"
+        android:layout_marginStart="47dp" />
 
 
-</LinearLayout>
+</RelativeLayout>

@@ -7,7 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import br.com.ca.asap.vo.MessageVo;
 import br.com.ca.shareview.R;
@@ -77,11 +80,19 @@ public class MessagesAdapter extends ArrayAdapter<MessageVo> {
         // 3. Get the message text view object from the rowInitiativesView layout object
         //
         TextView messageView = (TextView) rowMessagesView.findViewById(R.id.messageTextView);
-
+        TextView userView = (TextView) rowMessagesView.findViewById(R.id.textViewFrom);
+        TextView dateView = (TextView) rowMessagesView.findViewById(R.id.textViewDate);
         //
         // 4. Set the text for textView
         //
         messageView.setText(itemsArrayList.get(position).getText());
+
+        userView.setText(itemsArrayList.get(position).getNameFromUser());
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = itemsArrayList.get(position).getDatetime();
+        String stringDate = dateFormat.format(date);
+        dateView.setText(stringDate);
 
         //
         // 5. return rowInitiativesView

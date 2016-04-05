@@ -114,12 +114,12 @@ public class SynchronizeMessagesActivity extends AppCompatActivity {
             jsonMessages = gson.toJson(result, messagesListType);
 
             Intent intent = new Intent(SynchronizeMessagesActivity.this, ShowMessagesActivity.class);
-
+            intent.addFlags(
+                    Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.putExtra(SynchronizeMessagesActivity.EXTRA_MESSAGES, jsonMessages);
 
             startActivity(intent);
 
         }
     }
-
 }

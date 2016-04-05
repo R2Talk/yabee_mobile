@@ -64,7 +64,24 @@
             android:label="@string/title_activity_show_messages"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-        <activity android:name="br.com.ca.asap.activity.SynchronizeMessagesActivity" android:noHistory="true">
+        <activity
+            android:name="br.com.ca.asap.activity.SynchronizeMessagesActivity"
+            android:noHistory="true" >
+        </activity>
+        <activity
+            android:name="br.com.ca.asap.activity.ShowDayPrioritiesActivity"
+            android:label="@string/title_activity_show_day_priorities"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name="br.com.ca.asap.activity.SignUpActivity"
+            android:label="@string/title_activity_sign_up"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name="br.com.ca.asap.activity.DeliverableUpdateActivity"
+            android:label="@string/title_activity_deliverable_update"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
 

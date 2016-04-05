@@ -106,15 +106,21 @@ public class SendMessageActivity extends AppCompatActivity {
             //message sent as parameter for the async class
             String msgText = (String) params[0];
 
+            //prepare message vo
             MessageVo messageVo = new MessageVo();
             messageVo.setText(msgText);
-            //TODO: before sending the message set all values, except idMessage
+            messageVo.setIdFromUser(2);//TODO: read current logged user
+            messageVo.setUser_idUser(1); //TODO: read from current message
+            messageVo.setInitiative_idInitiative(2); //TODO: read from current initiative
+            messageVo.setDeliverable_idDeliverable(1); //TODO: read from current deliverable
 
+            //prepare hive service
             HiveSendMessage hiveSendMessage = new HiveSendMessage(context);
 
+            //send message
             hiveSendMessage.sendMessage(messageVo);
 
-
+            //return result of background thread execution
             return new Integer(sendMessageStatus);
         }
 

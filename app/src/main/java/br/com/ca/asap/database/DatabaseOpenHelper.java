@@ -23,7 +23,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static String KEY_INITIATIVE_TITLE = "title";
     public static String KEY_INITIATIVE_DESCRIPTION = "description";
 
-    //INITIATIVE TABLE
+    //DELIVERABLE TABLE
     public static String DATABASE_TABLE_DELIVERABLE = "deliverable";
     public static String KEY_DELIVERABLE_ID = "deliverable_id";
     public static String KEY_INITIATIVE_FK = "initiative_id_fk";
@@ -34,6 +34,8 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static String KEY_DELIVERABLE_DUE_DATE = "due_date";
     public static String KEY_DELIVERABLE_RESPONSIBLE = "responsible";
     public static String KEY_DELIVERABLE_RATING = "rating";
+
+    //TODO: CREATE DAY_PRIORITY TABLE
 
     //PMO TABLE
     public static String DATABASE_TABLE_PMO = "pmo";

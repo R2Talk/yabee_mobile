@@ -123,9 +123,6 @@ public class InitiativeReport {
 
         switch (name) {
             case ("RODRIGO CARVALHO DOS SANTOS"):
-            case ("LUCIANE MACHADO SIMAO"):
-            case ("CRISTIANE DE SOUZA LIMA"):
-            case ("RENATO AMATTO"):
                 return true;
         }
         return false;
