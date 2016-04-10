@@ -18,6 +18,10 @@ import br.com.ca.asap.vo.InitiativeVo;
 
 /**
  * DemoSynchronize
+ *
+ * TODO: remove demo version
+ *
+ * @author Rodrigo Carvalho
  */
 public class DemoSynchronize {
 

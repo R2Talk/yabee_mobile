@@ -17,6 +17,7 @@ import org.achartengine.renderer.SimpleSeriesRenderer;
  *
  * The Pie Chart represents the state of the deliverables.
  *
+ * @author Rodrigo Carvalho
  */
 public class DeliverablesChart {
 

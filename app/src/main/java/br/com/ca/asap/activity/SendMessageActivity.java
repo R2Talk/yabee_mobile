@@ -22,14 +22,18 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 import br.com.ca.asap.hiveservices.HiveSendMessage;
+import br.com.ca.asap.user.CurrentUser;
+import br.com.ca.asap.user.SignManager;
 import br.com.ca.asap.vo.MessageVo;
+import br.com.ca.asap.vo.UserVo;
 import br.com.ca.shareview.R;
 
 /**
  * SendMessageActivity
  *
- * This activity permits the edition of a text message thats sent to the rest server
+ * This activity allows editing and sending a text message
  *
+ * @author Rodrigo Carvalho
  */
 public class SendMessageActivity extends AppCompatActivity {
 
@@ -101,8 +105,6 @@ public class SendMessageActivity extends AppCompatActivity {
             // variable thats maintains return status for original thread
             int sendMessageStatus = SEND_MESSAGE_OK;
 
-            Context context = getApplicationContext();
-
             //message sent as parameter for the async class
             String msgText = (String) params[0];
 
@@ -115,9 +117,10 @@ public class SendMessageActivity extends AppCompatActivity {
             messageVo.setDeliverable_idDeliverable(1); //TODO: read from current deliverable
 
             //prepare hive service
+            Context context = getApplicationContext();
             HiveSendMessage hiveSendMessage = new HiveSendMessage(context);
 
-            //send message
+            //call give service to send message
             hiveSendMessage.sendMessage(messageVo);
 
             //return result of background thread execution
@@ -144,7 +147,11 @@ public class SendMessageActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
             } else { //...otherwise just shows message informing that the user is not valid
+
+                SignManager signManager = new SignManager();  //retrieve current user
+                UserVo userVo = signManager.getCurrentUser();
                 String text = res.getString(R.string.send_message_ok);
+                text = text + " -> " + userVo.getName();
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
             }

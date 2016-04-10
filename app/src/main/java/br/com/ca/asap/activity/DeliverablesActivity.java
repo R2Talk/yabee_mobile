@@ -19,9 +19,12 @@ import br.com.ca.asap.email.EmailChannel;
 import br.com.ca.asap.vo.DeliverableVo;
 import br.com.ca.shareview.R;
 
-/*
+/**
  * Deliverables Activity
- * Show deliverables list associated with an identified Initiative.
+ *
+ * Show list of deliverables associated with an identified Initiative.
+ *
+ * @author Rodrigo Carvalho
  */
 public class DeliverablesActivity extends AppCompatActivity {
 

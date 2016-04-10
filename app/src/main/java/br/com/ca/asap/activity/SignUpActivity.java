@@ -9,6 +9,13 @@ import android.view.View;
 
 import br.com.ca.shareview.R;
 
+/**
+ * SignUpActivity
+ *
+ * This activity register a user in hive server
+ *
+ * @author Rodrigo Carvalho
+ */
 public class SignUpActivity extends AppCompatActivity {
 
     @Override

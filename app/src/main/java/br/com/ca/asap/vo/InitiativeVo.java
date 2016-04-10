@@ -3,6 +3,7 @@ package br.com.ca.asap.vo;
 /**
  * InitiativeVo
  *
+ * @author Rodrigo Carvalho
  */
 public class InitiativeVo {
 

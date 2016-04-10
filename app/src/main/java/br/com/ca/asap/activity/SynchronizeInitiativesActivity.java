@@ -3,8 +3,6 @@ package br.com.ca.asap.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,29 +11,26 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 import br.com.ca.shareview.R;
 import br.com.ca.asap.demo.DemoSynchronize;
-import br.com.ca.asap.vo.UserVo;
 
 /*
- * SynchronizeActivity
+ * SynchronizeInitiativesActivity
  * TODO: need refactoring. demo version.
+ *
+ * obs: in manifest uses the android:noHistory attribute.
  */
-public class SynchronizeActivity extends AppCompatActivity {
+public class SynchronizeInitiativesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_synchronize);
+        setContentView(R.layout.activity_synchronize_initiatives);
         //start synchronization right after creation basic steps
         doSynchronize();
     }
@@ -105,7 +100,7 @@ public class SynchronizeActivity extends AppCompatActivity {
                 startActivity(intent);
             } else {
                 //TODO: need refactoring. write code for message and option to go retry ou go to local processing
-                Log.d("SynchronizeActivity","a problem with synchronization activity");
+                Log.d("SynchronizeInitiativesActivity","a problem with synchronization activity");
             }
         }
 

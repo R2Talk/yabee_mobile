@@ -12,6 +12,10 @@ import br.com.ca.asap.vo.DeliverableVo;
 
 /**
  * DeliverableDAO
+ *
+ * DAO for DELIVERABLE yabee local table
+ *
+ * @author Rodrigo Carvalho
  */
 public class DeliverableDAO {
     private DatabaseOpenHelper databaseOpenHelper;

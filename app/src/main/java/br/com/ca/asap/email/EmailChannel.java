@@ -10,6 +10,9 @@ import br.com.ca.shareview.R;
 /**
  * EmailChannel
  *
+ * Manages sending email using email application installed in the device
+ *
+ * @author Rodrigo Carvalho
  */
 public class EmailChannel {
 
@@ -54,5 +57,4 @@ public class EmailChannel {
             Toast.makeText(context, context.getResources().getString(R.string.missingEmailClient), Toast.LENGTH_SHORT).show();
         }
     }
-
 }

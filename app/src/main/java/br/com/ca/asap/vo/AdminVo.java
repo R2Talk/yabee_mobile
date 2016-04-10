@@ -4,6 +4,8 @@ package br.com.ca.asap.vo;
  * AdminVo
  *
  * Represents the identity of an administrator for reporting purposes
+ *
+ * @author Rodrigo Carvalho
  */
 public class AdminVo {
 

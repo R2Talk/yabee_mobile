@@ -16,6 +16,8 @@ import br.com.ca.shareview.R;
 
 /**
  * InitiativeAdapter
+ *
+ * @author Rodrigo Carvalho
  */
 public class InitiativeAdapter extends ArrayAdapter<InitiativeVo> {
 

@@ -25,8 +25,9 @@
             android:label="@string/initiativesActivityLabel" >
         </activity>
         <activity
-            android:name="br.com.ca.asap.activity.SynchronizeActivity"
-            android:label="@string/app_name" >
+            android:name="br.com.ca.asap.activity.SynchronizeInitiativesActivity"
+            android:label="@string/app_name"
+            android:noHistory="true">
         </activity>
 
         <meta-data
@@ -34,11 +35,10 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="br.com.ca.asap.activity.LoginActivity"
+            android:name="br.com.ca.asap.activity.SignInActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

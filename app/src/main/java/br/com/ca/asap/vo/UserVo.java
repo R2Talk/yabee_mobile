@@ -5,8 +5,12 @@ package br.com.ca.asap.vo;
  *
  * Represents the identity, and login validation state of an user.
  *
+ * BEWARE: yabee/hive data bridge object
+ *
+ * @author Rodrigo Carvalho
  */
 public class UserVo {
+    private Integer userId;
     private String name;
     private String password;
     private Boolean validated;
@@ -20,11 +24,13 @@ public class UserVo {
     /**
      * Constructor
      *
+     * @param userId
      * @param name
      * @param password
      * @param validated
      */
-    public UserVo(String name, String password, Boolean validated){
+    public UserVo(Integer userId, String name, String password, Boolean validated){
+        this.setUserId(userId);
         this.setName(name);
         this.setPassword(password);
         this.setValidated(validated);
@@ -35,6 +41,9 @@ public class UserVo {
      *
      */
 
+    public Integer getUserId() { return userId;}
+
+    public void setUserId(Integer userId) {this.userId = userId;}
 
     public String getName() {
         return name;

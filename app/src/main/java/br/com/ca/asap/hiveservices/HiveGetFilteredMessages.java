@@ -23,6 +23,8 @@ import br.com.ca.asap.vo.MessageVo;
  *
  * Requests a message list. It must respect filter parameters encapsulated into MessageFilter class.
  *
+ * BEWARE: Hive Services uses network connection and must be called from a non UI Thread.
+ *
  * @auhor Rodrigo Carvalho
  */
 public class HiveGetFilteredMessages {

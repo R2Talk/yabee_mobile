@@ -25,11 +25,14 @@ import br.com.ca.asap.vo.InitiativeVo;
 import br.com.ca.shareview.R;
 
 
-/*
- * InitiativesReport Activity
+/**
+ * InitiativesReportActivity
+ *
  * Show Initiatives status report
  *
  * TODO: need re-factory
+ *
+ * @author Rodrigo Carvalho
  */
 public class InitiativesReportActivity extends AppCompatActivity {
 

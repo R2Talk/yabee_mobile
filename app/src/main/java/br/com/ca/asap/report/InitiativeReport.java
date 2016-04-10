@@ -19,6 +19,7 @@ import br.com.ca.asap.vo.InitiativeReportVo;
  *
  * Query the state of the deliverables of an initiative and returns the summary in an InitiativeReportVo.
  *
+ * @author Rodrigo Carvalho
  */
 public class InitiativeReport {
 

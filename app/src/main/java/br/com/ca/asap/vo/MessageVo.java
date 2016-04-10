@@ -7,6 +7,8 @@ import java.util.Date;
  *
  * Represents a message and identifies users id of sender and receiver.
  *
+ * BEWARE: yabee/hive data bridge object
+ *
  * @author Rodrigo Carvalho
  *
  */

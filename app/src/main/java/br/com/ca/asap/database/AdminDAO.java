@@ -10,6 +10,9 @@ import br.com.ca.asap.vo.AdminVo;
 /**
  * AdminDAO
  *
+ * DAO for ADMINISTRATOR yabee local table
+ *
+ * @author Rodrigo Carvalho
  */
 public class AdminDAO {
 

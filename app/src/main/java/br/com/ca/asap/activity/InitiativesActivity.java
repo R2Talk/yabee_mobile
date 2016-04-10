@@ -27,9 +27,12 @@ import br.com.ca.shareview.R;
 
 import static br.com.ca.shareview.R.*;
 
-/*
+/**
  * Initiatives Activity
+ *
  * Show Current Initiatives list.
+ *
+ * @author Rodrigo Carvalho
  */
 public class InitiativesActivity extends AppCompatActivity {
 

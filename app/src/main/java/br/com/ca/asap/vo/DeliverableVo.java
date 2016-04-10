@@ -13,6 +13,7 @@ import java.util.Date;
  * Represents the data of a deliverable.
  * Note that the information about the late state is calculated based on the deliverable due date and current date.
  *
+ * @author Rodrigo Carvalho
  */
 public class DeliverableVo {
 

@@ -23,9 +23,12 @@ import br.com.ca.asap.graph.DeliverablesChart;
 import br.com.ca.asap.vo.DeliverableVo;
 import br.com.ca.shareview.R;
 
-/*
- * InitiativeReport Activity
- * Show Initiative Deliverables and status report
+/**
+ * InitiativeReportActivity
+ *
+ * Show Initiative Deliverables Pie Chart and status report
+ *
+ * @author Rodrigo Carvalho
  */
 public class InitiativeReportActivity extends AppCompatActivity {
 

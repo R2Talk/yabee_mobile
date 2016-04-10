@@ -9,6 +9,15 @@ import android.view.View;
 
 import br.com.ca.shareview.R;
 
+/**
+ * DeliverableUpdateActivity
+ *
+ * TODO:
+ *
+ * Show and permits edition and update of deliverable status and rating.
+ *
+ * @author Rodrigo Carvalho
+ */
 public class DeliverableUpdateActivity extends AppCompatActivity {
 
     @Override

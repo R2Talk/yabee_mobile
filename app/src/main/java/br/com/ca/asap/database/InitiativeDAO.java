@@ -14,6 +14,10 @@ import br.com.ca.asap.vo.InitiativeVo;
 
 /**
  * InitiativeDAO
+ *
+ * DAO for INITIATIVE yabee local table
+ *
+ * @author Rodrigo Carvalho
  */
 public class InitiativeDAO {
     private DatabaseOpenHelper databaseOpenHelper;

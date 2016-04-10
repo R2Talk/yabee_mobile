@@ -23,6 +23,7 @@ import br.com.ca.shareview.R;
  *
  * The Bar Chart represents the state of the initiatives.
  *
+ * @author Rodrigo Carvalho
  */
 public class InitiativesChart {
 

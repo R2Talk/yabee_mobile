@@ -17,6 +17,8 @@ import br.com.ca.shareview.R;
 
 /**
  * DeliverablesAdapter
+ *
+ * @author Rodrigo Carvalho
  */
 public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
 

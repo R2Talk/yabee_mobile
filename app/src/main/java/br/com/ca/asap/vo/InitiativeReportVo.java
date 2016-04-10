@@ -5,6 +5,7 @@ package br.com.ca.asap.vo;
  *
  * Represents the summary of the state of an initiative considering its deliverables.
  *
+ * @author Rodrigo Carvalho
  */
 public class InitiativeReportVo {
 

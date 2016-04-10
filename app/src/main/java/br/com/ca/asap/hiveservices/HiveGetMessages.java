@@ -17,9 +17,11 @@ import br.com.ca.asap.network.InternetDefaultServer;
 import br.com.ca.asap.vo.MessageVo;
 
 /**
- * hiveGetAllMessages
+ * HiveGetMessages
  *
  * This class implements a hive service request, and encapsulates the steps from connection to return.
+ *
+ * BEWARE: Hive Services uses network connection and must be called from a non UI Thread.
  *
  * @auhor Rodrigo Carvalho
  */
@@ -27,10 +29,6 @@ public class HiveGetMessages {
 
     //App context
     Context context;
-    //possible returned states of network query login
-    public final int NOT_CONNECTED = 0;
-    public final int SUCCESS = 1;
-    public final int ERROR = 2;
 
     /**
      * hiveGetAllMessages

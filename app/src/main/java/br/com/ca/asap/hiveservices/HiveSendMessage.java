@@ -21,6 +21,8 @@ import br.com.ca.asap.vo.MessageVo;
  *
  * This class implements a hive service request, and encapsulates the steps from connection to return.
  *
+ * BEWARE: Hive Services uses network connection and must be called from a non UI Thread.
+ *
  * @author Rodrigo Carvalho
  */
 public class HiveSendMessage {

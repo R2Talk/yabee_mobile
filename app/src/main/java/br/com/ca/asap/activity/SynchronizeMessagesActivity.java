@@ -27,7 +27,10 @@ import br.com.ca.shareview.R;
  * SynchronizeMessagesActivity
  *
  * This activity does the synchronization of received messages calling a hive server service.
- * obs: in manifest uses the androis:noHistory attribute.
+ *
+ * obs: in manifest uses the android:noHistory attribute.
+ *
+ * @author Rodrigo Carvalho
  */
 public class SynchronizeMessagesActivity extends AppCompatActivity {
 

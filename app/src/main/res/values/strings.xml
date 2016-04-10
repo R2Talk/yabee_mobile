@@ -31,7 +31,7 @@
     <string name="total_number_of_last_day_wi">Vencem hoje:</string>
     <string name="total_number_of_with_admin">Com Adm.:</string>
 
-    <string name="wrongNameOrPwd">Nome de usuário ou senha inválidos</string>
+    <string name="wrongNameOrPwd">Nome de usuário ou senha inválidos. Tente o usuário guest, com senha guest".</string>
     <string name="device_not_connect">Dispositivo não conectado à rede</string>
     <string name="synchronizing_operation">Por favor, aguarde. Sincronizando as informações.</string>
 

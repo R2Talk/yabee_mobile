@@ -9,6 +9,13 @@ import android.view.View;
 
 import br.com.ca.shareview.R;
 
+/**
+ * ShowDayPrioritiesActivity
+ *
+ * Show user selected priorities for the day
+ *
+ * @author Rodrigo Carvalho
+ */
 public class ShowDayPrioritiesActivity extends AppCompatActivity {
 
     @Override
