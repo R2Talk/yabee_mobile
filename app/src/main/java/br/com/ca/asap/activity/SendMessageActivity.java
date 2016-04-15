@@ -55,7 +55,6 @@ public class SendMessageActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 String msgText = (String) (((EditText) findViewById(R.id.msgEditText)).getText()).toString();
                 new AsyncSendMessage().execute(String.valueOf(msgText));
 
@@ -105,13 +104,16 @@ public class SendMessageActivity extends AppCompatActivity {
             // variable thats maintains return status for original thread
             int sendMessageStatus = SEND_MESSAGE_OK;
 
+            //SignManager - used to get current user sending the message
+            SignManager signManager = new SignManager();
+
             //message sent as parameter for the async class
             String msgText = (String) params[0];
 
             //prepare message vo
             MessageVo messageVo = new MessageVo();
             messageVo.setText(msgText);
-            messageVo.setIdFromUser(2);//TODO: read current logged user
+            messageVo.setIdFromUser(signManager.getCurrentUser().getUserId());
             messageVo.setUser_idUser(1); //TODO: read from current message
             messageVo.setInitiative_idInitiative(2); //TODO: read from current initiative
             messageVo.setDeliverable_idDeliverable(1); //TODO: read from current deliverable
@@ -142,7 +144,7 @@ public class SendMessageActivity extends AppCompatActivity {
                 String text = res.getString(R.string.send_message_error);
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
-            } else if (result == NOT_CONNECTED) {
+            } else if (result == NOT_CONNECTED) { //TODO: actualize according the hive service return or exceptions thrown
                 String text = res.getString(R.string.device_not_connect);
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();

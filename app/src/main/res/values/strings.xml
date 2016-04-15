@@ -55,6 +55,7 @@
     <string name="emailHeader">Olá, por favor avaliar o status das entregas da iniciativa.</string>
     <string name="emailFooter">Obrigado.</string>
 
+    <string name="message">Mensagem</string>
     <string name="title">Titulo:</string>
     <string name="responsible">Responsável:</string>
     <string name="date">Data:</string>
@@ -63,7 +64,7 @@
     <string name="send_message_ok">Mensegem enviada.</string>
     <string name="send_message_error">Invelizmente não foi possível enviar a emsagem devido a problema técnico.</string>
     <string name="message_from">de:</string>
-    <string name="onDate">em:</string>
+    <string name="onDate">data</string>
 
 
     <string name="title_activity_send_message">ENVIAR MENSAGEM</string>

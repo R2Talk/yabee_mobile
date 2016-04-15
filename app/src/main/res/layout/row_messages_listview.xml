@@ -18,21 +18,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/message_from"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/messageTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/demoVersion"
         android:id="@+id/textViewFrom"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_toRightOf="@+id/textView3"
-        android:layout_toEndOf="@+id/textView3" />
+        android:layout_below="@+id/messageTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="42dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,11 +31,9 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/onDate"
         android:id="@+id/textViewDate"
-        android:layout_below="@+id/messageTextView"
-        android:layout_toRightOf="@+id/textViewFrom"
-        android:layout_toEndOf="@+id/textViewFrom"
-        android:layout_marginLeft="47dp"
-        android:layout_marginStart="47dp" />
+        android:layout_below="@+id/textViewFrom"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

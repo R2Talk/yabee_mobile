@@ -49,7 +49,6 @@ public class MessagesAdapter extends ArrayAdapter<MessageVo> {
         this.itemsArrayList = itemsArrayList;
     }
 
-
     /**
      *
      * getView
