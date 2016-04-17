@@ -1,5 +1,6 @@
 package br.com.ca.asap.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,9 +45,8 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
-        FloatingActionButton fabLogin = (FloatingActionButton) findViewById(R.id.fabLogin);
-        fabLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
+        final Button button = (Button) findViewById(R.id.btn_login);
+        button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String name = (String) (((TextView) findViewById(R.id.nameEditText)).getText()).toString();
                 if (name.equals("")){
@@ -53,9 +54,9 @@ public class SignInActivity extends AppCompatActivity {
                 } else {
                     doSignIn(((TextView) findViewById(R.id.nameEditText)).getText(), ((TextView) findViewById(R.id.pwdEditText)).getText());
                 }
-
             }
         });
+
     }
 
     /**
@@ -106,6 +107,7 @@ public class SignInActivity extends AppCompatActivity {
      * @param view
      */
     public void onClickLogin(View view) {
+
         doSignIn(((TextView) findViewById(R.id.nameEditText)).getText(), ((TextView) findViewById(R.id.pwdEditText)).getText());
     }
 
@@ -133,6 +135,9 @@ public class SignInActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_LONG;
 
+        final ProgressDialog progressDialog = new ProgressDialog(SignInActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+
         // possible returns values from sign in service
         //TODO: define values to mark network errors and permit to show the appropriate message in this UI Thread
         public final int VALID_USER = 1;
@@ -147,6 +152,9 @@ public class SignInActivity extends AppCompatActivity {
          */
         @Override
         protected void onPreExecute() {
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage(res.getString(R.string.authenticating));
+            progressDialog.show();
         }
 
         /**
@@ -229,6 +237,8 @@ public class SignInActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Integer result) {
             Context context = getApplicationContext();
+
+            progressDialog.dismiss();
 
             //check if the result, sent as a Boolean by doInBackGround, is true
             //...and call initiatives activity

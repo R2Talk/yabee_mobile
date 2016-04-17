@@ -2,6 +2,7 @@ package br.com.ca.asap.graph;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import org.achartengine.ChartFactory;
@@ -9,6 +10,8 @@ import org.achartengine.GraphicalView;
 import org.achartengine.model.CategorySeries;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
+
+import br.com.ca.shareview.R;
 
 /**
  * DeliverablesChart
@@ -21,7 +24,7 @@ import org.achartengine.renderer.SimpleSeriesRenderer;
  */
 public class DeliverablesChart {
 
-    private static int[] COLORS = new int[] { Color.GREEN, Color.RED};
+    private static int[] COLORS = new int[] {Color.GREEN, Color.RED};
 
 
     /**

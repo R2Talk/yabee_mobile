@@ -3,7 +3,7 @@
 
     <string name="welcome_login">"Bem-vindo.\n\nAcompanhe as suas tarefas e as iniciativas com o seu time!"</string>
 
-    <string name="identify_yourself">A sua identificação é necessária para iniciar a sessão."</string>
+    <string name="identify_yourself">Informe seu usuário e senha, ou crie uma conta!"</string>
 
     <string name="initiativesActivityLabel">Iniciativas</string>
     <string name="deliverablesActivityLabel">Entregas</string>
@@ -18,10 +18,12 @@
     <string name="report">Relatório</string>
     <string name="todo_list">Minha Lista</string>
 
-    <string name="login">Sign In</string>
+    <string name="login">Entrar</string>
     <string name="name">nome</string>
     <string name="password">senha</string>
+    <string name="signup_phrase">Ainda não tem uma conta? Crie uma.</string>
     <string name="title_activity_login">Login</string>
+    <string name="authenticating">Autenticando...</string>
 
     <string name="adm">adm</string>
     <string name="demo">demo</string>
@@ -41,8 +43,8 @@
     <string name="initiativesText">Iniciativas</string>
     <string name="deliverablesText">Entegas</string>
 
-    <string name="onTime">NO PRAZO</string>
-    <string name="late">ATRASADO</string>
+    <string name="onTime">No prazo</string>
+    <string name="late">atrasado</string>
 
     <string name="totalPrefix">T:</string>
     <string name="onTimePrefix">P:</string>

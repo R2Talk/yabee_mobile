@@ -3,10 +3,22 @@
     <color name="black_overlay">#66000000</color>
 
 
-    <color name="primary">#2196F3</color>
-    <color name="primary_dark">#1976D2</color>
-    <color name="accent">#FF3D00</color>
+    <color name="primary">#FF5722</color>
+    <color name="primary_dark">#FF5722</color>
+    <color name="accent">#FF6E40</color>
 
     <color name="activity_background">#FFFFFF</color>
+    <color name="signin_background">#FFFFFF</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="iron">#CCCCCC</color>
+
+    <color name="green">#1B5E20</color>
+    <color name="red">#B71C1C</color>
+
+    <color name="orange_card_color">#FFF3E0</color>
+    <color name="yellow_card_color">#FFFDE7</color>
+    <color name="green_card_color">#E8F5E9</color>
+
 
 </resources>

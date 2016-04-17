@@ -2,6 +2,8 @@ package br.com.ca.asap.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,14 +44,25 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
             // 3. Get views from inflated row view
             TextView idView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_idTextView);
             TextView titleView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_titleTextView);
+            TextView statusView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_statusTextView);
             TextView due_dateView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_due_dateTextView);
             TextView responsibleView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_responsibleTextView);
             RatingBar ratingBarView = (RatingBar) rowDeliverableView.findViewById(R.id.deliverable_ratingBar);
+            CardView cardView = (CardView) rowDeliverableView.findViewById(R.id.card_view);
             // 4. Set the text for textView
             isDeliverableLate = itemsArrayList.get(position).getDeliverable_isLate();
             if(isDeliverableLate.equals("true")) {
-                idView.setBackgroundColor(Color.RED);
-                idView.setTextColor(Color.WHITE);
+                //idView.setTextColor(Color.WHITE);
+                //titleView.setTextColor(Color.WHITE);
+                //statusView.setTextColor(Color.WHITE);
+                //due_dateView.setTextColor(Color.WHITE);
+                //responsibleView.setTextColor(Color.WHITE);
+                cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.yellow_card_color));
+                statusView.setVisibility(View.VISIBLE);
+            } else {
+                idView.setTextColor(ContextCompat.getColor(context, R.color.green));
+                cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green_card_color));
+                statusView.setVisibility(View.INVISIBLE);
             }
             idView.setText(itemsArrayList.get(position).getDeliverable_id());
             titleView.setText(itemsArrayList.get(position).getDeliverable_title());

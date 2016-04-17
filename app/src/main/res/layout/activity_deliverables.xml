@@ -13,8 +13,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="INIITIATIVE"
         android:id="@+id/initiativeTextView"
-        android:background="#010101"
-        android:textColor="#FFFFFF" />
+        android:background="@color/accent"
+        android:textColor="@color/white"/>
 
     <ListView
         android:layout_width="wrap_content"
