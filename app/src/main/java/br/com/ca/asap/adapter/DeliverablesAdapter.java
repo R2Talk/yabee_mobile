@@ -53,10 +53,6 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
             isDeliverableLate = itemsArrayList.get(position).getDeliverable_isLate();
             if(isDeliverableLate.equals("true")) {
                 //idView.setTextColor(Color.WHITE);
-                //titleView.setTextColor(Color.WHITE);
-                //statusView.setTextColor(Color.WHITE);
-                //due_dateView.setTextColor(Color.WHITE);
-                //responsibleView.setTextColor(Color.WHITE);
                 cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.yellow_card_color));
                 statusView.setVisibility(View.VISIBLE);
             } else {

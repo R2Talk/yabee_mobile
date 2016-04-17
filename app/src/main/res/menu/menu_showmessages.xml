@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".OpenView">
 
     <!-- should appear as action button -->
-    <item android:id="@+id/action_notification"
+    <item android:id="@+id/action_refresh_messsages"
         android:icon="@drawable/ic_autorenew"
         android:title="@string/notifications"
         app:showAsAction="ifRoom" />

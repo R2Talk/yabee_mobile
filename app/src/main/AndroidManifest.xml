@@ -64,10 +64,6 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name="br.com.ca.asap.activity.SynchronizeMessagesActivity"
-            android:noHistory="true" >
-        </activity>
-        <activity
             android:name="br.com.ca.asap.activity.ShowDayPrioritiesActivity"
             android:label="@string/title_activity_show_day_priorities"
             android:theme="@style/AppTheme.NoActionBar" >

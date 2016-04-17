@@ -83,10 +83,10 @@ public class InitiativesActivity extends AppCompatActivity {
 
         // Handle presses on the action bar items
         switch (item.getItemId()) {
-            case R.id.action_notification:
+            case id.action_refresh_messsages:
                 //Intent
                 //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
-                Intent intent = new Intent(InitiativesActivity.this, SynchronizeMessagesActivity.class);
+                Intent intent = new Intent(InitiativesActivity.this, ShowMessagesActivity.class);
                 //Start Intent
                 startActivity(intent);
 

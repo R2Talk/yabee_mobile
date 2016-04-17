@@ -25,6 +25,8 @@
     <string name="title_activity_login">Login</string>
     <string name="authenticating">Autenticando...</string>
 
+    <string name="synchronizing">Atualizando...</string>
+
     <string name="adm">adm</string>
     <string name="demo">demo</string>
 
