@@ -23,6 +23,7 @@ import java.util.List;
 import br.com.ca.asap.adapter.InitiativeAdapter;
 import br.com.ca.asap.database.InitiativeDAO;
 import br.com.ca.asap.email.EmailChannel;
+import br.com.ca.asap.user.SignManager;
 import br.com.ca.asap.vo.InitiativeVo;
 import br.com.ca.shareview.R;
 
@@ -100,9 +101,15 @@ public class InitiativesActivity extends AppCompatActivity {
 
                 return true;
             case id.action_signout:
+                SignManager signManager = new SignManager(getApplicationContext());
+                signManager.signOut();
 
-                toast = Toast.makeText(getApplicationContext(), "SIGN OUT", Toast.LENGTH_SHORT);
-                toast.show();
+                //Intent
+                //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
+                Intent intent2 = new Intent(InitiativesActivity.this, SignInActivity.class);
+                intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //Start Intent
+                startActivity(intent2);
 
                 return true;
             default:

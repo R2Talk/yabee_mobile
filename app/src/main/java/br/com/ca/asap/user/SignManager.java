@@ -46,14 +46,16 @@ public class SignManager {
     //signOut
     //
     public void signOut(){
+        //clear singleton
+        CurrentUser currentUser= CurrentUser.getInstance();
+        currentUser.setUser(null);
 
         //remove from preferences
         PreferencesHelper preferencesHelper = new PreferencesHelper(context, PreferencesHelper.SIGNIN_PREFERENCES);
 
-
-        //clear singleton
-
-        //go to SignIn page
+        preferencesHelper.setStringPreferenceValue(PreferencesHelper.IS_LOGGED,"");
+        preferencesHelper.setIntPreferenceValue(PreferencesHelper.USER_ID, 0);
+        preferencesHelper.setStringPreferenceValue(PreferencesHelper.USER_NAME, "");
 
     }
 
