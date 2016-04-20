@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
+import br.com.ca.asap.preferences.PreferencesHelper;
 import br.com.ca.shareview.R;
 import br.com.ca.asap.demo.DemoSynchronize;
 
@@ -92,6 +93,13 @@ public class SynchronizeInitiativesActivity extends AppCompatActivity {
             //check if the result, sent as a Boolean by doInBackGround, is true
             //...and call initiatives activity
             if(result.booleanValue() == true) {
+
+                //
+                //save the last synchronization date.
+                //
+                PreferencesHelper preferencesHelper = new PreferencesHelper(getApplicationContext(), PreferencesHelper.APP_PREFERENCES);
+                preferencesHelper.setStringPreferenceValue(PreferencesHelper.LAST_SYNC, "today"); //TODO: save the current date
+
                 Intent intent = new Intent(context, InitiativesActivity.class);
                 intent.addFlags(
                         Intent.FLAG_ACTIVITY_CLEAR_TOP |

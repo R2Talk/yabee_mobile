@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -31,8 +32,13 @@ import br.com.ca.asap.hiveservices.HiveGetMessages;
 import br.com.ca.asap.vo.MessageVo;
 import br.com.ca.shareview.R;
 
+/**
+ * ShowMessagesActivity
+ *
+ * @author Rodrigo Carvalho
+ */
 public class ShowMessagesActivity extends AppCompatActivity {
-
+    public final int SEND_MESSAGE_INTENT_CALL = 0;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,44 +55,36 @@ public class ShowMessagesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ArrayList<MessageVo> messageVoList;
-        String jasonMessages;
-        Gson gson = new Gson();
-
         //
-        // Floating Action Button from support android.library
-        //
-        // set OnClick listener to call send message activity
+        // Floating Action Button from support android.library. Set OnClick listener to call send message activity
         //
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                Snackbar.make(view, "Wait: under construction.", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                        */
-                //Intent
-                //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
+
                 Intent intent = new Intent(ShowMessagesActivity.this, SendMessageActivity.class);
-                //Start Intent
-                startActivity(intent);
+                //Start Intent for result
+                startActivityForResult(intent, SEND_MESSAGE_INTENT_CALL);
             }
         });
-
-        //Reads extra intent parameter with ArraList<MessageVo>
-        //Intent myIntent = getIntent(); // gets the previously created intent
-
-        //jasonMessages = myIntent.getStringExtra(SynchronizeMessagesActivity.EXTRA_MESSAGES);
-
-        //deserialize generic type for List of MessageVo
-        //Type messagesListType = new TypeToken<List<MessageVo>>() {}.getType(); //this is necessary because we are deserializing a generic class type
-        //messageVoList = gson.fromJson(jasonMessages, messagesListType);
 
         //refresh messages reading from hive server and actualize list view
         new DoAsyncMessagesSynchronize().execute("demo");
     }
 
+    // Call Back method  after sending message activity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        // check if the request code is same as what is passed  here it is 2
+        if(requestCode==SEND_MESSAGE_INTENT_CALL)
+        {
+            //refresh messages reading from hive server and actualize list view
+            new DoAsyncMessagesSynchronize().execute("demo"); //TODO: change demo word for final version
+        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

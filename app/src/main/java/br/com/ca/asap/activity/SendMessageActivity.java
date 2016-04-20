@@ -1,5 +1,6 @@
 package br.com.ca.asap.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
@@ -7,11 +8,13 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -55,8 +58,23 @@ public class SendMessageActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String msgText = (String) (((EditText) findViewById(R.id.msgEditText)).getText()).toString();
-                new AsyncSendMessage().execute(String.valueOf(msgText));
+
+                //check for empty message
+                EditText messageEditText = (EditText) findViewById(R.id.msgEditText);
+
+                if (messageEditText.getText().toString().equals("")){
+                    Resources res = getResources();
+                    Snackbar.make(view, res.getString(R.string.empty_message_not_permitted), Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } else {
+
+                    //send message
+                    String msgText = (String) (((EditText) findViewById(R.id.msgEditText)).getText()).toString();
+                    new AsyncSendMessage().execute(String.valueOf(msgText));
+
+                    setResult(Activity.RESULT_OK);
+                    finish();
+                }
 
             }
         });
@@ -105,7 +123,7 @@ public class SendMessageActivity extends AppCompatActivity {
             int sendMessageStatus = SEND_MESSAGE_OK;
 
             //SignManager - used to get current user sending the message
-            SignManager signManager = new SignManager();
+            SignManager signManager = new SignManager(getApplicationContext());
 
             //message sent as parameter for the async class
             String msgText = (String) params[0];
@@ -149,13 +167,15 @@ public class SendMessageActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
             } else { //...otherwise just shows message informing that the user is not valid
-
-                SignManager signManager = new SignManager();  //retrieve current user
+                //TODO: review error treatment
+                /*
+                SignManager signManager = new SignManager(getApplicationContext());  //retrieve current user
                 UserVo userVo = signManager.getCurrentUser();
                 String text = res.getString(R.string.send_message_ok);
                 text = text + " -> " + userVo.getName();
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
+                */
             }
         }
     }

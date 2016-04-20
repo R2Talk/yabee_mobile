@@ -3,6 +3,7 @@ package br.com.ca.asap.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import br.com.ca.asap.hiveservices.HiveSignIn;
+import br.com.ca.asap.preferences.PreferencesHelper;
 import br.com.ca.asap.user.SignManager;
 import br.com.ca.asap.vo.UserVo;
 import br.com.ca.shareview.R;
@@ -43,19 +45,45 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signin);
 
-        final Button button = (Button) findViewById(R.id.btn_login);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                String name = (String) (((TextView) findViewById(R.id.nameEditText)).getText()).toString();
-                if (name.equals("")){
-                    Snackbar.make(view, R.string.identify_yourself, Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                } else {
-                    doSignIn(((TextView) findViewById(R.id.nameEditText)).getText(), ((TextView) findViewById(R.id.pwdEditText)).getText());
-                }
+        //check if the user is already logged in
+        SignManager signManager = new SignManager(getApplicationContext());
+
+        if(signManager.knownUser()){
+
+            signManager.initializeSessionFromPreferences();
+
+            //
+            //check shared preferences to check if the user is already know.
+            //
+            PreferencesHelper preferencesHelper = new PreferencesHelper(getApplicationContext(), PreferencesHelper.APP_PREFERENCES);
+            String lastSync = preferencesHelper.getStringPrefrenceValue(PreferencesHelper.LAST_SYNC);
+
+            //check if it is already in sync
+            if (!lastSync.equals("")) { // if is in sync...
+                Intent intent = new Intent(getApplicationContext(), InitiativesActivity.class);
+                startActivity(intent);
+            } else { //...else
+                Intent intent = new Intent(getApplicationContext(), SynchronizeInitiativesActivity.class);
+                startActivity(intent);
             }
-        });
+
+        } else {
+
+            setContentView(R.layout.activity_signin);
+
+            final Button button = (Button) findViewById(R.id.btn_login);
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    String name = (String) (((TextView) findViewById(R.id.nameEditText)).getText()).toString();
+                    if (name.equals("")) {
+                        Snackbar.make(view, R.string.identify_yourself, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    } else {
+                        doSignIn(((TextView) findViewById(R.id.nameEditText)).getText(), ((TextView) findViewById(R.id.pwdEditText)).getText());
+                    }
+                }
+            });
+        }
 
     }
 
@@ -72,6 +100,7 @@ public class SignInActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.menu_login, menu);
+
         return true;
     }
 
@@ -143,6 +172,7 @@ public class SignInActivity extends AppCompatActivity {
         public final int VALID_USER = 1;
         public final int INVALID_USER = 3;
 
+
         /**
          * onPreExecute
          *
@@ -189,7 +219,7 @@ public class SignInActivity extends AppCompatActivity {
                 userState = VALID_USER;
 
                 //save logged user
-                SignManager signManager = new SignManager();
+                SignManager signManager = new SignManager(getApplicationContext());
                 signManager.signIn(userVo);
 
                 //return true for validated login
@@ -206,13 +236,13 @@ public class SignInActivity extends AppCompatActivity {
                 String pwd = params[1];
 
                 //call hive service
-                userVo = hiveSignIn.signIn(name,pwd);
+                userVo = hiveSignIn.signIn(name,pwd); //TODO: Create and check exceptions for every hive service
 
                 if (userVo.getValidated()==true) { //check user status
                     //indicates user status to be used in the UI thread - onPostExecute -
                     userState = VALID_USER;
                     //save logged user
-                    SignManager signManager = new SignManager();
+                    SignManager signManager = new SignManager(getApplicationContext());
                     signManager.signIn(userVo);
                 } else {
                     //indicates user status to be used in the UI thread - onPostExecute -

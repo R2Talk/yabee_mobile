@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,7 +56,6 @@ public class InitiativesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-
                 //Intent
                 Intent intent = new Intent(InitiativesActivity.this, DeliverablesActivity.class);
                 //Intent Parameter
@@ -81,22 +81,42 @@ public class InitiativesActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
+        Toast toast = null;
+
         // Handle presses on the action bar items
         switch (item.getItemId()) {
-            case id.action_refresh_messsages:
+            case id.action_show_messages:
                 //Intent
                 //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
                 Intent intent = new Intent(InitiativesActivity.this, ShowMessagesActivity.class);
                 //Start Intent
                 startActivity(intent);
-
                 return true;
 
+            case id.action_synch_initiatives:
+
+                toast = Toast.makeText(getApplicationContext(), "SYNC", Toast.LENGTH_SHORT);
+                toast.show();
+
+                return true;
+            case id.action_signout:
+
+                toast = Toast.makeText(getApplicationContext(), "SIGN OUT", Toast.LENGTH_SHORT);
+                toast.show();
+
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    /**
+     * generateData
+     *
+     * Prepare list of initiatives to be used in list adapter
+     *
+     * @return
+     */
     private ArrayList<InitiativeVo> generateData(){
         
         ArrayList<InitiativeVo> items = new ArrayList<>();
@@ -118,6 +138,13 @@ public class InitiativesActivity extends AppCompatActivity {
         return items;
     }
 
+    /**
+     * getInitiativeNamesArray
+     *
+     * Read list of initiatives names from database
+     *
+     * @return
+     */
     private String[] getInitiativeNamesArray() {
 
         Context context = getApplicationContext();

@@ -23,9 +23,13 @@
     <string name="password">senha</string>
     <string name="signup_phrase">Ainda não tem uma conta? Crie uma.</string>
     <string name="title_activity_login">Login</string>
-    <string name="authenticating">Autenticando...</string>
 
+    <string name="authenticating">Autenticando...</string>
     <string name="synchronizing">Atualizando...</string>
+
+    <string name="menu_synchronize_initiatives">Sincronizar Iniciativas</string>
+
+    <string name="menu_signout">Sign Out</string>
 
     <string name="adm">adm</string>
     <string name="demo">demo</string>
@@ -66,6 +70,7 @@
 
     <string name="send_message_to_group">Envie mensagem para o grupo ya bees</string>
     <string name="send_message_ok">Mensegem enviada.</string>
+    <string name="empty_message_not_permitted">Digite a sua mensagem.</string>
     <string name="send_message_error">Invelizmente não foi possível enviar a emsagem devido a problema técnico.</string>
     <string name="message_from">de:</string>
     <string name="onDate">data</string>

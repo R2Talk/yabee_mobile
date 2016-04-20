@@ -35,7 +35,9 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:theme="@style/AppTheme.NoActionBar"
-            android:name="br.com.ca.asap.activity.SignInActivity">
+            android:name="br.com.ca.asap.activity.SignInActivity"
+            android:noHistory="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
