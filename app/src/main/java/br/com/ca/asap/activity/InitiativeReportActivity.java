@@ -121,7 +121,7 @@ public class InitiativeReportActivity extends AppCompatActivity {
         //today
         Date today = new Date();
         //Date formatter
-        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat ft = new SimpleDateFormat("dd/MM/yyyy");
         //Near
         int nextDays = 7;
 
