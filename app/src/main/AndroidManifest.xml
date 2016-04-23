@@ -48,12 +48,8 @@
             android:label="@string/deliverablesActivityLabel" >
         </activity>
         <activity
-            android:name="br.com.ca.asap.activity.InitiativeReportActivity"
+            android:name="br.com.ca.asap.activity.DeliverablesReportActivity"
             android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="br.com.ca.asap.activity.InitiativesReportActivity"
-            android:label="@string/initiaitveReportActivityLabel" >
         </activity>
         <activity
             android:name="br.com.ca.asap.activity.SendMessageActivity"

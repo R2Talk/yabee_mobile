@@ -24,13 +24,15 @@ import br.com.ca.asap.vo.DeliverableVo;
 import br.com.ca.shareview.R;
 
 /**
- * InitiativeReportActivity
+ * DeliverablesReportActivity
  *
  * Show Initiative Deliverables Pie Chart and status report
  *
  * @author Rodrigo Carvalho
  */
-public class InitiativeReportActivity extends AppCompatActivity {
+public class DeliverablesReportActivity extends AppCompatActivity {
+
+    public final static String EXTRA_INITIATIVE_ID = "INITIATIVE_ID"; //expected value to the activity initialization
 
     private String initiativeId = null;
     private double totalNum = 0;
@@ -47,7 +49,7 @@ public class InitiativeReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_initiative_report);
 
         Intent myIntent = getIntent(); // gets the previously created intent
-        initiativeId = myIntent.getStringExtra(DeliverablesActivity.EXTRA_MESSAGE);
+        initiativeId = myIntent.getStringExtra(EXTRA_INITIATIVE_ID);
 
         //SET INITIATIVE NAME
         TextView initiativeReportTextView = (TextView) this.findViewById(R.id.initiativeReportTextView);

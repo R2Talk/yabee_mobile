@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">Ya Bee</string>
 
     <string name="welcome_login">"Bem-vindo.\n\nAcompanhe as suas tarefas e as iniciativas com o seu time!"</string>
@@ -7,7 +8,7 @@
 
     <string name="initiativesActivityLabel">Iniciativas</string>
     <string name="deliverablesActivityLabel">Entregas</string>
-    <string name="initiaitveReportActivityLabel">Report</string>
+    <string name="initiativeReportActivityLabel">Report</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="iw_activities">Atividades IW</string>
@@ -49,8 +50,8 @@
     <string name="initiativesText">Iniciativas</string>
     <string name="deliverablesText">Entegas</string>
 
-    <string name="onTime">No prazo</string>
-    <string name="late">atrasado</string>
+    <string name="onTime">NO PRAZO</string>
+    <string name="late">EM ATRASO</string>
 
     <string name="totalPrefix">T:</string>
     <string name="onTimePrefix">P:</string>
@@ -59,9 +60,9 @@
     <string name="sendEmail">enviar email...</string>
     <string name="missingEmailClient">Nenhum aplicativo de email está configurado</string>
     <string name="emailTo">rcarvalho89@hotmail.com</string>
-    <string name="emailSubject">Ya Bee</string>
-    <string name="emailHeader">Olá, por favor avaliar o status das entregas da iniciativa.</string>
-    <string name="emailFooter">Obrigado.</string>
+    <string name="emailSubject">Ya Bee Message</string>
+    <string name="emailHeader">Olá, segue Ya Bee status da iniciativa:</string>
+    <string name="emailFooter">Enviado via Ya Bee.</string>
 
     <string name="message">Mensagem</string>
     <string name="title">Titulo:</string>
@@ -75,7 +76,6 @@
     <string name="message_from">de:</string>
     <string name="onDate">data</string>
 
-
     <string name="title_activity_send_message">ENVIAR MENSAGEM</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -83,7 +83,5 @@
     <string name="title_activity_show_day_priorities">ShowDayPrioritiesActivity</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="title_activity_deliverable_update">DeliverableUpdateActivity</string>
-
-
 
 </resources>

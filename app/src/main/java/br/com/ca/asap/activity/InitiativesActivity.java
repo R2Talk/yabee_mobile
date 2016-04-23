@@ -32,14 +32,11 @@ import static br.com.ca.shareview.R.*;
 /**
  * Initiatives Activity
  *
- * Show Current Initiatives list.
+ * Show list of Initiatives.
  *
  * @author Rodrigo Carvalho
  */
 public class InitiativesActivity extends AppCompatActivity {
-
-    public final static String EXTRA_MESSAGE = "INITIATIVE_ID";
-    public final static String EXTRA_MESSAGE_01 = "INITIATIVES_ARRAY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +44,7 @@ public class InitiativesActivity extends AppCompatActivity {
         setContentView(layout.activity_initiatives);
 
         // 1. pass context and data to the custom adapter
-        InitiativeAdapter adapter = new InitiativeAdapter(this, generateData());
+        InitiativeAdapter adapter = new InitiativeAdapter(this, (ArrayList<InitiativeVo>) getInitiativesList());
         // 2. Get ListView from activity_main.xml
         ListView listView = (ListView) findViewById(R.id.list);
         // 3. setListAdapter
@@ -60,8 +57,8 @@ public class InitiativesActivity extends AppCompatActivity {
                 //Intent
                 Intent intent = new Intent(InitiativesActivity.this, DeliverablesActivity.class);
                 //Intent Parameter
-                TextView initiativeTitle = (TextView) view.findViewById(R.id.titleTextView);
-                intent.putExtra(EXTRA_MESSAGE, initiativeTitle.getText());
+                TextView initiativeTitle = (TextView) view.findViewById(R.id.titleTextView); //view list item is received as a parameter
+                intent.putExtra(DeliverablesActivity.EXTRA_INITIATIVE_ID, initiativeTitle.getText());
                 //Start Intent
                 startActivity(intent);
             }
@@ -82,96 +79,63 @@ public class InitiativesActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
+
         Toast toast = null;
+        Intent intent = null;
 
         // Handle presses on the action bar items
         switch (item.getItemId()) {
+            
             case id.action_show_messages:
                 //Intent
                 //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
-                Intent intent = new Intent(InitiativesActivity.this, ShowMessagesActivity.class);
+                intent = new Intent(InitiativesActivity.this, ShowMessagesActivity.class);
                 //Start Intent
                 startActivity(intent);
                 return true;
 
             case id.action_synch_initiatives:
 
+                //TODO: call synchronization activity
                 toast = Toast.makeText(getApplicationContext(), "SYNC", Toast.LENGTH_SHORT);
                 toast.show();
 
                 return true;
+
             case id.action_signout:
                 SignManager signManager = new SignManager(getApplicationContext());
                 signManager.signOut();
 
-                //Intent
-                //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
-                Intent intent2 = new Intent(InitiativesActivity.this, SignInActivity.class);
-                intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //Intent for SignIn activity
+                intent = new Intent(InitiativesActivity.this, SignInActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear activity stack to return do signin activity
                 //Start Intent
-                startActivity(intent2);
+                startActivity(intent);
 
                 return true;
+            
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
     /**
-     * generateData
+     * getInitiativesList
      *
      * Prepare list of initiatives to be used in list adapter
      *
      * @return
      */
-    private ArrayList<InitiativeVo> generateData(){
+    private List<InitiativeVo> getInitiativesList(){
         
-        ArrayList<InitiativeVo> items = new ArrayList<>();
+        //ArrayList<InitiativeVo> initiativeVoArrayList = new ArrayList<>();
         Context context = getApplicationContext();
         List<InitiativeVo> initiativeVoList;
 
         InitiativeDAO initiativeDAO = new InitiativeDAO(context);
         initiativeVoList = initiativeDAO.selectInitiatives();
 
-        //access initiative list via Iterator
-        Iterator iterator = initiativeVoList.iterator();
-        while(iterator.hasNext()){
-            //get InitiativeVo
-            InitiativeVo initiativeVo = (InitiativeVo) iterator.next();
-            //add into ArrayList
-            items.add(initiativeVo);
-        }
-
-        return items;
+        return initiativeVoList;
     }
 
-    /**
-     * getInitiativeNamesArray
-     *
-     * Read list of initiatives names from database
-     *
-     * @return
-     */
-    private String[] getInitiativeNamesArray() {
-
-        Context context = getApplicationContext();
-        List<InitiativeVo> initiativeVoList;
-
-        InitiativeDAO initiativeDAO = new InitiativeDAO(context);
-        initiativeVoList = initiativeDAO.selectInitiatives();
-        String[] initiativesNamesArray;
-        List<String> listOfString = new ArrayList<String>();
-
-        //access initiative list via Iterator
-        Iterator iterator = initiativeVoList.iterator();
-        while(iterator.hasNext()){
-            InitiativeVo initiativeVo = (InitiativeVo) iterator.next();
-            listOfString.add(initiativeVo.getInitiativeTitle());
-        }
-
-        //add into ArrayList
-        initiativesNamesArray = listOfString.toArray(new String[listOfString.size()]);
-
-        return initiativesNamesArray;
-    }
 }
