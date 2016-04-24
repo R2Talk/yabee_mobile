@@ -17,50 +17,71 @@ import java.util.Date;
  */
 public class DeliverableVo {
 
-    private String deliverable_id;
-    private String initiative_id_fk;
-    private String deliverable_title;
-    private String deliverable_description;
-    private String deliverable_comments;
-    private String deliverable_status;
-    private String deliverable_due_date;
-    private String deliverable_responsible;
-    private String deliverable_rating;
+    private String iddeliverable;
+    private String idinitiative;
+    private String title;
+    private String description;
+    private String comments;
+    private String status;
+    private String duedate;
+    private String idresponsibleuser;
+    private String rating;
+    private String isPriority;
+    private String priorityComment;
+    private String prioritizedBy;
+    private String deliverableValue;
     private String deliverable_isLate;
+
+    //
+    // CONSTRUCTOR
+    //
 
     /**
      * Constructor
      *
-     * @param deliverable_id
-     * @param initiative_id_fk
-     * @param deliverable_title
-     * @param deliverable_description
-     * @param deliverable_comments
-     * @param deliverable_status
-     * @param deliverable_due_date
-     * @param deliverable_responsible
-     * @param deliverable_rating
+     * @param iddeliverable
+     * @param idinitiative
+     * @param title
+     * @param description
+     * @param comments
+     * @param status
+     * @param duedate
+     * @param idresponsibleuser
+     * @param rating
+     * @param isPriority
+     * @param priorityComment
+     * @param prioritizedBy
+     * @param deliverableValue
      */
-    public DeliverableVo(String deliverable_id,
-                         String initiative_id_fk,
-                         String deliverable_title,
-                         String deliverable_description,
-                         String deliverable_comments,
-                         String deliverable_status,
-                         String deliverable_due_date,
-                         String deliverable_responsible,
-                         String deliverable_rating) {
-        this.deliverable_id = deliverable_id;
-        this.initiative_id_fk = initiative_id_fk;
-        this.deliverable_title = deliverable_title;
-        this.deliverable_description = deliverable_description;
-        this.deliverable_comments = deliverable_comments;
-        this.deliverable_due_date = deliverable_due_date;
-        this.deliverable_responsible = deliverable_responsible;
-        this.deliverable_status = deliverable_status;
-        this.deliverable_rating = deliverable_rating;
+    public DeliverableVo(String iddeliverable,
+                         String idinitiative,
+                         String title,
+                         String description,
+                         String comments,
+                         String status,
+                         String duedate,
+                         String idresponsibleuser,
+                         String rating,
+                         String isPriority,
+                         String priorityComment,
+                         String prioritizedBy,
+                         String deliverableValue
+                         ) {
+        this.iddeliverable = iddeliverable;
+        this.idinitiative = idinitiative;
+        this.title = title;
+        this.description = description;
+        this.comments = comments;
+        this.status = status;
+        this.duedate = duedate;
+        this.idresponsibleuser = idresponsibleuser;
+        this.rating = rating;
+        this.isPriority = isPriority;
+        this.priorityComment = priorityComment;
+        this.prioritizedBy = prioritizedBy;
+        this.deliverableValue = deliverableValue;
 
-        if (isLate(deliverable_due_date)){
+        if (isLate(duedate)){
             this.deliverable_isLate = "true";
         } else {
             this.deliverable_isLate = "false";
@@ -70,40 +91,177 @@ public class DeliverableVo {
     /**
      * Constructor
      *
-     * Creates with the isLate information informed
+     * full version, with isLate informed.
      *
-     * @param deliverable_id
-     * @param initiative_id_fk
-     * @param deliverable_title
-     * @param deliverable_description
-     * @param deliverable_comments
-     * @param deliverable_status
-     * @param deliverable_due_date
-     * @param deliverable_responsible
-     * @param deliverable_rating
+     * @param iddeliverable
+     * @param idinitiative
+     * @param title
+     * @param description
+     * @param comments
+     * @param status
+     * @param duedate
+     * @param idresponsibleuser
+     * @param rating
+     * @param isPriority
+     * @param priorityComment
+     * @param prioritizedBy
+     * @param deliverableValue
      * @param deliverable_isLate
      */
-    public DeliverableVo(String deliverable_id,
-                         String initiative_id_fk,
-                         String deliverable_title,
-                         String deliverable_description,
-                         String deliverable_comments,
-                         String deliverable_status,
-                         String deliverable_due_date,
-                         String deliverable_responsible,
-                         String deliverable_rating,
+    public DeliverableVo(String iddeliverable,
+                         String idinitiative,
+                         String title,
+                         String description,
+                         String comments,
+                         String status,
+                         String duedate,
+                         String idresponsibleuser,
+                         String rating,
+                         String isPriority,
+                         String priorityComment,
+                         String prioritizedBy,
+                         String deliverableValue,
                          String deliverable_isLate) {
-        this.deliverable_id = deliverable_id;
-        this.initiative_id_fk = initiative_id_fk;
-        this.deliverable_title = deliverable_title;
-        this.deliverable_description = deliverable_description;
-        this.deliverable_comments = deliverable_comments;
-        this.deliverable_due_date = deliverable_due_date;
-        this.deliverable_responsible = deliverable_responsible;
-        this.deliverable_status = deliverable_status;
-        this.deliverable_rating = deliverable_rating;
+        this.iddeliverable = iddeliverable;
+        this.idinitiative = idinitiative;
+        this.title = title;
+        this.description = description;
+        this.comments = comments;
+        this.status = status;
+        this.duedate = duedate;
+        this.idresponsibleuser = idresponsibleuser;
+        this.rating = rating;
+        this.isPriority = isPriority;
+        this.priorityComment = priorityComment;
+        this.prioritizedBy = prioritizedBy;
+        this.deliverableValue = deliverableValue;
         this.deliverable_isLate = deliverable_isLate;
     }
+
+
+    //
+    // GETTER AND SETTER
+    //
+
+    public String getIsPriority() {
+        return isPriority;
+    }
+
+    public void setIsPriority(String isPriority) {
+        this.isPriority = isPriority;
+    }
+
+    public String getIdinitiative() {
+        return idinitiative;
+    }
+
+    public void setIdinitiative(String idinitiative) {
+        this.idinitiative = idinitiative;
+    }
+
+    public String getIddeliverable() {
+        return iddeliverable;
+    }
+
+    public void setIddeliverable(String iddeliverable) {
+        this.iddeliverable = iddeliverable;
+    }
+
+    public String getIdInitiative() {
+        return idinitiative;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getDuedate() {
+        return duedate;
+    }
+
+    public void setDuedate(String duedate) {
+        this.duedate = duedate;
+    }
+
+    public String getIdresponsibleuser() {
+        return idresponsibleuser;
+    }
+
+    public void setIdresponsibleuser(String idresponsibleuser) {
+        this.idresponsibleuser = idresponsibleuser;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getDeliverable_isLate() {
+        return deliverable_isLate;
+    }
+
+    public void setDeliverable_isLate(String deliverable_isLate) {
+        this.deliverable_isLate = deliverable_isLate;
+    }
+
+    public String getPriorityComment() {
+        return priorityComment;
+    }
+
+    public void setPriorityComment(String priorityComment) {
+        this.priorityComment = priorityComment;
+    }
+
+    public String getPrioritizedBy() {
+        return prioritizedBy;
+    }
+
+    public void setPrioritizedBy(String prioritizedBy) {
+        this.prioritizedBy = prioritizedBy;
+    }
+
+    public String getDeliverableValue() {
+        return deliverableValue;
+    }
+
+    public void setDeliverableValue(String deliverableValue) {
+        this.deliverableValue = deliverableValue;
+    }
+
+    //
+    // HELPER METHOD
+    //
 
     /**
      * Calculate if is late based on the deliverable date and current date
@@ -123,7 +281,7 @@ public class DeliverableVo {
         try {
             dueDate = ft.parse(dueDateStr);
         } catch (ParseException e) {
-            Log.d("DeliverableVo", "Unparseable date");
+            //TODO: needs exception treatment
         }
 
         //Yesterday
@@ -137,90 +295,5 @@ public class DeliverableVo {
         }
 
         return false;
-    }
-
-    /**
-     * Getter/ Setter methods
-     *
-     **/
-
-    public String getDeliverable_id() {
-        return deliverable_id;
-    }
-
-    public void setDeliverable_id(String deliverable_id) {
-        this.deliverable_id = deliverable_id;
-    }
-
-    public String getInitiative_id_fk() {
-        return initiative_id_fk;
-    }
-
-    public void setInitiative_id_fk(String initiative_id_fk) {
-        this.initiative_id_fk = initiative_id_fk;
-    }
-
-    public String getDeliverable_title() {
-        return deliverable_title;
-    }
-
-    public void setDeliverable_title(String deliverable_title) {
-        this.deliverable_title = deliverable_title;
-    }
-
-    public String getDeliverable_description() {
-        return deliverable_description;
-    }
-
-    public void setDeliverable_description(String deliverable_description) {
-        this.deliverable_description = deliverable_description;
-    }
-
-    public String getDeliverable_comments() {
-        return deliverable_comments;
-    }
-
-    public void setDeliverable_comments(String deliverable_comments) {
-        this.deliverable_comments = deliverable_comments;
-    }
-
-    public String getDeliverable_status() {
-        return deliverable_status;
-    }
-
-    public void setDeliverable_status(String deliverable_status) {
-        this.deliverable_status = deliverable_status;
-    }
-
-    public String getDeliverable_due_date() {
-        return deliverable_due_date;
-    }
-
-    public void setDeliverable_due_date(String deliverable_due_date) {
-        this.deliverable_due_date = deliverable_due_date;
-    }
-
-    public String getDeliverable_responsible() {
-        return deliverable_responsible;
-    }
-
-    public void setDeliverable_responsible(String deliverable_responsible) {
-        this.deliverable_responsible = deliverable_responsible;
-    }
-
-    public String getDeliverable_rating() {
-        return deliverable_rating;
-    }
-
-    public void setDeliverable_rating(String deliverable_rating) {
-        this.deliverable_rating = deliverable_rating;
-    }
-
-    public String getDeliverable_isLate() {
-        return deliverable_isLate;
-    }
-
-    public void setDeliverable_isLate(String deliverable_isLate) {
-        this.deliverable_isLate = deliverable_isLate;
     }
 }

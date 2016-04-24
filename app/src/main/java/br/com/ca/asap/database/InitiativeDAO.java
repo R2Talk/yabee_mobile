@@ -38,9 +38,9 @@ public class InitiativeDAO {
         SQLiteDatabase db = this.databaseOpenHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(DatabaseOpenHelper.KEY_INITIATIVE_INITIATIVE_ID, initiativeVo.getInitiativeId());
-        values.put(DatabaseOpenHelper.KEY_INITIATIVE_TITLE, initiativeVo.getInitiativeTitle());
-        values.put(DatabaseOpenHelper.KEY_INITIATIVE_DESCRIPTION, initiativeVo.getInitiativeDescription());
+        values.put(DatabaseOpenHelper.KEY_INITIATIVE_idinitiative, initiativeVo.getInitiativeId());
+        values.put(DatabaseOpenHelper.KEY_INITIATIVE_title, initiativeVo.getInitiativeTitle());
+        values.put(DatabaseOpenHelper.KEY_INITIATIVE_description, initiativeVo.getInitiativeDescription());
 
         // Inserting Row
         db.insert(DatabaseOpenHelper.DATABASE_TABLE_INITIATIVE, null, values);

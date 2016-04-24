@@ -142,7 +142,7 @@ public class DeliverablesReportActivity extends AppCompatActivity {
 
             //get due date
             try {
-                dueDate = ft.parse(deliverableVo.getDeliverable_due_date());
+                dueDate = ft.parse(deliverableVo.getDuedate());
             } catch (ParseException e) {
                 Log.d("DeliverableVo", "Unparseable date");
             }
@@ -161,7 +161,7 @@ public class DeliverablesReportActivity extends AppCompatActivity {
             }
 
             //if with pending request..
-            if (hasPendingRequest(deliverableVo.getDeliverable_responsible())) {
+            if (hasPendingRequest(deliverableVo.getIdresponsibleuser())) {
                 pendingRequestNum++;
             }
         }

@@ -14,33 +14,36 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     private static SQLiteDatabase db = null;
     private Context context;
 
+
+    //
+    // Defines constants that identify database , tables and columns
+    //
+
     private static final String DATABASE_NAME = "APP_DB";
     private static final int DATABASE_VERSION = 1;
 
     //INITIATIVE TABLE
     public static String DATABASE_TABLE_INITIATIVE = "initiative";
-    public static String KEY_INITIATIVE_INITIATIVE_ID = "initiative_id";
-    public static String KEY_INITIATIVE_TITLE = "title";
-    public static String KEY_INITIATIVE_DESCRIPTION = "description";
+    public static String KEY_INITIATIVE_idinitiative = "idinitiative";
+    public static String KEY_INITIATIVE_title = "title";
+    public static String KEY_INITIATIVE_description = "description";
 
     //DELIVERABLE TABLE
     public static String DATABASE_TABLE_DELIVERABLE = "deliverable";
-    public static String KEY_DELIVERABLE_ID = "deliverable_id";
-    public static String KEY_INITIATIVE_FK = "initiative_id_fk";
-    public static String KEY_DELIVERABLE_TITLE = "title";
-    public static String KEY_DELIVERABLE_DESCRIPTION = "description";
-    public static String KEY_DELIVERABLE_COMMENTS = "comments";
-    public static String KEY_DELIVERABLE_STATUS = "status";
-    public static String KEY_DELIVERABLE_DUE_DATE = "due_date";
-    public static String KEY_DELIVERABLE_RESPONSIBLE = "responsible";
-    public static String KEY_DELIVERABLE_RATING = "rating";
+    public static String KEY_DELIVERABLE_iddeliverable = "iddeliverable";
+    public static String KEY_DELIVERBALE_INITIATIVE_idinititative = "idinitiative";
+    public static String KEY_DELIVERABLE_title = "title";
+    public static String KEY_DELIVERABLE_description = "description";
+    public static String KEY_DELIVERABLE_comment = "comments";
+    public static String KEY_DELIVERABLE_status = "status";
+    public static String KEY_DELIVERABLE_duedate = "duedate";
+    public static String KEY_DELIVERABLE_idresponsible = "idresponsible";
+    public static String KEY_DELIVERABLE_rating = "rating";
+    public static String KEY_DELIVERABLE_ispriority = "ispriority";
+    public static String KEY_DELIVERABLE_prioritycomment = "prioritycomment";
+    public static String KEY_DELIVERABLE_prioritizedby = "prioritizedby";
+    public static String KEY_DELIVERABLE_deliverablevalue = "deliverablevalue";
 
-    //TODO: CREATE DAY_PRIORITY TABLE
-
-    //PMO TABLE
-    public static String DATABASE_TABLE_PMO = "pmo";
-    public static String KEY_PMO_ID = "pmo_id";
-    public static String KEY_PMO_NAME = "name";
 
     public static synchronized DatabaseOpenHelper getInstance(Context context) {
 
@@ -64,32 +67,29 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         try {
             //INITIATIVE
             String CREATE_INITIATIVE_TABLE = "CREATE TABLE IF NOT EXISTS " + DATABASE_TABLE_INITIATIVE + "(" +
-                    KEY_INITIATIVE_INITIATIVE_ID + " TEXT PRIMARY KEY, " +
-                    KEY_INITIATIVE_TITLE + " TEXT," +
-                    KEY_INITIATIVE_DESCRIPTION + " TEXT)";
+                    KEY_INITIATIVE_idinitiative + " TEXT PRIMARY KEY, " +
+                    KEY_INITIATIVE_title + " TEXT," +
+                    KEY_INITIATIVE_description + " TEXT)";
 
             db.execSQL(CREATE_INITIATIVE_TABLE);
 
             //DELIVERABLE
             String CREATE_DELIVERABLE_TABLE = "CREATE TABLE IF NOT EXISTS " + DATABASE_TABLE_DELIVERABLE + "(" +
-                    KEY_DELIVERABLE_ID + " TEXT PRIMARY KEY, " +
-                    KEY_INITIATIVE_FK + " TEXT," +
-                    KEY_DELIVERABLE_TITLE + " TEXT," +
-                    KEY_DELIVERABLE_DESCRIPTION + " TEXT," +
-                    KEY_DELIVERABLE_COMMENTS + " TEXT," +
-                    KEY_DELIVERABLE_STATUS + " TEXT," +
-                    KEY_DELIVERABLE_DUE_DATE + " TEXT," +
-                    KEY_DELIVERABLE_RESPONSIBLE + " TEXT," +
-                    KEY_DELIVERABLE_RATING + " TEXT)";
+                    KEY_DELIVERABLE_iddeliverable  + " TEXT PRIMARY KEY, " +
+                    KEY_DELIVERBALE_INITIATIVE_idinititative  + " TEXT," +
+                    KEY_DELIVERABLE_title  + " TEXT," +
+                    KEY_DELIVERABLE_description  + " TEXT," +
+                    KEY_DELIVERABLE_comment  + " TEXT," +
+                    KEY_DELIVERABLE_status  + " TEXT," +
+                    KEY_DELIVERABLE_duedate  + " TEXT," +
+                    KEY_DELIVERABLE_idresponsible  + " TEXT," +
+                    KEY_DELIVERABLE_rating  + " TEXT," +
+                    KEY_DELIVERABLE_ispriority  + " TEXT," +
+                    KEY_DELIVERABLE_prioritycomment  + " TEXT," +
+                    KEY_DELIVERABLE_prioritizedby  + " TEXT," +
+                    KEY_DELIVERABLE_deliverablevalue + " TEXT)";
 
             db.execSQL(CREATE_DELIVERABLE_TABLE);
-
-            //PMO
-            String CREATE_PMO_TABLE = "CREATE TABLE IF NOT EXISTS " + DATABASE_TABLE_PMO  + "(" +
-                    KEY_PMO_ID + " TEXT PRIMARY KEY, " +
-                    KEY_PMO_NAME + " TEXT)";
-
-            db.execSQL(CREATE_PMO_TABLE);
 
         }catch(Exception e) {
             Log.d("deleteTables", e.getMessage());

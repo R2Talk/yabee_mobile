@@ -1,14 +1,12 @@
 package br.com.ca.asap.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -60,11 +58,11 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
                 cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green_card_color));
                 statusView.setVisibility(View.INVISIBLE);
             }
-            idView.setText(itemsArrayList.get(position).getDeliverable_id());
-            titleView.setText(itemsArrayList.get(position).getDeliverable_title());
-            due_dateView.setText(itemsArrayList.get(position).getDeliverable_due_date());
-            responsibleView.setText(itemsArrayList.get(position).getDeliverable_responsible());
-            ratingBarView.setRating(Float.parseFloat(itemsArrayList.get(position).getDeliverable_rating()));
+            idView.setText(itemsArrayList.get(position).getIddeliverable());
+            titleView.setText(itemsArrayList.get(position).getTitle());
+            due_dateView.setText(itemsArrayList.get(position).getDuedate());
+            responsibleView.setText(itemsArrayList.get(position).getIdresponsibleuser());
+            ratingBarView.setRating(Float.parseFloat(itemsArrayList.get(position).getRating()));
             // 5. return rowInitiativesView
             return rowDeliverableView;
         }

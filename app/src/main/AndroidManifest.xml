@@ -17,7 +17,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_beelogo"
+        android:icon="@mipmap/ic_yab_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -62,7 +62,7 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name="br.com.ca.asap.activity.ShowDayPrioritiesActivity"
+            android:name="br.com.ca.asap.activity.ShowPrioritizedDeliverablesActivity"
             android:label="@string/title_activity_show_day_priorities"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>

@@ -42,12 +42,11 @@ public class DeliverablesActivity extends AppCompatActivity {
         //Get parameter initiativeId from previous activity
         //
         Intent myIntent = getIntent(); // gets the previously created intent
-        TextView initiativeTextView = (TextView) this.findViewById(R.id.initiativeTextView);
         initiativeId = myIntent.getStringExtra(EXTRA_INITIATIVE_ID);
-        initiativeTextView.setText(initiativeId);
+
 
         //action bar title
-        //getActionBar().setTitle(initiativeId);
+        setTitle(initiativeId);
 
         //Initialize List View
         //
@@ -75,13 +74,13 @@ public class DeliverablesActivity extends AppCompatActivity {
         //
         switch (item.getItemId()) {
 
-            case R.id.action_send_email:
+            case R.id.action_share:
                 String to = null;
                 String cc = null;
                 String subject = null;
                 String emailText = null;
 
-                //prepare email parameters
+                //prepare share parameters
                 //
                 to = getString(R.string.emailTo);
                 cc = "";

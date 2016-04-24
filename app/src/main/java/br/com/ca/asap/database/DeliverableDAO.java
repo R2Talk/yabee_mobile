@@ -36,15 +36,19 @@ public class DeliverableDAO {
 
         ContentValues values = new ContentValues();
 
-        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_ID, deliverableVo.getDeliverable_id());
-        values.put(DatabaseOpenHelper.KEY_INITIATIVE_FK, deliverableVo.getInitiative_id_fk());
-        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_TITLE, deliverableVo.getDeliverable_title());
-        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_DESCRIPTION, deliverableVo.getDeliverable_description());
-        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_COMMENTS, deliverableVo.getDeliverable_comments());
-        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_STATUS, deliverableVo.getDeliverable_status());
-        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_DUE_DATE, deliverableVo.getDeliverable_due_date());
-        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_RESPONSIBLE, deliverableVo.getDeliverable_responsible());
-        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_RATING, deliverableVo.getDeliverable_rating());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_iddeliverable, deliverableVo.getIddeliverable());
+        values.put(DatabaseOpenHelper.KEY_DELIVERBALE_INITIATIVE_idinititative, deliverableVo.getIdInitiative());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_title, deliverableVo.getTitle());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_description, deliverableVo.getDescription());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_comment, deliverableVo.getComments());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_status, deliverableVo.getStatus());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_duedate, deliverableVo.getDuedate());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_idresponsible, deliverableVo.getIdresponsibleuser());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_rating, deliverableVo.getRating());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_ispriority, deliverableVo.getIsPriority());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_prioritycomment, deliverableVo.getPriorityComment());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_prioritizedby, deliverableVo.getPrioritizedBy());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_deliverablevalue, deliverableVo.getDeliverableValue());
 
         // Inserting Row
         db.insert(DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE, null, values);
@@ -64,6 +68,7 @@ public class DeliverableDAO {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
+
                 DeliverableVo deliverableVo = new DeliverableVo(
                         cursor.getString(0),
                         cursor.getString(1),
@@ -73,11 +78,16 @@ public class DeliverableDAO {
                         cursor.getString(5),
                         cursor.getString(6),
                         cursor.getString(7),
-                        cursor.getString(8)
+                        cursor.getString(8),
+                        cursor.getString(9),
+                        cursor.getString(10),
+                        cursor.getString(11),
+                        cursor.getString(12)
                         );
 
                 // Adding contact to list
                 deliverableVoList.add(deliverableVo);
+
             } while (cursor.moveToNext());
         }
 
@@ -91,7 +101,7 @@ public class DeliverableDAO {
         SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE initiative_id_fk = \"" + initiativeId + "\"";
+        String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERBALE_INITIATIVE_idinititative + " = \"" + initiativeId + "\"";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -107,7 +117,11 @@ public class DeliverableDAO {
                         cursor.getString(5),
                         cursor.getString(6),
                         cursor.getString(7),
-                        cursor.getString(8)
+                        cursor.getString(8),
+                        cursor.getString(9),
+                        cursor.getString(10),
+                        cursor.getString(11),
+                        cursor.getString(12)
                 );
 
                 // Adding contact to list

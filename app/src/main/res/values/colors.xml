@@ -2,21 +2,18 @@
 
     <color name="black_overlay">#66000000</color>
 
-
-    <color name="primary">#FF5722</color>
-    <color name="primary_dark">#FF5722</color>
-    <color name="accent">#FF6E40</color>
+    <color name="primary">#FF9800</color>
+    <color name="primary_dark">#EF6C00</color>
+    <color name="accent">#1B5E20</color>
 
     <color name="activity_background">#FFFFFF</color>
-    <color name="signin_background">#FFFFFF</color>
+    <color name="signin_background">#FFC107</color>
 
     <color name="white">#FFFFFF</color>
     <color name="iron">#CCCCCC</color>
-
     <color name="green">#1B5E20</color>
     <color name="red">#B71C1C</color>
 
-    <color name="orange_card_color">#FFF3E0</color>
     <color name="yellow_card_color">#FFFDE7</color>
     <color name="green_card_color">#E8F5E9</color>
 

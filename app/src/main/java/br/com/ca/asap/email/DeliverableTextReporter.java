@@ -62,9 +62,9 @@ public class DeliverableTextReporter {
         while(iterator.hasNext()){
             DeliverableVo deliverableVo = (DeliverableVo) iterator.next();
             if (deliverableVo.getDeliverable_isLate().equals("true")) {
-                text = text + context.getString(R.string.title) + " " + deliverableVo.getDeliverable_title() + "\n";
-                text = text + context.getString(R.string.responsible) + " " + deliverableVo.getDeliverable_responsible() + "\n";
-                text = text + context.getString(R.string.date) + " " + deliverableVo.getDeliverable_due_date() + "\n\n";
+                text = text + context.getString(R.string.title) + " " + deliverableVo.getTitle() + "\n";
+                text = text + context.getString(R.string.responsible) + " " + deliverableVo.getIdresponsibleuser() + "\n";
+                text = text + context.getString(R.string.date) + " " + deliverableVo.getDuedate() + "\n\n";
             }
         }
 
@@ -81,9 +81,9 @@ public class DeliverableTextReporter {
         while(iterator2.hasNext()){
             DeliverableVo deliverableVo = (DeliverableVo) iterator2.next();
             if (!deliverableVo.getDeliverable_isLate().equals("true")) {
-                text = text + context.getString(R.string.title) + " " + deliverableVo.getDeliverable_title() + "\n";
-                text = text + context.getString(R.string.responsible) + " " + deliverableVo.getDeliverable_responsible() + "\n";
-                text = text + context.getString(R.string.date) + " " + deliverableVo.getDeliverable_due_date() + "\n\n";
+                text = text + context.getString(R.string.title) + " " + deliverableVo.getTitle() + "\n";
+                text = text + context.getString(R.string.responsible) + " " + deliverableVo.getIdresponsibleuser() + "\n";
+                text = text + context.getString(R.string.date) + " " + deliverableVo.getDuedate() + "\n\n";
             }
         }
         */

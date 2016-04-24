@@ -57,7 +57,8 @@
     <string name="onTimePrefix">P:</string>
     <string name="latePrefix">A:</string>
 
-    <string name="sendEmail">enviar email...</string>
+    <string name="sendEmail">enviar email</string>
+    <string name="share">Compartilhar</string>
     <string name="missingEmailClient">Nenhum aplicativo de email está configurado</string>
     <string name="emailTo">rcarvalho89@hotmail.com</string>
     <string name="emailSubject">Ya Bee Message</string>

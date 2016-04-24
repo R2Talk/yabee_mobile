@@ -10,13 +10,13 @@ import android.view.View;
 import br.com.ca.shareview.R;
 
 /**
- * ShowDayPrioritiesActivity
+ * ShowPrioritizedDeliverablesActivity
  *
  * Show user selected priorities for the day
  *
  * @author Rodrigo Carvalho
  */
-public class ShowDayPrioritiesActivity extends AppCompatActivity {
+public class ShowPrioritizedDeliverablesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

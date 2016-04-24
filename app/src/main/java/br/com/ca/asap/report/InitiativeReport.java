@@ -81,7 +81,7 @@ public class InitiativeReport {
 
             //get due date
             try {
-                dueDate = ft.parse(deliverableVo.getDeliverable_due_date());
+                dueDate = ft.parse(deliverableVo.getDuedate());
             } catch (ParseException e) {
                 Log.d("DeliverableVo", "Unparseable date");
             }
@@ -100,7 +100,7 @@ public class InitiativeReport {
             }
 
             //if with PMO..
-            if (isPmo(deliverableVo.getDeliverable_responsible())) {
+            if (isPmo(deliverableVo.getIdresponsibleuser())) {
                 withPmoNum++;
             }
         }

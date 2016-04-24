@@ -4,14 +4,16 @@
     tools:context="br.com.ca.asap.activity.DeliverablesActivity">
 
     <!-- should appear as action button -->
-    <item android:id="@+id/action_send_email"
-        android:icon="@drawable/ic_mail"
-        android:title="@string/sendEmail"
-        app:showAsAction="ifRoom" />
+    <item android:id="@+id/action_share"
+        android:icon="@drawable/ic_share"
+        android:title="@string/share"
+        android:orderInCategory="200"
+        app:showAsAction="always" />
 
+    <!-- should appear as action button -->
     <item android:id="@+id/initiative_report"
-        android:icon="@drawable/ic_pie_chart_outlined_white_24dp"
+        android:icon="@drawable/ic_show_chart"
         android:title="@string/initiative_resume"
-        android:orderInCategory="100"
+        android:orderInCategory="300"
         app:showAsAction="ifRoom" />
 </menu>

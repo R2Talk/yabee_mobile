@@ -117,7 +117,7 @@ public class SendMessageActivity extends AppCompatActivity {
          * @return
          */
         @Override
-        protected Integer doInBackground(String... params) {
+        protected Integer doInBackground(String... params) { //TODO: check if is appropriate receive initiative and deliverable as parameter as message context
 
             // variable thats maintains return status for original thread
             int sendMessageStatus = SEND_MESSAGE_OK;
