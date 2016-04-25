@@ -17,6 +17,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 import br.com.ca.asap.preferences.PreferencesHelper;
+import br.com.ca.asap.synchronize.Synchronizer;
 import br.com.ca.shareview.R;
 import br.com.ca.asap.demo.DemoSynchronize;
 
@@ -38,7 +39,7 @@ public class SynchronizeInitiativesActivity extends AppCompatActivity {
 
     // Do synchronization
     private void doSynchronize(){
-        new DoAsyncSynchronize().execute("demo");
+        new DoAsyncSynchronize().execute("");
     }
 
     // Uses AsyncTask to create a task away from the main UI thread, and synchronize the data with CA Server.
@@ -76,6 +77,10 @@ public class SynchronizeInitiativesActivity extends AppCompatActivity {
                 return true;
 
             } else {
+
+                //hive fetch
+                Synchronizer synchronizer = new Synchronizer(context);
+                synchronizer.deleteAndFetchInitiatives();
 
                 return true;
             }

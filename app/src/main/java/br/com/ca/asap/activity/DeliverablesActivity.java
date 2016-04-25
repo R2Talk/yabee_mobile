@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -123,7 +122,7 @@ public class DeliverablesActivity extends AppCompatActivity {
         Context context = getApplicationContext();
 
         DeliverableDAO deliverableDAO = new DeliverableDAO(context);
-        deliverableVoList = deliverableDAO.selectWorkItemsByInitiativeId(initiativeId);
+        deliverableVoList = deliverableDAO.selectDeliverablesByInitiativeId(initiativeId);
 
         //access initiative list via Iterator
         Iterator iterator = deliverableVoList.iterator();

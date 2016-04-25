@@ -366,7 +366,7 @@ public class DemoSynchronize {
             DeliverableVo deliverableVo = (DeliverableVo) iterator2.next();
             Log.d("DemoSynchronize","Inserting into database : " + deliverableVo.getTitle());
             //...insert into initiative table
-            deliverableDAO.insertWorkItem(deliverableVo);
+            deliverableDAO.insertDeliverableVo(deliverableVo);
         }
 
         //

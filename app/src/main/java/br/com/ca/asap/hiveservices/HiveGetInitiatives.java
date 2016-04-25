@@ -14,6 +14,7 @@ import java.util.List;
 import br.com.ca.asap.network.DeviceNotConnectedException;
 import br.com.ca.asap.network.HttpServiceRequester;
 import br.com.ca.asap.network.InternetDefaultServer;
+import br.com.ca.asap.vo.InitiativeVo;
 import br.com.ca.asap.vo.MessageVo;
 
 /**
@@ -42,20 +43,18 @@ public class HiveGetInitiatives {
     }
 
     /**
-     *
+     * getInitiatives
      *
      * @return
      */
-    public List<MessageVo> getMessages(){ //TODO: need refactory for the correct method name and return value
+    public List<InitiativeVo> getInitiatives(){
         String url;
         String serviceReturn;
-        List<MessageVo> messageVoList; //TODO: declare the expected return value
+        List<InitiativeVo> initiativeVoList = null;
         Gson gson;
 
-
         //prepare URL
-        //TODO: change for the right controller method and parameters
-        String urlGetMsgString = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/getMessages";
+        String urlGetMsgString = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/getInitiatives";
 
         //execute rest call
         HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
@@ -65,22 +64,19 @@ public class HiveGetInitiatives {
 
             //deserialize generic type for List of MessageVo
             gson = new GsonBuilder().setDateFormat("MMM dd, yyyy").create();
-            //TODO: change for the right spring controller return
-            Type messagesListType = new TypeToken<List<MessageVo>>(){}.getType(); //this is necessary because we are deserializing a generic class type
-            messageVoList = gson.fromJson(serviceReturn, messagesListType);
+            Type initiativeListType = new TypeToken<List<InitiativeVo>>(){}.getType(); //this is necessary because we are deserializing a generic class type
+            initiativeVoList = gson.fromJson(serviceReturn, initiativeListType);
 
             //access initiative list via Iterator
-            //TODO: iterate the right type if the service returns a list
-            Iterator iterator = messageVoList.iterator();
-            while(iterator.hasNext()){
-                MessageVo messageVo = (MessageVo) iterator.next();
-            }
+            // Iterator iterator = initiativeVoList.iterator();
+            //while(iterator.hasNext()){
+            //    InitiativeVo initiativeVo = (InitiativeVo) iterator.next();
+            //}
 
         } catch (DeviceNotConnectedException e){
             return null;
         }
 
-        //TODO: change for the right return type
-        return messageVoList;
+        return initiativeVoList;
     }
 }

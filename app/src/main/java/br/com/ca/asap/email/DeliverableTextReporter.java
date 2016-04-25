@@ -44,7 +44,7 @@ public class DeliverableTextReporter {
 
 
         DeliverableDAO deliverableDAO = new DeliverableDAO(context);
-        deliverableVoList = deliverableDAO.selectWorkItemsByInitiativeId(initiativeId);
+        deliverableVoList = deliverableDAO.selectDeliverablesByInitiativeId(initiativeId);
 
         //
         // Write Header

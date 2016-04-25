@@ -11,12 +11,22 @@ public class InitiativeVo {
     private String initiativeTitle;
     private String initiativeDescription;
 
+    //
+    // Constructor
+    //
+    public InitiativeVo(){
+
+    }
+
     public InitiativeVo(String id, String title, String description){
         this.initiativeId = id;
         this.initiativeTitle = title;
         this.initiativeDescription = description;
     }
 
+    //
+    // GETTER AND SETTERS
+    //
     public String getInitiativeId() {
         return initiativeId;
     }

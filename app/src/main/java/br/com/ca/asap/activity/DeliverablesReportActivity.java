@@ -116,7 +116,7 @@ public class DeliverablesReportActivity extends AppCompatActivity {
         List<DeliverableVo> deliverableVoList;
 
         DeliverableDAO deliverableDAO = new DeliverableDAO(context);
-        deliverableVoList = deliverableDAO.selectWorkItemsByInitiativeId(initiativeId);
+        deliverableVoList = deliverableDAO.selectDeliverablesByInitiativeId(initiativeId);
 
         //due date
         Date dueDate = null;

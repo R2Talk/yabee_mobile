@@ -30,8 +30,10 @@ public class DeliverableDAO {
     // HELPER METHODS
     //
 
-    //insert Work Item
-    public void insertWorkItem(DeliverableVo deliverableVo){
+    //
+    //insert deliverable
+    //
+    public void insertDeliverableVo(DeliverableVo deliverableVo){
         SQLiteDatabase db = this.databaseOpenHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -55,8 +57,10 @@ public class DeliverableDAO {
         db.close(); // Closing database connection
     }
 
-    //return selected list of work items
-    public List<DeliverableVo> selectWorkItems(){
+    //
+    //return selected list of deliverables
+    //
+    public List<DeliverableVo> selectDeliverables(){
         List<DeliverableVo> deliverableVoList =  new ArrayList<DeliverableVo>();
         SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
 
@@ -95,13 +99,21 @@ public class DeliverableDAO {
             return deliverableVoList;
     }
 
-    //return selected list of work items by initiative id
-    public List<DeliverableVo> selectWorkItemsByInitiativeId(String initiativeId){
+    //
+    //return selected list of deliverables by initiative id
+    //
+    public List<DeliverableVo> selectDeliverablesByInitiativeId(String initiativeId){
         List<DeliverableVo> deliverableVoList =  new ArrayList<DeliverableVo>();
         SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERBALE_INITIATIVE_idinititative + " = \"" + initiativeId + "\"";
+        //String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERBALE_INITIATIVE_idinititative + " = \"" + initiativeId + "\"";
+        //String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_title + " = \"" + initiativeId + "\"";
+        //String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_title + " = ?";
+        String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE; //TODO: rewarite with the parameter
+
+        //String[] query_params = {initiativeId};
+        //Cursor cursor = db.rawQuery(selectQuery, query_params);
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 

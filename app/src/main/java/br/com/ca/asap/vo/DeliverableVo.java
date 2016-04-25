@@ -275,8 +275,8 @@ public class DeliverableVo {
         Date dueDate = null;
         Date currentDate = new Date();
         Date yesterday = null;
-        //SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat ft = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        //SimpleDateFormat ft = new SimpleDateFormat("dd/MM/yyyy");
 
         try {
             dueDate = ft.parse(dueDateStr);

@@ -13,6 +13,7 @@ import java.util.List;
 import br.com.ca.asap.network.DeviceNotConnectedException;
 import br.com.ca.asap.network.HttpServiceRequester;
 import br.com.ca.asap.network.InternetDefaultServer;
+import br.com.ca.asap.vo.DeliverableVo;
 import br.com.ca.asap.vo.MessageVo;
 
 /**
@@ -45,41 +46,30 @@ public class HiveGetPrioritizedDeliverables {
      *
      * @return
      */
-    public List<MessageVo> getMessages(){ //TODO: need refactory for the correct method name and return value
+    public List<DeliverableVo> getPrioritizedDeliverables(){
         String url;
         String serviceReturn;
-        List<MessageVo> messageVoList; //TODO: declare the expected return value
-        Gson gson;
-
-
-        //prepare URL
-        //TODO: change for the right controller method and parameters
-        String urlGetMsgString = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/getMessages";
-
-        //execute rest call
-        HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
+        List<DeliverableVo> deliverableVoList = null;
+        Gson gson = new Gson();
 
         try {
+            //prepare URL
+            String urlGetMsgString = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/getPrioritizedDeliverables";
+
+            //execute rest call
+            HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
+
             serviceReturn = httpServiceRequester.executeHttpGetRequest(urlGetMsgString);
 
             //deserialize generic type for List of MessageVo
             gson = new GsonBuilder().setDateFormat("MMM dd, yyyy").create();
-            //TODO: change for the right spring controller return
-            Type messagesListType = new TypeToken<List<MessageVo>>(){}.getType(); //this is necessary because we are deserializing a generic class type
-            messageVoList = gson.fromJson(serviceReturn, messagesListType);
-
-            //access initiative list via Iterator
-            //TODO: iterate the right type if the service returns a list
-            Iterator iterator = messageVoList.iterator();
-            while(iterator.hasNext()){
-                MessageVo messageVo = (MessageVo) iterator.next();
-            }
+            Type deliverableListType = new TypeToken<List<DeliverableVo>>(){}.getType(); //this is necessary because we are deserializing a generic class type
+            deliverableVoList = gson.fromJson(serviceReturn, deliverableListType);
 
         } catch (DeviceNotConnectedException e){
             return null;
         }
 
-        //TODO: change for the right return type
-        return messageVoList;
+        return deliverableVoList;
     }
 }
