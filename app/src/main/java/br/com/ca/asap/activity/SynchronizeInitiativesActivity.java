@@ -113,7 +113,7 @@ public class SynchronizeInitiativesActivity extends AppCompatActivity {
                 startActivity(intent);
             } else {
                 //TODO: need refactoring. write code for message and option to go retry ou go to local processing
-                Log.d("SynchronizeInitiativesActivity","a problem with synchronization activity");
+
             }
         }
 

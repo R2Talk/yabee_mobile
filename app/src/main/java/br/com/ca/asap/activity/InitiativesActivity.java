@@ -58,7 +58,7 @@ public class InitiativesActivity extends AppCompatActivity {
                 Intent intent = new Intent(InitiativesActivity.this, DeliverablesActivity.class);
                 //Intent Parameter
                 TextView initiativeTitle = (TextView) view.findViewById(R.id.titleTextView); //view list item is received as a parameter
-                intent.putExtra(DeliverablesActivity.EXTRA_INITIATIVE_ID, initiativeTitle.getText());
+                intent.putExtra(DeliverablesActivity.EXTRA_INITIATIVE_TITLE, initiativeTitle.getText()); // TODO: include initiativeId in the list item and pass as parameter in a bundle
                 //Start Intent
                 startActivity(intent);
             }

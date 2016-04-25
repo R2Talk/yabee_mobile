@@ -14,6 +14,7 @@ import java.util.List;
 
 import br.com.ca.asap.adapter.DeliverablesAdapter;
 import br.com.ca.asap.database.DeliverableDAO;
+import br.com.ca.asap.database.InitiativeDAO;
 import br.com.ca.asap.email.DeliverableTextReporter;
 import br.com.ca.asap.email.EmailChannel;
 import br.com.ca.asap.vo.DeliverableVo;
@@ -29,7 +30,9 @@ import br.com.ca.shareview.R;
 public class DeliverablesActivity extends AppCompatActivity {
 
     public final static String EXTRA_INITIATIVE_ID = "INITIATIVE_ID"; //expected value to the activity initialization
+    public final static String EXTRA_INITIATIVE_TITLE = "INITIATIVE_TITLE"; //expected value to the activity initialization
 
+    String initiativeTitle = null;
     String initiativeId = null;
     DeliverablesAdapter adapter = null;
 
@@ -38,14 +41,18 @@ public class DeliverablesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deliverables);
 
+        //
         //Get parameter initiativeId from previous activity
         //
         Intent myIntent = getIntent(); // gets the previously created intent
-        initiativeId = myIntent.getStringExtra(EXTRA_INITIATIVE_ID);
+        initiativeTitle = myIntent.getStringExtra(EXTRA_INITIATIVE_TITLE);
 
+        //TODO: need refactoring to receive a bundel froom the previous activity with title AND idinitiative
+        //get idinitiative from database
+        initiativeId = getIdInitiativeByTitle(initiativeTitle);
 
         //action bar title
-        setTitle(initiativeId);
+        setTitle(initiativeTitle);
 
         //Initialize List View
         //
@@ -133,5 +140,18 @@ public class DeliverablesActivity extends AppCompatActivity {
         }
 
         return deliverableVoArrayList;
+    }
+
+    /**
+     * TODO: this class needs refactorig to receive  thia information as an intent bundle parameter
+     *
+     * @param title
+     * @return
+     */
+    private String getIdInitiativeByTitle(String title) {
+
+        InitiativeDAO initiativeDAO = new InitiativeDAO(getApplicationContext());
+
+        return initiativeDAO.getIdInitiativeByTitle(title);
     }
 }

@@ -84,4 +84,35 @@ public class InitiativeDAO {
         // return Initiative list
         return initiativeVoList;
     }
+
+    /**
+     * getIdInititiveByTitle
+     *
+     * @param title
+     * @return
+     */
+    public String getIdInitiativeByTitle(String title) {
+        InitiativeVo initiativeVo = null;
+        SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_INITIATIVE + " WHERE title = '" + title + "'";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                initiativeVo = new InitiativeVo(
+                        cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getString(2)
+                );
+
+            } while (cursor.moveToNext());
+        }
+
+        return initiativeVo.getInitiativeId();
+
+    }
 }
