@@ -58,10 +58,10 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
                 cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green_card_color));
                 statusView.setVisibility(View.INVISIBLE);
             }
-            idView.setText(itemsArrayList.get(position).getIddeliverable());
+            idView.setText(itemsArrayList.get(position).getCode());
             titleView.setText(itemsArrayList.get(position).getTitle());
             due_dateView.setText(itemsArrayList.get(position).getDuedate());
-            responsibleView.setText(itemsArrayList.get(position).getIdresponsibleuser());
+            responsibleView.setText(itemsArrayList.get(position).getCurrentusername());
             ratingBarView.setRating(Float.parseFloat(itemsArrayList.get(position).getRating()));
             // 5. return rowInitiativesView
             return rowDeliverableView;

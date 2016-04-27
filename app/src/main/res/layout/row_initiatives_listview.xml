@@ -28,4 +28,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/initiativeIdTextView"
+        android:layout_below="@+id/titleTextView"
+        android:layout_toRightOf="@+id/descriptionTextView"
+        android:layout_toEndOf="@+id/descriptionTextView"
+        android:visibility="invisible" />
+
 </RelativeLayout>

@@ -20,13 +20,20 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/deliverablesGraphLinearLayout"
+        android:layout_below="@+id/initiativeReportTextView"></LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/total_number_of_wi"
         android:id="@+id/totalTextView"
-        android:layout_above="@+id/lateTextView"
+        android:layout_below="@+id/deliverablesGraphLinearLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -46,7 +53,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/total_number_of_late_wi"
         android:id="@+id/lateTextView"
-        android:layout_above="@+id/lastDayTextView"
+        android:layout_below="@+id/totalTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -59,41 +66,6 @@
         android:layout_alignTop="@+id/lateTextView"
         android:layout_toRightOf="@+id/lateTextView"
         android:layout_toEndOf="@+id/lateTextView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/total_number_of_last_day_wi"
-        android:id="@+id/lastDayTextView"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="99dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/lastDayValueTextView"
-        android:layout_alignTop="@+id/lastDayTextView"
-        android:layout_toRightOf="@+id/lastDayTextView"
-        android:layout_toEndOf="@+id/lastDayTextView" />
-
-
-
-
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/totalValueTextView"
-        android:layout_below="@+id/initiativeReportTextView"
-        android:id="@+id/deliverablesGraphLinearLayout"></LinearLayout>
-
-
 
 
 </RelativeLayout>

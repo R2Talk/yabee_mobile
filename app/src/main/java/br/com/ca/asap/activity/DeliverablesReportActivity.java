@@ -33,8 +33,11 @@ import br.com.ca.shareview.R;
 public class DeliverablesReportActivity extends AppCompatActivity {
 
     public final static String EXTRA_INITIATIVE_ID = "INITIATIVE_ID"; //expected value to the activity initialization
+    public final static String EXTRA_INITIATIVE_TITLE = "INITIATIVE_TITLE"; //expected value to the activity initialization
 
     private String initiativeId = null;
+    private String initiativeTitle = null;
+
     private double totalNum = 0;
     private double onTimeNum = 0;
     private double lateNum = 0;
@@ -48,12 +51,17 @@ public class DeliverablesReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initiative_report);
 
+        //
+        //Get parameters from previous activity
+        //
         Intent myIntent = getIntent(); // gets the previously created intent
-        initiativeId = myIntent.getStringExtra(EXTRA_INITIATIVE_ID);
+        Bundle extras = myIntent.getExtras();
+        initiativeId = extras.getString(EXTRA_INITIATIVE_ID);
+        initiativeTitle = extras.getString(EXTRA_INITIATIVE_TITLE);
 
         //SET INITIATIVE NAME
         TextView initiativeReportTextView = (TextView) this.findViewById(R.id.initiativeReportTextView);
-        initiativeReportTextView.setText(initiativeId);
+        initiativeReportTextView.setText(initiativeTitle);
 
         //ACTUALIZE REPORT
         generateReportData();
@@ -65,10 +73,6 @@ public class DeliverablesReportActivity extends AppCompatActivity {
         //SET TOTAL OF LATE WORK ITEMS
         TextView lateValueTextView = (TextView) this.findViewById(R.id.lateValueTextView);
         lateValueTextView.setText(String.valueOf(lateNum));
-
-        //SET TOTAL OF LAST DAY WORK ITEMS
-        TextView lastDayValueTextView = (TextView) this.findViewById(R.id.lastDayValueTextView);
-        lastDayValueTextView.setText(String.valueOf(lastDayNum));
 
 
         //SET CHART
@@ -116,14 +120,14 @@ public class DeliverablesReportActivity extends AppCompatActivity {
         List<DeliverableVo> deliverableVoList;
 
         DeliverableDAO deliverableDAO = new DeliverableDAO(context);
-        deliverableVoList = deliverableDAO.selectDeliverablesByInitiativeId(initiativeId);
+        deliverableVoList = deliverableDAO.selectDeliverablesByInitiativeId(this.initiativeId);
 
         //due date
         Date dueDate = null;
         //today
         Date today = new Date();
         //Date formatter
-        SimpleDateFormat ft = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
         //Near
         int nextDays = 7;
 
@@ -156,7 +160,7 @@ public class DeliverablesReportActivity extends AppCompatActivity {
             formatDueDate = ft.format(dueDate);
 
             //if last day...
-            if (formatDueDate.equals(formatToday)){
+            if (formatDueDate.equals(formatToday)){ //TODO: review count and use it in the layout
                 lastDayNum++;
             }
 

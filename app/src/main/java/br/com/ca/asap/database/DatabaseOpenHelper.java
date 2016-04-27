@@ -43,6 +43,9 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static String KEY_DELIVERABLE_prioritycomment = "prioritycomment";
     public static String KEY_DELIVERABLE_prioritizedby = "prioritizedby";
     public static String KEY_DELIVERABLE_deliverablevalue = "deliverablevalue";
+    public static String KEY_DELIVERABLE_code = "code";
+    public static String KEY_DELIVERABLE_currentusername = "currentusername";
+
 
 
     public static synchronized DatabaseOpenHelper getInstance(Context context) {
@@ -87,7 +90,9 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
                     KEY_DELIVERABLE_ispriority  + " TEXT," +
                     KEY_DELIVERABLE_prioritycomment  + " TEXT," +
                     KEY_DELIVERABLE_prioritizedby  + " TEXT," +
-                    KEY_DELIVERABLE_deliverablevalue + " TEXT)";
+                    KEY_DELIVERABLE_deliverablevalue  + " TEXT," +
+                    KEY_DELIVERABLE_code  + " TEXT," +
+                    KEY_DELIVERABLE_currentusername + " TEXT)";
 
             db.execSQL(CREATE_DELIVERABLE_TABLE);
 

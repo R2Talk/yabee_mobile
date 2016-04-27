@@ -51,6 +51,8 @@ public class DeliverableDAO {
         values.put(DatabaseOpenHelper.KEY_DELIVERABLE_prioritycomment, deliverableVo.getPriorityComment());
         values.put(DatabaseOpenHelper.KEY_DELIVERABLE_prioritizedby, deliverableVo.getPrioritizedBy());
         values.put(DatabaseOpenHelper.KEY_DELIVERABLE_deliverablevalue, deliverableVo.getDeliverableValue());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_code, deliverableVo.getCode());
+        values.put(DatabaseOpenHelper.KEY_DELIVERABLE_currentusername, deliverableVo.getCurrentusername());
 
         // Inserting Row
         db.insert(DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE, null, values);
@@ -86,7 +88,9 @@ public class DeliverableDAO {
                         cursor.getString(9),
                         cursor.getString(10),
                         cursor.getString(11),
-                        cursor.getString(12)
+                        cursor.getString(12),
+                        cursor.getString(13),
+                        cursor.getString(14)
                         );
 
                 // Adding contact to list
@@ -133,7 +137,9 @@ public class DeliverableDAO {
                         cursor.getString(9),
                         cursor.getString(10),
                         cursor.getString(11),
-                        cursor.getString(12)
+                        cursor.getString(12),
+                        cursor.getString(13),
+                        cursor.getString(14)
                 );
 
                 // Adding contact to list

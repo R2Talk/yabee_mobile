@@ -34,6 +34,7 @@ public class DeliverablesActivity extends AppCompatActivity {
 
     String initiativeTitle = null;
     String initiativeId = null;
+
     DeliverablesAdapter adapter = null;
 
     @Override
@@ -42,14 +43,12 @@ public class DeliverablesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_deliverables);
 
         //
-        //Get parameter initiativeId from previous activity
+        //Get parameters from previous activity
         //
         Intent myIntent = getIntent(); // gets the previously created intent
-        initiativeTitle = myIntent.getStringExtra(EXTRA_INITIATIVE_TITLE);
-
-        //TODO: need refactoring to receive a bundel froom the previous activity with title AND idinitiative
-        //get idinitiative from database
-        initiativeId = getIdInitiativeByTitle(initiativeTitle);
+        Bundle extras = myIntent.getExtras();
+        initiativeId = extras.getString(EXTRA_INITIATIVE_ID);
+        initiativeTitle = extras.getString(EXTRA_INITIATIVE_TITLE);
 
         //action bar title
         setTitle(initiativeTitle);
@@ -92,7 +91,7 @@ public class DeliverablesActivity extends AppCompatActivity {
                 cc = "";
                 subject = getString(R.string.emailSubject);
                 DeliverableTextReporter deliverableTextReporter = new DeliverableTextReporter(getApplicationContext());
-                emailText = deliverableTextReporter.getLateStatusDeliverablesText(this.initiativeId);
+                emailText = deliverableTextReporter.getLateStatusDeliverablesText(this.initiativeTitle);
 
                 EmailChannel emailChannel= new EmailChannel();
                 emailChannel.callEmailApp(this, to, cc, subject, emailText);
@@ -102,7 +101,12 @@ public class DeliverablesActivity extends AppCompatActivity {
             case R.id.initiative_report:
 
                 Intent intent = new Intent(DeliverablesActivity.this, DeliverablesReportActivity.class);
-                intent.putExtra(DeliverablesReportActivity.EXTRA_INITIATIVE_ID, this.initiativeId);
+
+                Bundle extras = new Bundle();
+                extras.putString(DeliverablesActivity.EXTRA_INITIATIVE_ID, this.initiativeId);
+                extras.putString(DeliverablesActivity.EXTRA_INITIATIVE_TITLE, this.initiativeTitle);
+                intent.putExtras(extras);
+
                 startActivity(intent);
 
                 return true;
@@ -140,18 +144,5 @@ public class DeliverablesActivity extends AppCompatActivity {
         }
 
         return deliverableVoArrayList;
-    }
-
-    /**
-     * TODO: this class needs refactorig to receive  thia information as an intent bundle parameter
-     *
-     * @param title
-     * @return
-     */
-    private String getIdInitiativeByTitle(String title) {
-
-        InitiativeDAO initiativeDAO = new InitiativeDAO(getApplicationContext());
-
-        return initiativeDAO.getIdInitiativeByTitle(title);
     }
 }

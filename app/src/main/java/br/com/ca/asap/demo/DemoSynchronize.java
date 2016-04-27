@@ -284,6 +284,8 @@ public class DemoSynchronize {
 
         deliverableVoList.add(new DeliverableVo("4114", "COMITÊ DE RECEITA", "FICHA 290: RECUPERAÇÃO: ASSINANTES SEM PLANO E SEM TRÁFEGO (PF", "RECUPERAÇÃO: CANCELAMENTO DAS LINHAS (INCLUIR CRONOGRAMA COM DATA ESTIMADA PARA FINALIZAÇÃO DO TRATAMENTO DOS CASOS).", "Parecer e cronograma compartilhado", "Open", "05-02-2016", "RODRIGO AUGUSTO VIDIGAL DE LIMA", "2"));
         */
+
+        /*
         deliverableVoList.add(new DeliverableVo("T01", "COMITE TECNICO", "FICHA 290: RECUPERAÇÃO: ASSINANTES SEM PLANO E SEM TRÁFEGO.", "Clientes em situação irregular. Cancelar e parar de pagar fistel.", "", "Open", "30/06/2016", "Maria Julia", "2","NO","","",""));
 
         deliverableVoList.add(new DeliverableVo("T02", "COMITE TECNICO", "Ficha 311 -  Consumo incorreto Bônus. Em recuperação. Clientes PME e GE.", "Correção sistêmica por DTI para uso indevido da franquia de bônus, que está sendo usada para casos como ligações para outras operadoras, fixo e conexão de dados.", "PENDENTE COM ALEXANDRE COUTO NO IW, MAS NA PLANILHA DE CASOS DE USO ESTÁ FINALIZADA. VALIDAR PARA CONCLUSÃO NO IW", "Open", "14/01/2016", "ALEXANDRE COUTO", "2","NO","","",""));
@@ -354,7 +356,7 @@ public class DemoSynchronize {
 
         deliverableVoList.add(new DeliverableVo("T35", "COMITE TECNICO", "Descontos retenção inseridos fora da vigência promocional", "", "Data prevista para o término do Diagnóstico, conforme controle de GAR.", "Open", "30/04/2016", "", "2","NO","","",""));
 
-
+        */
 
 
 
