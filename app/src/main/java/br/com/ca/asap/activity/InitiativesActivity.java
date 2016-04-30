@@ -99,6 +99,14 @@ public class InitiativesActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
 
+            case id.action_show_info:
+                //Intent
+                //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
+                intent = new Intent(InitiativesActivity.this, ShowInfoActivity.class);
+                //Start Intent
+                startActivity(intent);
+                return true;
+
             case id.action_synch_initiatives:
 
                 //TODO: call synchronization activity

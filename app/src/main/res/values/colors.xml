@@ -10,6 +10,7 @@
     <color name="signin_background">#FFC107</color>
 
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <color name="iron">#CCCCCC</color>
     <color name="green">#1B5E20</color>
     <color name="red">#B71C1C</color>

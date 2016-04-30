@@ -54,7 +54,7 @@ public class SignInActivity extends AppCompatActivity {
             signManager.initializeSessionFromPreferences();
 
             //
-            //check shared preferences to check if the user is already know.
+            //check shared preferences to get the date of the last synch.
             //
             PreferencesHelper preferencesHelper = new PreferencesHelper(getApplicationContext(), PreferencesHelper.APP_PREFERENCES);
             String lastSync = preferencesHelper.getStringPrefrenceValue(PreferencesHelper.LAST_SYNC);

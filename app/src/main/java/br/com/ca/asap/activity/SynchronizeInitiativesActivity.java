@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import br.com.ca.asap.preferences.PreferencesHelper;
 import br.com.ca.asap.synchronize.Synchronizer;
@@ -59,15 +62,10 @@ public class SynchronizeInitiativesActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String...params) {
             InputStream is = null;
-            int len = 500; // Only display the first 500 characters of the retrieved web page content.
 
             Boolean dataSynchronized = false;
 
-            //
-            //TODO: This Thread.sleep code is for application test only. Should be removed in the final version
-            //
-
-            if (params[0].equals("demo")) {
+            if (params[0].equals("demo")) { //TODO: remove. test purpose only.
 
                 //demo synchronize
                 DemoSynchronize demoSynchronize = new DemoSynchronize();
@@ -102,8 +100,10 @@ public class SynchronizeInitiativesActivity extends AppCompatActivity {
                 //
                 //save the last synchronization date.
                 //
+                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                Date date = new Date();
                 PreferencesHelper preferencesHelper = new PreferencesHelper(getApplicationContext(), PreferencesHelper.APP_PREFERENCES);
-                preferencesHelper.setStringPreferenceValue(PreferencesHelper.LAST_SYNC, "today"); //TODO: save the current date
+                preferencesHelper.setStringPreferenceValue(PreferencesHelper.LAST_SYNC, dateFormat.format(date));
 
                 Intent intent = new Intent(context, InitiativesActivity.class);
                 intent.addFlags(
@@ -111,6 +111,7 @@ public class SynchronizeInitiativesActivity extends AppCompatActivity {
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+
             } else {
                 //TODO: need refactoring. write code for message and option to go retry ou go to local processing
 

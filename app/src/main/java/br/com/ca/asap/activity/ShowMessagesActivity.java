@@ -55,20 +55,6 @@ public class ShowMessagesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //
-        // Floating Action Button from support android.library. Set OnClick listener to call send message activity
-        //
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(ShowMessagesActivity.this, SendMessageActivity.class);
-                //Start Intent for result
-                startActivityForResult(intent, SEND_MESSAGE_INTENT_CALL);
-            }
-        });
-
         //refresh messages reading from hive server and actualize list view
         new DoAsyncMessagesSynchronize().execute("demo");
     }
@@ -94,9 +80,17 @@ public class ShowMessagesActivity extends AppCompatActivity {
 
         // Handle presses on the action bar items
         switch (item.getItemId()) {
+
             case R.id.action_refresh_messsages:
                 //refresh messages reading from hive server and actualize list view
                 new DoAsyncMessagesSynchronize().execute("demo");
+                return true;
+
+            case R.id.action_send_messsage:
+                //send message activity
+                Intent intent = new Intent(ShowMessagesActivity.this, SendMessageActivity.class);
+                //Start Intent for result
+                startActivityForResult(intent, SEND_MESSAGE_INTENT_CALL);
                 return true;
 
             default:

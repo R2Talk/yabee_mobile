@@ -17,6 +17,11 @@
         app:showAsAction="always" />
 
     <!-- synch initiatives-->
+    <item android:id="@+id/action_show_info"
+        android:title="@string/menu_info"
+        app:showAsAction="never" />
+
+    <!-- synch initiatives-->
     <item android:id="@+id/action_synch_initiatives"
         android:title="@string/menu_synchronize_initiatives"
         app:showAsAction="never" />

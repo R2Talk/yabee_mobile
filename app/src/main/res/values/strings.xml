@@ -2,6 +2,16 @@
 
     <string name="app_name">Ya Bee</string>
 
+
+
+    <string name="info">Info</string>
+    <string name="menu_info">Info</string>
+    <string name="opensessionfor">Sessão aberta para </string>
+    <string name="lastsynch">Última sincronização em </string>
+    <string name="yabeeversion">Versão </string>
+    <string name="developedBy">Developed By CA Blue Ocean</string>
+
+
     <string name="welcome_login">"Bem-vindo.\n\nAcompanhe as suas tarefas e as iniciativas com o seu time!"</string>
 
     <string name="identify_yourself">Informe seu usuário e senha, ou crie uma conta!"</string>
@@ -29,8 +39,10 @@
     <string name="synchronizing">Atualizando...</string>
 
     <string name="menu_synchronize_initiatives">Sincronizar Iniciativas</string>
-
     <string name="menu_signout">Sign Out</string>
+
+    <string name="menu_send_message">Enviar Mensagem</string>
+    <string name="menu_refresh_messages">Atualizar mensagens</string>
 
     <string name="adm">adm</string>
     <string name="demo">demo</string>
@@ -42,7 +54,7 @@
 
     <string name="wrongNameOrPwd">Nome de usuário ou senha inválidos. Tente o usuário guest, com senha guest".</string>
     <string name="device_not_connect">Dispositivo não conectado à rede</string>
-    <string name="synchronizing_operation">Por favor, aguarde. Sincronizando as informações.</string>
+    <string name="synchronizing_operation">Bem-vindo. \n\nPor favor, aguarde a sincronização das suas iniciativas.</string>
 
     <string name="notImplemented">Não disponível</string>
     <string name="demoVersion">versão de demonstração</string>
@@ -70,9 +82,9 @@
     <string name="responsible">Responsável:</string>
     <string name="date">Data:</string>
 
-    <string name="send_message_to_group">Envie mensagem para o grupo ya bees</string>
+    <string name="send_message_to_group">Envie mensagem para o grupo.</string>
     <string name="send_message_ok">Mensegem enviada.</string>
-    <string name="empty_message_not_permitted">Digite a sua mensagem.</string>
+    <string name="empty_message_not_permitted">Digite sua mensagem.</string>
     <string name="send_message_error">Invelizmente não foi possível enviar a emsagem devido a problema técnico.</string>
     <string name="message_from">de:</string>
     <string name="onDate">data</string>
@@ -84,5 +96,6 @@
     <string name="title_activity_show_day_priorities">ShowDayPrioritiesActivity</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="title_activity_deliverable_update">DeliverableUpdateActivity</string>
+    <string name="title_activity_show_info">Info</string>
 
 </resources>
