@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- context menu item  -->
+    <item android:id="@+id/action_prioritize"
+        android:title="@string/context_menu_prioritize"
+        />
+
+    <!-- context menu item  -->
+    <item android:id="@+id/action_show_details"
+        android:title="@string/context_menu_show_details"
+        />
+
+</menu>

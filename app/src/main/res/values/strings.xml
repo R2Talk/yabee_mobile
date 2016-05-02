@@ -2,8 +2,6 @@
 
     <string name="app_name">Ya Bee</string>
 
-
-
     <string name="info">Info</string>
     <string name="menu_info">Info</string>
     <string name="opensessionfor">Sessão aberta para </string>
@@ -11,38 +9,36 @@
     <string name="yabeeversion">Versão </string>
     <string name="developedBy">Developed By CA Blue Ocean</string>
 
-
-    <string name="welcome_login">"Bem-vindo.\n\nAcompanhe as suas tarefas e as iniciativas com o seu time!"</string>
-
-    <string name="identify_yourself">Informe seu usuário e senha, ou crie uma conta!"</string>
-
     <string name="initiativesActivityLabel">Iniciativas</string>
     <string name="deliverablesActivityLabel">Entregas</string>
     <string name="initiativeReportActivityLabel">Report</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="iw_activities">Atividades IW</string>
-    <string name="projects">Projetos</string>
     <string name="notifications">Notificações</string>
     <string name="action_settings">Configurações</string>
     <string name="initiative_resume">Relatório</string>
     <string name="report">Relatório</string>
-    <string name="todo_list">Minha Lista</string>
 
     <string name="login">Entrar</string>
+    <string name="logout">Sair</string>
     <string name="name">nome</string>
     <string name="password">senha</string>
     <string name="signup_phrase">Ainda não tem uma conta? Crie uma.</string>
     <string name="title_activity_login">Login</string>
+    <string name="identify_yourself">Informe seu usuário e senha, ou crie uma conta!"</string>
+    <string name="wrongNameOrPwd">Nome de usuário ou senha inválidos. Tente o usuário guest, com senha guest".</string>
+
+    <string name="context_menu">context menu</string>
 
     <string name="authenticating">Autenticando...</string>
     <string name="synchronizing">Atualizando...</string>
 
     <string name="menu_synchronize_initiatives">Sincronizar Iniciativas</string>
-    <string name="menu_signout">Sign Out</string>
 
-    <string name="menu_send_message">Enviar Mensagem</string>
+    <string name="menu_send_message">Enviar mensagem</string>
     <string name="menu_refresh_messages">Atualizar mensagens</string>
+
+    <string name="context_menu_prioritize">Priorizar</string>
+    <string name="context_menu_show_details">Detalhes</string>
 
     <string name="adm">adm</string>
     <string name="demo">demo</string>
@@ -52,9 +48,8 @@
     <string name="total_number_of_last_day_wi">Vencem hoje:</string>
     <string name="total_number_of_with_admin">Com Adm.:</string>
 
-    <string name="wrongNameOrPwd">Nome de usuário ou senha inválidos. Tente o usuário guest, com senha guest".</string>
     <string name="device_not_connect">Dispositivo não conectado à rede</string>
-    <string name="synchronizing_operation">Bem-vindo. \n\nPor favor, aguarde a sincronização das suas iniciativas.</string>
+    <string name="synchronizing_operation">\n\nPor favor, aguarde a sincronização de iniciativas.</string>
 
     <string name="notImplemented">Não disponível</string>
     <string name="demoVersion">versão de demonstração</string>
@@ -74,8 +69,8 @@
     <string name="missingEmailClient">Nenhum aplicativo de email está configurado</string>
     <string name="emailTo">rcarvalho89@hotmail.com</string>
     <string name="emailSubject">Ya Bee Message</string>
-    <string name="emailHeader">Olá, segue Ya Bee status da iniciativa:</string>
-    <string name="emailFooter">Enviado via Ya Bee.</string>
+    <string name="emailHeader">Ya Bee status para iniciativa </string>
+    <string name="emailFooter">Ya Bee Report.</string>
 
     <string name="message">Mensagem</string>
     <string name="title">Titulo:</string>
@@ -97,5 +92,21 @@
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="title_activity_deliverable_update">DeliverableUpdateActivity</string>
     <string name="title_activity_show_info">Info</string>
+
+    <string name="button_synchronize">Sincronizar</string>
+
+    <string name="deliverable_code">código </string>
+    <string name="deliverable_title">título </string>
+    <string name="deliverable_description">descrição </string>
+    <string name="deliverable_comments">comentário </string>
+    <string name="deliverable_status">status </string>
+    <string name="deliverable_duedate">data </string>
+    <string name="deliverable_prioritized">priorizado </string>
+    <string name="deliverable_priority_comments">comentário de priorização </string>
+    <string name="deliverable_prioritizedBy">priorizado por </string>
+    <string name="deliverable_value">valor </string>
+    <string name="deliverable_current_user_name">em execução por </string>
+
+
 
 </resources>

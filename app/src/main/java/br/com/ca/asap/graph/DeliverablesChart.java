@@ -26,7 +26,6 @@ public class DeliverablesChart {
 
     private static int[] COLORS = new int[] {Color.GREEN, Color.RED};
 
-
     /**
      * getDeliverablesPieChart
      *

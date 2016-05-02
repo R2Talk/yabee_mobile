@@ -1,5 +1,6 @@
 package br.com.ca.asap.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -65,6 +66,42 @@ public class ShowInfoActivity extends AppCompatActivity {
         lastSynchdateTextView.setText(lastSyncDate);
         TextView yaBeeVersionNumberTextView = (TextView) findViewById(R.id.yaBeeVersionNumberTextView);
         yaBeeVersionNumberTextView.setText(currentYabeeVersion);
+
+    }
+
+    /**
+     * callSynchronize
+     *
+     * @param v
+     */
+    public void callSynchronize(View v) {
+
+        Intent intent;
+
+        //Intent for SignIn activity
+        intent = new Intent(ShowInfoActivity.this, SynchronizeInitiativesActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear activity stack to return do signin activity
+        //Start Intent
+        startActivity(intent);
+
+    }
+
+    /**
+     * doSignOut
+     *
+     */
+    public void doSignOut(View v){
+
+        Intent intent;
+
+        SignManager signManager = new SignManager(getApplicationContext());
+        signManager.signOut();
+
+        //Intent for SignIn activity
+        intent = new Intent(ShowInfoActivity.this, SignInActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear activity stack to return do signin activity
+        //Start Intent
+        startActivity(intent);
 
     }
 

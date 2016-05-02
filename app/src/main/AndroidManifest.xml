@@ -80,7 +80,8 @@
         <activity
             android:name="br.com.ca.asap.activity.ShowInfoActivity"
             android:label="@string/title_activity_show_info"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar"
+            android:noHistory="true">
         </activity>
     </application>
 

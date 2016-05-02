@@ -19,8 +19,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="46dp"
-        android:textColor="@color/primary_dark" />
+        android:layout_marginTop="10dp"
+        android:textColor="@color/primary"
+        android:background="#f6f3f2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,7 +46,10 @@
         android:layout_below="@+id/currentUserTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="@color/primary_dark" />
+        android:textColor="@color/primary"
+        android:layout_alignRight="@+id/currentUserTextView"
+        android:layout_alignEnd="@+id/currentUserTextView"
+        android:background="#f6f3f2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -66,7 +72,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="41dp"
-        android:textColor="@color/primary_dark" />
+        android:textColor="@color/primary"
+        android:layout_alignRight="@+id/lastSyncTextView"
+        android:layout_alignEnd="@+id/lastSyncTextView"
+        android:background="#f6f3f2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,13 +90,45 @@
         android:layout_alignParentStart="true"
         android:textColor="@color/black" />
 
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_synchronize"
+        android:id="@+id/sync_button"
+        android:onClick="callSynchronize"
+        android:background="@color/primary"
+        android:layout_below="@+id/yaBeeVersionNumberTextView"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/versionTextView"
+        android:layout_alignEnd="@+id/versionTextView"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:id="@+id/signout_button"
+        android:onClick="doSignOut"
+        android:background="@color/primary"
+        android:layout_below="@+id/sync_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/sync_button"
+        android:layout_alignEnd="@+id/sync_button" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/developedBy"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/versionTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="122dp" />
+        android:id="@+id/developedByTextView"
+        android:gravity="bottom"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

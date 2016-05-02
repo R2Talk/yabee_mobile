@@ -106,26 +106,6 @@ public class InitiativesActivity extends AppCompatActivity {
                 //Start Intent
                 startActivity(intent);
                 return true;
-
-            case id.action_synch_initiatives:
-
-                //TODO: call synchronization activity
-                toast = Toast.makeText(getApplicationContext(), "SYNC", Toast.LENGTH_SHORT);
-                toast.show();
-
-                return true;
-
-            case id.action_signout:
-                SignManager signManager = new SignManager(getApplicationContext());
-                signManager.signOut();
-
-                //Intent for SignIn activity
-                intent = new Intent(InitiativesActivity.this, SignInActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear activity stack to return do signin activity
-                //Start Intent
-                startActivity(intent);
-
-                return true;
             
             default:
                 return super.onOptionsItemSelected(item);
@@ -144,6 +124,7 @@ public class InitiativesActivity extends AppCompatActivity {
         //ArrayList<InitiativeVo> initiativeVoArrayList = new ArrayList<>();
         Context context = getApplicationContext();
         List<InitiativeVo> initiativeVoList;
+        Intent intent = null;
 
         InitiativeDAO initiativeDAO = new InitiativeDAO(context);
         initiativeVoList = initiativeDAO.selectInitiatives();

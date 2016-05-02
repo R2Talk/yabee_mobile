@@ -30,13 +30,13 @@ public class DeliverableTextReporter {
     }
 
     /**
-     * getLateStatusDeliverablesText
+     * getDeliverablesTextReport
      *
      * Prepare and return text report with late deliverables list
      *
      * @return
      */
-    public String getLateStatusDeliverablesText(String initiativeId){
+    public String getDeliverablesTextReport(String initiativeId, String initiativeTitle){
 
         String text = "";
 
@@ -49,9 +49,10 @@ public class DeliverableTextReporter {
         //
         // Write Header
         //
-        text = text + context.getString(R.string.emailHeader) + " " + initiativeId;
+        text = text + context.getString(R.string.emailHeader) + " " + initiativeTitle;
         text = text + "\n";
         text = text + "\n";
+
         //
         // Write Late Activities
         //
@@ -62,18 +63,17 @@ public class DeliverableTextReporter {
         while(iterator.hasNext()){
             DeliverableVo deliverableVo = (DeliverableVo) iterator.next();
             if (deliverableVo.getDeliverable_isLate().equals("true")) {
-                text = text + context.getString(R.string.title) + " " + deliverableVo.getTitle() + "\n";
-                text = text + context.getString(R.string.responsible) + " " + deliverableVo.getIdresponsibleuser() + "\n";
-                text = text + context.getString(R.string.date) + " " + deliverableVo.getDuedate() + "\n\n";
+                text = text + ">>>\n";
+                text = text + context.getString(R.string.title) + " " + deliverableVo.getTitle() + "\n\n";
+                text = text + context.getString(R.string.responsible) + " " + deliverableVo.getCurrentusername() + "\n";
+                text = text + context.getString(R.string.date) + " " + deliverableVo.getDuedate() + "\n";
+                text = text + "<<<" + "\n\n";
             }
         }
 
         //
-        //TODO: remove commented code - late activities report only
-        //
         //Write OnTime Activities
         //
-        /*
         text = text + context.getString(R.string.onTime);
         text = text + "\n";
         text = text + "\n";
@@ -81,12 +81,13 @@ public class DeliverableTextReporter {
         while(iterator2.hasNext()){
             DeliverableVo deliverableVo = (DeliverableVo) iterator2.next();
             if (!deliverableVo.getDeliverable_isLate().equals("true")) {
-                text = text + context.getString(R.string.title) + " " + deliverableVo.getTitle() + "\n";
-                text = text + context.getString(R.string.responsible) + " " + deliverableVo.getIdresponsibleuser() + "\n";
-                text = text + context.getString(R.string.date) + " " + deliverableVo.getDuedate() + "\n\n";
+                text = text + ">>>\n";
+                text = text + context.getString(R.string.title) + " " + deliverableVo.getTitle() + "\n\n";
+                text = text + context.getString(R.string.responsible) + " " + deliverableVo.getCurrentusername() + "\n";
+                text = text + context.getString(R.string.date) + " " + deliverableVo.getDuedate() + "\n";
+                text = text + "<<<" + "\n\n";
             }
         }
-        */
 
         //
         // Write Footer

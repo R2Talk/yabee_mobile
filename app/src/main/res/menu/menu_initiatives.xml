@@ -21,14 +21,5 @@
         android:title="@string/menu_info"
         app:showAsAction="never" />
 
-    <!-- synch initiatives-->
-    <item android:id="@+id/action_synch_initiatives"
-        android:title="@string/menu_synchronize_initiatives"
-        app:showAsAction="never" />
-
-    <!-- sign out -->
-    <item android:id="@+id/action_signout"
-        android:title="@string/menu_signout"
-        app:showAsAction="never" />
 
 </menu>
