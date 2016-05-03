@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -65,13 +66,36 @@ public class DeliverablesActivity extends AppCompatActivity {
 
         //Initialize List View
         //
-        adapter = new DeliverablesAdapter(this, getDeliverableArrayList(initiativeId));// 1. pass context and data to the custom adapter
-        ListView listView = (ListView) findViewById(R.id.deliverables_listView); // 2. Get ListView from activity_main.xml
-        listView.setAdapter(adapter); // 3. setListAdapter
+        // 1. pass context and data to the custom adapter
+        adapter = new DeliverablesAdapter(this, getDeliverableArrayList(initiativeId));
+        // 2. Get ListView from activity xml
+        ListView listView = (ListView) findViewById(R.id.deliverables_listView);
+        // 3. setListAdapter
+        listView.setAdapter(adapter);
 
         //Register context menu associated with the deliverables list view
         //
-        registerForContextMenu(listView);
+        //registerForContextMenu(listView); TODO: review application of context menu for deliverable itens
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                //Intent
+                Intent intent = new Intent(DeliverablesActivity.this, DeliverableUpdateActivity.class);
+
+                //Intent Parameter
+                TextView deliverableId = (TextView) view.findViewById(R.id.deliverableIdTextView); //view list item is received as a parameter
+
+                Bundle extras = new Bundle();
+                extras.putString(DeliverableUpdateActivity.EXTRA_DELIVERABLE_ID, deliverableId.getText().toString());
+                intent.putExtras(extras);
+
+                //Start Intent
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -80,7 +104,7 @@ public class DeliverablesActivity extends AppCompatActivity {
      * @param menu
      * @param v
      * @param menuInfo
-     */
+     *
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
@@ -91,13 +115,14 @@ public class DeliverablesActivity extends AppCompatActivity {
         inflater.inflate(R.menu.context_menu_deliverable, menu);
 
     }
+    */
 
     /**
      * onContextItemSelected
      *
      * @param item
      * @return
-     */
+     *
     @Override
     public boolean onContextItemSelected(MenuItem item){
 
@@ -125,12 +150,13 @@ public class DeliverablesActivity extends AppCompatActivity {
 
         return true; //super.onContextItemSelected(item);
     }
+    */
 
     /**
      * getViewByPosition
      *
      * @return
-     */
+     *
     private View getViewByPosition(int position){
         View view = null;
 
@@ -139,6 +165,7 @@ public class DeliverablesActivity extends AppCompatActivity {
 
         return view;
     }
+     */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

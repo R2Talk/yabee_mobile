@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="work item id"
-                android:id="@+id/deliverable_idTextView"
+                android:id="@+id/deliverable_codeTextView"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -37,7 +37,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="title"
                 android:id="@+id/deliverable_titleTextView"
-                android:layout_below="@+id/deliverable_idTextView"
+                android:layout_below="@+id/deliverable_codeTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:textColor="#000000"/>
@@ -73,10 +73,18 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/late"
                 android:id="@+id/deliverable_statusTextView"
-                android:layout_alignTop="@+id/deliverable_idTextView"
+                android:layout_alignTop="@+id/deliverable_codeTextView"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:textColor="#f00c0c" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Small Text"
+                android:id="@+id/deliverableIdTextView"
+                android:visibility="invisible" />
 
 </RelativeLayout>
 

@@ -150,4 +150,44 @@ public class DeliverableDAO {
         // return Initiative list
         return deliverableVoList;
     }
+
+    //
+    //return deliverable by deliverable id
+    //
+    public DeliverableVo getDeliverableById(String deliverableId){
+        DeliverableVo deliverableVo = null;
+        SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_iddeliverable + " = '" + deliverableId + "'";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                deliverableVo = new DeliverableVo(
+                        cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7),
+                        cursor.getString(8),
+                        cursor.getString(9),
+                        cursor.getString(10),
+                        cursor.getString(11),
+                        cursor.getString(12),
+                        cursor.getString(13),
+                        cursor.getString(14)
+                );
+
+            } while (cursor.moveToNext());
+        }
+
+        // return Initiative list
+        return deliverableVo;
+    }
 }

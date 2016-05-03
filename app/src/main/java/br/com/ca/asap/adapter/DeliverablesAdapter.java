@@ -59,7 +59,8 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
             View rowDeliverableView = inflater.inflate(R.layout.row_deliverables_listview, parent, false);
 
             // 3. Get views from inflated row view
-            TextView idView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_idTextView);
+            TextView deliverableIdView = (TextView) rowDeliverableView.findViewById(R.id.deliverableIdTextView);
+            TextView codeView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_codeTextView);
             TextView titleView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_titleTextView);
             TextView statusView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_statusTextView);
             TextView due_dateView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_due_dateTextView);
@@ -73,15 +74,17 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
                 cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.yellow_card_color));
                 statusView.setVisibility(View.VISIBLE);
             } else {
-                idView.setTextColor(ContextCompat.getColor(context, R.color.green));
+                codeView.setTextColor(ContextCompat.getColor(context, R.color.green));
                 //cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green_card_color));
                 cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white));
                 statusView.setVisibility(View.INVISIBLE);
             }
 
             // 5. Set the deliverable information in the card child views
+            //id
+            deliverableIdView.setText(itemsArrayList.get(position).getIddeliverable());
             //code
-            idView.setText(itemsArrayList.get(position).getCode());
+            codeView.setText(itemsArrayList.get(position).getCode());
             //title
             titleView.setText(itemsArrayList.get(position).getTitle());
             //dur date

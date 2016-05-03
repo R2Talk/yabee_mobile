@@ -83,14 +83,10 @@ public class InitiativesActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-
-
-        Toast toast = null;
         Intent intent = null;
 
         // Handle presses on the action bar items
         switch (item.getItemId()) {
-            
             case id.action_show_messages:
                 //Intent
                 //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
@@ -98,7 +94,6 @@ public class InitiativesActivity extends AppCompatActivity {
                 //Start Intent
                 startActivity(intent);
                 return true;
-
             case id.action_show_info:
                 //Intent
                 //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
@@ -106,7 +101,6 @@ public class InitiativesActivity extends AppCompatActivity {
                 //Start Intent
                 startActivity(intent);
                 return true;
-            
             default:
                 return super.onOptionsItemSelected(item);
         }

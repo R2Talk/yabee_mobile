@@ -15,5 +15,5 @@
         android:icon="@drawable/ic_show_chart"
         android:title="@string/initiative_resume"
         android:orderInCategory="300"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 </menu>

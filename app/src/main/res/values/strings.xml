@@ -90,7 +90,7 @@
     <string name="title_activity_show_messages">MENSAGENS</string>
     <string name="title_activity_show_day_priorities">ShowDayPrioritiesActivity</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
-    <string name="title_activity_deliverable_update">DeliverableUpdateActivity</string>
+    <string name="title_activity_deliverable_update">Entrega</string>
     <string name="title_activity_show_info">Info</string>
 
     <string name="button_synchronize">Sincronizar</string>
