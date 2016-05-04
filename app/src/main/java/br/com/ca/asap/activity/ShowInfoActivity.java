@@ -73,7 +73,7 @@ public class ShowInfoActivity extends AppCompatActivity {
      * callSynchronize
      *
      * @param v
-     */
+     *
     public void callSynchronize(View v) {
 
         Intent intent;
@@ -85,6 +85,7 @@ public class ShowInfoActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+    */
 
     /**
      * doSignOut

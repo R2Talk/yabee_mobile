@@ -83,42 +83,21 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/yaBeeVersionNumberTextView"
-        android:password="false"
-        android:phoneNumber="false"
         android:layout_below="@+id/versionTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textColor="@color/black" />
 
-
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_synchronize"
-        android:id="@+id/sync_button"
-        android:onClick="callSynchronize"
-        android:background="@color/primary"
-        android:layout_below="@+id/yaBeeVersionNumberTextView"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/versionTextView"
-        android:layout_alignEnd="@+id/versionTextView"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp" />
-
-    <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/logout"
         android:id="@+id/signout_button"
         android:onClick="doSignOut"
         android:background="@color/primary"
-        android:layout_below="@+id/sync_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/sync_button"
-        android:layout_alignEnd="@+id/sync_button" />
+        android:layout_marginTop="104dp"
+        android:layout_below="@+id/yaBeeVersionNumberTextView"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"

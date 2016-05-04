@@ -27,15 +27,19 @@
     <string name="identify_yourself">Informe seu usuário e senha, ou crie uma conta!"</string>
     <string name="wrongNameOrPwd">Nome de usuário ou senha inválidos. Tente o usuário guest, com senha guest".</string>
 
-    <string name="context_menu">context menu</string>
-
     <string name="authenticating">Autenticando...</string>
     <string name="synchronizing">Atualizando...</string>
 
     <string name="menu_synchronize_initiatives">Sincronizar Iniciativas</string>
+    <string name="menu_send_message">Enviar Mensagem</string>
+    <string name="menu_refresh_messages">Atualizar Mensagens</string>
+    <string name="menu_show_messages">Abrir Mensagens</string>
+    <string name="menu_show_priorities">Mostrar Prioridades</string>
 
-    <string name="menu_send_message">Enviar mensagem</string>
-    <string name="menu_refresh_messages">Atualizar mensagens</string>
+    <string name="menu_add_initiative">Criar Iniciativa</string>
+    <string name="menu_add_deliverable">Criar Entrega</string>
+    <string name="menu_prioritize_deliverable">Priorizar</string>
+    <string name="menu_toggle_join_deliverable">Seguir</string>
 
     <string name="context_menu_prioritize">Priorizar</string>
     <string name="context_menu_show_details">Detalhes</string>
@@ -106,7 +110,5 @@
     <string name="deliverable_prioritizedBy">priorizado por </string>
     <string name="deliverable_value">valor </string>
     <string name="deliverable_current_user_name">em execução por </string>
-
-
 
 </resources>

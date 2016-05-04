@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
@@ -50,6 +51,15 @@ public class DeliverableUpdateActivity extends AppCompatActivity {
         initializeActivityDetailsView(deliverableVo);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        //Set activity menu
+        //
+        getMenuInflater().inflate(R.menu.menu_deliverable_update, menu); // Inflate the menu; this adds items to the action bar if it is present.
+        return true;
+    }
+
     /**
      * initializeActivityDetailsView
      *
@@ -58,17 +68,30 @@ public class DeliverableUpdateActivity extends AppCompatActivity {
 
         //get views
         TextView deliverableCodeView = (TextView) findViewById(R.id.codeTextView);
-        TextView deliverableTitleView = (TextView) findViewById(R.id.titleTextView);
-        /*
-        TextView titleView = (TextView) findViewById(R.id.);
-        TextView statusView = (TextView) findViewById(R.id.);
-        TextView due_dateView = (TextView) findViewById(R.id.);
-        TextView responsibleView = (TextView) findViewById(R.id.);
-        */
+        TextView deliverableTextView = (TextView) findViewById(R.id.titleTextView);
+        TextView deliverableDescriptionView = (TextView) findViewById(R.id.descriptionTextView);
+        TextView deliverableStatusView = (TextView) findViewById(R.id.statusTextView);
+        TextView deliverableDueDateView = (TextView) findViewById(R.id.dueDateTextView);
+        TextView deliverableValueView = (TextView) findViewById(R.id.valueTextView);
+        TextView deliverableCurrentUserView = (TextView) findViewById(R.id.currentUserTextView);
+        TextView deliverableCommentsView = (TextView) findViewById(R.id.commentsTextView);
+        TextView deliverablePrioritizedView = (TextView) findViewById(R.id.prioritizedTextView);
+        TextView deliverablePrioritizedByView = (TextView) findViewById(R.id.prioritizedByTextView);
+        TextView deliverablePriorityCommentsView = (TextView) findViewById(R.id.priorityCommentsTextView);
 
         //set views values
         deliverableCodeView.setText(deliverableVo.getCode());
-        deliverableTitleView.setText(deliverableVo.getTitle());
+        deliverableTextView.setText(deliverableVo.getTitle());
+        deliverableDescriptionView.setText(deliverableVo.getDescription());
+        deliverableStatusView.setText(deliverableVo.getStatus());
+        deliverableDueDateView.setText(deliverableVo.getDuedate());
+        deliverableValueView.setText(deliverableVo.getDeliverableValue());
+        deliverableCurrentUserView.setText(deliverableVo.getCurrentusername());
+        deliverableCommentsView.setText(deliverableVo.getComments());
+        deliverablePrioritizedView.setText(deliverableVo.getIsPriority());
+        deliverablePrioritizedByView.setText(deliverableVo.getPrioritizedBy());
+        deliverablePriorityCommentsView.setText(deliverableVo.getPriorityComment());
+
     }
 
 }

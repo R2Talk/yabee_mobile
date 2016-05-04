@@ -50,6 +50,7 @@ public class InitiativesActivity extends AppCompatActivity {
         // 3. setListAdapter
         listView.setAdapter(adapter);
 
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -68,6 +69,8 @@ public class InitiativesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 
     @Override
@@ -87,6 +90,14 @@ public class InitiativesActivity extends AppCompatActivity {
 
         // Handle presses on the action bar items
         switch (item.getItemId()) {
+            case id.action_synchronize_initiatives:
+                //Intent for SignIn activity
+                intent = new Intent(InitiativesActivity.this, SynchronizeInitiativesActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear activity stack to return do signin activity
+                //Start Intent
+                startActivity(intent);
+                return true;
+
             case id.action_show_messages:
                 //Intent
                 //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
@@ -94,6 +105,7 @@ public class InitiativesActivity extends AppCompatActivity {
                 //Start Intent
                 startActivity(intent);
                 return true;
+
             case id.action_show_info:
                 //Intent
                 //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
@@ -101,6 +113,7 @@ public class InitiativesActivity extends AppCompatActivity {
                 //Start Intent
                 startActivity(intent);
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -4,10 +4,9 @@
     tools:context="br.com.ca.asap.activity.DeliverablesActivity">
 
 
-    <!-- should appear as action button -->
-    <item android:id="@+id/action_show_priorities"
-        android:icon="@drawable/ic_assignment"
-        android:title="@string/menu_show_priorities"
+    <item android:id="@+id/action_prioritize"
+        android:icon="@drawable/ic_action_check"
+        android:title="@string/menu_prioritize_deliverable"
         android:orderInCategory="100"
         app:showAsAction="always" />
 
@@ -17,9 +16,9 @@
         android:orderInCategory="200"
         app:showAsAction="always" />
 
-    <item android:id="@+id/action_add_deliverable"
-        android:icon="@drawable/ic_action_add"
-        android:title="@string/menu_add_deliverable"
+    <item android:id="@+id/action_toggle_join_deliverable"
+        android:icon="@drawable/ic_action_join_star"
+        android:title="@string/menu_toggle_join_deliverable"
         android:orderInCategory="300"
         app:showAsAction="never" />
 
@@ -29,9 +28,4 @@
         android:orderInCategory="400"
         app:showAsAction="never" />
 
-    <item android:id="@+id/initiative_report"
-        android:icon="@drawable/ic_show_chart"
-        android:title="@string/initiative_resume"
-        android:orderInCategory="500"
-        app:showAsAction="never" />
 </menu>
