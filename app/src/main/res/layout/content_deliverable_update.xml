@@ -35,22 +35,27 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+        android:showDividers="beginning|end"
+        android:elevation="5dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="@android:style/TextAppearance.Medium"
         android:text="codeTextView"
         android:id="@+id/codeTextView"
-         />
+        android:textColor="#f15b05"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="titleTextView"
-        android:id="@+id/titleTextView" />
+        android:id="@+id/titleTextView"
+        android:textColor="#f15b05"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:layout_width="match_parent"
@@ -58,7 +63,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/deliverable_description"
         android:id="@+id/descriptionLabelTextView"
-        android:layout_marginTop="43dp" />
+        android:layout_marginTop="43dp"
+        android:textStyle="bold|italic"
+        android:layout_marginBottom="10dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,54 +74,45 @@
         android:id="@+id/descriptionTextView"
         android:layout_marginBottom="20dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/deliverable_status"
-        android:id="@+id/statusLabelTextView" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/statusTextView"
-        android:layout_marginBottom="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/deliverable_duedate"
+            android:id="@+id/duedateLabelTextView"
+            android:layout_marginRight="10dp"
+            android:textStyle="bold|italic" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/dueDateTextView"
+            android:layout_marginBottom="15dp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/deliverable_duedate"
-        android:id="@+id/duedateLabelTextView" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/dueDateTextView"
-        android:layout_marginBottom="20dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/deliverable_value"
-        android:id="@+id/valueLabelTextView" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/valueTextView"
-        android:layout_marginBottom="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/deliverable_value"
+            android:id="@+id/valueLabelTextView"
+            android:layout_marginRight="10dp"
+            android:textStyle="bold|italic" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/valueTextView"
+            android:layout_marginBottom="15dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/deliverable_current_user_name"
-        android:id="@+id/currentUserLabelTextView" />
+        android:id="@+id/currentUserLabelTextView"
+        android:textStyle="bold|italic" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -141,14 +139,17 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:elevation="5dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/deliverable_comments"
-        android:id="@+id/commentsLabelTextView" />
+        android:id="@+id/commentsLabelTextView"
+        android:textStyle="bold|italic"
+        android:layout_marginBottom="10dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -175,28 +176,17 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:elevation="5dp"
+        android:visibility="invisible">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/deliverable_prioritized"
-        android:id="@+id/prioritizedLabelTextView" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/prioritizedTextView"
-        android:layout_marginBottom="20dp"/>
-
-    <TextView
+        <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/deliverable_prioritizedBy"
-        android:id="@+id/prioritizedByLabelTextView" />
+        android:id="@+id/prioritizedByLabelTextView"
+            android:textStyle="bold|italic" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -210,7 +200,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/deliverable_priority_comments"
-        android:id="@+id/priorityCommentsLabelTextView" />
+        android:id="@+id/priorityCommentsLabelTextView"
+        android:textStyle="bold|italic"
+        android:layout_marginBottom="10dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

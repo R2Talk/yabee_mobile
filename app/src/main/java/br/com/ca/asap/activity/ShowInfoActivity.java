@@ -2,15 +2,15 @@ package br.com.ca.asap.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import br.com.ca.asap.preferences.PreferencesHelper;
-import br.com.ca.asap.user.SignManager;
+import br.com.ca.asap.users.SignManager;
 import br.com.ca.asap.vo.UserVo;
 import br.com.ca.shareview.R;
 
@@ -29,6 +29,7 @@ public class ShowInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_info);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //action bar title
         setTitle(getString(R.string.info));
@@ -67,6 +68,18 @@ public class ShowInfoActivity extends AppCompatActivity {
         TextView yaBeeVersionNumberTextView = (TextView) findViewById(R.id.yaBeeVersionNumberTextView);
         yaBeeVersionNumberTextView.setText(currentYabeeVersion);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /**

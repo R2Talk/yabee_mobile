@@ -1,4 +1,4 @@
-package br.com.ca.asap.user;
+package br.com.ca.asap.users;
 
 import br.com.ca.asap.vo.UserVo;
 

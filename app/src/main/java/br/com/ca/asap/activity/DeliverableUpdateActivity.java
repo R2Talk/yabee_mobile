@@ -1,5 +1,6 @@
 package br.com.ca.asap.activity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -70,12 +71,12 @@ public class DeliverableUpdateActivity extends AppCompatActivity {
         TextView deliverableCodeView = (TextView) findViewById(R.id.codeTextView);
         TextView deliverableTextView = (TextView) findViewById(R.id.titleTextView);
         TextView deliverableDescriptionView = (TextView) findViewById(R.id.descriptionTextView);
-        TextView deliverableStatusView = (TextView) findViewById(R.id.statusTextView);
+        //TextView deliverableStatusView = (TextView) findViewById(R.id.statusTextView); //TODO: remove for deleted views
         TextView deliverableDueDateView = (TextView) findViewById(R.id.dueDateTextView);
         TextView deliverableValueView = (TextView) findViewById(R.id.valueTextView);
         TextView deliverableCurrentUserView = (TextView) findViewById(R.id.currentUserTextView);
         TextView deliverableCommentsView = (TextView) findViewById(R.id.commentsTextView);
-        TextView deliverablePrioritizedView = (TextView) findViewById(R.id.prioritizedTextView);
+        //TextView deliverablePrioritizedView = (TextView) findViewById(R.id.prioritizedTextView);
         TextView deliverablePrioritizedByView = (TextView) findViewById(R.id.prioritizedByTextView);
         TextView deliverablePriorityCommentsView = (TextView) findViewById(R.id.priorityCommentsTextView);
 
@@ -83,14 +84,19 @@ public class DeliverableUpdateActivity extends AppCompatActivity {
         deliverableCodeView.setText(deliverableVo.getCode());
         deliverableTextView.setText(deliverableVo.getTitle());
         deliverableDescriptionView.setText(deliverableVo.getDescription());
-        deliverableStatusView.setText(deliverableVo.getStatus());
+        //deliverableStatusView.setText(deliverableVo.getStatus());
         deliverableDueDateView.setText(deliverableVo.getDuedate());
         deliverableValueView.setText(deliverableVo.getDeliverableValue());
         deliverableCurrentUserView.setText(deliverableVo.getCurrentusername());
         deliverableCommentsView.setText(deliverableVo.getComments());
-        deliverablePrioritizedView.setText(deliverableVo.getIsPriority());
-        deliverablePrioritizedByView.setText(deliverableVo.getPrioritizedBy());
-        deliverablePriorityCommentsView.setText(deliverableVo.getPriorityComment());
+        //deliverablePrioritizedView.setText(deliverableVo.getIsPriority());
+        if ((deliverableVo.getIsPriority()).equals("NO")){
+            deliverablePrioritizedByView.setVisibility(View.VISIBLE);
+            deliverablePriorityCommentsView.setVisibility(View.VISIBLE);
+        } else{
+            deliverablePrioritizedByView.setText(deliverableVo.getPrioritizedBy());
+            deliverablePriorityCommentsView.setText(deliverableVo.getPriorityComment());
+        }
 
     }
 

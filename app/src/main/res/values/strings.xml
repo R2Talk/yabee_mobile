@@ -20,7 +20,9 @@
 
     <string name="login">Entrar</string>
     <string name="logout">Sair</string>
+    <string name="create_account">Criar Conta</string>
     <string name="name">nome</string>
+    <string name="email">email</string>
     <string name="password">senha</string>
     <string name="signup_phrase">Ainda não tem uma conta? Crie uma.</string>
     <string name="title_activity_login">Login</string>
@@ -34,12 +36,17 @@
     <string name="menu_send_message">Enviar Mensagem</string>
     <string name="menu_refresh_messages">Atualizar Mensagens</string>
     <string name="menu_show_messages">Abrir Mensagens</string>
-    <string name="menu_show_priorities">Mostrar Prioridades</string>
+    <string name="menu_show_priorities">Minhas Prioridades</string>
+    <string name="menu_show_all_priorities">Todas as Prioridades</string>
 
     <string name="menu_add_initiative">Criar Iniciativa</string>
     <string name="menu_add_deliverable">Criar Entrega</string>
     <string name="menu_prioritize_deliverable">Priorizar</string>
     <string name="menu_toggle_join_deliverable">Seguir</string>
+    <string name="menu_edit">Editar</string>
+    <string name="menu_conclude">Concluir</string>
+    <string name="menu_delete">Excluir</string>
+
 
     <string name="context_menu_prioritize">Priorizar</string>
     <string name="context_menu_show_details">Detalhes</string>
@@ -93,7 +100,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_show_messages">MENSAGENS</string>
     <string name="title_activity_show_day_priorities">ShowDayPrioritiesActivity</string>
-    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_sign_up">SignUp</string>
     <string name="title_activity_deliverable_update">Entrega</string>
     <string name="title_activity_show_info">Info</string>
 
@@ -110,5 +117,9 @@
     <string name="deliverable_prioritizedBy">priorizado por </string>
     <string name="deliverable_value">valor </string>
     <string name="deliverable_current_user_name">em execução por </string>
+
+    <string name="title_activity_welcome_screen">WelcomeScreenActivity</string>
+    <string name="title_activity_create_initiative">CreateInitiativeActivity</string>
+    <string name="title_activity_create_deliverables">CreateDeliverablesActivity</string>
 
 </resources>

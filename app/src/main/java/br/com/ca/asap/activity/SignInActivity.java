@@ -3,12 +3,10 @@ package br.com.ca.asap.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -20,7 +18,7 @@ import android.widget.Toast;
 
 import br.com.ca.asap.hiveservices.HiveSignIn;
 import br.com.ca.asap.preferences.PreferencesHelper;
-import br.com.ca.asap.user.SignManager;
+import br.com.ca.asap.users.SignManager;
 import br.com.ca.asap.vo.UserVo;
 import br.com.ca.shareview.R;
 
@@ -51,28 +49,38 @@ public class SignInActivity extends AppCompatActivity {
 
         if(signManager.knownUser()){
 
+            Intent intent = new Intent(getApplicationContext(), InitiativesActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear activity stack to return do signin activity
+            startActivity(intent);
+
+            /**
             signManager.initializeSessionFromPreferences();
 
             //
             //check shared preferences to get the date of the last synch.
             //
-            PreferencesHelper preferencesHelper = new PreferencesHelper(getApplicationContext(), PreferencesHelper.APP_PREFERENCES);
-            String lastSync = preferencesHelper.getStringPrefrenceValue(PreferencesHelper.LAST_SYNC);
+            //PreferencesHelper preferencesHelper = new PreferencesHelper(getApplicationContext(), PreferencesHelper.APP_PREFERENCES);
+            //String lastSync = preferencesHelper.getStringPrefrenceValue(PreferencesHelper.LAST_SYNC);
 
             //check if it is already in sync
+
             if (!lastSync.equals("")) { // if is in sync...
                 Intent intent = new Intent(getApplicationContext(), InitiativesActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear activity stack to return do signin activity
                 startActivity(intent);
             } else { //...else
                 Intent intent = new Intent(getApplicationContext(), SynchronizeInitiativesActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear activity stack to return do signin activity
                 startActivity(intent);
             }
+            */
 
         } else {
 
             setContentView(R.layout.activity_signin);
-
             final Button button = (Button) findViewById(R.id.btn_login);
+
+            //click sign in button
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
                     String name = (String) (((TextView) findViewById(R.id.nameEditText)).getText()).toString();
@@ -81,6 +89,19 @@ public class SignInActivity extends AppCompatActivity {
                     } else {
                         doSignIn(((TextView) findViewById(R.id.nameEditText)).getText(), ((TextView) findViewById(R.id.pwdEditText)).getText());
                     }
+                }
+            });
+
+            //click sign up link
+            TextView signupLinkView = (TextView) findViewById(R.id.link_signup);
+            signupLinkView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    //Intent for SignIn activity
+                    Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
+                    //Start Intent
+                    startActivity(intent);
                 }
             });
         }
@@ -274,6 +295,7 @@ public class SignInActivity extends AppCompatActivity {
             //...and call initiatives activity
             if (result == VALID_USER) {
                 Intent intent = new Intent(context, SynchronizeInitiativesActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear activity stack to return do signin activity
                 startActivity(intent);
             } else { //...otherwise just shows message informing that the user is not valid
                 String text = res.getString(R.string.wrongNameOrPwd);

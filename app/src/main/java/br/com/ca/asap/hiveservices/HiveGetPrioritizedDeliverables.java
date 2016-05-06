@@ -23,6 +23,8 @@ import br.com.ca.asap.vo.MessageVo;
  *
  * BEWARE: Hive Services uses network connection and must be called from a non UI Thread.
  *
+ * Use YaBee Context as parameter
+ *
  * @auhor Rodrigo Carvalho
  */
 public class HiveGetPrioritizedDeliverables {

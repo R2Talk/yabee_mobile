@@ -3,32 +3,19 @@ package br.com.ca.asap.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-
 import br.com.ca.asap.hiveservices.HiveSendMessage;
-import br.com.ca.asap.user.CurrentUser;
-import br.com.ca.asap.user.SignManager;
+import br.com.ca.asap.users.SignManager;
 import br.com.ca.asap.vo.MessageVo;
-import br.com.ca.asap.vo.UserVo;
 import br.com.ca.shareview.R;
 
 /**

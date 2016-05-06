@@ -1,9 +1,7 @@
-package br.com.ca.asap.user;
+package br.com.ca.asap.users;
 
 import android.content.Context;
-import android.content.Intent;
 
-import br.com.ca.asap.activity.SynchronizeInitiativesActivity;
 import br.com.ca.asap.preferences.PreferencesHelper;
 import br.com.ca.asap.vo.UserVo;
 
