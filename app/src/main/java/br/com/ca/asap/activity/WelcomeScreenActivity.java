@@ -1,6 +1,7 @@
 package br.com.ca.asap.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,6 +49,24 @@ public class WelcomeScreenActivity extends AppCompatActivity {
         mContentView = findViewById(R.id.fullscreen_content);
 
 
+        //NEW YABEE CODE
+        // Hide UI and controls
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
+        mControlsView.setVisibility(View.GONE);
+
+        mContentView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(WelcomeScreenActivity.this, SynchronizeInitiativesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //ORIGINAL GENERATED CODE
+        /*
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +78,9 @@ public class WelcomeScreenActivity extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        findViewById(R.id.welcome_button).setOnTouchListener(mDelayHideTouchListener);
+
+        */
     }
 
     @Override
@@ -166,5 +187,17 @@ public class WelcomeScreenActivity extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    /**
+     * onClick_welcomeButton
+     * <p/>
+     * GOes to Initiatives Activity
+     *
+     * @param view
+     */
+    public void onClick_welcomeButton(View view) {
+        Intent intent = new Intent(WelcomeScreenActivity.this, InitiativesActivity.class);
+        startActivity(intent);
     }
 }

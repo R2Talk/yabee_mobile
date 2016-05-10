@@ -31,6 +31,8 @@
     <string name="user_already_exists">Ops! Já existe um usuário identificado por este e-mail.</string>
     <string name="all_fields_needed">Ops! Para criar sua conta todos os campos devem ser preenchidos.</string>
 
+    <string name="welcome">Bem-Vindo. Agora você faz parte de uma comunidade aprovada por mais de 3 usuários!!!</string>
+    <string name="next">próximo</string>
 
     <string name="authenticating">Autenticando...</string>
     <string name="synchronizing">Atualizando...</string>
