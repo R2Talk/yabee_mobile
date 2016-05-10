@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -49,8 +50,8 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
      * @param parent
      * @return
      */
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+     @Override
+     public View getView(int position, View convertView, ViewGroup parent) {
             // 1. Create layout inflater
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -62,22 +63,20 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
             TextView deliverableIdView = (TextView) rowDeliverableView.findViewById(R.id.deliverableIdTextView);
             TextView codeView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_codeTextView);
             TextView titleView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_titleTextView);
-            TextView statusView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_statusTextView);
             TextView due_dateView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_due_dateTextView);
             TextView responsibleView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_responsibleTextView);
             RatingBar ratingBarView = (RatingBar) rowDeliverableView.findViewById(R.id.deliverable_ratingBar);
+            ImageView imageView = (ImageView) rowDeliverableView.findViewById(R.id.alertImageView);
             CardView cardView = (CardView) rowDeliverableView.findViewById(R.id.card_view);
 
-            // 4. Prepare card color and status based in late status
+            // 4. Show late status
             isDeliverableLate = itemsArrayList.get(position).getDeliverable_isLate();
             if(isDeliverableLate.equals("true")) {
-                cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.yellow_card_color));
-                statusView.setVisibility(View.VISIBLE);
+                //cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.yellow_card_color));
+                //set resource for imageview
+                imageView.setVisibility(ImageView.VISIBLE);
             } else {
-                codeView.setTextColor(ContextCompat.getColor(context, R.color.green));
-                //cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.green_card_color));
-                cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white));
-                statusView.setVisibility(View.INVISIBLE);
+                imageView.setVisibility(ImageView.INVISIBLE);
             }
 
             // 5. Set the deliverable information in the card child views
@@ -96,5 +95,5 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
 
             // 6. return rowInitiativesView
             return rowDeliverableView;
-        }
+     }
 }

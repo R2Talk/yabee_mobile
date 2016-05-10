@@ -67,12 +67,6 @@ public class HiveGetInitiatives {
             Type initiativeListType = new TypeToken<List<InitiativeVo>>(){}.getType(); //this is necessary because we are deserializing a generic class type
             initiativeVoList = gson.fromJson(serviceReturn, initiativeListType);
 
-            //access initiative list via Iterator
-            // Iterator iterator = initiativeVoList.iterator();
-            //while(iterator.hasNext()){
-            //    InitiativeVo initiativeVo = (InitiativeVo) iterator.next();
-            //}
-
         } catch (DeviceNotConnectedException e){
             return null;
         }

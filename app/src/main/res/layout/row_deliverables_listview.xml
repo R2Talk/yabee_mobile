@@ -29,7 +29,8 @@
                 android:layout_marginTop="10dp"
                 android:textColor="#000000"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:visibility="invisible" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -40,7 +41,9 @@
                 android:layout_below="@+id/deliverable_codeTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textStyle="italic"
+                android:layout_marginBottom="3dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -56,7 +59,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="reponsible"
                 android:id="@+id/deliverable_responsibleTextView"
-                android:layout_below="@+id/deliverable_due_dateTextView" />
+                android:layout_below="@+id/deliverable_due_dateTextView"
+                android:visibility="invisible" />
 
             <RatingBar
                 android:layout_width="wrap_content"
@@ -65,26 +69,27 @@
                 android:id="@+id/deliverable_ratingBar"
                 android:layout_below="@+id/deliverable_responsibleTextView"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:visibility="invisible"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/late"
-                android:id="@+id/deliverable_statusTextView"
-                android:layout_alignTop="@+id/deliverable_codeTextView"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:textColor="#f00c0c" />
-
-            <TextView
+    <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
                 android:id="@+id/deliverableIdTextView"
                 android:visibility="invisible" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/alertImageView"
+        android:src="@drawable/ic_red_bullet"
+        android:layout_below="@id/deliverable_responsibleTextView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="visible" />
+
 
 </RelativeLayout>
 

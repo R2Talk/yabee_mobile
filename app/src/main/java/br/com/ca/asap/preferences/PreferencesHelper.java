@@ -19,6 +19,7 @@ public class PreferencesHelper {
     //signin preferences keys
     public static final String IS_LOGGED = "IS_LOGGED";
     public static final String USER_NAME = "USER_NAME";
+    public static final String USER_EMAIL = "USER_EMAIL";
     public static final String USER_ID = "USER_ID";
 
     //app preferences keys

@@ -4,14 +4,10 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.URLEncoder;
-import java.util.Iterator;
-import java.util.List;
 
 import br.com.ca.asap.network.DeviceNotConnectedException;
 import br.com.ca.asap.network.HttpServiceRequester;
@@ -20,65 +16,69 @@ import br.com.ca.asap.vo.MessageVo;
 import br.com.ca.asap.vo.UserVo;
 
 /**
- * HiveSignIn
+ * HiveSignUp
  *
  * This class implements a hive service request, and encapsulates the steps from connection to return.
- *
- * Implements sign in service
  *
  * BEWARE: Hive Services uses network connection and must be called from a non UI Thread.
  *
  * @author Rodrigo Carvalho
  */
-public class HiveSignIn {
+public class HiveSignUp {
 
     //App context
     Context context;
+    //possible returned states of network query login
+    public final int NOT_CONNECTED = 0;
+    public final int SUCCESS = 1;
+    public final int ERROR = 2;
 
     /**
-     * HiveSignIn
+     * hiveSignUp
      *
      * Constructor receives app context object
      *
-     * HIVE SERVICE INITIALIZATION
-     *
      * @param context
      */
-    public HiveSignIn(Context context){
+    public HiveSignUp(Context context){
         this.context = context;
     }
 
     /**
-     * signIn
-     *
-     * HIVE SERVICE URL PREPARATION AND EXECUTION CALL
+     * sendMessage
      *
      * @return
      */
-    public UserVo signIn(String email, String pwd){
+    public UserVo signUp(String name, String email, String pwd){
 
-        UserVo userVo;
-        Gson gson;
+        String url;
         String serviceReturn;
+        UserVo userVo;
+        Gson gson = new Gson();
 
         try {
-            //format request URL
-            String urlString = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/signin?email=" + URLEncoder.encode(email, "UTF-8") + "&" + "password=" + URLEncoder.encode(pwd, "UTF-8");
+            //format URL
+            String urlString = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/signup?name=" + URLEncoder.encode(name, "UTF-8") + "&" + "email=" + URLEncoder.encode(email, "UTF-8") + "&" + "password=" + URLEncoder.encode(pwd, "UTF-8");
 
             //execute rest call
-            Log.d("HiveSignIn","call httpServiceRequester");
             HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
+
             serviceReturn = httpServiceRequester.executeHttpGetRequest(urlString);
 
-            //deserialize generic type for List of UserVo
-            gson = new Gson();
-            userVo = gson.fromJson(serviceReturn, UserVo.class);
+            if(serviceReturn.equals("")){
+                Log.d("hiveSignUp", "user already exists");
+                return null;
+            } else {
+                //deserialize json UserVo
+                gson = new Gson();
+                userVo = gson.fromJson(serviceReturn, UserVo.class);
+            }
 
         } catch (DeviceNotConnectedException e){
-            Log.d("HiveSignIn", "device not connected");
+            Log.d("hiveSignUp", "device not connected");
             return null;
-        } catch (UnsupportedEncodingException e){
-            Log.d("HiveSignIn", "UnsupportedEncodingException");
+        } catch (Exception e){
+            Log.d("hiveSignUp",e.getMessage());
             return null;
         }
 

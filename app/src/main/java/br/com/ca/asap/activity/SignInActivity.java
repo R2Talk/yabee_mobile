@@ -49,31 +49,12 @@ public class SignInActivity extends AppCompatActivity {
 
         if(signManager.knownUser()){
 
-            Intent intent = new Intent(getApplicationContext(), InitiativesActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear activity stack to return do signin activity
-            startActivity(intent);
-
-            /**
             signManager.initializeSessionFromPreferences();
 
-            //
-            //check shared preferences to get the date of the last synch.
-            //
-            //PreferencesHelper preferencesHelper = new PreferencesHelper(getApplicationContext(), PreferencesHelper.APP_PREFERENCES);
-            //String lastSync = preferencesHelper.getStringPrefrenceValue(PreferencesHelper.LAST_SYNC);
+            //call show initiatives for user already logged
+            Intent intent = new Intent(getApplicationContext(), InitiativesActivity.class);
+            startActivity(intent);
 
-            //check if it is already in sync
-
-            if (!lastSync.equals("")) { // if is in sync...
-                Intent intent = new Intent(getApplicationContext(), InitiativesActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear activity stack to return do signin activity
-                startActivity(intent);
-            } else { //...else
-                Intent intent = new Intent(getApplicationContext(), SynchronizeInitiativesActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear activity stack to return do signin activity
-                startActivity(intent);
-            }
-            */
 
         } else {
 
@@ -83,11 +64,11 @@ public class SignInActivity extends AppCompatActivity {
             //click sign in button
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
-                    String name = (String) (((TextView) findViewById(R.id.nameEditText)).getText()).toString();
-                    if (name.equals("")) {
+                    String email = (String) (((TextView) findViewById(R.id.emailEditText)).getText()).toString();
+                    if (email.equals("")) {
                         Snackbar.make(view, R.string.identify_yourself, Snackbar.LENGTH_LONG).setAction("Action", null).show();
                     } else {
-                        doSignIn(((TextView) findViewById(R.id.nameEditText)).getText(), ((TextView) findViewById(R.id.pwdEditText)).getText());
+                        doSignIn(((TextView) findViewById(R.id.emailEditText)).getText(), ((TextView) findViewById(R.id.pwdEditText)).getText());
                     }
                 }
             });
@@ -158,7 +139,7 @@ public class SignInActivity extends AppCompatActivity {
      */
     public void onClickLogin(View view) {
 
-        doSignIn(((TextView) findViewById(R.id.nameEditText)).getText(), ((TextView) findViewById(R.id.pwdEditText)).getText());
+        doSignIn(((TextView) findViewById(R.id.emailEditText)).getText(), ((TextView) findViewById(R.id.pwdEditText)).getText());
     }
 
     /**
@@ -234,7 +215,7 @@ public class SignInActivity extends AppCompatActivity {
             if (params[0].equals("guest")) {
 
                 //get the user data and status
-                userVo = new UserVo(2,"guest","guest", true);
+                userVo = new UserVo(2,"guest","guest@yabee.com", "guest", true);
 
                 //indicates user status to be used in the UI thread
                 userState = VALID_USER;
@@ -253,11 +234,11 @@ public class SignInActivity extends AppCompatActivity {
                 HiveSignIn hiveSignIn = new HiveSignIn(context);
 
                 //prepare hive service parameters
-                String name = params[0];
+                String email = params[0];
                 String pwd = params[1];
 
                 //call hive service
-                userVo = hiveSignIn.signIn(name,pwd); //TODO: Create and check exceptions for every hive service
+                userVo = hiveSignIn.signIn(email, pwd); //TODO: Create and check exceptions for every hive service
 
                 if (userVo.getValidated()==true) { //check user status
                     //indicates user status to be used in the UI thread - onPostExecute -
@@ -294,8 +275,8 @@ public class SignInActivity extends AppCompatActivity {
             //check if the result, sent as a Boolean by doInBackGround, is true
             //...and call initiatives activity
             if (result == VALID_USER) {
-                Intent intent = new Intent(context, SynchronizeInitiativesActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear activity stack to return do signin activity
+                //Intent intent = new Intent(context, SynchronizeInitiativesActivity.class);
+                Intent intent = new Intent(SignInActivity.this, SynchronizeInitiativesActivity.class);
                 startActivity(intent);
             } else { //...otherwise just shows message informing that the user is not valid
                 String text = res.getString(R.string.wrongNameOrPwd);

@@ -36,6 +36,7 @@ public class SignManager {
 
         preferencesHelper.setStringPreferenceValue(PreferencesHelper.IS_LOGGED,"yes");
         preferencesHelper.setIntPreferenceValue(PreferencesHelper.USER_ID, userVo.getUserId().intValue());
+        preferencesHelper.setStringPreferenceValue(PreferencesHelper.USER_EMAIL, userVo.getEmail());
         preferencesHelper.setStringPreferenceValue(PreferencesHelper.USER_NAME, userVo.getName());
 
     }
@@ -134,7 +135,7 @@ public class SignManager {
             //create user object and proceed for the initial activity
             int userId = preferencesHelper.getIntPrefrenceValue(PreferencesHelper.USER_ID);
             String userName = preferencesHelper.getStringPrefrenceValue(PreferencesHelper.USER_NAME);
-            UserVo userVo = new UserVo(userId,userName,"", true);
+            UserVo userVo = new UserVo(userId,userName,"", "", true);
 
             //sign in
             signIn(userVo);

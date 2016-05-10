@@ -106,10 +106,6 @@ public class SynchronizeInitiativesActivity extends AppCompatActivity {
                 preferencesHelper.setStringPreferenceValue(PreferencesHelper.LAST_SYNC, dateFormat.format(date));
 
                 Intent intent = new Intent(context, InitiativesActivity.class);
-                intent.addFlags(
-                        Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
 
             } else {

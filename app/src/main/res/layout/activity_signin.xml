@@ -46,11 +46,11 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/nameEditText"
+                android:id="@+id/emailEditText"
                 android:textColor="@color/accent"
-                android:hint="@string/name" />
+                android:hint="@string/email" />
 
     </android.support.design.widget.TextInputLayout>
 

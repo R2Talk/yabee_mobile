@@ -26,8 +26,11 @@
     <string name="password">senha</string>
     <string name="signup_phrase">Ainda não tem uma conta? Crie uma.</string>
     <string name="title_activity_login">Login</string>
-    <string name="identify_yourself">Informe seu usuário e senha, ou crie uma conta!"</string>
-    <string name="wrongNameOrPwd">Nome de usuário ou senha inválidos. Tente o usuário guest, com senha guest".</string>
+    <string name="identify_yourself">Informe seu usuário e senha, ou crie uma conta!</string>
+    <string name="wrongNameOrPwd">Nome de usuário ou senha inválidos.</string>
+    <string name="user_already_exists">Ops! Já existe um usuário identificado por este e-mail.</string>
+    <string name="all_fields_needed">Ops! Para criar sua conta todos os campos devem ser preenchidos.</string>
+
 
     <string name="authenticating">Autenticando...</string>
     <string name="synchronizing">Atualizando...</string>
@@ -106,17 +109,17 @@
 
     <string name="button_synchronize">Sincronizar</string>
 
-    <string name="deliverable_code">código </string>
-    <string name="deliverable_title">título </string>
-    <string name="deliverable_description">descrição </string>
-    <string name="deliverable_comments">comentário </string>
-    <string name="deliverable_status">status </string>
-    <string name="deliverable_duedate">data </string>
-    <string name="deliverable_prioritized">priorizado </string>
-    <string name="deliverable_priority_comments">comentário de priorização </string>
-    <string name="deliverable_prioritizedBy">priorizado por </string>
-    <string name="deliverable_value">valor </string>
-    <string name="deliverable_current_user_name">em execução por </string>
+    <string name="deliverable_code">Código </string>
+    <string name="deliverable_title">Título </string>
+    <string name="deliverable_description">Descrição </string>
+    <string name="deliverable_comments">Comentário </string>
+    <string name="deliverable_status">Situação </string>
+    <string name="deliverable_duedate">Data </string>
+    <string name="deliverable_prioritized">Priorizado </string>
+    <string name="deliverable_priority_comments">Comentário de priorização </string>
+    <string name="deliverable_prioritizedBy">Priorizado por </string>
+    <string name="deliverable_value">Valor </string>
+    <string name="deliverable_current_user_name">Em execução por </string>
 
     <string name="title_activity_welcome_screen">WelcomeScreenActivity</string>
     <string name="title_activity_create_initiative">CreateInitiativeActivity</string>
