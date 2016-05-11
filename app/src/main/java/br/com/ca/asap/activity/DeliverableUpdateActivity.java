@@ -73,7 +73,7 @@ public class DeliverableUpdateActivity extends AppCompatActivity {
         TextView deliverableDescriptionView = (TextView) findViewById(R.id.descriptionTextView);
         //TextView deliverableStatusView = (TextView) findViewById(R.id.statusTextView); //TODO: remove for deleted views
         TextView deliverableDueDateView = (TextView) findViewById(R.id.dueDateTextView);
-        TextView deliverableValueView = (TextView) findViewById(R.id.valueTextView);
+        //TextView deliverableValueView = (TextView) findViewById(R.id.valueTextView);
         TextView deliverableCurrentUserView = (TextView) findViewById(R.id.currentUserTextView);
         TextView deliverableCommentsView = (TextView) findViewById(R.id.commentsTextView);
         //TextView deliverablePrioritizedView = (TextView) findViewById(R.id.prioritizedTextView);
@@ -86,7 +86,7 @@ public class DeliverableUpdateActivity extends AppCompatActivity {
         deliverableDescriptionView.setText(deliverableVo.getDescription());
         //deliverableStatusView.setText(deliverableVo.getStatus());
         deliverableDueDateView.setText(deliverableVo.getDuedate());
-        deliverableValueView.setText(deliverableVo.getDeliverableValue());
+        //deliverableValueView.setText(deliverableVo.getDeliverableValue());
         deliverableCurrentUserView.setText(deliverableVo.getCurrentusername());
         deliverableCommentsView.setText(deliverableVo.getComments());
         //deliverablePrioritizedView.setText(deliverableVo.getIsPriority());

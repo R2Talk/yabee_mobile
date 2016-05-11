@@ -56,7 +56,7 @@
         android:text="titleTextView"
         android:id="@+id/titleTextView"
         android:textColor="#f15b05"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
@@ -64,7 +64,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/deliverable_description"
         android:id="@+id/descriptionLabelTextView"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="20dp"
         android:textStyle="bold|italic"
         android:layout_marginBottom="10dp" />
     <TextView
@@ -92,22 +92,6 @@
             android:layout_marginBottom="15dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/deliverable_value"
-            android:id="@+id/valueLabelTextView"
-            android:layout_marginRight="10dp"
-            android:textStyle="bold|italic" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/valueTextView"
-            android:layout_marginBottom="15dp" />
-
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"

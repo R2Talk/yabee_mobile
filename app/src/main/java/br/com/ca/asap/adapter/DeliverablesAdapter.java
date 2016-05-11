@@ -66,7 +66,6 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
             TextView due_dateView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_due_dateTextView);
             TextView responsibleView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_responsibleTextView);
             RatingBar ratingBarView = (RatingBar) rowDeliverableView.findViewById(R.id.deliverable_ratingBar);
-            ImageView imageView = (ImageView) rowDeliverableView.findViewById(R.id.alertImageView);
             CardView cardView = (CardView) rowDeliverableView.findViewById(R.id.card_view);
 
             // 4. Show late status
@@ -74,9 +73,10 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
             if(isDeliverableLate.equals("true")) {
                 //cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.yellow_card_color));
                 //set resource for imageview
-                imageView.setVisibility(ImageView.VISIBLE);
+                //imageView.setVisibility(ImageView.VISIBLE);
+                due_dateView.setTextColor(ContextCompat.getColor(context, R.color.red));
             } else {
-                imageView.setVisibility(ImageView.INVISIBLE);
+                //imageView.setVisibility(ImageView.INVISIBLE);
             }
 
             // 5. Set the deliverable information in the card child views

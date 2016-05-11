@@ -16,6 +16,12 @@
         android:orderInCategory="300"
         app:showAsAction="never" />
 
+    <item android:id="@+id/action_invite"
+        android:icon="@drawable/ic_share"
+        android:title="@string/menu_invite"
+        android:orderInCategory="350"
+        app:showAsAction="never" />
+
     <item android:id="@+id/action_share"
         android:icon="@drawable/ic_share"
         android:title="@string/share"

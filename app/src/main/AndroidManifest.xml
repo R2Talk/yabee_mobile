@@ -95,7 +95,8 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_welcome_screen"
             android:theme="@style/FullscreenTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:noHistory="true">
         </activity>
         <activity
             android:name="br.com.ca.asap.activity.CreateInitiativeActivity"

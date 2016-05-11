@@ -31,7 +31,8 @@
     <string name="user_already_exists">Ops! Já existe um usuário identificado por este e-mail.</string>
     <string name="all_fields_needed">Ops! Para criar sua conta todos os campos devem ser preenchidos.</string>
 
-    <string name="welcome">Bem-Vindo. Agora você faz parte de uma comunidade aprovada por mais de 3 usuários!!!</string>
+    <string name="hello">Olá </string>
+    <string name="welcome">Seus problemas acabaram! \n\nFinalmente você resolverá o seu problema de falta de foco e indisciplina! \n\n Comece hoje mesmo a controlar as suas inciativas e fazer parte de uma rede aprovada por mais de 3 usuários! \n\nToque na tela para continuar.</string>
     <string name="next">próximo</string>
 
     <string name="authenticating">Autenticando...</string>
@@ -51,6 +52,7 @@
     <string name="menu_edit">Editar</string>
     <string name="menu_conclude">Concluir</string>
     <string name="menu_delete">Excluir</string>
+    <string name="menu_invite">Convidar</string>
 
 
     <string name="context_menu_prioritize">Priorizar</string>

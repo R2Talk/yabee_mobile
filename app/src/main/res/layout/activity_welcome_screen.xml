@@ -1,33 +1,48 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="@color/primary"
-    tools:context="br.com.ca.asap.activity.WelcomeScreenActivity">
+    android:layout_height="match_parent" android:background="@color/white"
+    tools:context="br.com.ca.asap.activity.WelcomeScreenActivity"
+    android:orientation="vertical"
+    android:id="@+id/fullscreen_content">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
-    <TextView android:id="@+id/fullscreen_content" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:keepScreenOn="true" android:textColor="@color/accent"
-        android:textStyle="bold" android:textSize="50sp" android:gravity="center"
-        android:text="@string/welcome" />
 
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
-    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <LinearLayout android:id="@+id/fullscreen_content_controls" style="?metaButtonBarStyle"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay" android:orientation="horizontal"
-            tools:ignore="UselessParent">
+    <TextView
+        android:id="@+id/greetings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:keepScreenOn="true"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="@string/hello"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp" />
 
-            <Button android:id="@+id/welcome_button" style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp" android:layout_height="wrap_content"
-                android:layout_weight="1" android:text="@string/next"
-                android:onClick="onClick_welcomeButton"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="user name"
+        android:id="@+id/userNameTextView"
+        android:layout_toRightOf="@+id/greetings"
+        android:layout_toEndOf="@+id/greetings"
+        android:layout_alignBottom="@+id/greetings" />
+    </RelativeLayout>
 
-        </LinearLayout>
-    </FrameLayout>
+    <TextView android:id="@+id/message_content" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:keepScreenOn="true" android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="@string/welcome"
+        android:layout_marginTop="50dp" />
 
-</FrameLayout>
+</LinearLayout>
