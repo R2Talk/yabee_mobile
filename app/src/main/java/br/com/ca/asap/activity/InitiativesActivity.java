@@ -82,7 +82,7 @@ public class InitiativesActivity extends AppCompatActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case id.action_synchronize_initiatives:
-                //Intent for SignIn activity
+                //Intent
                 intent = new Intent(InitiativesActivity.this, SynchronizeInitiativesActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //clear activity stack to return do signin activity
                 //Start Intent
@@ -91,7 +91,6 @@ public class InitiativesActivity extends AppCompatActivity {
 
             case id.action_show_messages:
                 //Intent
-                //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
                 intent = new Intent(InitiativesActivity.this, ShowMessagesActivity.class);
                 //Start Intent
                 startActivity(intent);
@@ -99,11 +98,23 @@ public class InitiativesActivity extends AppCompatActivity {
 
             case id.action_show_info:
                 //Intent
-                //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
                 intent = new Intent(InitiativesActivity.this, ShowInfoActivity.class);
                 //Start Intent
                 startActivity(intent);
                 return true;
+
+            case id.action_show_my_priorities:
+                //Intent
+                //1. Set Intent parameter signaling that the user priorities must be shown
+
+                //2. Start Intent
+
+            case id.action_show_all_priorities:
+                //Intent
+                //1. Set Intent parameter signaling that all priorities must be shown
+
+                //2. Start Intent
+
 
             default:
                 return super.onOptionsItemSelected(item);

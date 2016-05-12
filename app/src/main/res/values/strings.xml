@@ -12,6 +12,8 @@
     <string name="initiativesActivityLabel">Iniciativas</string>
     <string name="deliverablesActivityLabel">Entregas</string>
     <string name="initiativeReportActivityLabel">Report</string>
+    <string name="userPrioritizedActivityLabel">Suas prioridades</string>
+    <string name="allPrioritizedActivityLabel">Todas as prioridades</string>
 
     <string name="notifications">Notificações</string>
     <string name="action_settings">Configurações</string>
@@ -103,6 +105,7 @@
     <string name="onDate">data</string>
 
     <string name="title_activity_send_message">ENVIAR MENSAGEM</string>
+
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_show_messages">MENSAGENS</string>
