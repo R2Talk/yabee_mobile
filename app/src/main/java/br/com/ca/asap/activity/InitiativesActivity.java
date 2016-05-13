@@ -30,6 +30,9 @@ import static br.com.ca.shareview.R.*;
  */
 public class InitiativesActivity extends AppCompatActivity {
 
+    Intent intent = null;
+    Bundle extras = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,15 +109,26 @@ public class InitiativesActivity extends AppCompatActivity {
             case id.action_show_my_priorities:
                 //Intent
                 //1. Set Intent parameter signaling that the user priorities must be shown
-
+                intent = new Intent(InitiativesActivity.this, ShowPrioritizedDeliverablesActivity.class);
+                //intent parameters
+                extras = new Bundle();
+                extras.putString(ShowPrioritizedDeliverablesActivity.EXTRA_PRIORITIES_FILTER, ShowPrioritizedDeliverablesActivity.USER_PRIORITIES);
+                intent.putExtras(extras);
                 //2. Start Intent
+                startActivity(intent);
+                return true;
 
             case id.action_show_all_priorities:
                 //Intent
                 //1. Set Intent parameter signaling that all priorities must be shown
-
+                intent = new Intent(InitiativesActivity.this, ShowPrioritizedDeliverablesActivity.class);
+                //intent parameters
+                extras = new Bundle();
+                extras.putString(ShowPrioritizedDeliverablesActivity.EXTRA_PRIORITIES_FILTER, ShowPrioritizedDeliverablesActivity.ALL_PRIORITIES);
+                intent.putExtras(extras);
                 //2. Start Intent
-
+                startActivity(intent);
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);

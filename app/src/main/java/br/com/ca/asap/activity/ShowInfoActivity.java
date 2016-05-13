@@ -70,6 +70,12 @@ public class ShowInfoActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * onOptionsItemSelected
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

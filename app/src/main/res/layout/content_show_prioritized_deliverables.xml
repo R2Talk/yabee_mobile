@@ -10,4 +10,9 @@
     tools:showIn="@layout/activity_show_day_priorities"
     tools:context="br.com.ca.asap.activity.ShowPrioritizedDeliverablesActivity">
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/prioritized_deliverables_listView" />
+
 </RelativeLayout>

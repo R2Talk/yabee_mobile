@@ -142,7 +142,7 @@ public class DeliverableDAO {
                         cursor.getString(14)
                 );
 
-                // Adding contact to list
+                // Adding deliverable to list
                 deliverableVoList.add(deliverableVo);
             } while (cursor.moveToNext());
         }
@@ -189,5 +189,63 @@ public class DeliverableDAO {
 
         // return Initiative list
         return deliverableVo;
+    }
+
+    /**
+     * getPrioritizedDeliverables
+     *
+     * @param filter
+     * @return
+     */
+    public List<DeliverableVo> getPrioritizedDeliverables(String filter, String userId){
+
+        List<DeliverableVo> deliverableVoList =  new ArrayList<DeliverableVo>();
+        DeliverableVo deliverableVo = null;
+        SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
+
+        String selectQuery = null;
+
+        // Select All Query
+        if (filter.equals("USER")) {
+            selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_ispriority + " = 'YES'" + " AND " + DatabaseOpenHelper.KEY_DELIVERABLE_prioritizedby + " = '" + userId + "'";
+
+        } else if (filter.equals("ALL")) {
+            selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_ispriority + " = 'YES'";
+
+        } else {
+            //throws exception  notRecognizedFilterException // TODO: define as database package exception
+        }
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                deliverableVo = new DeliverableVo(
+                        cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7),
+                        cursor.getString(8),
+                        cursor.getString(9),
+                        cursor.getString(10),
+                        cursor.getString(11),
+                        cursor.getString(12),
+                        cursor.getString(13),
+                        cursor.getString(14)
+                );
+
+                // Adding deliverable to list
+                deliverableVoList.add(deliverableVo);
+
+            } while (cursor.moveToNext());
+        }
+
+        // return Initiative list
+        return deliverableVoList;
     }
 }
