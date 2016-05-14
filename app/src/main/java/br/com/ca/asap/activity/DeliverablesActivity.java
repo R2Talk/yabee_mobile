@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -52,6 +53,12 @@ public class DeliverablesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deliverables);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //action bar title
+        setTitle(getString(R.string.deliverables));
 
         //
         //Get parameters from previous activity
@@ -61,8 +68,9 @@ public class DeliverablesActivity extends AppCompatActivity {
         initiativeId = extras.getString(EXTRA_INITIATIVE_ID);
         initiativeTitle = extras.getString(EXTRA_INITIATIVE_TITLE);
 
-        //action bar title
-        setTitle(initiativeTitle);
+        //set initiative name
+        //TextView initiativeTextView = (TextView) findViewById(R.id.initiativeTextView);
+        //initiativeTextView.setText(initiativeTitle);
 
         //Initialize List View
         //
@@ -185,6 +193,11 @@ public class DeliverablesActivity extends AppCompatActivity {
         // Handle presses on the action bar items
         //
         switch (item.getItemId()) {
+
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
 
             case R.id.action_share:
                 String to = null;

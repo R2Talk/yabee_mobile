@@ -75,7 +75,7 @@
     <string name="demoVersion">versão de demonstração</string>
 
     <string name="initiativesText">Iniciativas</string>
-    <string name="deliverablesText">Entegas</string>
+    <string name="deliverables">Entegas</string>
 
     <string name="onTime">NO PRAZO</string>
     <string name="late">EM ATRASO</string>

@@ -75,7 +75,7 @@ public class InitiativesChart {
         mRenderer.setLegendTextSize(10);
 
         mRenderer.setXTitle(context.getResources().getString(R.string.initiativesText));
-        mRenderer.setYTitle(context.getResources().getString(R.string.deliverablesText));
+        mRenderer.setYTitle(context.getResources().getString(R.string.deliverables));
 
         //set multiple renderer X Text
         for (int i = 0; i < initiativeNames.length; i++) {

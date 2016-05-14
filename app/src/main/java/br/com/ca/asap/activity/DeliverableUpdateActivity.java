@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ public class DeliverableUpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_deliverable_update);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //
         //Get parameters from previous activity
@@ -59,6 +61,24 @@ public class DeliverableUpdateActivity extends AppCompatActivity {
         //
         getMenuInflater().inflate(R.menu.menu_deliverable_update, menu); // Inflate the menu; this adds items to the action bar if it is present.
         return true;
+    }
+
+    /**
+     * onOptionsItemSelected
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /**

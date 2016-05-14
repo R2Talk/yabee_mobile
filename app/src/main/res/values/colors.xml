@@ -14,6 +14,7 @@
     <color name="iron">#CCCCCC</color>
     <color name="green">#1B5E20</color>
     <color name="red">#EF9A9A</color>
+    <color name="orange">#FFC107</color>
 
     <color name="yellow_card_color">#FFFDE7</color>
     <color name="green_card_color">#F1F8E9</color>
