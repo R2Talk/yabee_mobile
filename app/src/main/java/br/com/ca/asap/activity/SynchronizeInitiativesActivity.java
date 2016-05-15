@@ -77,7 +77,7 @@ public class SynchronizeInitiativesActivity extends AppCompatActivity {
             } else {
 
                 //hive fetch
-                Synchronizer synchronizer = new Synchronizer(context);
+                Synchronizer synchronizer = new Synchronizer(context); //TODO: pass userId as parameter
                 synchronizer.deleteAndFetchInitiatives();
 
                 return true;

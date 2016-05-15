@@ -28,7 +28,7 @@ public class Synchronizer {
     //
     //Constructor
     //
-    public Synchronizer(Context context){
+    public Synchronizer(Context context){ //TODO: receive user id as parameter
         this.context = context;
     }
 
@@ -63,7 +63,7 @@ public class Synchronizer {
         //
 
         //fetch from hive cloud server
-        HiveGetInitiatives hiveGetInitiatives = new HiveGetInitiatives(context);
+        HiveGetInitiatives hiveGetInitiatives = new HiveGetInitiatives(context); //TODO: use HiveGetInitiativesByUserId
         initiativeVoList = hiveGetInitiatives.getInitiatives();
 
         //

@@ -104,13 +104,13 @@
     <string name="message_from">de:</string>
     <string name="onDate">data</string>
 
-    <string name="title_activity_send_message">ENVIAR MENSAGEM</string>
+    <string name="title_activity_send_message">Enviar mensagem</string>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="title_activity_show_messages">MENSAGENS</string>
+    <string name="title_activity_show_messages">Caixa de entrada</string>
     <string name="title_activity_show_day_priorities">ShowDayPrioritiesActivity</string>
-    <string name="title_activity_sign_up">SignUp</string>
+    <string name="title_activity_sign_up">Criar Conta Yabee</string>
     <string name="title_activity_deliverable_update">Entrega</string>
     <string name="title_activity_show_info">Info</string>
 

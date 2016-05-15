@@ -54,6 +54,7 @@ public class ShowMessagesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_messages);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //refresh messages reading from hive server and actualize list view
         new DoAsyncMessagesSynchronize().execute("demo");
@@ -81,9 +82,14 @@ public class ShowMessagesActivity extends AppCompatActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
 
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
+
             case R.id.action_refresh_messsages:
                 //refresh messages reading from hive server and actualize list view
-                new DoAsyncMessagesSynchronize().execute("demo");
+                new DoAsyncMessagesSynchronize().execute("demo"); //TODO: demo depricated - remove
                 return true;
 
             case R.id.action_send_messsage:

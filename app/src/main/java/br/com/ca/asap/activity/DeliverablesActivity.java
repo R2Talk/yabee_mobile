@@ -199,6 +199,11 @@ public class DeliverablesActivity extends AppCompatActivity {
                 this.finish();
                 return true;
 
+            case R.id.action_invite:
+
+                //TODO: use intent or dialog to get email and call HiveInviteUser passing email and initiativeId
+                return true;
+
             case R.id.action_share:
                 String to = null;
                 String cc = null;
