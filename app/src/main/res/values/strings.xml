@@ -18,11 +18,11 @@
     <string name="notifications">Notificações</string>
     <string name="action_settings">Configurações</string>
     <string name="initiative_resume">Relatório</string>
-    <string name="report">Relatório</string>
 
     <string name="login">Entrar</string>
     <string name="logout">Sair</string>
     <string name="create_account">Criar Conta</string>
+    <string name="create_initiative">Criar Iniciativa</string>
     <string name="name">nome</string>
     <string name="email">email</string>
     <string name="password">senha</string>
@@ -31,7 +31,8 @@
     <string name="identify_yourself">Informe seu usuário e senha, ou crie uma conta!</string>
     <string name="wrongNameOrPwd">Nome de usuário ou senha inválidos.</string>
     <string name="user_already_exists">Ops! Já existe um usuário identificado por este e-mail.</string>
-    <string name="all_fields_needed">Ops! Para criar sua conta todos os campos devem ser preenchidos.</string>
+    <string name="all_fields_needed_for_account">Ops! Para criar sua conta todos os campos devem ser preenchidos.</string>
+    <string name="all_fields_needed_for_initiative">Ops! Para criar a iniciativa todos os campos devem ser preenchidos.</string>
 
     <string name="hello">Olá </string>
     <string name="welcome">Leve seus planos com você!!!\n\n\u2022  Planeje as suas iniciativas e tarefas.\n\u2022  Crie grupos de trabalho.\n\u2022  Compartilhe e envie mensagens.\n\u2022  Defina e acompanhe prioridades.\n\u2022  Consulte desempenho.\n\n ...e tudo isso na nuvem, integrado a uma rede aprovada por mais de 3 usuários! \n\nToque na tela para continuar.</string>
@@ -76,6 +77,10 @@
 
     <string name="initiativesText">Iniciativas</string>
     <string name="deliverables">Entegas</string>
+    <string name="report">Relatório</string>
+
+    <string name="title">Título</string>
+    <string name="description">Descrição</string>
 
     <string name="onTime">NO PRAZO</string>
     <string name="late">EM ATRASO</string>
@@ -93,7 +98,6 @@
     <string name="emailFooter">Ya Bee Report.</string>
 
     <string name="message">Mensagem</string>
-    <string name="title">Titulo:</string>
     <string name="responsible">Responsável:</string>
     <string name="date">Data:</string>
 
@@ -104,10 +108,10 @@
     <string name="message_from">de:</string>
     <string name="onDate">data</string>
 
+    <string name="create_initiative_error">Invelizmente não foi possível criar a iniciativa devido a problema técnico.</string>
+
     <string name="title_activity_send_message">Enviar mensagem</string>
 
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_show_messages">Caixa de entrada</string>
     <string name="title_activity_show_day_priorities">ShowDayPrioritiesActivity</string>
     <string name="title_activity_sign_up">Criar Conta Yabee</string>

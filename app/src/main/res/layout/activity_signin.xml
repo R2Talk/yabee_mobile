@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:fitsSystemWindows="true"
     android:id="@+id/signinCoordinatorLayout"
-    tools:context="br.com.ca.asap.activity.SignInActivity">
+    tools:context="br.com.ca.blueocean.activity.SignInActivity">
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
@@ -13,7 +13,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="br.com.ca.asap.activity.SignInActivity"
+    tools:context="br.com.ca.blueocean.activity.SignInActivity"
     android:background="@color/signin_background"
     android:theme="@style/AppTheme"
     android:elevation="10dp">

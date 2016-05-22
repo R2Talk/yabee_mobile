@@ -8,7 +8,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_send_message"
-    tools:context="br.com.ca.asap.activity.SendMessageActivity">
+    tools:context="br.com.ca.blueocean.activity.SendMessageActivity">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
