@@ -43,7 +43,7 @@ public class InitiativeDAO {
         values.put(DatabaseOpenHelper.KEY_INITIATIVE_description, initiativeVo.getInitiativeDescription());
 
         // Inserting Row
-        db.insert(DatabaseOpenHelper.DATABASE_TABLE_INITIATIVE, null, values);
+        db.insertOrThrow(DatabaseOpenHelper.DATABASE_TABLE_INITIATIVE, null, values);
         db.close(); // Closing database connection
     }
 

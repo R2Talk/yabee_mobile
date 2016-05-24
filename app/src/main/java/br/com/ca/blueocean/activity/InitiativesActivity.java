@@ -1,13 +1,18 @@
 package br.com.ca.blueocean.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,6 +42,10 @@ public class InitiativesActivity extends AppCompatActivity {
     Intent intent = null;
     Bundle extras = null;
 
+    //ListView Adapter
+    InitiativeAdapter adapter = null;
+    ListView listView = null;
+
     /**
      * onCreate
      *
@@ -48,9 +57,9 @@ public class InitiativesActivity extends AppCompatActivity {
         setContentView(layout.activity_initiatives);
 
         // 1. pass context and data to the custom adapter
-        InitiativeAdapter adapter = new InitiativeAdapter(this, (ArrayList<InitiativeVo>) getInitiativesList());
+        adapter = new InitiativeAdapter(this, (ArrayList<InitiativeVo>) getInitiativesList());
         // 2. Get ListView from activity_main.xml
-        ListView listView = (ListView) findViewById(R.id.list);
+        listView = (ListView) findViewById(R.id.list);
         // 3. setListAdapter
         listView.setAdapter(adapter);
 
@@ -178,24 +187,16 @@ public class InitiativesActivity extends AppCompatActivity {
         if (requestCode == CREATE_INITIATIVE_INTENT_CALL) {
 
             if(resultCode == RESULT_OK){
-                //String result=data.getStringExtra("result");
-                //TODO: if successful initiative creation, refresh the initiatives listView
-
                 //Successful execution implies in initiative created in the cloud server and actualized in the local database
-
                 //Refresh list view with the actualized local database
                 refreshInitiativesListView();;
-
             }
 
             if (resultCode == RESULT_CANCELED) {
                 //If there's no result
                 //TODO: If the user canceled the operation, do nothing
-
                 //TODO: If initiative already exists, show SnackBar message
-
                 //TODO: If an error occurred, show Toast message and call syncronize operation
-
             }
         }
     }//onActivityResult
@@ -205,13 +206,10 @@ public class InitiativesActivity extends AppCompatActivity {
      *
      */
     private void refreshInitiativesListView(){
-            /*
-                List<Item> newItems = databaseHandler.getItems();
-                ListArrayAdapter.clear();
-                ListArrayAdapter.addAll(newItems);
-                ListArrayAdapter.notifyDataSetChanged();
-                databaseHandler.close();
-            */
+        //reload content
+        adapter.clear();
+        adapter.addAll((ArrayList<InitiativeVo>) getInitiativesList());
+        adapter.notifyDataSetChanged();
     }
 
     /**

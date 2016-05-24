@@ -69,16 +69,6 @@
         android:textStyle="bold"
         android:layout_column="1"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/deliverable_current_user_name"
-            android:id="@+id/currentUserLabelTextView"
-            android:textStyle="bold"
-            android:layout_column="12"
-            android:layout_marginLeft="10dp" />
-
     </TableRow>
 
     <TableRow
@@ -93,20 +83,29 @@
         android:id="@+id/dueDateTextView"
         android:layout_column="1"/>
 
+    </TableRow>
+
+    </TableLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/deliverable_current_user_name"
+            android:id="@+id/currentUserLabelTextView"
+            android:textStyle="bold"
+            android:layout_column="12"
+            android:layout_marginTop="20dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="rep Text"
             android:id="@+id/currentUserTextView"
-            android:layout_column="12"
-            android:layout_marginLeft="10dp" />
+            android:layout_column="12" />
 
-    </TableRow>
-
-    </TableLayout>
-
-    <TextView
+        <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"

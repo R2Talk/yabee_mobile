@@ -3,9 +3,11 @@ package br.com.ca.blueocean.activity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +17,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import br.com.ca.blueocean.database.InitiativeDAO;
 import br.com.ca.blueocean.hiveservices.HiveCreateInitiative;
+import br.com.ca.blueocean.hiveservices.HiveUnexpectedReturnException;
+import br.com.ca.blueocean.network.DeviceNotConnectedException;
 import br.com.ca.blueocean.users.SignManager;
 import br.com.ca.blueocean.vo.InitiativeVo;
 import br.com.ca.blueocean.vo.UserVo;
@@ -49,7 +54,7 @@ public class CreateInitiativeActivity extends AppCompatActivity {
                 EditText descriptionEditText = (EditText) findViewById(R.id.descriptionEditText);
 
 
-                if ((titleEditText.getText().toString().equals("")) || (descriptionEditText.getText().toString().equals(""))) {
+                if ((titleEditText.getText().toString().trim().equals("")) || (descriptionEditText.getText().toString().trim().equals(""))) {
                     Resources res = getResources();
                     Snackbar.make(view, res.getString(R.string.all_fields_needed_for_initiative), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
@@ -64,19 +69,9 @@ public class CreateInitiativeActivity extends AppCompatActivity {
 
                     new AsyncCreateInitiative().execute(title, description, userId);
 
-                    //TODO: check that on post execute insert initiative into the local database
-
-                    setResult(Activity.RESULT_OK); // return to InitiativesActivity
-
-                    //Intent returnIntent = new Intent();
-                    //returnIntent.putExtra("result",result);
-                    //setResult(Activity.RESULT_OK,returnIntent);
-
-                    finish();
                 }
             }
         });
-
     }
 
     /**
@@ -107,19 +102,50 @@ public class CreateInitiativeActivity extends AppCompatActivity {
     }
 
     /**
+     * Inner Class that represents the return of background service execution
+     *
+     * TODO: candidate for refactoring into a generic helper class for use in all async task service execution.
+     *
+     */
+    private class CreateInitiativeAsyncResult{
+
+        public static final int SUCCESS = 0;
+        public static final int ERROR = 1;
+        public static final int DEVICE_NOT_CONNECTED = 2;
+
+        int resultCode;
+        InitiativeVo initiativeVo = null;
+
+        CreateInitiativeAsyncResult(int resultCode, InitiativeVo initiativeVo){
+            this.resultCode = resultCode;
+            this.initiativeVo = initiativeVo;
+        }
+
+        public int getResultCode() {
+            return resultCode;
+        }
+        public void setResultCode(int resultCode) {
+            this.resultCode = resultCode;
+        }
+        public InitiativeVo getInitiativeVo() {
+            return initiativeVo;
+        }
+        public void setInitiativeVo(InitiativeVo initiativeVo) {
+            this.initiativeVo = initiativeVo;
+        }
+    }
+
+    /**
      * AsyncCreateInitiative
      *
      * <p/>
      * Uses AsyncTask to create a task away from the main UI thread, and send message to rest server.
      *
      */
-    private class AsyncCreateInitiative extends AsyncTask<String, Void, InitiativeVo> {
+    private class AsyncCreateInitiative extends AsyncTask<String, Void, CreateInitiativeAsyncResult> {
         Resources res = getResources();
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_LONG;
-
-        //possible returned states of network query login
-        public final int NOT_CONNECTED = 0;
 
         final ProgressDialog progressDialog = new ProgressDialog(CreateInitiativeActivity.this,
                 R.style.AppTheme_Dark_Dialog);
@@ -142,7 +168,7 @@ public class CreateInitiativeActivity extends AppCompatActivity {
          * @return
          */
         @Override
-        protected InitiativeVo doInBackground(String... params) {
+        protected CreateInitiativeAsyncResult doInBackground(String... params) {
 
             // variable thats maintains return status for original thread
             //int sendMessageStatus = CREATE_INITIATIVE_OK;
@@ -150,7 +176,7 @@ public class CreateInitiativeActivity extends AppCompatActivity {
             //prepare hive service parameters
             String title = params[0];
             String description = params[1];
-            String userId = params[1];
+            String userId = params[2];
 
             InitiativeVo initiativeVo = null;
 
@@ -158,11 +184,35 @@ public class CreateInitiativeActivity extends AppCompatActivity {
             Context context = getApplicationContext();
             HiveCreateInitiative hiveCreateInitiative = new HiveCreateInitiative(context);
 
-            //call give service to send message
-            initiativeVo = hiveCreateInitiative.createInitiative(title, description, userId);
+            //call hive service = null;
+            CreateInitiativeAsyncResult result = null;
+            try {
+                initiativeVo = hiveCreateInitiative.createInitiative(title, description, userId);
+                if (initiativeVo != null) {
+
+                    //actualize local database
+                    InitiativeDAO initiativeDAO = new InitiativeDAO(context);
+                    initiativeDAO.insertInitiative(initiativeVo); //TODO: catch exception for inert exception - repeated value
+
+                    //prepare result
+                    result = new CreateInitiativeAsyncResult(CreateInitiativeAsyncResult.SUCCESS, initiativeVo);
+
+                }
+
+            } catch (DeviceNotConnectedException e){
+                result = new CreateInitiativeAsyncResult(CreateInitiativeAsyncResult.DEVICE_NOT_CONNECTED, null);
+
+            } catch(HiveUnexpectedReturnException e){
+                result = new CreateInitiativeAsyncResult(CreateInitiativeAsyncResult.ERROR, null);
+
+            } catch(Exception e){
+                result = new CreateInitiativeAsyncResult(CreateInitiativeAsyncResult.ERROR, null);
+
+                //TODO: Unexpected error. Should log to enable analysis of the error
+            }
 
             //return result of background thread execution
-            return initiativeVo;
+            return result;
         }
 
         /**
@@ -174,19 +224,30 @@ public class CreateInitiativeActivity extends AppCompatActivity {
          * @param result
          */
         @Override
-        protected void onPostExecute(InitiativeVo result) {
+        protected void onPostExecute(CreateInitiativeAsyncResult result) {
             Context context = getApplicationContext();
+            progressDialog.dismiss();
 
-            if(result == null) { //TODO: consider returning a new vo class with InitiativeVo AND an int signalizing errors types
-                String text = res.getString(R.string.create_initiative_error);
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
+            if(result.getResultCode() == CreateInitiativeAsyncResult.SUCCESS) {
 
-            } else { //TODO: actualize local database
+                Intent resultIntent = new Intent();
+                setResult(Activity.RESULT_OK, resultIntent);
 
-                //insert InitiativeVo in the local database
+                finish();
 
+            } else if (result.getResultCode() == CreateInitiativeAsyncResult.DEVICE_NOT_CONNECTED) {
 
+                Resources res = getResources();
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.createInitiativeCoordinatorLayout);
+                Snackbar.make(coordinatorLayout, res.getString(R.string.device_not_connect), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+            } else if (result.getResultCode() == CreateInitiativeAsyncResult.ERROR) {
+
+                Resources res = getResources();
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.createInitiativeCoordinatorLayout);
+                Snackbar.make(coordinatorLayout, res.getString(R.string.unexpected_error), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         }
     }

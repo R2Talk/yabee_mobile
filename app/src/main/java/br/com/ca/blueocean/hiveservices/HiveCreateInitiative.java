@@ -27,8 +27,6 @@ public class HiveCreateInitiative {
 
     //App context
     Context context;
-    //possible returned states of network query login
-    public final int NOT_CONNECTED = 0;
 
     /**
      * Constructor
@@ -46,7 +44,7 @@ public class HiveCreateInitiative {
      *
      * @return
      */
-    public InitiativeVo createInitiative(String title, String description, String userId){
+    public InitiativeVo createInitiative(String title, String description, String userId)throws DeviceNotConnectedException, HiveUnexpectedReturnException, Exception{
 
         String url = null;
         String serviceReturn = null;
@@ -56,24 +54,28 @@ public class HiveCreateInitiative {
         try {
 
             //prepare URL
-            url = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/createInitiative?title=" + URLEncoder.encode(title, "UTF-8") + "&" + "description=" + description + "&" + "userId=" + userId;
+            url = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/createInitiative?title=" + URLEncoder.encode(title, "UTF-8") + "&" + "description=" + URLEncoder.encode(description, "UTF-8") + "&" + "userId=" + userId;
 
             //execute rest call
             HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
 
             serviceReturn = httpServiceRequester.executeHttpGetRequest(url);
 
-            //TODO: check status return in the string serviceReturn
+            // if unexpected return throws exception
+            if (serviceReturn == null) {
+                throw new HiveUnexpectedReturnException();
+            }
+
             //deserialize generic type for InitiativeVo
             gson = new GsonBuilder().setDateFormat("MMM dd, yyyy").create();
             Type initiativeVoType = new TypeToken<InitiativeVo>(){}.getType(); //this is necessary because we are deserializing a generic class type
             initiativeVo = gson.fromJson(serviceReturn, initiativeVoType);
 
         } catch (DeviceNotConnectedException e){
-            return null;
+            throw e;
 
         } catch (Exception e){
-
+            throw e;
         }
 
         return initiativeVo;
