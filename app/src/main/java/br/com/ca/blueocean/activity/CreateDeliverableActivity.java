@@ -9,7 +9,7 @@ import android.view.View;
 
 import br.com.ca.shareview.R;
 
-public class CreateDeliverablesActivity extends AppCompatActivity {
+public class CreateDeliverableActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

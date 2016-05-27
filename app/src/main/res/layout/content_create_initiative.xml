@@ -27,7 +27,7 @@
             android:ems="10"
             android:id="@+id/titleEditText"
             android:textColor="@color/accent"
-            android:hint="@string/title"
+            android:hint="@string/initiative_title"
             android:inputType="textCapSentences" />
 
     </android.support.design.widget.TextInputLayout>
@@ -38,15 +38,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/descriptionEditTextLayout">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:id="@+id/descriptionEditText"
-            android:textColor="@color/accent"
-            android:hint="@string/description"
-            android:inputType="textCapSentences" />
 
     </android.support.design.widget.TextInputLayout>
 

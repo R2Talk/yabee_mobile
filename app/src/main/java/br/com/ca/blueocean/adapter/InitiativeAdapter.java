@@ -41,29 +41,12 @@ public class InitiativeAdapter extends ArrayAdapter<InitiativeVo> {
             View rowInitiativesView = inflater.inflate(R.layout.row_initiatives_listview, parent, false);
 
             // 3. Get the two text view from the rowInitiativesView
-            TextView titleView = (TextView) rowInitiativesView.findViewById(R.id.titleTextView);
-            TextView descriptionView = (TextView) rowInitiativesView.findViewById(R.id.descriptionTextView);
-            TextView idView = (TextView) rowInitiativesView.findViewById(R.id.initiativeIdTextView);
-            /* TODO removed verify if is to return or delete
-            TextView totalView = (TextView) rowInitiativesView.findViewById(R.id.totalNumValueTextView1);
-            TextView onTimeView = (TextView) rowInitiativesView.findViewById(R.id.onTimeValueTextView3);
-            TextView lateView = (TextView) rowInitiativesView.findViewById(R.id.lateNumValuetextView1);
-            */
-
-            /* TODO removed verify if is to return or delete
-            InitiativeReport initiativeReport = new InitiativeReport();
-            InitiativeReportVo initiativeReportVo = initiativeReport.getInitiativeReportData(context, itemsArrayList.get(position).getInitiativeTitle());
-            */
+            TextView titleTextView = (TextView) rowInitiativesView.findViewById(R.id.titleTextView);
+            TextView initiativeIdTextView = (TextView) rowInitiativesView.findViewById(R.id.initiativeIdTextView);
 
             // 4. Set the text for textView
-            titleView.setText(itemsArrayList.get(position).getInitiativeTitle());
-            descriptionView.setText(itemsArrayList.get(position).getInitiativeDescription());
-            idView.setText(itemsArrayList.get(position).getInitiativeId());
-            /* TODO removed verify if is to return or delete
-            totalView.setText(String.valueOf(initiativeReportVo.getTotalNum()));
-            onTimeView.setText(String.valueOf(initiativeReportVo.getOnTimeNum()));
-            lateView.setText(String.valueOf(initiativeReportVo.getLateNum()));
-            */
+            titleTextView.setText(itemsArrayList.get(position).getInitiativeTitle());
+            initiativeIdTextView.setText(itemsArrayList.get(position).getInitiativeId());
 
             // 5. return rowInitiativesView
             return rowInitiativesView;

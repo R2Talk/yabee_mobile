@@ -71,8 +71,8 @@ public class InitiativesActivity extends AppCompatActivity {
                 //Intent
                 Intent intent = new Intent(InitiativesActivity.this, DeliverablesActivity.class);
                 //Intent Parameter
-                TextView initiativeTitle = (TextView) view.findViewById(R.id.titleTextView); //view list item is received as a parameter
-                TextView initiativeId = (TextView) view.findViewById(R.id.initiativeIdTextView); //view list item is received as a parameter
+                TextView initiativeTitle = (TextView) view.findViewById(R.id.titleTextView); //in click event, view of list item is received as a parameter
+                TextView initiativeId = (TextView) view.findViewById(R.id.initiativeIdTextView); //in click event, view of list item is received as a parameter
 
                 Bundle extras = new Bundle();
                 extras.putString(DeliverablesActivity.EXTRA_INITIATIVE_ID, initiativeId.getText().toString());
@@ -82,7 +82,6 @@ public class InitiativesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     /**
@@ -194,9 +193,6 @@ public class InitiativesActivity extends AppCompatActivity {
 
             if (resultCode == RESULT_CANCELED) {
                 //If there's no result
-                //TODO: If the user canceled the operation, do nothing
-                //TODO: If initiative already exists, show SnackBar message
-                //TODO: If an error occurred, show Toast message and call syncronize operation
             }
         }
     }//onActivityResult

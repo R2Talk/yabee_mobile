@@ -51,23 +51,21 @@ public class CreateInitiativeActivity extends AppCompatActivity {
 
                 //check for empty message
                 EditText titleEditText = (EditText) findViewById(R.id.titleEditText);
-                EditText descriptionEditText = (EditText) findViewById(R.id.descriptionEditText);
 
-
-                if ((titleEditText.getText().toString().trim().equals("")) || (descriptionEditText.getText().toString().trim().equals(""))) {
+                if (titleEditText.getText().toString().trim().equals("")) {
                     Resources res = getResources();
                     Snackbar.make(view, res.getString(R.string.all_fields_needed_for_initiative), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
 
                     //create initiative
-                    String title = (String) (((EditText) findViewById(R.id.titleEditText)).getText()).toString();
-                    String description = (String) (((EditText) findViewById(R.id.descriptionEditText)).getText()).toString();
+                    String title = (((EditText) findViewById(R.id.titleEditText)).getText()).toString();
                     SignManager signManager = new SignManager(getApplicationContext());
                     UserVo userVo = signManager.getCurrentUser();
                     String userId = userVo.getUserId().toString();
 
-                    new AsyncCreateInitiative().execute(title, description, userId);
+                    //TODO: description not used and passed as empty string, need hive server review
+                    new AsyncCreateInitiative().execute(title, "", userId);
 
                 }
             }

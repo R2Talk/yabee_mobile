@@ -42,10 +42,15 @@ public class DeliverablesActivity extends AppCompatActivity {
     public final static String EXTRA_INITIATIVE_ID = "INITIATIVE_ID"; //expected value to the activity initialization
     public final static String EXTRA_INITIATIVE_TITLE = "INITIATIVE_TITLE"; //expected value to the activity initialization
 
+    //used for identification of StartActivityForResults request
+    public final int CREATE_DELIVERABLE_INTENT_CALL = 0;
+
     String initiativeTitle = null;
     String initiativeId = null;
 
+    //ListView Adapter
     DeliverablesAdapter adapter = null;
+    ListView listView = null;
 
     ArrayList<String> deliverableCodeArrayList = new ArrayList<String>();
 
@@ -61,9 +66,6 @@ public class DeliverablesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //action bar title
-        setTitle(getString(R.string.deliverables));
-
         //
         //Get parameters from previous activity
         //
@@ -71,6 +73,10 @@ public class DeliverablesActivity extends AppCompatActivity {
         Bundle extras = myIntent.getExtras();
         initiativeId = extras.getString(EXTRA_INITIATIVE_ID);
         initiativeTitle = extras.getString(EXTRA_INITIATIVE_TITLE);
+
+        //action bar title
+        //setTitle(getString(R.string.deliverables));
+        setTitle(initiativeTitle);
 
         //set initiative name
         //TextView initiativeTextView = (TextView) findViewById(R.id.initiativeTextView);
@@ -81,13 +87,13 @@ public class DeliverablesActivity extends AppCompatActivity {
         // 1. pass context and data to the custom adapter
         adapter = new DeliverablesAdapter(this, getDeliverableArrayList(initiativeId));
         // 2. Get ListView from activity xml
-        ListView listView = (ListView) findViewById(R.id.deliverables_listView);
+        listView = (ListView) findViewById(R.id.deliverables_listView);
         // 3. setListAdapter
         listView.setAdapter(adapter);
 
         //Register context menu associated with the deliverables list view
         //
-        //registerForContextMenu(listView); TODO: review application of context menu for deliverable itens
+        //registerForContextMenu(listView); TODO: review if context menu for deliverable itens should be used
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -242,10 +248,52 @@ public class DeliverablesActivity extends AppCompatActivity {
 
                 return true;
 
+            case R.id.action_add_deliverable:
+                //create initiative activity
+                //intent = new Intent(DeliverablesActivity.this, CreateDeliverableActivity.class);
+                //Start Intent for result
+                //startActivityForResult(intent, CREATE_DELIVERABLE_INTENT_CALL);
+                return true;
+
             default:
 
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    /**
+     * onActivityResult
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == CREATE_DELIVERABLE_INTENT_CALL) {
+
+            if(resultCode == RESULT_OK){
+                //Successful execution implies in initiative created in the cloud server and actualized in the local database
+                //Refresh list view with the actualized local database
+                refreshDeliverablesListView();;
+            }
+
+            if (resultCode == RESULT_CANCELED) {
+                //If there's no result
+            }
+        }
+    }//onActivityResult
+
+    /**
+     * refreshInitiativesListView
+     *
+     */
+    private void refreshDeliverablesListView(){
+        //reload content
+        adapter.clear();
+        adapter.addAll((ArrayList<DeliverableVo>) getDeliverableArrayList(initiativeId));
+        adapter.notifyDataSetChanged();
     }
 
     /**
@@ -285,12 +333,12 @@ public class DeliverablesActivity extends AppCompatActivity {
 
 
     /**
-     * DoAsyncSignIn
+     * DoAsyncInviteUser
      *
      * Uses AsyncTask to create a task away from the main UI thread, and check login.
-     * If login is valid, call the enter activity
+     *
      */
-    private class DoAsyncSignIn extends AsyncTask<String, Void, Integer> {
+    private class DoAsyncInviteUser extends AsyncTask<String, Void, Integer> {
         Resources res = getResources();
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_LONG;

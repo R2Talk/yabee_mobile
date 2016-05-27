@@ -85,6 +85,7 @@
 
     <string name="title">Título</string>
     <string name="description">Descrição</string>
+    <string name="initiative_title">Título da iniciativa</string>
 
     <string name="onTime">NO PRAZO</string>
     <string name="late">EM ATRASO</string>

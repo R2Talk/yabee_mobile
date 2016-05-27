@@ -60,7 +60,6 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
 
             // 3. Get views from inflated row view
             TextView deliverableIdView = (TextView) rowDeliverableView.findViewById(R.id.deliverableIdTextView);
-            TextView codeView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_codeTextView);
             TextView titleView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_titleTextView);
             TextView due_dateView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_due_dateTextView);
             TextView responsibleView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_responsibleTextView);
@@ -81,11 +80,9 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
             // 5. Set the deliverable information in the card child views
             //id
             deliverableIdView.setText(itemsArrayList.get(position).getIddeliverable());
-            //code
-            codeView.setText(itemsArrayList.get(position).getCode());
             //title
             titleView.setText(itemsArrayList.get(position).getTitle());
-            //dur date
+            //due date
             due_dateView.setText(itemsArrayList.get(position).getDuedate());
             // responsible
             responsibleView.setText(itemsArrayList.get(position).getCurrentusername());

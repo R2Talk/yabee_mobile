@@ -106,7 +106,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="br.com.ca.blueocean.activity.CreateDeliverablesActivity"
+            android:name="br.com.ca.blueocean.activity.CreateDeliverableActivity"
             android:label="@string/title_activity_create_deliverables"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
