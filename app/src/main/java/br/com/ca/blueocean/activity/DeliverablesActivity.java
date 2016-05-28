@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
+import android.os.UserManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +28,9 @@ import br.com.ca.blueocean.database.DeliverableDAO;
 import br.com.ca.blueocean.email.DeliverableTextReporter;
 import br.com.ca.blueocean.email.EmailChannel;
 import br.com.ca.blueocean.hiveservices.HiveInviteUser;
+import br.com.ca.blueocean.users.SignManager;
 import br.com.ca.blueocean.vo.DeliverableVo;
+import br.com.ca.blueocean.vo.UserVo;
 import br.com.ca.shareview.R;
 
 /**
@@ -71,16 +74,13 @@ public class DeliverablesActivity extends AppCompatActivity {
         //
         Intent myIntent = getIntent(); // gets the previously created intent
         Bundle extras = myIntent.getExtras();
+
         initiativeId = extras.getString(EXTRA_INITIATIVE_ID);
         initiativeTitle = extras.getString(EXTRA_INITIATIVE_TITLE);
 
         //action bar title
         //setTitle(getString(R.string.deliverables));
         setTitle(initiativeTitle);
-
-        //set initiative name
-        //TextView initiativeTextView = (TextView) findViewById(R.id.initiativeTextView);
-        //initiativeTextView.setText(initiativeTitle);
 
         //Initialize List View
         //
@@ -197,6 +197,9 @@ public class DeliverablesActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        Intent intent;
+        Bundle extras;
+
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -237,9 +240,9 @@ public class DeliverablesActivity extends AppCompatActivity {
 
             case R.id.initiative_report:
 
-                Intent intent = new Intent(DeliverablesActivity.this, DeliverablesReportActivity.class);
+                intent = new Intent(DeliverablesActivity.this, DeliverablesReportActivity.class);
 
-                Bundle extras = new Bundle();
+                extras = new Bundle();
                 extras.putString(DeliverablesActivity.EXTRA_INITIATIVE_ID, this.initiativeId);
                 extras.putString(DeliverablesActivity.EXTRA_INITIATIVE_TITLE, this.initiativeTitle);
                 intent.putExtras(extras);
@@ -249,10 +252,22 @@ public class DeliverablesActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_add_deliverable:
+
+                //get userId
+                SignManager um = new SignManager(getApplicationContext());
+                UserVo userVo = um.getCurrentUser();
+
                 //create initiative activity
-                //intent = new Intent(DeliverablesActivity.this, CreateDeliverableActivity.class);
+                intent = new Intent(DeliverablesActivity.this, CreateDeliverableActivity.class);
+
+                extras = new Bundle();
+                extras.putString(CreateDeliverableActivity.EXTRA_INITIATIVE_ID, this.initiativeId);
+                extras.putString(CreateDeliverableActivity.EXTRA_USER_ID, String.valueOf(userVo.getUserId()));
+                intent.putExtras(extras);
+
                 //Start Intent for result
-                //startActivityForResult(intent, CREATE_DELIVERABLE_INTENT_CALL);
+                startActivityForResult(intent, CREATE_DELIVERABLE_INTENT_CALL);
+
                 return true;
 
             default:

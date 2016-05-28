@@ -43,7 +43,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="reponsible"
                 android:id="@+id/deliverable_responsibleTextView"
-                android:layout_below="@+id/deliverable_due_dateTextView" />
+                android:layout_below="@+id/deliverable_due_dateTextView"
+                android:visibility="invisible" />
 
             <RatingBar
                 android:layout_width="wrap_content"

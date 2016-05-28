@@ -36,6 +36,7 @@
     <string name="all_fields_needed_for_account">Ops! Para criar sua conta todos os campos devem ser preenchidos.</string>
     <string name="all_fields_needed_for_initiative">Ops! Para criar a iniciativa todos os campos devem ser preenchidos.</string>
     <string name="initiative_already_exist">Ops! Já existe uma iniciativa com este título. Tente com outro.</string>
+    <string name="all_fields_needed_for_deliverable">Ops! Para criar a entrega todos os campos devem ser preenchidos.</string>
     <string name="unexpected_error">Erro durante a execução. Provável indisponibilidade nos serviços da nuvem, tente mais tarde.</string>
 
     <string name="hello">Olá </string>
@@ -85,7 +86,6 @@
 
     <string name="title">Título</string>
     <string name="description">Descrição</string>
-    <string name="initiative_title">Título da iniciativa</string>
 
     <string name="onTime">NO PRAZO</string>
     <string name="late">EM ATRASO</string>
@@ -122,11 +122,16 @@
     <string name="title_activity_sign_up">Criar Conta Yabee</string>
     <string name="title_activity_deliverable_update">Entrega</string>
     <string name="title_activity_show_info">Info</string>
+    <string name="title_activity_create_deliverable">Criar Nova Entrega</string>
 
     <string name="button_synchronize">Sincronizar</string>
 
+    <string name="entry_initiative_title">Título da iniciativa</string>
+    <string name="entry_deliverable_title">Título da entrega</string>
+    <string name="entry_deliverable_description">Descrição </string>
+    <string name="entry_deliverable_dueDate">Selecione data da entrega</string>
+
     <string name="deliverable_code">Código </string>
-    <string name="deliverable_title">Título </string>
     <string name="deliverable_description">Descrição </string>
     <string name="deliverable_comments">Comentário </string>
     <string name="deliverable_status">Situação </string>
@@ -135,10 +140,10 @@
     <string name="deliverable_priority_comments">Comentário de priorização </string>
     <string name="deliverable_prioritizedBy">Priorizado por </string>
     <string name="deliverable_value">Valor </string>
-    <string name="deliverable_current_user_name">Em execução por </string>
+    <string name="deliverable_current_user_name">Responsável </string>
 
     <string name="title_activity_welcome_screen">WelcomeScreenActivity</string>
     <string name="title_activity_create_initiative">CreateInitiativeActivity</string>
-    <string name="title_activity_create_deliverables">CreateDeliverablesActivity</string>
+
 
 </resources>

@@ -107,7 +107,7 @@
         </activity>
         <activity
             android:name="br.com.ca.blueocean.activity.CreateDeliverableActivity"
-            android:label="@string/title_activity_create_deliverables"
+            android:label="@string/title_activity_create_deliverable"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
         </activity>

@@ -15,30 +15,24 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        >
+        android:layout_height="wrap_content">
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/titleEditText"
             android:textColor="@color/accent"
-            android:hint="@string/initiative_title"
+            android:hint="@string/entry_initiative_title"
             android:inputType="textCapSentences" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/descriptionEditTextLayout">
+        android:layout_height="wrap_content">
 
     </android.support.design.widget.TextInputLayout>
+
 
 </LinearLayout>

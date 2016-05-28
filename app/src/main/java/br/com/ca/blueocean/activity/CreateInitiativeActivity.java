@@ -143,7 +143,6 @@ public class CreateInitiativeActivity extends AppCompatActivity {
     private class AsyncCreateInitiative extends AsyncTask<String, Void, CreateInitiativeAsyncResult> {
         Resources res = getResources();
         Context context = getApplicationContext();
-        int duration = Toast.LENGTH_LONG;
 
         final ProgressDialog progressDialog = new ProgressDialog(CreateInitiativeActivity.this,
                 R.style.AppTheme_Dark_Dialog);
@@ -167,9 +166,6 @@ public class CreateInitiativeActivity extends AppCompatActivity {
          */
         @Override
         protected CreateInitiativeAsyncResult doInBackground(String... params) {
-
-            // variable thats maintains return status for original thread
-            //int sendMessageStatus = CREATE_INITIATIVE_OK;
 
             //prepare hive service parameters
             String title = params[0];
