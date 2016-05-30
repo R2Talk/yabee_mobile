@@ -95,8 +95,6 @@ public class HttpServiceRequester {
             throw new DeviceNotConnectedException();
         }
 
-        Log.d("HttpServiceRequester", "ok, device has an network connection");
-
         try {
 
             //String urlString = "http://192.168.0.8:8080/AsapServer/sendMessage?msg=" + URLEncoder.encode(msg, "UTF-8");

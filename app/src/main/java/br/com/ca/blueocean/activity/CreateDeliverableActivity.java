@@ -115,7 +115,7 @@ public class CreateDeliverableActivity extends AppCompatActivity {
      */
     public void onCalendarImageClick(View view){
 
-        //BE WARE: Overwiting "onDataset" method to get the values chosen in the dialog
+        //BE WARE: Overwriting "onDataSet" method to get the values chosen in the date picker dialog.
         DialogFragment newFragment = new DatePickerFragment(){
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -203,14 +203,12 @@ public class CreateDeliverableActivity extends AppCompatActivity {
             String initiativeId = params[5];
             String isPriority = params[6];
 
+            CreateDeliverableAsyncResult result = null;
             DeliverableVo deliverableVo = null;
 
             //prepare hive service
             Context context = getApplicationContext();
             HiveCreateDeliverable hiveCreateDeliverable = new HiveCreateDeliverable(context);
-
-            //call hive service = null;
-            CreateDeliverableAsyncResult result = null;
 
             try {
 
@@ -218,13 +216,12 @@ public class CreateDeliverableActivity extends AppCompatActivity {
 
                 if (deliverableVo != null) {
 
-                    //actualize local database
+                    //actualize local database with newly created deliverable
                     DeliverableDAO deliverableDAO = new DeliverableDAO(context);
-                    deliverableDAO.insertDeliverableVo(deliverableVo); //TODO: catch exception for inert exception - repeated value
+                    deliverableDAO.insertDeliverableVo(deliverableVo); //TODO: catch exception for local inert error
 
-                    //prepare result
+                    //prepare result for previous activity
                     result = new CreateDeliverableAsyncResult(CreateDeliverableAsyncResult.SUCCESS, deliverableVo);
-
                 }
 
             } catch (DeviceNotConnectedException e){
@@ -235,8 +232,7 @@ public class CreateDeliverableActivity extends AppCompatActivity {
 
             } catch(Exception e){
                 result = new CreateDeliverableAsyncResult(CreateDeliverableAsyncResult.ERROR, null);
-
-                //TODO: Unexpected error. Should log to enable analysis of the error
+                //TODO: Its an unexpected error. Should log to enable analysis of the error
             }
 
             //return result of background thread execution

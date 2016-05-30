@@ -201,7 +201,6 @@ public class CreateInitiativeActivity extends AppCompatActivity {
 
             } catch(Exception e){
                 result = new CreateInitiativeAsyncResult(CreateInitiativeAsyncResult.ERROR, null);
-
                 //TODO: Unexpected error. Should log to enable analysis of the error
             }
 

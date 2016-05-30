@@ -38,6 +38,13 @@ import br.com.ca.shareview.R;
  *
  * Show list of deliverables associated with an identified Initiative.
  *
+ * Related Actions:
+ *  Deliverable details activity.
+ *  Create deliverable activity.
+ *  Report activity.
+ *  Share activity.
+ *  Invite user for joining the current initiative.
+ *
  * @author Rodrigo Carvalho
  */
 public class DeliverablesActivity extends AppCompatActivity {
@@ -55,7 +62,8 @@ public class DeliverablesActivity extends AppCompatActivity {
     DeliverablesAdapter adapter = null;
     ListView listView = null;
 
-    ArrayList<String> deliverableCodeArrayList = new ArrayList<String>();
+    //TODO: check if will be use for context menu item identifiction
+    //ArrayList<String> deliverableCodeArrayList = new ArrayList<String>();
 
     /**
      *
@@ -92,9 +100,7 @@ public class DeliverablesActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         //Register context menu associated with the deliverables list view
-        //
-        //registerForContextMenu(listView); TODO: review if context menu for deliverable itens should be used
-
+        //registerForContextMenu(listView); TODO: review if context menu for deliverable items will be used
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -116,74 +122,6 @@ public class DeliverablesActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * onCreateContextMenu
-     *
-     * @param menu
-     * @param v
-     * @param menuInfo
-     *
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
-    {
-        super.onCreateContextMenu(menu, v, menuInfo);
-
-        //menu inflater
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.context_menu_deliverable, menu);
-
-    }
-    */
-
-    /**
-     * onContextItemSelected
-     *
-     * @param item
-     * @return
-     *
-    @Override
-    public boolean onContextItemSelected(MenuItem item){
-
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        int position = info.position;
-
-        Intent intent = null;
-
-        View view = null;
-
-        view = getViewByPosition(position);
-
-        switch(item.getItemId()){
-            case (R.id.action_show_details):
-                Log.d("tag", deliverableCodeArrayList.get(position));
-                //Intent
-                //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
-                intent = new Intent(DeliverablesActivity.this, DeliverableUpdateActivity.class);
-                //Start Intent
-                startActivity(intent);
-
-            case (R.id.action_prioritize):
-                Log.d("tag", deliverableCodeArrayList.get(position));
-        }
-
-        return true; //super.onContextItemSelected(item);
-    }
-    */
-
-    /**
-     * getViewByPosition
-     *
-     * @return
-     *
-    private View getViewByPosition(int position){
-        View view = null;
-
-        ListView listView = (ListView) findViewById(R.id.deliverables_listView);
-        view = listView.getAdapter().getView(position, null, listView);
-
-        return view;
-    }
-     */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -336,18 +274,14 @@ public class DeliverablesActivity extends AppCompatActivity {
             //add into ArrayList
             deliverableVoArrayList.add(deliverableVo);
 
-            //
-            //ADD INTO DATA STRUCTURE (CODE ARRAY LIST) FOR FUTURE CONTEXT MENU EVENT REFERENCE
-            //
-            deliverableCodeArrayList.add(deliverableVo.getCode());
+            //TODO: Needs evaluation. Code for adding into data strucutre (code array list) for future context menu event reference.
+            //deliverableCodeArrayList.add(deliverableVo.getCode());
         }
 
         return deliverableVoArrayList;
     }
 
-
-
-    /**
+   /**
      * DoAsyncInviteUser
      *
      * Uses AsyncTask to create a task away from the main UI thread, and check login.
@@ -356,11 +290,9 @@ public class DeliverablesActivity extends AppCompatActivity {
     private class DoAsyncInviteUser extends AsyncTask<String, Void, Integer> {
         Resources res = getResources();
         Context context = getApplicationContext();
-        int duration = Toast.LENGTH_LONG;
 
         final ProgressDialog progressDialog = new ProgressDialog(DeliverablesActivity.this,
                 R.style.AppTheme_Dark_Dialog);
-
 
         /**
          * onPreExecute
@@ -396,7 +328,6 @@ public class DeliverablesActivity extends AppCompatActivity {
             //hive service parameters
             String email = params[0];
             String initiativeId = params[1];
-
 
             //prepare hive service
             Context context = getApplicationContext();
@@ -443,4 +374,79 @@ public class DeliverablesActivity extends AppCompatActivity {
 
         }
     }
+
+
+    //
+    //TODO: Needs evaluation. Below is the example code for context menu creation and events handlers.
+    //
+
+    /**
+     * onCreateContextMenu
+     *
+     * @param menu
+     * @param v
+     * @param menuInfo
+     *
+     @Override
+     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+     {
+     super.onCreateContextMenu(menu, v, menuInfo);
+
+     //menu inflater
+     MenuInflater inflater = getMenuInflater();
+     inflater.inflate(R.menu.context_menu_deliverable, menu);
+
+     }
+     */
+
+    /**
+     * onContextItemSelected
+     *
+     * @param item
+     * @return
+     *
+     @Override
+     public boolean onContextItemSelected(MenuItem item){
+
+     AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+     int position = info.position;
+
+     Intent intent = null;
+
+     View view = null;
+
+     view = getViewByPosition(position);
+
+     switch(item.getItemId()){
+     case (R.id.action_show_details):
+     Log.d("tag", deliverableCodeArrayList.get(position));
+     //Intent
+     //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
+     intent = new Intent(DeliverablesActivity.this, DeliverableUpdateActivity.class);
+     //Start Intent
+     startActivity(intent);
+
+     case (R.id.action_prioritize):
+     Log.d("tag", deliverableCodeArrayList.get(position));
+     }
+
+     return true; //super.onContextItemSelected(item);
+     }
+     */
+
+    /**
+     * getViewByPosition
+     *
+     * @return
+     *
+    private View getViewByPosition(int position){
+    View view = null;
+
+    ListView listView = (ListView) findViewById(R.id.deliverables_listView);
+    view = listView.getAdapter().getView(position, null, listView);
+
+    return view;
+    }
+     */
+
 }
