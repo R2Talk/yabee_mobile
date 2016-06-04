@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
-import android.os.UserManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +16,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -28,7 +26,7 @@ import br.com.ca.blueocean.database.DeliverableDAO;
 import br.com.ca.blueocean.email.DeliverableTextReporter;
 import br.com.ca.blueocean.email.EmailChannel;
 import br.com.ca.blueocean.hiveservices.HiveInviteUser;
-import br.com.ca.blueocean.users.SignManager;
+import br.com.ca.blueocean.users.UserManager;
 import br.com.ca.blueocean.vo.DeliverableVo;
 import br.com.ca.blueocean.vo.UserVo;
 import br.com.ca.shareview.R;
@@ -54,6 +52,7 @@ public class DeliverablesActivity extends AppCompatActivity {
 
     //used for identification of StartActivityForResults request
     public final int CREATE_DELIVERABLE_INTENT_CALL = 0;
+    public final int SHOW_DELIVERABLE_DETAILS_FOR_ACTION_INTENT_CALL = 1;
 
     String initiativeTitle = null;
     String initiativeId = null;
@@ -107,17 +106,17 @@ public class DeliverablesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 //Intent
-                Intent intent = new Intent(DeliverablesActivity.this, DeliverableUpdateActivity.class);
+                Intent intent = new Intent(DeliverablesActivity.this, DeliverableDetailsActivity.class);
 
                 //Intent Parameter
                 TextView deliverableId = (TextView) view.findViewById(R.id.deliverableIdTextView); //view list item is received as a parameter
 
                 Bundle extras = new Bundle();
-                extras.putString(DeliverableUpdateActivity.EXTRA_DELIVERABLE_ID, deliverableId.getText().toString());
+                extras.putString(DeliverableDetailsActivity.EXTRA_DELIVERABLE_ID, deliverableId.getText().toString());
                 intent.putExtras(extras);
 
                 //Start Intent
-                startActivity(intent);
+                startActivityForResult(intent, SHOW_DELIVERABLE_DETAILS_FOR_ACTION_INTENT_CALL);
             }
         });
     }
@@ -192,7 +191,7 @@ public class DeliverablesActivity extends AppCompatActivity {
             case R.id.action_add_deliverable:
 
                 //get userId
-                SignManager um = new SignManager(getApplicationContext());
+                UserManager um = new UserManager(getApplicationContext());
                 UserVo userVo = um.getCurrentUser();
 
                 //create initiative activity
@@ -236,6 +235,20 @@ public class DeliverablesActivity extends AppCompatActivity {
                 //If there's no result
             }
         }
+
+        if (requestCode == SHOW_DELIVERABLE_DETAILS_FOR_ACTION_INTENT_CALL) {
+
+            if(resultCode == RESULT_OK){
+                //Successful execution implies in initiative created in the cloud server and actualized in the local database
+                //Refresh list view with the actualized local database
+                refreshDeliverablesListView();;
+            }
+
+            if (resultCode == RESULT_CANCELED) {
+                //If there's no result
+            }
+        }
+
     }//onActivityResult
 
     /**
@@ -367,11 +380,10 @@ public class DeliverablesActivity extends AppCompatActivity {
             //CHECK FOR RETURN INVITE STATE AND INFORM THE USER WITH SNACK BAR MESSAGE
 
                 String text = res.getString(R.string.synchronizing); //TODO: reference the right string
-                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.deliverableLayout);
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.deliverablesLayout);
                 Snackbar snackbar = Snackbar
                         .make(coordinatorLayout, text, Snackbar.LENGTH_LONG);
                 snackbar.show();
-
         }
     }
 
@@ -422,7 +434,7 @@ public class DeliverablesActivity extends AppCompatActivity {
      Log.d("tag", deliverableCodeArrayList.get(position));
      //Intent
      //Intent intent = new Intent(InitiativesActivity.this, SendMessageActivity.class);
-     intent = new Intent(DeliverablesActivity.this, DeliverableUpdateActivity.class);
+     intent = new Intent(DeliverablesActivity.this, DeliverableDetailsActivity.class);
      //Start Intent
      startActivity(intent);
 

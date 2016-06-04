@@ -111,15 +111,8 @@ public class DeliverableDAO {
         SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
 
         // Select All Query
-        //String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERBALE_INITIATIVE_idinititative + " = \"" + initiativeId + "\"";
-        //String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_title + " = \"" + initiativeId + "\"";
-        //String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_title + " = ?";
         String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERBALE_INITIATIVE_idinititative + " = '" + initiativeId + "'";
-
-        //String[] query_params = {initiativeId};
-        //Cursor cursor = db.rawQuery(selectQuery, query_params);
-
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = db.rawQuery(selectQuery, null); // db.rawQuery(selectQuery, query_params)
 
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
@@ -151,9 +144,12 @@ public class DeliverableDAO {
         return deliverableVoList;
     }
 
-    //
-    //return deliverable by deliverable id
-    //
+    /**
+     * getDeliverableById
+     *
+     * @param deliverableId
+     * @return
+     */
     public DeliverableVo getDeliverableById(String deliverableId){
         DeliverableVo deliverableVo = null;
         SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
@@ -248,4 +244,18 @@ public class DeliverableDAO {
         // return Initiative list
         return deliverableVoList;
     }
+
+    /**
+     * deleteDeliverableById
+     *
+     * @param deliverableId
+     */
+    public void deleteDeliverableById(String deliverableId) { //TODO: review to throw exception
+
+        SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
+
+        String sql = "DELETE FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_iddeliverable + " = " + deliverableId;
+        db.execSQL(sql); //use the method execSQL do modify the database
+    }
+
 }

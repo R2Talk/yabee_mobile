@@ -15,13 +15,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import br.com.ca.blueocean.database.InitiativeDAO;
 import br.com.ca.blueocean.hiveservices.HiveCreateInitiative;
 import br.com.ca.blueocean.hiveservices.HiveUnexpectedReturnException;
 import br.com.ca.blueocean.network.DeviceNotConnectedException;
-import br.com.ca.blueocean.users.SignManager;
+import br.com.ca.blueocean.users.UserManager;
 import br.com.ca.blueocean.vo.InitiativeVo;
 import br.com.ca.blueocean.vo.UserVo;
 import br.com.ca.shareview.R;
@@ -60,7 +59,7 @@ public class CreateInitiativeActivity extends AppCompatActivity {
 
                     //create initiative
                     String title = (((EditText) findViewById(R.id.titleEditText)).getText()).toString();
-                    SignManager signManager = new SignManager(getApplicationContext());
+                    UserManager signManager = new UserManager(getApplicationContext());
                     UserVo userVo = signManager.getCurrentUser();
                     String userId = userVo.getUserId().toString();
 

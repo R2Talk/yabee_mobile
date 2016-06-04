@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import br.com.ca.blueocean.users.SignManager;
+import br.com.ca.blueocean.users.UserManager;
 import br.com.ca.shareview.R;
 
 /**
@@ -28,15 +28,12 @@ public class WelcomeScreenActivity extends AppCompatActivity {
         mContentView = findViewById(R.id.fullscreen_content);
         mUserNameView  = (TextView) findViewById(R.id.userNameTextView);
 
-        // Hide UI and controls
+        // Action Bar
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
 
-        SignManager signManager = new SignManager(getApplicationContext());
+        UserManager signManager = new UserManager(getApplicationContext());
         String userName = signManager.getCurrentUser().getName();
-        mUserNameView.setText(userName);
+        mUserNameView.setText(userName + ",");
 
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override

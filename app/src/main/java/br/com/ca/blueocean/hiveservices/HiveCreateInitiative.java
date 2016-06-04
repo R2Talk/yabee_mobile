@@ -44,7 +44,7 @@ public class HiveCreateInitiative {
      *
      * @return
      */
-    public InitiativeVo createInitiative(String title, String description, String userId)throws DeviceNotConnectedException, HiveUnexpectedReturnException, Exception{
+    public InitiativeVo createInitiative(String title, String description, String userId) throws DeviceNotConnectedException, HiveUnexpectedReturnException, Exception{
 
         String url = null;
         String serviceReturn = null;

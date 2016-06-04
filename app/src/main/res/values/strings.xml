@@ -40,7 +40,8 @@
     <string name="unexpected_error">Erro durante a execução. Provável indisponibilidade nos serviços da nuvem, tente mais tarde.</string>
 
     <string name="hello">Olá </string>
-    <string name="welcome">Leve seus planos com você!!!\n\n\u2022  Planeje as suas iniciativas e tarefas.\n\u2022  Crie grupos de trabalho.\n\u2022  Compartilhe e envie mensagens.\n\u2022  Defina e acompanhe prioridades.\n\u2022  Consulte desempenho.\n\n\n\nToque na tela para continuar.</string>
+    <string name="welcome">\u2022  Planeje as suas iniciativas e tarefas.\n\u2022  Crie grupos de trabalho.\n\u2022  Compartilhe e envie mensagens.\n\u2022  Defina e acompanhe prioridades.</string>
+    <string name="touch_screen">Toque na tela para continuar.</string>
     <string name="next">próximo</string>
 
     <string name="authenticating">Autenticando...</string>
@@ -61,6 +62,12 @@
     <string name="menu_conclude">Concluir</string>
     <string name="menu_delete">Excluir</string>
     <string name="menu_invite">Convidar</string>
+
+
+    <string name="dialog_delete_deliverable">Remover esta entrega?</string>
+    <string name="dialog_confirm">confirmar</string>
+    <string name="dialog_cancel">cancelar</string>
+
 
 
     <string name="context_menu_prioritize">Priorizar</string>

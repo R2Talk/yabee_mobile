@@ -23,11 +23,8 @@ import br.com.ca.blueocean.database.DeliverableDAO;
 import br.com.ca.blueocean.hiveservices.HiveCreateDeliverable;
 import br.com.ca.blueocean.hiveservices.HiveUnexpectedReturnException;
 import br.com.ca.blueocean.network.DeviceNotConnectedException;
-import br.com.ca.blueocean.users.SignManager;
 import br.com.ca.blueocean.util.DatePickerFragment;
 import br.com.ca.blueocean.vo.DeliverableVo;
-import br.com.ca.blueocean.vo.InitiativeVo;
-import br.com.ca.blueocean.vo.UserVo;
 import br.com.ca.shareview.R;
 
 public class CreateDeliverableActivity extends AppCompatActivity {

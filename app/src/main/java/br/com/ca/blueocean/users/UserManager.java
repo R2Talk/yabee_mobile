@@ -6,19 +6,19 @@ import br.com.ca.blueocean.preferences.PreferencesHelper;
 import br.com.ca.blueocean.vo.UserVo;
 
 /**
- * SignManager
+ * UserManager
  *
  * Manages SignIn, SignOut and SignUp operations.
  *
  * @author Rodrigo Carvalho
  */
-public class SignManager {
+public class UserManager {
 
     Context context = null;
     //
     // Constructor
     //
-    public SignManager(Context context) {
+    public UserManager(Context context) {
         this.context = context;
     }
 

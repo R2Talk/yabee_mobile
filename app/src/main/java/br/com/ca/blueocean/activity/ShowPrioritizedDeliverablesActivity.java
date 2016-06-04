@@ -17,7 +17,7 @@ import java.util.List;
 
 import br.com.ca.blueocean.adapter.DeliverablesAdapter;
 import br.com.ca.blueocean.database.DeliverableDAO;
-import br.com.ca.blueocean.users.SignManager;
+import br.com.ca.blueocean.users.UserManager;
 import br.com.ca.blueocean.vo.DeliverableVo;
 import br.com.ca.blueocean.vo.UserVo;
 import br.com.ca.shareview.R;
@@ -60,7 +60,7 @@ public class ShowPrioritizedDeliverablesActivity extends AppCompatActivity {
             setTitle(getString(R.string.userPrioritizedActivityLabel));
 
             //2. get current user
-            SignManager signManager = new SignManager(getApplicationContext());
+            UserManager signManager = new UserManager(getApplicationContext());
             UserVo userVo = signManager.getCurrentUser();
 
             //3. get current user priorities
@@ -92,12 +92,12 @@ public class ShowPrioritizedDeliverablesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 //Intent
-                Intent intent = new Intent(ShowPrioritizedDeliverablesActivity.this, DeliverableUpdateActivity.class);
+                Intent intent = new Intent(ShowPrioritizedDeliverablesActivity.this, DeliverableDetailsActivity.class);
 
                 //Intent Parameter
                 TextView deliverableId = (TextView) view.findViewById(R.id.deliverableIdTextView); //view list item is received as a parameter
                 Bundle extras = new Bundle();
-                extras.putString(DeliverableUpdateActivity.EXTRA_DELIVERABLE_ID, deliverableId.getText().toString());
+                extras.putString(DeliverableDetailsActivity.EXTRA_DELIVERABLE_ID, deliverableId.getText().toString());
                 intent.putExtras(extras);
 
                 //Start Intent

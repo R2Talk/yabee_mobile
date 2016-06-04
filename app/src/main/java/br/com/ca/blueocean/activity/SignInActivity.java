@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import br.com.ca.blueocean.hiveservices.HiveSignIn;
-import br.com.ca.blueocean.users.SignManager;
+import br.com.ca.blueocean.users.UserManager;
 import br.com.ca.blueocean.vo.UserVo;
 import br.com.ca.shareview.R;
 
@@ -44,7 +44,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //check if the user is already logged in
-        SignManager signManager = new SignManager(getApplicationContext());
+        UserManager signManager = new UserManager(getApplicationContext());
 
         if(signManager.knownUser()){
 
@@ -220,7 +220,7 @@ public class SignInActivity extends AppCompatActivity {
                 userState = VALID_USER;
 
                 //save logged user
-                SignManager signManager = new SignManager(getApplicationContext());
+                UserManager signManager = new UserManager(getApplicationContext());
                 signManager.signIn(userVo);
 
                 //return true for validated login
@@ -243,7 +243,7 @@ public class SignInActivity extends AppCompatActivity {
                     //indicates user status to be used in the UI thread - onPostExecute -
                     userState = VALID_USER;
                     //save logged user
-                    SignManager signManager = new SignManager(getApplicationContext());
+                    UserManager signManager = new UserManager(getApplicationContext());
                     signManager.signIn(userVo);
                 } else {
                     //indicates user status to be used in the UI thread - onPostExecute -

@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import br.com.ca.blueocean.hiveservices.HiveSignUp;
-import br.com.ca.blueocean.users.SignManager;
+import br.com.ca.blueocean.users.UserManager;
 import br.com.ca.blueocean.vo.UserVo;
 import br.com.ca.shareview.R;
 
@@ -153,7 +153,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if ((userVo!=null) && (userVo.getValidated()==true)) { //check user status
                     //save logged user
-                    SignManager signManager = new SignManager(getApplicationContext());
+                    UserManager signManager = new UserManager(getApplicationContext());
                     signManager.signIn(userVo);
 
                     //indicates user status to be used in the UI thread - onPostExecute -

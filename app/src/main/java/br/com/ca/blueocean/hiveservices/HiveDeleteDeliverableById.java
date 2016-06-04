@@ -22,14 +22,10 @@ import br.com.ca.blueocean.vo.MessageVo;
  *
  * @author Rodrigo Carvalho
  */
-public class HiveDeleteDeliverable {
+public class HiveDeleteDeliverableById {
 
     //App context
     Context context;
-    //possible returned states of network query login
-    public final int NOT_CONNECTED = 0;
-    public final int SUCCESS = 1;
-    public final int ERROR = 2;
 
     /**
      * Constructor
@@ -38,46 +34,41 @@ public class HiveDeleteDeliverable {
      *
      * @param context
      */
-    public HiveDeleteDeliverable(Context context){
+    public HiveDeleteDeliverableById(Context context){
         this.context = context;
     }
 
     /**
-     * sendMessage
+     * deleteDeliverableById
      *
      * @return
      */
-    public Boolean sendMessage(MessageVo messageVo){ //TODO: chnage for the right method name
+    public String deleteDeliverableById(String deliverableId)throws DeviceNotConnectedException, HiveUnexpectedReturnException, Exception {
 
         String url;
         String serviceReturn;
-        String jsonMessageVo;
-        Gson gson = new Gson();
 
         try {
             //prepare URL
-            //  convert Vo to Jason string format
-            //  send as get parameter the message in jason format
-            //
-            Type messageVoType = new TypeToken<MessageVo>() {}.getType(); //this is necessary because we are deserializing a generic class type
-            jsonMessageVo = gson.toJson(messageVo, messageVoType);
-            //TODO: change to the right method name
-            url = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/sendMessage?msg=" + URLEncoder.encode(jsonMessageVo, "UTF-8");
+            url = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/deleteDeliverable?deliverableId=" + URLEncoder.encode(deliverableId, "UTF-8");
 
             //execute rest call
             HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
 
             serviceReturn = httpServiceRequester.executeHttpGetRequest(url);
 
-            //TODO: check status return in the string serviceReturn
+            // if unexpected return throws exception
+            if (serviceReturn == null) {
+                throw new HiveUnexpectedReturnException();
+            }
 
         } catch (DeviceNotConnectedException e){
-            return false;
+            throw e;
 
         } catch (Exception e){
-
+            throw e;
         }
 
-        return true;
+        return serviceReturn;
     }
 }

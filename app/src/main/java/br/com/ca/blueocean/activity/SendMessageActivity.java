@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.ca.blueocean.hiveservices.HiveSendMessage;
-import br.com.ca.blueocean.users.SignManager;
+import br.com.ca.blueocean.users.UserManager;
 import br.com.ca.blueocean.vo.MessageVo;
 import br.com.ca.shareview.R;
 
@@ -136,8 +136,8 @@ public class SendMessageActivity extends AppCompatActivity {
             // variable thats maintains return status for original thread
             int sendMessageStatus = SEND_MESSAGE_OK;
 
-            //SignManager - used to get current user sending the message
-            SignManager signManager = new SignManager(getApplicationContext());
+            //UserManager - used to get current user sending the message
+            UserManager signManager = new UserManager(getApplicationContext());
 
             //message sent as parameter for the async class
             String msgText = (String) params[0];
@@ -183,7 +183,7 @@ public class SendMessageActivity extends AppCompatActivity {
             } else { //...otherwise just shows message informing that the user is not valid
                 //TODO: review error treatment
                 /*
-                SignManager signManager = new SignManager(getApplicationContext());  //retrieve current user
+                UserManager signManager = new UserManager(getApplicationContext());  //retrieve current user
                 UserVo userVo = signManager.getCurrentUser();
                 String text = res.getString(R.string.send_message_ok);
                 text = text + " -> " + userVo.getName();

@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import br.com.ca.blueocean.preferences.PreferencesHelper;
-import br.com.ca.blueocean.users.SignManager;
+import br.com.ca.blueocean.users.UserManager;
 import br.com.ca.blueocean.vo.UserVo;
 import br.com.ca.shareview.R;
 
@@ -46,7 +46,7 @@ public class ShowInfoActivity extends AppCompatActivity {
         //
 
         //current user name
-        SignManager signManager = new SignManager(getApplicationContext());
+        UserManager signManager = new UserManager(getApplicationContext());
         UserVo userVo = signManager.getCurrentUser();
         currentUserName = userVo.getName();
 
@@ -113,7 +113,7 @@ public class ShowInfoActivity extends AppCompatActivity {
 
         Intent intent;
 
-        SignManager signManager = new SignManager(getApplicationContext());
+        UserManager signManager = new UserManager(getApplicationContext());
         signManager.signOut();
 
         //Intent for SignIn activity
