@@ -4,7 +4,7 @@
 
     <color name="primary">#FF9800</color>
     <color name="primary_dark">#EF6C00</color>
-    <color name="accent">#1B5E20</color>
+    <color name="accent">#2979FF</color>
 
     <color name="activity_background">#FFFFFF</color>
     <color name="signin_background">#FFC107</color>

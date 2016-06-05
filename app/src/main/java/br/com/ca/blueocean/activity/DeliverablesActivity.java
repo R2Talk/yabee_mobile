@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -117,6 +118,31 @@ public class DeliverablesActivity extends AppCompatActivity {
 
                 //Start Intent
                 startActivityForResult(intent, SHOW_DELIVERABLE_DETAILS_FOR_ACTION_INTENT_CALL);
+            }
+        });
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_new_deliverable);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent;
+                Bundle extras;
+
+                //get userId
+                UserManager um = new UserManager(getApplicationContext());
+                UserVo userVo = um.getCurrentUser();
+
+                //create initiative activity
+                intent = new Intent(DeliverablesActivity.this, CreateDeliverableActivity.class);
+
+                extras = new Bundle();
+                extras.putString(CreateDeliverableActivity.EXTRA_INITIATIVE_ID, initiativeId);
+                extras.putString(CreateDeliverableActivity.EXTRA_USER_ID, String.valueOf(userVo.getUserId()));
+                intent.putExtras(extras);
+
+                //Start Intent for result
+                startActivityForResult(intent, CREATE_DELIVERABLE_INTENT_CALL);
+
             }
         });
     }

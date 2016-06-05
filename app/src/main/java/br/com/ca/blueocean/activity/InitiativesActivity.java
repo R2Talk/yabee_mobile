@@ -82,6 +82,17 @@ public class InitiativesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(id.fab_new_initiative);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //create initiative activity
+                intent = new Intent(InitiativesActivity.this, CreateInitiativeActivity.class);
+                //Start Intent for result
+                startActivityForResult(intent, CREATE_INITIATIVE_INTENT_CALL);
+            }
+        });
     }
 
     /**
