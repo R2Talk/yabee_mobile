@@ -10,12 +10,6 @@
         android:orderInCategory="200"
         app:showAsAction="always" />
 
-    <item android:id="@+id/action_add_deliverable"
-        android:icon="@drawable/ic_action_add"
-        android:title="@string/menu_add_deliverable"
-        android:orderInCategory="300"
-        app:showAsAction="never" />
-
     <item android:id="@+id/action_invite"
         android:icon="@drawable/ic_share"
         android:title="@string/menu_invite"

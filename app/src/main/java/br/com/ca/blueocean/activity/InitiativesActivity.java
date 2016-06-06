@@ -172,13 +172,6 @@ public class InitiativesActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
 
-            case id.action_add_initiative:
-                //create initiative activity
-                intent = new Intent(InitiativesActivity.this, CreateInitiativeActivity.class);
-                //Start Intent for result
-                startActivityForResult(intent, CREATE_INITIATIVE_INTENT_CALL);
-                return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }

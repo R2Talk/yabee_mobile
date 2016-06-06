@@ -214,25 +214,6 @@ public class DeliverablesActivity extends AppCompatActivity {
 
                 return true;
 
-            case R.id.action_add_deliverable:
-
-                //get userId
-                UserManager um = new UserManager(getApplicationContext());
-                UserVo userVo = um.getCurrentUser();
-
-                //create initiative activity
-                intent = new Intent(DeliverablesActivity.this, CreateDeliverableActivity.class);
-
-                extras = new Bundle();
-                extras.putString(CreateDeliverableActivity.EXTRA_INITIATIVE_ID, this.initiativeId);
-                extras.putString(CreateDeliverableActivity.EXTRA_USER_ID, String.valueOf(userVo.getUserId()));
-                intent.putExtras(extras);
-
-                //Start Intent for result
-                startActivityForResult(intent, CREATE_DELIVERABLE_INTENT_CALL);
-
-                return true;
-
             default:
 
                 return super.onOptionsItemSelected(item);

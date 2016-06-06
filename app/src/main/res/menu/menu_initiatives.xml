@@ -7,7 +7,7 @@
         android:icon="@drawable/ic_assignment"
         android:title="@string/menu_show_priorities"
         android:orderInCategory="100"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 
     <item android:id="@+id/action_synchronize_initiatives"
         android:icon="@drawable/ic_action_cloud_download"
@@ -15,17 +15,10 @@
         android:orderInCategory="200"
         app:showAsAction="always" />
 
-
     <item android:id="@+id/action_show_all_priorities"
         android:icon="@drawable/ic_action_add"
         android:title="@string/menu_show_all_priorities"
         android:orderInCategory="300"
-        app:showAsAction="never" />
-
-    <item android:id="@+id/action_add_initiative"
-        android:icon="@drawable/ic_action_add"
-        android:title="@string/menu_add_initiative"
-        android:orderInCategory="400"
         app:showAsAction="never" />
 
     <item android:id="@+id/action_show_messages"
