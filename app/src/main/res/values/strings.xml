@@ -20,7 +20,7 @@
     <string name="initiative_resume">Relatório</string>
 
     <string name="login">Entrar</string>
-    <string name="logout">Sair</string>
+    <string name="logout">Encerrar a Sessão</string>
     <string name="create_account">Criar Conta</string>
     <string name="create_initiative">Criar Iniciativa</string>
     <string name="name">nome</string>

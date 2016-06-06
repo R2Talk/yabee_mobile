@@ -1,5 +1,5 @@
 <resources>
-
+<!--
     <color name="black_overlay">#66000000</color>
 
     <color name="primary">#FF9800</color>
@@ -18,6 +18,18 @@
 
     <color name="yellow_card_color">#FFFDE7</color>
     <color name="green_card_color">#F1F8E9</color>
+-->
 
+    <color name="black_overlay">#66000000</color>
+
+    <color name="primary">#F44336</color>
+    <color name="primary_dark">#B71C1C</color>
+    <color name="accent">#2979FF</color>
+
+    <color name="signin_background">#FFFFFF</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#F44336</color>
 
 </resources>

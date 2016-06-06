@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/opensessionfor"
         android:id="@+id/currentUserTextView"
         android:layout_alignParentTop="true"
@@ -28,18 +28,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
         android:id="@+id/userNameTextView"
         android:layout_below="@+id/currentUserTextView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="@color/black" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/lastsynch"
         android:id="@+id/lastSyncTextView"
         android:layout_marginTop="46dp"
@@ -54,18 +53,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
         android:id="@+id/lastSynchDateTextView"
         android:layout_below="@+id/lastSyncTextView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="@color/black" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/yabeeversion"
         android:id="@+id/versionTextView"
         android:layout_below="@+id/lastSyncTextView"
@@ -80,13 +78,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
         android:id="@+id/yaBeeVersionNumberTextView"
         android:layout_below="@+id/versionTextView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="@color/black" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="match_parent"
@@ -97,7 +94,8 @@
         android:background="@color/primary"
         android:layout_marginTop="104dp"
         android:layout_below="@+id/yaBeeVersionNumberTextView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:layout_width="wrap_content"
