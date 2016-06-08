@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import br.com.ca.blueocean.hiveservices.HiveSignIn;
+import br.com.ca.blueocean.network.NetworkConnectionChecker;
 import br.com.ca.blueocean.users.UserManager;
 import br.com.ca.blueocean.vo.UserVo;
 import br.com.ca.shareview.R;
@@ -31,6 +32,9 @@ import br.com.ca.shareview.R;
  */
 public class SignInActivity extends AppCompatActivity {
 
+    //check if the device is connected with the network
+    NetworkConnectionChecker internetConnectionVerifier;
+
    /**
      * onCreate
      *
@@ -42,6 +46,16 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        NetworkConnectionChecker networkConnectionChecker = new NetworkConnectionChecker(getApplicationContext());
+
+        //toast alert if the device is not connected to the network
+        if (!networkConnectionChecker.deviceIsConnected()){
+            Context context = getApplicationContext();
+            int duration = Toast.LENGTH_LONG;
+            Toast toast = Toast.makeText(context, R.string.device_not_connect, duration);
+            toast.show();
+        }
 
         //check if the user is already logged in
         UserManager signManager = new UserManager(getApplicationContext());

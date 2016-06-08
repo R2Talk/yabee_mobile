@@ -5,23 +5,23 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 /**
- * CheckInternetConnection
+ * NetworkConnectionChecker
  *
  * Implements method for verify device Internet connection status
  *
  * @author Rodrigo Carvalho
  */
-public class CheckInternetConnection {
+public class NetworkConnectionChecker {
     Context context;
 
     /**
-     * CheckInternetConnection
+     * NetworkConnectionChecker
      *
      * Constructor receives app context object
      *
      * @param context
      */
-    public CheckInternetConnection(Context context){
+    public NetworkConnectionChecker(Context context){
         this.context = context;
     }
 
@@ -34,7 +34,7 @@ public class CheckInternetConnection {
      *
      * @return
      */
-    Boolean deviceIsConnected(){
+    public Boolean deviceIsConnected(){
 
         // get information about the network state using ConnectivityManager
         ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

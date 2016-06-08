@@ -88,7 +88,7 @@ public class HttpServiceRequester {
         String returnString = null;
 
         //class that can check if the device has a valid internet connection
-        CheckInternetConnection checkInternetConnection = new CheckInternetConnection(context);
+        NetworkConnectionChecker checkInternetConnection = new NetworkConnectionChecker(context);
 
         // if the device is not connected to Internet trow an custom exception
         if (!checkInternetConnection.deviceIsConnected()) {
