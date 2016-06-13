@@ -9,12 +9,6 @@
         android:orderInCategory="100"
         app:showAsAction="always" />
 
-    <item android:id="@+id/action_prioritize"
-        android:icon="@drawable/ic_action_check"
-        android:title="@string/menu_prioritize_deliverable"
-        android:orderInCategory="200"
-        app:showAsAction="always" />
-
     <item android:id="@+id/action_toggle_join_deliverable"
         android:title="@string/menu_toggle_join_deliverable"
         android:orderInCategory="300"

@@ -29,6 +29,7 @@
     <string name="signup_phrase">Ainda não tem uma conta? Crie uma.</string>
     <string name="title_activity_login">Login</string>
 
+    <string name="type_priority_reason">Comentário de priorização</string>
 
     <string name="identify_yourself">Informe seu usuário e senha, ou crie uma conta!</string>
     <string name="wrongNameOrPwd">Nome de usuário ou senha inválidos.</string>
@@ -36,7 +37,7 @@
     <string name="all_fields_needed_for_account">Ops! Para criar sua conta todos os campos devem ser preenchidos.</string>
     <string name="all_fields_needed_for_initiative">Ops! Para criar a iniciativa todos os campos devem ser preenchidos.</string>
     <string name="initiative_already_exist">Ops! Já existe uma iniciativa com este título. Tente com outro.</string>
-    <string name="all_fields_needed_for_deliverable">Ops! Para criar a entrega todos os campos devem ser preenchidos.</string>
+    <string name="fields_needed_for_deliverable">Para criar a entrega o título e a data devem ser preenchidos.</string>
     <string name="unexpected_error">Erro durante a execução. Provável indisponibilidade nos serviços da nuvem, tente mais tarde.</string>
 
     <string name="hello">Olá </string>
@@ -50,9 +51,9 @@
     <string name="menu_synchronize_initiatives">Sincronizar Iniciativas</string>
     <string name="menu_send_message">Enviar Mensagem</string>
     <string name="menu_refresh_messages">Atualizar Mensagens</string>
-    <string name="menu_show_messages">Abrir Mensagens</string>
+    <string name="menu_show_messages">Mensagens</string>
     <string name="menu_show_priorities">Minhas Prioridades</string>
-    <string name="menu_show_all_priorities">Todas as Prioridades</string>
+    <string name="menu_show_all_priorities">Prioridades</string>
 
     <string name="menu_add_initiative">Criar Iniciativa</string>
     <string name="menu_add_deliverable">Criar Entrega</string>
@@ -63,8 +64,8 @@
     <string name="menu_delete">Excluir</string>
     <string name="menu_invite">Convidar</string>
 
-
     <string name="dialog_delete_deliverable">Remover esta entrega?</string>
+    <string name="dialog_prioritize_deliverable">Priorizar esta entrega?</string>
     <string name="dialog_confirm">confirmar</string>
     <string name="dialog_cancel">cancelar</string>
 

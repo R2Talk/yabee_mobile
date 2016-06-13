@@ -71,9 +71,9 @@ public class CreateDeliverableActivity extends AppCompatActivity {
                 EditText titleEditText = (EditText) findViewById(R.id.titleEditText);
                 EditText descriptionEditText = (EditText) findViewById(R.id.descriptionEditText);
 
-                if ((titleEditText.getText().toString().trim().equals("")) || (descriptionEditText.getText().toString().trim().equals("")) || (date == null)) {
+                if ((titleEditText.getText().toString().trim().equals("")) || (date == null)) {
                     Resources res = getResources();
-                    Snackbar.make(view, res.getString(R.string.all_fields_needed_for_deliverable), Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, res.getString(R.string.fields_needed_for_deliverable), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
 

@@ -24,7 +24,7 @@
             android:id="@+id/titleEditText"
             android:textColor="@color/accent"
             android:hint="@string/entry_initiative_title"
-            android:inputType="textCapSentences" />
+            android:inputType="textCapWords" />
 
     </android.support.design.widget.TextInputLayout>
 
