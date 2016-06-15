@@ -51,13 +51,13 @@ public class HiveGetInitiatives {
         Gson gson;
 
         //prepare URL
-        String urlGetMsgString = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/getInitiatives";
+        String urlGetInitiativesString = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/getInitiatives";
 
         //execute rest call
         HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
 
         try {
-            serviceReturn = httpServiceRequester.executeHttpGetRequest(urlGetMsgString);
+            serviceReturn = httpServiceRequester.executeHttpGetRequest(urlGetInitiativesString);
 
             //deserialize generic type for List of MessageVo
             gson = new GsonBuilder().setDateFormat("MMM dd, yyyy").create();

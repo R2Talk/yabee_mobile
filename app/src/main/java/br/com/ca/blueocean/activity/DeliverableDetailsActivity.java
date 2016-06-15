@@ -77,7 +77,6 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
                 showPrioritizeDialog();
             }
         });
-
     }
 
     /**
@@ -86,51 +85,78 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
      */
     public void showPrioritizeDialog(){
 
-         //show dialog
-         LayoutInflater li = LayoutInflater.from(getApplicationContext()); // get dialog layout view
-         View dialogView = li.inflate(R.layout.change_priority_dialog, null);
+         if(thisDeliverableVo.getIsPriority().equals("NO")) {
+             //show dialog
+             LayoutInflater li = LayoutInflater.from(getApplicationContext()); // get dialog layout view
+             View dialogView = li.inflate(R.layout.change_priority_dialog, null);
 
-         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-         // set view in alertDialogBuilder
-         builder.setView(dialogView);
+             // set view in alertDialogBuilder
+             builder.setView(dialogView);
 
-         final EditText userInput = (EditText) dialogView
-         .findViewById(R.id.commentsEditText);
+             final EditText userInput = (EditText) dialogView
+                     .findViewById(R.id.commentsEditText);
 
-         // set dialog message
-         builder.setMessage(R.string.dialog_prioritize_deliverable);
+             // set dialog message
+             builder.setMessage(R.string.dialog_prioritize_deliverable);
 
-         builder.setPositiveButton(R.string.dialog_confirm,
-                 new DialogInterface.OnClickListener() {
-                     public void onClick(DialogInterface dialog, int id) {
-                         //get current user
-                         UserVo userVo = null;
-                         UserManager userManager = new UserManager(getApplicationContext());
-                         userVo = userManager.getCurrentUser();
+             builder.setPositiveButton(R.string.dialog_confirm,
+                     new DialogInterface.OnClickListener() {
+                         public void onClick(DialogInterface dialog, int id) {
+                             //get current user
+                             UserVo userVo = null;
+                             UserManager userManager = new UserManager(getApplicationContext());
+                             userVo = userManager.getCurrentUser();
 
-                         // get user input
-                         prioritizeComment = userInput.getText().toString();
+                             // get user input
+                             prioritizeComment = userInput.getText().toString();
 
-                         //update thisDeliverableVo
-                         thisDeliverableVo.setIsPriority("YES");
-                         thisDeliverableVo.setPriorityComment(prioritizeComment);
-                         thisDeliverableVo.setPrioritizedBy(String.valueOf(userVo.getUserId()));
+                             //update thisDeliverableVo
+                             thisDeliverableVo.setIsPriority("YES");
+                             thisDeliverableVo.setPriorityComment(prioritizeComment);
+                             thisDeliverableVo.setPrioritizedBy(String.valueOf(userVo.getUserId()));
 
-                         //call set priority cloud service
-                         new AsyncUpdateDeliverablePriority().execute(thisDeliverableVo);
+                             //call set priority cloud service
+                             new AsyncUpdateDeliverablePriority().execute(thisDeliverableVo);
 
-                     }
-                 });
+                         }
+                     });
 
-         builder.setNegativeButton(R.string.dialog_cancel,
-                 new DialogInterface.OnClickListener() {
-                     public void onClick(DialogInterface dialog, int id) {
-                         //dialog.cancel();
-                     }
-                 });
+             builder.setNegativeButton(R.string.dialog_cancel,
+                     new DialogInterface.OnClickListener() {
+                         public void onClick(DialogInterface dialog, int id) {
+                             //dialog.cancel();
+                         }
+                     });
 
-        builder.show();
+             builder.show();
+
+         } else { //is priority
+
+             // Use the Builder class for convenient dialog construction
+             AlertDialog.Builder builder = new AlertDialog.Builder(this);
+             builder.setMessage(R.string.dialog_reset_deliverable_priority)
+                     .setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
+                         public void onClick(DialogInterface dialog, int id) {
+                             //update thisDeliverableVo
+                             thisDeliverableVo.setIsPriority("NO");
+                             thisDeliverableVo.setPriorityComment("");
+                             thisDeliverableVo.setPrioritizedBy("");
+
+                             //call set priority cloud service
+                             new AsyncUpdateDeliverablePriority().execute(thisDeliverableVo);
+                         }
+                     })
+                     .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+                         public void onClick(DialogInterface dialog, int id) {
+                             //do nothing
+                         }
+                     });
+             // Create the AlertDialog object and return it
+             AlertDialog alertDialog = builder.create();
+             alertDialog.show();
+         }
 
     }
 
@@ -168,7 +194,7 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
                         })
                         .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-
+                                //do nothing
                             }
                         });
                 // Create the AlertDialog object and return it
@@ -223,7 +249,14 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
 
         if ((deliverableVo.getDescription() == null) || (deliverableVo.getDescription().equals(""))){
             TextView descriptionLabelTextView = (TextView) findViewById(R.id.descriptionLabelTextView);
-            descriptionLabelTextView.setVisibility(View.INVISIBLE);
+            descriptionLabelTextView.setVisibility(View.GONE);
+            TextView descriptionTextView = (TextView) findViewById(R.id.descriptionTextView);
+            descriptionTextView.setVisibility(View.GONE);
+        } else {
+            TextView descriptionLabelTextView = (TextView) findViewById(R.id.descriptionLabelTextView);
+            descriptionLabelTextView.setVisibility(View.VISIBLE);
+            TextView descriptionTextView = (TextView) findViewById(R.id.descriptionTextView);
+            descriptionTextView.setVisibility(View.VISIBLE);
         }
 
         if((deliverableVo.getIsPriority() == null) || (deliverableVo.getIsPriority().equals("NO"))) {
@@ -231,6 +264,11 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
             prioritizedByTextView.setVisibility(View.INVISIBLE); //TODO: check hive service returning "0" instead of null
             TextView priorityCommentsLabelTextView = (TextView) findViewById(R.id.priorityCommentsLabelTextView);
             priorityCommentsLabelTextView.setVisibility(View.INVISIBLE);
+        } else {
+            TextView prioritizedByTextView = (TextView) findViewById(R.id.prioritizedByTextView);
+            prioritizedByTextView.setVisibility(View.INVISIBLE); //TODO: check hive service returning "0" instead of null
+            TextView priorityCommentsLabelTextView = (TextView) findViewById(R.id.priorityCommentsLabelTextView);
+            priorityCommentsLabelTextView.setVisibility(View.VISIBLE);
         }
     }
 
@@ -406,21 +444,17 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
                     //call hive service
                     HiveSetDeliverablePriority hiveSetDeliverablePriority = new HiveSetDeliverablePriority(context);
                     hiveSetDeliverablePriority.setDeliverablePriority(deliverableVo);
-
-                    //actualize local database
-                    //DeliverableDAO deliverableDAO = new DeliverableDAO(context);
-                    //deliverableDAO.deleteDeliverableById(deliverableId); //TODO: catch exception for inert exception - repeated value
-
                 } else {
-
                     //call hive service
                     HiveResetDeliverablePriority hiveResetDeliverablePriority = new HiveResetDeliverablePriority(context);
                     hiveResetDeliverablePriority.resetDeliverablePriority(deliverableVo);
-
-                    //actualize local database
-                    //DeliverableDAO deliverableDAO = new DeliverableDAO(context);
-                    //deliverableDAO.deleteDeliverableById(deliverableId); //TODO: catch exception for inert exception - repeated value
                 }
+
+                //actualize local database
+                DeliverableDAO deliverableDAO = new DeliverableDAO(context);
+                deliverableDAO.updateDeliverablePriority(deliverableVo.getIddeliverable(), deliverableVo.getPrioritizedBy(),
+                        deliverableVo.getPriorityComment(), deliverableVo.getIsPriority());
+
 
                 result = SUCCESS;
 

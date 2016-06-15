@@ -46,7 +46,7 @@ public class HiveResetDeliverablePriority {
         String url;
         String serviceReturn;
 
-        Gson gson = null;
+        Gson gson = new Gson();
         String jasonDeliverableVo = null;
 
         jasonDeliverableVo = gson.toJson(deliverableVo);

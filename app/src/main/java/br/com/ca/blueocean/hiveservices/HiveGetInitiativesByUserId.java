@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.net.URLEncoder;
 import java.util.List;
 
 import br.com.ca.blueocean.network.DeviceNotConnectedException;
@@ -45,19 +46,18 @@ public class HiveGetInitiativesByUserId {
      * @return
      */
     public List<InitiativeVo> getInitiativesByUserId(String userId){
-        String url;
         String serviceReturn;
         List<InitiativeVo> initiativeVoList = null;
         Gson gson;
 
-        //prepare URL
-        String urlInviteUser = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/getInitiativesByUserId"; //TODO: include user id parameter
-
-        //execute rest call
-        HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
-
         try {
-            serviceReturn = httpServiceRequester.executeHttpGetRequest(urlInviteUser);
+            //prepare URL
+            String urlGetInitiativeByUserId = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/getInitiativesByUserId?userId=" + URLEncoder.encode(userId, "UTF-8");
+
+            //execute rest call
+            HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
+
+            serviceReturn = httpServiceRequester.executeHttpGetRequest(urlGetInitiativeByUserId);
 
             //deserialize generic type for List of MessageVo
             gson = new GsonBuilder().setDateFormat("MMM dd, yyyy").create();
@@ -65,6 +65,8 @@ public class HiveGetInitiativesByUserId {
             initiativeVoList = gson.fromJson(serviceReturn, initiativeListType);
 
         } catch (DeviceNotConnectedException e){
+            return null;
+        } catch (Exception e){
             return null;
         }
 

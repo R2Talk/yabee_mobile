@@ -66,10 +66,9 @@
 
     <string name="dialog_delete_deliverable">Remover esta entrega?</string>
     <string name="dialog_prioritize_deliverable">Priorizar esta entrega?</string>
+    <string name="dialog_reset_deliverable_priority">Remover a prioridade desta entrega?</string>
     <string name="dialog_confirm">confirmar</string>
     <string name="dialog_cancel">cancelar</string>
-
-
 
     <string name="context_menu_prioritize">Priorizar</string>
     <string name="context_menu_show_details">Detalhes</string>

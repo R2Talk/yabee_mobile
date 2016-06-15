@@ -11,8 +11,11 @@ import br.com.ca.blueocean.database.DeliverableDAO;
 import br.com.ca.blueocean.database.InitiativeDAO;
 import br.com.ca.blueocean.hiveservices.HiveGetDeliverablesByInitiative;
 import br.com.ca.blueocean.hiveservices.HiveGetInitiatives;
+import br.com.ca.blueocean.hiveservices.HiveGetInitiativesByUserId;
+import br.com.ca.blueocean.users.UserManager;
 import br.com.ca.blueocean.vo.DeliverableVo;
 import br.com.ca.blueocean.vo.InitiativeVo;
+import br.com.ca.blueocean.vo.UserVo;
 
 /**
  * Synchronizer
@@ -55,14 +58,17 @@ public class Synchronizer {
         //create Deliverable DAO
         DeliverableDAO deliverableDAO = new DeliverableDAO(context);
 
-
         //
         //FETCH INITIATIVES
         //
 
+        //get current user
+        UserManager userManager = new UserManager(context);
+        UserVo userVo = userManager.getCurrentUser();
+
         //fetch from hive cloud server
-        HiveGetInitiatives hiveGetInitiatives = new HiveGetInitiatives(context); //TODO: use HiveGetInitiativesByUserId
-        initiativeVoList = hiveGetInitiatives.getInitiatives();
+        HiveGetInitiativesByUserId hiveGetInitiativesByUserId = new HiveGetInitiativesByUserId(context); //TODO: use HiveGetInitiativesByUserId
+        initiativeVoList = hiveGetInitiativesByUserId.getInitiativesByUserId(String.valueOf(userVo.getUserId()));
 
         //
         //INSERT INITIATIVES

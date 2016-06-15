@@ -258,4 +258,24 @@ public class DeliverableDAO {
         db.execSQL(sql); //use the method execSQL do modify the database
     }
 
+    /**
+     * updateDeliverablePriority
+     *
+     * @param deliverableId
+     * @param prioritizedBy
+     * @param priorityComment
+     * @param isPriority
+     */
+    public void updateDeliverablePriority(String deliverableId, String prioritizedBy, String priorityComment, String isPriority) { //TODO: review to throw exception
+
+        SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
+
+        String sql = "UPDATE " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " SET "
+                +  DatabaseOpenHelper.KEY_DELIVERABLE_prioritizedby + "='" + prioritizedBy + "', "
+                +  DatabaseOpenHelper.KEY_DELIVERABLE_prioritycomment + "='" + priorityComment + "', "
+                +  DatabaseOpenHelper.KEY_DELIVERABLE_ispriority + "='" + isPriority + "' "
+                + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_iddeliverable + " = " + deliverableId;
+
+        db.execSQL(sql); //use the method execSQL do modify the database
+    }
 }
