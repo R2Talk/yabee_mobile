@@ -90,6 +90,31 @@ public class UserManager {
         CurrentUser currentUser= CurrentUser.getInstance();
         userVo = currentUser.getUser();
 
+        //
+        //TODO: Need revision to check why the singleton is not always finding the user instance
+        //
+        if (userVo == null) {
+            //
+            //check shared preferences to check if the user is already know.
+            //
+            PreferencesHelper preferencesHelper = new PreferencesHelper(context, PreferencesHelper.SIGNIN_PREFERENCES);
+            String isLogged = preferencesHelper.getStringPrefrenceValue(PreferencesHelper.IS_LOGGED);
+
+            //check if already logged in
+            if (isLogged.equals("yes")) { // if the user is already logged in
+
+                //create user object and proceed for the initial activity
+                int userId = preferencesHelper.getIntPrefrenceValue(PreferencesHelper.USER_ID);
+                String userName = preferencesHelper.getStringPrefrenceValue(PreferencesHelper.USER_NAME);
+                userVo = new UserVo(userId, userName, "", "", true);
+
+                currentUser.setUser(userVo);
+            }
+        }
+        //
+        //
+        //
+
         return userVo;
     }
 

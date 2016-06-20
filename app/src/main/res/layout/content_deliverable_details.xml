@@ -39,6 +39,7 @@
         android:id="@+id/dueDateTextView"
         android:layout_column="1"/>
 
+    <!--
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,14 +48,24 @@
         android:id="@+id/currentUserLabelTextView"
         android:textStyle="bold|italic"
         android:layout_marginTop="10dp" />
+    -->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/currentUserLabelImageView"
+        android:src="@mipmap/ic_face_black_24dp"
+        android:layout_marginTop="32sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="rep Text"
-        android:id="@+id/currentUserTextView" />
+        android:id="@+id/currentUserTextView"
+        android:textSize="16sp" />
 
+    <!--
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,14 +74,25 @@
         android:id="@+id/descriptionLabelTextView"
         android:textStyle="bold|italic"
         android:layout_marginTop="10dp" />
+    -->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/descriptionLabelImageView"
+        android:src="@mipmap/ic_label_outline_black_24dp"
+        android:layout_marginTop="32sp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
         android:id="@+id/descriptionTextView"
-        android:layout_weight="0.76" />
+        android:layout_weight="0.76"
+        android:textSize="16sp" />
 
+    <!--
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,13 +101,23 @@
         android:id="@+id/priorityCommentsLabelTextView"
         android:textStyle="bold|italic"
         android:layout_marginTop="20dp" />
+    -->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/priorityCommentsLabelImageView"
+        android:src="@mipmap/ic_bookmark_black_24dp"
+        android:layout_marginTop="32sp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
         android:id="@+id/priorityCommentsTextView"
-        android:layout_marginBottom="5dp"/>
+        android:layout_marginBottom="5dp"
+        android:textSize="16sp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

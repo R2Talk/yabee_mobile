@@ -105,7 +105,17 @@ public class ShowPrioritizedDeliverablesActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    /**
+     * onStart
+     *
+     * refresh prioritized deliverables list view
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        refreshPrioritizeDeliverablesListView();
     }
 
     /**
@@ -126,7 +136,30 @@ public class ShowPrioritizedDeliverablesActivity extends AppCompatActivity {
         }
     }
 
-    //TODO: include methods to read from the database list of prioritized activities as in DeliverablesActivity
+
+    /**
+     * refreshPrioritizeDeliverablesListView
+     *
+     */
+    private void refreshPrioritizeDeliverablesListView(){
+        //reload content
+        adapter.clear();
+        if (prioritiesFilter.equals(USER_PRIORITIES)) { // get user priorities
+            //get current user
+            UserManager signManager = new UserManager(getApplicationContext());
+            UserVo userVo = signManager.getCurrentUser();
+            //get current user priorities
+            deliverablesList = getDeliverableArrayList(USER_PRIORITIES, userVo.getUserId().toString());
+
+        } else { //else get all priorities
+            //get all priorities
+            deliverablesList = getDeliverableArrayList(ALL_PRIORITIES, null);
+        }
+        adapter.addAll((ArrayList<DeliverableVo>) deliverablesList);
+        adapter.notifyDataSetChanged();
+    }
+
+
     /**
      * getDeliverableArrayList
      *

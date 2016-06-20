@@ -148,7 +148,9 @@ public class InitiativesActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
 
+            /*
             case id.action_show_my_priorities:
+
                 //Intent
                 //1. Set Intent parameter signaling that the user priorities must be shown
                 intent = new Intent(InitiativesActivity.this, ShowPrioritizedDeliverablesActivity.class);
@@ -159,6 +161,7 @@ public class InitiativesActivity extends AppCompatActivity {
                 //2. Start Intent
                 startActivity(intent);
                 return true;
+            */
 
             case id.action_show_all_priorities:
                 //Intent

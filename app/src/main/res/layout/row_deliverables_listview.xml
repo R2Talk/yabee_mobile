@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="title"
                 android:id="@+id/deliverable_titleTextView"
                 android:layout_alignParentLeft="true"
@@ -37,6 +37,17 @@
                 android:text="due date"
                 android:id="@+id/deliverable_due_dateTextView"
                 android:layout_below="@+id/deliverable_titleTextView" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/prioritizedImageView"
+                android:layout_alignTop="@+id/deliverable_due_dateTextView"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:src="@mipmap/ic_bookmark_black_24dp"
+                android:longClickable="false"
+                android:visibility="invisible" />
 
             <TextView
                 android:layout_width="wrap_content"

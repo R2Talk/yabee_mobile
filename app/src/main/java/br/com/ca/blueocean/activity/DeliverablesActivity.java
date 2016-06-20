@@ -147,6 +147,16 @@ public class DeliverablesActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * onStart
+     *
+     * refresh the list of activities
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        refreshDeliverablesListView();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -174,13 +184,14 @@ public class DeliverablesActivity extends AppCompatActivity {
                 // app icon in action bar clicked; goto parent activity.
                 this.finish();
                 return true;
-
+            /**
             case R.id.action_invite:
 
                 //TODO: INVITE: use intent or dialog to get email
                 //TODO: ...and call async task to HiveInviteUser passing context, email and initiativeId
 
                 return true;
+             */
 
             case R.id.action_share:
                 String to = null;
@@ -235,7 +246,7 @@ public class DeliverablesActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK){
                 //Successful execution implies in initiative created in the cloud server and actualized in the local database
                 //Refresh list view with the actualized local database
-                refreshDeliverablesListView();;
+                refreshDeliverablesListView();
             }
 
             if (resultCode == RESULT_CANCELED) {

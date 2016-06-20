@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -24,10 +25,9 @@ import br.com.ca.shareview.R;
  */
 public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
 
-        private final Context context;
-        private final ArrayList<DeliverableVo> itemsArrayList;
-
-        private String isDeliverableLate;
+    private final Context context;
+    private final ArrayList<DeliverableVo> itemsArrayList;
+    private String initiativeTitle = null;
 
     /**
      * Constructor
@@ -62,19 +62,21 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
             TextView deliverableIdView = (TextView) rowDeliverableView.findViewById(R.id.deliverableIdTextView);
             TextView titleView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_titleTextView);
             TextView due_dateView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_due_dateTextView);
+            ImageView prioritizedImageView = (ImageView) rowDeliverableView.findViewById(R.id.prioritizedImageView);
             TextView responsibleView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_responsibleTextView);
             RatingBar ratingBarView = (RatingBar) rowDeliverableView.findViewById(R.id.deliverable_ratingBar);
             CardView cardView = (CardView) rowDeliverableView.findViewById(R.id.card_view);
 
-            // 4. Show late status
-            isDeliverableLate = itemsArrayList.get(position).getDeliverable_isLate();
-            if(isDeliverableLate.equals("true")) {
-                //cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.yellow_card_color));
-                //set resource for imageview
-                //imageView.setVisibility(ImageView.VISIBLE);
+            // 4.a Show as in late status
+            if((itemsArrayList.get(position).getDeliverable_isLate()).equals("true")) {
                 due_dateView.setTextColor(ContextCompat.getColor(context, R.color.red));
-            } else {
-                //imageView.setVisibility(ImageView.INVISIBLE);
+            }
+            // 4.b Show as prioritized
+            if(itemsArrayList.get(position).getIsPriority().equals("YES")){
+                prioritizedImageView.setVisibility(ImageView.VISIBLE);
+
+                //TODO: read intitative title from idinititative using local DAO
+                //TODO: ...and set initiative title as visible (must be included into deliverable view
             }
 
             // 5. Set the deliverable information in the card child views

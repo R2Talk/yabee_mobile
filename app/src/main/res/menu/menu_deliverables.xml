@@ -10,11 +10,13 @@
         android:orderInCategory="200"
         app:showAsAction="always" />
 
+    <!--
     <item android:id="@+id/action_invite"
         android:icon="@drawable/ic_share"
         android:title="@string/menu_invite"
         android:orderInCategory="350"
         app:showAsAction="never" />
+        -->
 
     <item android:id="@+id/action_share"
         android:icon="@drawable/ic_share"
@@ -28,10 +30,12 @@
         android:orderInCategory="500"
         app:showAsAction="never" />
 
+    <!--
     <item android:id="@+id/action_edit_initiative"
         android:title="@string/menu_edit"
         android:orderInCategory="600"
         app:showAsAction="never" />
+    -->
 
     <item android:id="@+id/action_delete_initiative"
         android:title="@string/menu_delete"

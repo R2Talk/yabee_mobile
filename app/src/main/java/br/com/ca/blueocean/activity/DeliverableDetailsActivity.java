@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -243,18 +244,18 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
 
         //set fields visibility
         if ((deliverableVo.getCurrentusername() == null) || (deliverableVo.getCurrentusername().equals(""))){
-            TextView currentUserLabelTextView = (TextView) findViewById(R.id.currentUserLabelTextView);
-            currentUserLabelTextView.setVisibility(View.INVISIBLE);
+            ImageView currentUserLabelImageView = (ImageView) findViewById(R.id.currentUserLabelImageView);
+            currentUserLabelImageView.setVisibility(View.INVISIBLE);
         }
 
         if ((deliverableVo.getDescription() == null) || (deliverableVo.getDescription().equals(""))){
-            TextView descriptionLabelTextView = (TextView) findViewById(R.id.descriptionLabelTextView);
-            descriptionLabelTextView.setVisibility(View.GONE);
+            ImageView descriptionLabelImageView = (ImageView) findViewById(R.id.descriptionLabelImageView);
+            descriptionLabelImageView.setVisibility(View.GONE);
             TextView descriptionTextView = (TextView) findViewById(R.id.descriptionTextView);
             descriptionTextView.setVisibility(View.GONE);
         } else {
-            TextView descriptionLabelTextView = (TextView) findViewById(R.id.descriptionLabelTextView);
-            descriptionLabelTextView.setVisibility(View.VISIBLE);
+            ImageView descriptionLabelImageView = (ImageView) findViewById(R.id.descriptionLabelImageView);
+            descriptionLabelImageView.setVisibility(View.VISIBLE);
             TextView descriptionTextView = (TextView) findViewById(R.id.descriptionTextView);
             descriptionTextView.setVisibility(View.VISIBLE);
         }
@@ -262,13 +263,13 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
         if((deliverableVo.getIsPriority() == null) || (deliverableVo.getIsPriority().equals("NO"))) {
             TextView prioritizedByTextView = (TextView) findViewById(R.id.prioritizedByTextView);
             prioritizedByTextView.setVisibility(View.INVISIBLE); //TODO: check hive service returning "0" instead of null
-            TextView priorityCommentsLabelTextView = (TextView) findViewById(R.id.priorityCommentsLabelTextView);
-            priorityCommentsLabelTextView.setVisibility(View.INVISIBLE);
+            ImageView priorityCommentsLabelImageView = (ImageView) findViewById(R.id.priorityCommentsLabelImageView);
+            priorityCommentsLabelImageView.setVisibility(View.INVISIBLE);
         } else {
             TextView prioritizedByTextView = (TextView) findViewById(R.id.prioritizedByTextView);
             prioritizedByTextView.setVisibility(View.INVISIBLE); //TODO: check hive service returning "0" instead of null
-            TextView priorityCommentsLabelTextView = (TextView) findViewById(R.id.priorityCommentsLabelTextView);
-            priorityCommentsLabelTextView.setVisibility(View.VISIBLE);
+            ImageView priorityCommentsLabelImageView = (ImageView) findViewById(R.id.priorityCommentsLabelImageView);
+            priorityCommentsLabelImageView.setVisibility(View.VISIBLE);
         }
     }
 

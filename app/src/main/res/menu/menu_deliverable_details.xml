@@ -9,6 +9,7 @@
         android:orderInCategory="100"
         app:showAsAction="always" />
 
+    <!--
     <item android:id="@+id/action_toggle_join_deliverable"
         android:title="@string/menu_toggle_join_deliverable"
         android:orderInCategory="300"
@@ -29,6 +30,7 @@
         android:title="@string/menu_edit"
         android:orderInCategory="600"
         app:showAsAction="never" />
+     -->
 
     <item android:id="@+id/action_delete_deliverable"
         android:title="@string/menu_delete"
