@@ -1,4 +1,4 @@
-package br.com.ca.blueocean.email;
+package br.com.ca.blueocean.share;
 
 import android.content.Context;
 
@@ -10,13 +10,13 @@ import br.com.ca.blueocean.vo.DeliverableVo;
 import br.com.ca.shareview.R;
 
 /**
- * DeliverableTextReporter
+ * DeliverablesShareTextFormater
  *
  * Generate text with deliverable status report. Can be used as helper to prepare email content.
  *
  * @author Rodrigo Carvalho
  */
-public class DeliverableTextReporter {
+public class DeliverablesShareTextFormater {
 
     Context context = null;
 
@@ -25,12 +25,12 @@ public class DeliverableTextReporter {
      *
      * @param context
      */
-    public DeliverableTextReporter(Context context) {
+    public DeliverablesShareTextFormater(Context context) {
         this.context = context;
     }
 
     /**
-     * getDeliverablesTextReport
+     * prepareDeliverableShareText
      *
      * Prepare and return text report with late deliverables list
      *
@@ -64,9 +64,10 @@ public class DeliverableTextReporter {
             DeliverableVo deliverableVo = (DeliverableVo) iterator.next();
             if (deliverableVo.getDeliverable_isLate().equals("true")) {
                 text = text + ">>>\n";
-                text = text + context.getString(R.string.title) + " " + deliverableVo.getTitle() + "\n\n";
-                text = text + context.getString(R.string.responsible) + " " + deliverableVo.getCurrentusername() + "\n";
-                text = text + context.getString(R.string.date) + " " + deliverableVo.getDuedate() + "\n";
+                text = text + deliverableVo.getTitle() + "\n\n";
+                if (deliverableVo.getCurrentusername() != null) {text = text + context.getString(R.string.responsible) + " " + deliverableVo.getCurrentusername() + "\n";}
+                if (deliverableVo.getDuedate() != null) {text = text + context.getString(R.string.date) + " " + deliverableVo.getDuedate() + "\n\n";}
+                if (deliverableVo.getDescription() != null) {text = text + deliverableVo.getDescription() + "\n";}
                 text = text + "<<<" + "\n\n";
             }
         }
@@ -82,9 +83,10 @@ public class DeliverableTextReporter {
             DeliverableVo deliverableVo = (DeliverableVo) iterator2.next();
             if (!deliverableVo.getDeliverable_isLate().equals("true")) {
                 text = text + ">>>\n";
-                text = text + context.getString(R.string.title) + " " + deliverableVo.getTitle() + "\n\n";
-                text = text + context.getString(R.string.responsible) + " " + deliverableVo.getCurrentusername() + "\n";
-                text = text + context.getString(R.string.date) + " " + deliverableVo.getDuedate() + "\n";
+                text = text + deliverableVo.getTitle() + "\n\n";
+                if (deliverableVo.getCurrentusername() != null) {text = text + context.getString(R.string.responsible) + " " + deliverableVo.getCurrentusername() + "\n";}
+                if (deliverableVo.getDuedate() != null) {text = text + context.getString(R.string.date) + " " + deliverableVo.getDuedate() + "\n\n";}
+                if (deliverableVo.getDescription() != null) {text = text + deliverableVo.getDescription() + "\n";}
                 text = text + "<<<" + "\n\n";
             }
         }

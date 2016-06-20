@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import br.com.ca.blueocean.database.InitiativeDAO;
 import br.com.ca.blueocean.vo.DeliverableVo;
 import br.com.ca.shareview.R;
 
@@ -62,9 +63,9 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
             TextView deliverableIdView = (TextView) rowDeliverableView.findViewById(R.id.deliverableIdTextView);
             TextView titleView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_titleTextView);
             TextView due_dateView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_due_dateTextView);
+            TextView initiativeTitleTextView = (TextView) rowDeliverableView.findViewById(R.id.initiativeTitleTtextView);
             ImageView prioritizedImageView = (ImageView) rowDeliverableView.findViewById(R.id.prioritizedImageView);
-            TextView responsibleView = (TextView) rowDeliverableView.findViewById(R.id.deliverable_responsibleTextView);
-            RatingBar ratingBarView = (RatingBar) rowDeliverableView.findViewById(R.id.deliverable_ratingBar);
+
             CardView cardView = (CardView) rowDeliverableView.findViewById(R.id.card_view);
 
             // 4.a Show as in late status
@@ -73,10 +74,14 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
             }
             // 4.b Show as prioritized
             if(itemsArrayList.get(position).getIsPriority().equals("YES")){
+                //set icon as visible
                 prioritizedImageView.setVisibility(ImageView.VISIBLE);
 
-                //TODO: read intitative title from idinititative using local DAO
-                //TODO: ...and set initiative title as visible (must be included into deliverable view
+                //set initiative title as visible
+                InitiativeDAO initiativeDAO = new InitiativeDAO(context);
+                String title = initiativeDAO.getIdInitiativeTitleById(itemsArrayList.get(position).getIdInitiative());
+                initiativeTitleTextView.setText(title);
+                initiativeTitleTextView.setVisibility(TextView.VISIBLE);
             }
 
             // 5. Set the deliverable information in the card child views
@@ -85,11 +90,7 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
             //title
             titleView.setText(itemsArrayList.get(position).getTitle());
             //due date
-            due_dateView.setText(itemsArrayList.get(position).getDuedate());
-            // responsible
-            responsibleView.setText(itemsArrayList.get(position).getCurrentusername());
-            //rating
-            ratingBarView.setRating(Float.parseFloat(itemsArrayList.get(position).getRating()));
+         due_dateView.setText(itemsArrayList.get(position).getDuedate());
 
             // 6. return rowInitiativesView
             return rowDeliverableView;

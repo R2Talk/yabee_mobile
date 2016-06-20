@@ -14,13 +14,14 @@
         android:title="@string/menu_toggle_join_deliverable"
         android:orderInCategory="300"
         app:showAsAction="never" />
-
+    -->
     <item android:id="@+id/action_share"
         android:icon="@drawable/ic_share"
         android:title="@string/share"
         android:orderInCategory="400"
         app:showAsAction="never" />
 
+    <!--
     <item android:id="@+id/action_conclude_deliverable"
         android:title="@string/menu_conclude"
         android:orderInCategory="500"

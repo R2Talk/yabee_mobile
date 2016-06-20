@@ -101,13 +101,18 @@
     <string name="onTimePrefix">P:</string>
     <string name="latePrefix">A:</string>
 
-    <string name="sendEmail">enviar email</string>
+    <string name="sendEmail">Enviar email</string>
     <string name="share">Compartilhar</string>
     <string name="missingEmailClient">Nenhum aplicativo de email está configurado</string>
     <string name="emailTo">rcarvalho89@hotmail.com</string>
     <string name="emailSubject">Ya Bee Message</string>
     <string name="emailHeader">Ya Bee status para iniciativa </string>
     <string name="emailFooter">Ya Bee Report.</string>
+
+    <string name="deliverableShareHeader">Ya Bee status para entrega</string>
+    <string name="deliverableShareSubject">Ya Bee Message</string>
+    <string name="deliverableShareFooter">Ya Bee Report</string>
+
 
     <string name="message">Mensagem</string>
     <string name="responsible">Responsável:</string>

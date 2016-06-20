@@ -15,7 +15,9 @@
     android:elevation="2dp"
     android:focusable="false"
     android:focusableInTouchMode="false"
-    android:paddingLeft="10dp">
+    android:paddingLeft="10dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp">
 
 
             <TextView
@@ -49,35 +51,48 @@
                 android:longClickable="false"
                 android:visibility="invisible" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="reponsible"
-                android:id="@+id/deliverable_responsibleTextView"
-                android:layout_below="@+id/deliverable_due_dateTextView"
-                android:visibility="invisible" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="InitiativeTitle"
+        android:id="@+id/initiativeTitleTtextView"
+        android:layout_below="@+id/deliverable_due_dateTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:visibility="invisible" />
 
-            <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="?android:attr/ratingBarStyleSmall"
-                android:id="@+id/deliverable_ratingBar"
-                android:layout_below="@+id/deliverable_responsibleTextView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:visibility="invisible"/>
+    <!--
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="reponsible"
+        android:id="@+id/deliverable_responsibleTextView"
+        android:layout_below="@+id/deliverable_due_dateTextView"
+        android:visibility="invisible" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Small Text"
-                android:id="@+id/deliverableIdTextView"
-                android:visibility="invisible"
-                android:layout_alignTop="@+id/deliverable_ratingBar"
-                android:layout_toRightOf="@+id/deliverable_ratingBar"
-                android:layout_toEndOf="@+id/deliverable_ratingBar" />
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleSmall"
+        android:id="@+id/deliverable_ratingBar"
+        android:layout_below="@+id/deliverable_responsibleTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"/>
+
+    -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/deliverableIdTextView"
+        android:visibility="invisible" />
+
 
 </RelativeLayout>
 

@@ -1,4 +1,4 @@
-package br.com.ca.blueocean.email;
+package br.com.ca.blueocean.share;
 
 import android.content.Context;
 import android.content.Intent;

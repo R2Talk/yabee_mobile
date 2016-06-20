@@ -28,6 +28,9 @@ import br.com.ca.blueocean.hiveservices.HiveResetDeliverablePriority;
 import br.com.ca.blueocean.hiveservices.HiveSetDeliverablePriority;
 import br.com.ca.blueocean.hiveservices.HiveUnexpectedReturnException;
 import br.com.ca.blueocean.network.DeviceNotConnectedException;
+import br.com.ca.blueocean.share.DeliverableShareTextFormater;
+import br.com.ca.blueocean.share.DeliverablesShareTextFormater;
+import br.com.ca.blueocean.share.EmailChannel;
 import br.com.ca.blueocean.users.UserManager;
 import br.com.ca.blueocean.vo.DeliverableVo;
 import br.com.ca.blueocean.vo.UserVo;
@@ -204,6 +207,21 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
 
                 return true;
 
+            case R.id.action_share:
+                String to = "";
+                String cc = "";
+                String subject = "";
+                String shareText = null;
+
+                //prepare share parameters
+                //
+                DeliverableShareTextFormater deliverableShareTextFormater = new DeliverableShareTextFormater(getApplicationContext());
+                shareText = deliverableShareTextFormater.prepareDeliverableShareText(this.deliverableId);
+
+                EmailChannel emailChannel= new EmailChannel();
+                emailChannel.callEmailApp(this, to, cc, subject, shareText);
+
+            return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

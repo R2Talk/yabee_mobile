@@ -24,8 +24,8 @@ import java.util.List;
 
 import br.com.ca.blueocean.adapter.DeliverablesAdapter;
 import br.com.ca.blueocean.database.DeliverableDAO;
-import br.com.ca.blueocean.email.DeliverableTextReporter;
-import br.com.ca.blueocean.email.EmailChannel;
+import br.com.ca.blueocean.share.DeliverablesShareTextFormater;
+import br.com.ca.blueocean.share.EmailChannel;
 import br.com.ca.blueocean.hiveservices.HiveInviteUser;
 import br.com.ca.blueocean.users.UserManager;
 import br.com.ca.blueocean.vo.DeliverableVo;
@@ -204,7 +204,7 @@ public class DeliverablesActivity extends AppCompatActivity {
                 to = getString(R.string.emailTo);
                 cc = "";
                 subject = getString(R.string.emailSubject);
-                DeliverableTextReporter deliverableTextReporter = new DeliverableTextReporter(getApplicationContext());
+                DeliverablesShareTextFormater deliverableTextReporter = new DeliverablesShareTextFormater(getApplicationContext());
                 emailText = deliverableTextReporter.getDeliverablesTextReport(this.initiativeId, this.initiativeTitle);
 
                 EmailChannel emailChannel= new EmailChannel();
