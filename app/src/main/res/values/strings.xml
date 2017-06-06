@@ -64,6 +64,7 @@
     <string name="menu_delete">Excluir</string>
     <string name="menu_invite">Convidar</string>
 
+    <string name="dialog_delete_initiative">Remover esta iniciativa?</string>
     <string name="dialog_delete_deliverable">Remover esta entrega?</string>
     <string name="dialog_prioritize_deliverable">Priorizar esta entrega?</string>
     <string name="dialog_reset_deliverable_priority">Remover a prioridade desta entrega?</string>

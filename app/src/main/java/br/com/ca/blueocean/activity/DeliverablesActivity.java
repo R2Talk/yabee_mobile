@@ -1,7 +1,9 @@
 package br.com.ca.blueocean.activity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
@@ -16,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -225,6 +228,27 @@ public class DeliverablesActivity extends AppCompatActivity {
 
                 return true;
 
+            case R.id.action_delete_initiative:
+                // Use the Builder class for convenient dialog construction
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(R.string.dialog_delete_initiative)
+                        .setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //call delete deliverable handler
+                                //TODO: onConfirmDeleteInitiativeDialog();
+                            }
+                        })
+                        .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //do nothing
+                            }
+                        });
+                // Create the AlertDialog object and return it
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+                return true;
+
             default:
 
                 return super.onOptionsItemSelected(item);
@@ -315,7 +339,6 @@ public class DeliverablesActivity extends AppCompatActivity {
    /**
      * DoAsyncInviteUser
      *
-     * Uses AsyncTask to create a task away from the main UI thread, and check login.
      *
      */
     private class DoAsyncInviteUser extends AsyncTask<String, Void, Integer> {
@@ -398,7 +421,7 @@ public class DeliverablesActivity extends AppCompatActivity {
             //CHECK FOR RETURN INVITE STATE AND INFORM THE USER WITH SNACK BAR MESSAGE
 
                 String text = res.getString(R.string.synchronizing); //TODO: reference the right string
-                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.deliverablesLayout);
+                RelativeLayout coordinatorLayout = (RelativeLayout) findViewById(R.id.deliverablesLayout);
                 Snackbar snackbar = Snackbar
                         .make(coordinatorLayout, text, Snackbar.LENGTH_LONG);
                 snackbar.show();

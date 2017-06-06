@@ -146,9 +146,9 @@ public class SendMessageActivity extends AppCompatActivity {
             MessageVo messageVo = new MessageVo();
             messageVo.setText(msgText);
             messageVo.setIdFromUser(signManager.getCurrentUser().getUserId());
-            messageVo.setUser_idUser(3); //TODO: read from current message
-            messageVo.setInitiative_idInitiative(31); //TODO: read from current initiative
-            messageVo.setDeliverable_idDeliverable(99); //TODO: read from current deliverable
+            messageVo.setUser_idUser(1); //TODO: read from current message
+            messageVo.setInitiative_idInitiative(1); //TODO: read from current initiative
+            messageVo.setDeliverable_idDeliverable(1); //TODO: read from current deliverable
 
             //prepare hive service
             Context context = getApplicationContext();
