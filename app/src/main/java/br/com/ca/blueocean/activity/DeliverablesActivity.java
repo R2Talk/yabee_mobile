@@ -1,5 +1,6 @@
 package br.com.ca.blueocean.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,6 +29,10 @@ import java.util.List;
 
 import br.com.ca.blueocean.adapter.DeliverablesAdapter;
 import br.com.ca.blueocean.database.DeliverableDAO;
+import br.com.ca.blueocean.database.InitiativeDAO;
+import br.com.ca.blueocean.hiveservices.HiveDeleteInitiativeById;
+import br.com.ca.blueocean.hiveservices.HiveUnexpectedReturnException;
+import br.com.ca.blueocean.network.DeviceNotConnectedException;
 import br.com.ca.blueocean.share.DeliverablesShareTextFormater;
 import br.com.ca.blueocean.share.EmailChannel;
 import br.com.ca.blueocean.hiveservices.HiveInviteUser;
@@ -234,8 +240,8 @@ public class DeliverablesActivity extends AppCompatActivity {
                 builder.setMessage(R.string.dialog_delete_initiative)
                         .setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                //call delete deliverable handler
-                                //TODO: onConfirmDeleteInitiativeDialog();
+                                //call delete initiative handler
+                                onConfirmDeleteInitiativeDialog();
                             }
                         })
                         .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
@@ -336,12 +342,158 @@ public class DeliverablesActivity extends AppCompatActivity {
         return deliverableVoArrayList;
     }
 
-   /**
-     * DoAsyncInviteUser
+
+    /**
+     * OnConfirmDeleteInitiativeDialog
+     *
+     * BEWARE: This method should be called from Delete Initiative Dialog
+     *
+     */
+    public void onConfirmDeleteInitiativeDialog(){
+        //delete the current initiative
+        new AsyncDeleteInitiative().execute(initiativeId);
+    }
+
+
+    ////////////////////////////////////////////////////////////////
+    // ASync Private Classes
+    ////////////////////////////////////////////////////////////////
+
+    /********************************************************************/
+    /** ASYNC DELETE INITIATIVE                                        **/
+    /********************************************************************/
+
+    /**
+     * AsyncDeleteInitiative
+     *
+     * <p/>
+     * Uses AsyncTask to delete current Initiative in a task away from the main UI thread,
+     * and call methods that send message to rest server.
+     *
+     */
+    private class AsyncDeleteInitiative extends AsyncTask<String, Void, Integer> {
+        Resources res = getResources();
+        Context context = getApplicationContext();
+
+        public static final int SUCCESS = 0;
+        public static final int ERROR = 1;
+        public static final int DEVICE_NOT_CONNECTED = 2;
+
+        final ProgressDialog progressDialog = new ProgressDialog(DeliverablesActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+
+        @Override
+        protected void onPreExecute() {
+            //show progress dialog
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage(res.getString(R.string.synchronizing));
+            progressDialog.show();
+        }
+
+        /**
+         * doInBackgroud
+         *
+         * <p/>
+         * AsyncExecution. Executes in its own thread in background.
+         *
+         * @param params
+         * @return
+         */
+        @Override
+        protected Integer doInBackground(String... params) {
+
+            int result = SUCCESS;
+
+            //prepare hive service parameters
+            String initiativeId = params[0];
+
+            //prepare hive service
+            Context context = getApplicationContext();
+            HiveDeleteInitiativeById hiveDeleteInitiativeById = new HiveDeleteInitiativeById(context);
+
+            try {
+
+                //call hive service
+                hiveDeleteInitiativeById.deleteInitiativeById(initiativeId);
+
+                //actualize local database
+
+                //InitiativeDAO initiativeDAO = new InitiativeDAO(context);
+                //initiativeDAO.deleteInitiativeById(initiativeId); //TODO: catch exception for inert exception - repeated value
+
+                result = SUCCESS;
+
+            } catch (DeviceNotConnectedException e){
+                result = DEVICE_NOT_CONNECTED;
+
+            } catch(HiveUnexpectedReturnException e){
+                result = ERROR;
+
+            } catch(Exception e){
+                result = ERROR;
+                //TODO: Unexpected error. Should log to enable analysis of the error
+            }
+
+            //return result of background thread execution
+            return result;
+        }
+
+        /**
+         * onPostExecute
+         *
+         * <p/>
+         * Executes in the original thread and receives the result of the background execution.
+         *
+         * @param result
+         */
+        @Override
+        protected void onPostExecute(Integer result) {
+            Context context = getApplicationContext();
+            progressDialog.dismiss();
+
+            if(result == SUCCESS) {
+
+                //Intent intent = new Intent();
+                //setResult(Activity.RESULT_OK, intent);
+                //Intent
+                Intent intent = new Intent(DeliverablesActivity.this, SynchronizeInitiativesActivity.class);
+                //clear activity stack
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //Start Intent
+                startActivity(intent);
+
+                //finish();
+
+            } else if (result == DEVICE_NOT_CONNECTED) {
+
+                Resources res = getResources();
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.initiativesGraphLinearLayout);
+                Snackbar.make(linearLayout, res.getString(R.string.device_not_connect), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+            } else if (result == ERROR) {
+
+                Resources res = getResources();
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.initiativesGraphLinearLayout);
+                Snackbar.make(linearLayout, res.getString(R.string.unexpected_error), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        }
+    }
+
+
+
+    /********************************************************************/
+    /** ASYNC INVITE USER                                              **/
+    /********************************************************************/
+
+
+    /**
+     * AsyncInviteUser
      *
      *
      */
-    private class DoAsyncInviteUser extends AsyncTask<String, Void, Integer> {
+    private class AsyncInviteUser extends AsyncTask<String, Void, Integer> {
         Resources res = getResources();
         Context context = getApplicationContext();
 

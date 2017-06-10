@@ -182,7 +182,7 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // app icon in action bar clicked; goto parent activity.
+                // app icon in action bar clicked; go back to parent activity.
                 this.finish();
                 return true;
 

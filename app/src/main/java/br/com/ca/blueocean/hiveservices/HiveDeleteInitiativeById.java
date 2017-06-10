@@ -22,7 +22,7 @@ import br.com.ca.blueocean.vo.MessageVo;
  *
  * @author Rodrigo Carvalho
  */
-public class HiveDeleteInitiative {
+public class HiveDeleteInitiativeById {
 
     //App context
     Context context;
@@ -38,7 +38,7 @@ public class HiveDeleteInitiative {
      *
      * @param context
      */
-    public HiveDeleteInitiative(Context context){
+    public HiveDeleteInitiativeById(Context context){
         this.context = context;
     }
 
@@ -47,22 +47,16 @@ public class HiveDeleteInitiative {
      *
      * @return
      */
-    public Boolean sendMessage(MessageVo messageVo){ //TODO: chnage for the right method name
+    public String deleteInitiativeById(String initiativeId)throws DeviceNotConnectedException, HiveUnexpectedReturnException, Exception {
 
         String url;
-        String serviceReturn;
-        String jsonMessageVo;
-        Gson gson = new Gson();
+        String serviceReturn="";
 
         try {
             //prepare URL
-            //  convert Vo to Jason string format
-            //  send as get parameter the message in jason format
             //
-            Type messageVoType = new TypeToken<MessageVo>() {}.getType(); //this is necessary because we are deserializing a generic class type
-            jsonMessageVo = gson.toJson(messageVo, messageVoType);
             //TODO: change to the right method name
-            url = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/sendMessage?msg=" + URLEncoder.encode(jsonMessageVo, "UTF-8");
+            url = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/deleteInitiativeById?initiativeId=" + URLEncoder.encode(initiativeId, "UTF-8");
 
             //execute rest call
             HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
@@ -71,13 +65,13 @@ public class HiveDeleteInitiative {
 
             //TODO: check status return in the string serviceReturn
 
-        } catch (DeviceNotConnectedException e){
-            return false;
+        //} catch (DeviceNotConnectedException e){
+            //throw e;
 
         } catch (Exception e){
-
+            throw e;
         }
 
-        return true;
+        return serviceReturn;
     }
 }
