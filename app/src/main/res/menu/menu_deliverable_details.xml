@@ -26,12 +26,12 @@
         android:title="@string/menu_conclude"
         android:orderInCategory="500"
         app:showAsAction="never" />
+    -->
 
     <item android:id="@+id/action_edit_deliverable"
         android:title="@string/menu_edit"
         android:orderInCategory="600"
         app:showAsAction="never" />
-     -->
 
     <item android:id="@+id/action_delete_deliverable"
         android:title="@string/menu_delete"

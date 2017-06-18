@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.ca.shareview" >
+    package="br.com.ca.shareview">
 
     <!-- To access Google+ APIs: -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,26 +19,27 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_yab_logo"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
+
         <activity
             android:name="br.com.ca.blueocean.activity.InitiativesActivity"
             android:label="@string/initiativesActivityLabel"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="br.com.ca.blueocean.activity.SynchronizeInitiativesActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:noHistory="true">
-        </activity>
+            android:noHistory="true"
+            android:screenOrientation="portrait"></activity>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
         <activity
             android:name="br.com.ca.blueocean.activity.SignInActivity"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:noHistory="true"
             android:screenOrientation="portrait"
-            android:noHistory="true">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -46,71 +47,65 @@
         </activity>
         <activity
             android:name="br.com.ca.blueocean.activity.DeliverablesActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/deliverablesActivityLabel" >
-        </activity>
+            android:label="@string/deliverablesActivityLabel"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="br.com.ca.blueocean.activity.DeliverablesReportActivity"
-            android:label="@string/report" >
-        </activity>
+            android:label="@string/report"></activity>
         <activity
             android:name="br.com.ca.blueocean.activity.SendMessageActivity"
             android:label="@string/title_activity_send_message"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="br.com.ca.blueocean.activity.ShowMessagesActivity"
             android:label="@string/title_activity_show_messages"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="br.com.ca.blueocean.activity.ShowPrioritizedDeliverablesActivity"
             android:label="@string/title_activity_show_day_priorities"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="br.com.ca.blueocean.activity.SignUpActivity"
             android:label="@string/title_activity_sign_up"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:noHistory="true"
             android:screenOrientation="portrait"
-            android:noHistory="true">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="br.com.ca.blueocean.activity.DeliverableDetailsActivity"
             android:label="@string/title_activity_deliverable_update"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="br.com.ca.blueocean.activity.ShowInfoActivity"
             android:label="@string/title_activity_show_info"
             android:noHistory="true"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="br.com.ca.blueocean.activity.WelcomeScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme"
+            android:noHistory="true"
             android:screenOrientation="portrait"
-            android:noHistory="true">
-        </activity>
+            android:theme="@style/FullscreenTheme"></activity>
         <activity
             android:name="br.com.ca.blueocean.activity.CreateInitiativeActivity"
             android:label="@string/title_activity_create_initiative"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="br.com.ca.blueocean.activity.CreateDeliverableActivity"
             android:label="@string/title_activity_create_deliverable"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name="br.com.ca.blueocean.activity.EditDeliverableActivity"
+            android:label="@string/title_activity_edit_deliverable"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

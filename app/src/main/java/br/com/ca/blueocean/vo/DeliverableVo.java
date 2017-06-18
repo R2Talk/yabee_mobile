@@ -1,5 +1,6 @@
 package br.com.ca.blueocean.vo;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,9 +12,11 @@ import java.util.Date;
  * Represents the data of a deliverable.
  * Note that the information about the late state is calculated based on the deliverable due date and current date.
  *
+ * BEWARE: This Vo Class implements Serializable becouse this is mandatory to be returned from a startActivityForResult call
+ *
  * @author Rodrigo Carvalho
  */
-public class DeliverableVo {
+public class DeliverableVo implements Serializable{
 
     private String iddeliverable;
     private String idinitiative;

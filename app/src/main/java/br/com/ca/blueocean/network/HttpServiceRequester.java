@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.Charset;
 
 /**
  * HttpServiceRequester
@@ -104,6 +105,7 @@ public class HttpServiceRequester {
 
             //open connection
             conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestProperty("Accept-Charset", "UTF-8");
 
             //prepare request parameters
             conn.setReadTimeout(4000);// milliseconds

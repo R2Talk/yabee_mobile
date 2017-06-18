@@ -1,24 +1,4 @@
 <resources>
-<!--
-    <color name="black_overlay">#66000000</color>
-
-    <color name="primary">#FF9800</color>
-    <color name="primary_dark">#EF6C00</color>
-    <color name="accent">#2979FF</color>
-
-    <color name="activity_background">#FFFFFF</color>
-    <color name="signin_background">#FFC107</color>
-
-    <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
-    <color name="iron">#CCCCCC</color>
-    <color name="green">#1B5E20</color>
-    <color name="red">#EF9A9A</color>
-    <color name="orange">#FFC107</color>
-
-    <color name="yellow_card_color">#FFFDE7</color>
-    <color name="green_card_color">#F1F8E9</color>
--->
 
     <color name="black_overlay">#66000000</color>
 

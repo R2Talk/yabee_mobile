@@ -41,16 +41,20 @@ import br.com.ca.shareview.R;
  *
  * TODO:
  *
- * Show and permits edition and update of deliverable status and rating.
+ * Show deliverable details(and permits call for edition.
  *
  * @author Rodrigo Carvalho
  */
 public class DeliverableDetailsActivity extends AppCompatActivity {
 
     public final static String EXTRA_DELIVERABLE_ID = "DELIVERABLE_ID"; //expected value to the activity initialization
+
     private String deliverableId = null;
     private DeliverableVo thisDeliverableVo = null;
     private String prioritizeComment = null;
+
+    //used for identification of StartActivityForResults request
+    public final int EDIT_DELIVERABLE_INTENT_CALL = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,6 +190,12 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
                 this.finish();
                 return true;
 
+            case R.id.action_edit_deliverable:
+                //edit deliverable
+                callEditDeliverable(thisDeliverableVo);
+
+                return true;
+
             case R.id.action_delete_deliverable:
                 // Use the Builder class for convenient dialog construction
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -267,13 +277,9 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
         }
 
         if ((deliverableVo.getDescription() == null) || (deliverableVo.getDescription().equals(""))){
-            ImageView descriptionLabelImageView = (ImageView) findViewById(R.id.descriptionLabelImageView);
-            descriptionLabelImageView.setVisibility(View.GONE);
             TextView descriptionTextView = (TextView) findViewById(R.id.descriptionTextView);
             descriptionTextView.setVisibility(View.GONE);
         } else {
-            ImageView descriptionLabelImageView = (ImageView) findViewById(R.id.descriptionLabelImageView);
-            descriptionLabelImageView.setVisibility(View.VISIBLE);
             TextView descriptionTextView = (TextView) findViewById(R.id.descriptionTextView);
             descriptionTextView.setVisibility(View.VISIBLE);
         }
@@ -291,6 +297,66 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * callEditDeliverable
+     *
+     * Use intent for result to call edit deliverable activity, and update current details fiels with the result
+     *
+     * @param deliverableVo
+     */
+    void callEditDeliverable(DeliverableVo deliverableVo){
+        Intent intent;
+        Bundle extras;
+
+        //create Intent for calling edit activity
+        intent = new Intent(DeliverableDetailsActivity.this, EditDeliverableActivity.class);
+
+        //prepare Intent parameters
+        extras = new Bundle();
+        extras.putString(EditDeliverableActivity.EXTRA_DELIVERABLE_ID, deliverableVo.getIddeliverable());
+        extras.putString(EditDeliverableActivity.EXTRA_DELIVERABLE_TITLE, String.valueOf(deliverableVo.getTitle()));
+        extras.putString(EditDeliverableActivity.EXTRA_DELIVERABLE_DESCRIPTION, String.valueOf(deliverableVo.getDescription()));
+        extras.putString(EditDeliverableActivity.EXTRA_DELIVERABLE_DATE, String.valueOf(deliverableVo.getDuedate()));
+        intent.putExtras(extras);
+
+        //Start Intent for result
+        startActivityForResult(intent, EDIT_DELIVERABLE_INTENT_CALL);
+
+    }
+
+    /**
+     * onActivityResult
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == EDIT_DELIVERABLE_INTENT_CALL) {
+
+            if (resultCode == RESULT_OK) {
+                //Successful execution implies in deliverable updated in the cloud server and in the local database
+
+                //Read the returned object in data (an Intent object that is the result
+                DeliverableVo returnedDeliverableVo = (DeliverableVo) data.getExtras().getSerializable("DELIVERABLEVO");
+
+                //Update thisDeliverableVo with returned updated values
+                thisDeliverableVo.setTitle(returnedDeliverableVo.getTitle());
+                thisDeliverableVo.setDescription(returnedDeliverableVo.getDescription());
+                thisDeliverableVo.setDuedate(returnedDeliverableVo.getDuedate());
+
+                //Actualize read only details fields
+                updateActivityDetailsView(thisDeliverableVo);
+
+            }
+
+            if (resultCode == RESULT_CANCELED) {
+                //If there's no result
+            }
+        }
+    }
 
     /********************************************************************/
     /** ASYNC DELETE DELIVERABLE                                       **/

@@ -15,9 +15,14 @@
 
     <EditText
         android:id="@+id/commentsEditText"
+        style="@android:style/Widget.DeviceDefault.EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textCapSentences|textMultiLine">
+        android:inputType="textCapSentences|textMultiLine"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@color/black"
+        android:visibility="visible">
+
         <requestFocus />
     </EditText>
 

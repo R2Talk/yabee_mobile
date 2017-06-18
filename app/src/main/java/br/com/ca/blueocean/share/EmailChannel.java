@@ -50,11 +50,11 @@ public class EmailChannel {
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
         emailIntent.putExtra(Intent.EXTRA_TEXT, text);
 
-        try {
-            context.startActivity(Intent.createChooser(emailIntent, context.getResources().getString(R.string.sendEmail)));
+        try { 
+            context.startActivity(Intent.createChooser(emailIntent, context.getResources().getString(R.string.share)));
         }
         catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(context, context.getResources().getString(R.string.missingEmailClient), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, context.getResources().getString(R.string.missingShareClient), Toast.LENGTH_SHORT).show();
         }
     }
 }

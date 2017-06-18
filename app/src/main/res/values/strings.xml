@@ -64,7 +64,7 @@
     <string name="menu_delete">Excluir</string>
     <string name="menu_invite">Convidar</string>
 
-    <string name="dialog_delete_initiative">Remover esta iniciativa?</string>
+    <string name="dialog_delete_initiative">Remover esta iniciativa?\n\nATENÇÃO: A INICIATIVA E TODAS AS ENTREGAS ASSOCIADAS SERÃO APAGADAS!</string>
     <string name="dialog_delete_deliverable">Remover esta entrega?</string>
     <string name="dialog_prioritize_deliverable">Priorizar esta entrega?</string>
     <string name="dialog_reset_deliverable_priority">Remover a prioridade desta entrega?</string>
@@ -105,6 +105,7 @@
     <string name="sendEmail">Enviar email</string>
     <string name="share">Compartilhar</string>
     <string name="missingEmailClient">Nenhum aplicativo de email está configurado</string>
+    <string name="missingShareClient">Nenhum aplicativo de compartilhamento está configurado</string>
     <string name="emailTo">rcarvalho89@hotmail.com</string>
     <string name="emailSubject">Ya Bee Message</string>
     <string name="emailHeader">Ya Bee status para iniciativa </string>
@@ -136,6 +137,7 @@
     <string name="title_activity_deliverable_update">Entrega</string>
     <string name="title_activity_show_info">Info</string>
     <string name="title_activity_create_deliverable">Criar Nova Entrega</string>
+    <string name="title_activity_edit_deliverable">Editar Entrega</string>
 
     <string name="button_synchronize">Sincronizar</string>
 
@@ -157,6 +159,7 @@
 
     <string name="title_activity_welcome_screen">WelcomeScreenActivity</string>
     <string name="title_activity_create_initiative">CreateInitiativeActivity</string>
+
 
 
 </resources>

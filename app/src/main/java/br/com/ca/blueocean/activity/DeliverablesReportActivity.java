@@ -35,6 +35,7 @@ public class DeliverablesReportActivity extends AppCompatActivity {
     public final static String EXTRA_INITIATIVE_ID = "INITIATIVE_ID"; //expected value to the activity initialization
     public final static String EXTRA_INITIATIVE_TITLE = "INITIATIVE_TITLE"; //expected value to the activity initialization
 
+
     private String initiativeId = null;
     private String initiativeTitle = null;
 
