@@ -133,13 +133,14 @@ public class InitiativesActivity extends AppCompatActivity {
                 //Start Intent
                 startActivity(intent);
                 return true;
-
+            /*
             case id.action_show_messages:
                 //Intent
                 intent = new Intent(InitiativesActivity.this, ShowMessagesActivity.class);
                 //Start Intent
                 startActivity(intent);
                 return true;
+            */
 
             case id.action_show_info:
                 //Intent
