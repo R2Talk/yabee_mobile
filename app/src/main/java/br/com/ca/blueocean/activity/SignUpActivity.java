@@ -64,7 +64,7 @@ public class SignUpActivity extends AppCompatActivity {
         //        on success: save user in preferences, save singleton user instance and call welcome activity
         //        on user already exist, create SnackBar message informing
 
-        //1. Get values from views
+        //1. Get values from views values
         String name = (String) (((TextView) findViewById(R.id.nameEditText)).getText()).toString();
         String email = (String) (((TextView) findViewById(R.id.emailEditText)).getText()).toString();
         String pwd = (String) (((TextView) findViewById(R.id.pwdEditText)).getText()).toString();
@@ -102,7 +102,6 @@ public class SignUpActivity extends AppCompatActivity {
         //TODO: define values to mark network errors and permit to show the appropriate message in this UI Thread
         public final int VALID_USER = 1;
         public final int INVALID_USER = 3;
-
 
         /**
          * onPreExecute

@@ -28,6 +28,7 @@ import java.util.Calendar;
 import br.com.ca.blueocean.database.DeliverableDAO;
 import br.com.ca.blueocean.hiveservices.HiveCreateDeliverable;
 import br.com.ca.blueocean.hiveservices.HiveUnexpectedReturnException;
+import br.com.ca.blueocean.hiveservices.HiveUpdateDeliverable;
 import br.com.ca.blueocean.network.DeviceNotConnectedException;
 import br.com.ca.blueocean.util.DatePickerFragment;
 import br.com.ca.blueocean.vo.DeliverableVo;
@@ -100,20 +101,21 @@ public class EditDeliverableActivity extends AppCompatActivity  {
                 EditText descriptionUpdateEditText = (EditText) findViewById(R.id.descriptionUpdateEditText);
                 TextView dueDateUpdateTextView = (TextView) findViewById(R.id.deliverableDueDateUpdateTextView);
 
+                thisDeliverableVo.setIddeliverable(deliverableId);
                 thisDeliverableVo.setTitle(titleUpdateEditText.getText().toString());
                 thisDeliverableVo.setDescription(descriptionUpdateEditText.getText().toString());
                 thisDeliverableVo.setDuedate(dueDateUpdateTextView.getText().toString());
 
                 if ((thisDeliverableVo.getTitle()).trim().equals("")|| (thisDeliverableVo.getDuedate()).trim().equals("")){
                     Resources res = getResources();
-                    //TODO: change message text
-                    Snackbar.make(view, res.getString(R.string.fields_needed_for_deliverable), Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, res.getString(R.string.fields_needed_for_update_deliverable), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
 
                     //update deliverable using AsyncActivity
+                    new AsyncUpdateDeliverable().execute(thisDeliverableVo.getIddeliverable(),thisDeliverableVo.getTitle(), thisDeliverableVo.getDescription(), thisDeliverableVo.getDuedate());
 
-                    //new AsyncUpdatDeliverable().execute(title, description, date);
+                    //return to the caller Intent
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra("DELIVERABLEVO", thisDeliverableVo);
                     setResult(Activity.RESULT_OK, resultIntent);
@@ -161,7 +163,7 @@ public class EditDeliverableActivity extends AppCompatActivity  {
                                           int year, int month, int day) {
                         month = month + 1;
                         TextView textView = (TextView) findViewById(R.id.deliverableDueDateUpdateTextView);
-                        textView.setText("" + day + "/" + month + "/" + year);
+                        textView.setText("" + year + "-" + month + "-" + day);
                     }
                 },
                 c_year,
@@ -219,13 +221,13 @@ public class EditDeliverableActivity extends AppCompatActivity  {
     }
 
     /**
-     * AsyncEditDeliverable
+     * AsyncUpdateDeliverable
      *
      * <p/>
      * Uses AsyncTask to update a task away from the main UI thread, and send message to rest server.
      *
      */
-    private class AsyncEditDeliverable extends AsyncTask<String, Void, EditDeliverableAsyncResult> {
+    private class AsyncUpdateDeliverable extends AsyncTask<String, Void, String> {
         Resources res = getResources();
         Context context = getApplicationContext();
 
@@ -250,43 +252,44 @@ public class EditDeliverableActivity extends AppCompatActivity  {
          * @return
          */
         @Override
-        protected EditDeliverableAsyncResult doInBackground(String... params) {
+        protected String doInBackground(String... params) {
 
             //prepare hive service parameters
-            String title = params[0];
-            String description = params[1];
-            String date = params[2];
+            String iddeliverable = params[0];
+            String title = params[1];
+            String description = params[2];
+            String duedate = params[3];
 
+            String result="";
 
-            EditDeliverableAsyncResult result = null;
+            DeliverableVo updateDeliverableVo = new DeliverableVo(iddeliverable, "", title, description, "", "", duedate, "", "", "", "", "", "", "", "", "");
             DeliverableVo deliverableVo = null;
 
             //prepare hive service
             Context context = getApplicationContext();
-            //TODO: HiveUpdateDeliverable hiveUpdateDeliverable = new HiveUpdateDeliverable(context);
+            HiveUpdateDeliverable hiveUpdateDeliverable = new HiveUpdateDeliverable(context);
 
             try {
 
-                //TODO: deliverableVo = hiveUpdateDeliverable.updateDeliverable(title, description, date);
+                result = hiveUpdateDeliverable.hiveUpdateDeliverable(updateDeliverableVo);
 
-                if (deliverableVo != null) {
+                //TODO: Catch exception insted of checking for result as ""
+                if (result.equals("")) {
 
                     //actualize local database with newly updated deliverable
                     DeliverableDAO deliverableDAO = new DeliverableDAO(context);
-                    //TODO: deliverableDAO.updateDeliverableVo(deliverableVo); //TODO: catch exception for local inert error
+                    deliverableDAO.updateDeliverable(updateDeliverableVo); //TODO: catch exception for local inert error
 
-                    //prepare result for previous activity
-                    result = new EditDeliverableAsyncResult(EditDeliverableAsyncResult.SUCCESS, deliverableVo);
                 }
 
             } /** catch (DeviceNotConnectedException e){
-                result = new EditDeliverableAsyncResult(EditDeliverableAsyncResult.DEVICE_NOT_CONNECTED, null);
+                result = "error";
 
             } catch(HiveUnexpectedReturnException e){
-                result = new EditDeliverableAsyncResult(EditDeliverableAsyncResult.ERROR, null);
+                result = "error";
 
-            } */catch(Exception e){
-                result = new EditDeliverableAsyncResult(EditDeliverableAsyncResult.ERROR, null);
+            } */ catch(Exception e){
+                result = "error";
                 //TODO: Its an unexpected error. Should log to enable analysis of the error
             }
 
@@ -303,28 +306,12 @@ public class EditDeliverableActivity extends AppCompatActivity  {
          * @param result
          */
         @Override
-        protected void onPostExecute(EditDeliverableAsyncResult result) {
+        protected void onPostExecute(String result) {
             Context context = getApplicationContext();
             progressDialog.dismiss();
 
-            if(result.getResultCode() == EditDeliverableAsyncResult.SUCCESS) {
-
-                return;
-
-            } else if (result.getResultCode() == EditDeliverableAsyncResult.DEVICE_NOT_CONNECTED) {
-
-                Resources res = getResources();
-                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.createDeliverableCoordinatorLayout);
-                Snackbar.make(coordinatorLayout, res.getString(R.string.device_not_connect), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-            } else if (result.getResultCode() == EditDeliverableAsyncResult.ERROR) {
-
-                Resources res = getResources();
-                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.createInitiativeCoordinatorLayout);
-                Snackbar.make(coordinatorLayout, res.getString(R.string.unexpected_error), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+            //TODO: CHECK FOR ERROR OR EXCEPTIONS
+            return;
         }
     }
 }

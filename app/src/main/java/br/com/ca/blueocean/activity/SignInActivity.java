@@ -79,7 +79,12 @@ public class SignInActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     String email = (String) (((TextView) findViewById(R.id.emailEditText)).getText()).toString();
                     if (email.equals("")) {
-                        Snackbar.make(view, R.string.identify_yourself, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                        Context context = getApplicationContext();
+                        int duration = Toast.LENGTH_LONG;
+                        Toast toast = Toast.makeText(context, R.string.identify_yourself, duration);
+                        toast.show();
+                        //TODO: Change Toats to SnackBar
+                        //Snackbar.make(view, R.string.identify_yourself, Snackbar.LENGTH_LONG).setAction("Action", null).show();
                     } else {
                         doSignIn(((TextView) findViewById(R.id.emailEditText)).getText(), ((TextView) findViewById(R.id.pwdEditText)).getText());
                     }
@@ -152,7 +157,16 @@ public class SignInActivity extends AppCompatActivity {
      */
     public void onClickLogin(View view) {
 
-        doSignIn(((TextView) findViewById(R.id.emailEditText)).getText(), ((TextView) findViewById(R.id.pwdEditText)).getText());
+        //1. Get values from views values
+        String email = (String) (((TextView) findViewById(R.id.emailEditText)).getText()).toString();
+        String pwd = (String) (((TextView) findViewById(R.id.pwdEditText)).getText()).toString();
+
+        //2. Check data conditions (not empty, password with minimum number of characters, email well formed)
+        if (email.equals("") || pwd.equals("")) {
+            Snackbar.make(view, R.string.all_fields_needed_for_login, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+        } else {
+            doSignIn(email, pwd);
+        }
     }
 
     /**

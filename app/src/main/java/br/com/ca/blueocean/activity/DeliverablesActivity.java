@@ -289,7 +289,7 @@ public class DeliverablesActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK){
                 //Successful execution implies in initiative created in the cloud server and actualized in the local database
                 //Refresh list view with the actualized local database
-                refreshDeliverablesListView();;
+                refreshDeliverablesListView();
             }
 
             if (resultCode == RESULT_CANCELED) {

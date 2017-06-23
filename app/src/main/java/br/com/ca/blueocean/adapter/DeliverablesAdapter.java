@@ -90,7 +90,7 @@ public class DeliverablesAdapter extends ArrayAdapter<DeliverableVo> {
             //title
             titleView.setText(itemsArrayList.get(position).getTitle());
             //due date
-         due_dateView.setText(itemsArrayList.get(position).getDuedate());
+            due_dateView.setText(itemsArrayList.get(position).getDuedate());
 
             // 6. return rowInitiativesView
             return rowDeliverableView;

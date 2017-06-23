@@ -11,6 +11,7 @@ import java.net.URLEncoder;
 import br.com.ca.blueocean.network.DeviceNotConnectedException;
 import br.com.ca.blueocean.network.HttpServiceRequester;
 import br.com.ca.blueocean.network.InternetDefaultServer;
+import br.com.ca.blueocean.vo.DeliverableVo;
 import br.com.ca.blueocean.vo.MessageVo;
 
 /**
@@ -43,15 +44,15 @@ public class HiveUpdateDeliverable {
     }
 
     /**
-     * sendMessage
+     * hiveUpdateDeliverable
      *
      * @return
      */
-    public Boolean sendMessage(MessageVo messageVo){ //TODO: chnage for the right method name
+    public String hiveUpdateDeliverable(DeliverableVo deliverableVo){
 
-        String url;
-        String serviceReturn;
-        String jsonMessageVo;
+        String url="";
+        String serviceReturn="";
+        String jsonDeliverableVo;
         Gson gson = new Gson();
 
         try {
@@ -59,10 +60,10 @@ public class HiveUpdateDeliverable {
             //  convert Vo to Jason string format
             //  send as get parameter the message in jason format
             //
-            Type messageVoType = new TypeToken<MessageVo>() {}.getType(); //this is necessary because we are deserializing a generic class type
-            jsonMessageVo = gson.toJson(messageVo, messageVoType);
-            //TODO: change to the right method name
-            url = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/sendMessage?msg=" + URLEncoder.encode(jsonMessageVo, "UTF-8");
+            Type deliverableVoType = new TypeToken<DeliverableVo>() {}.getType(); //this is necessary because we are deserializing a generic class type
+            jsonDeliverableVo = gson.toJson(deliverableVo, deliverableVoType);
+
+            url = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/updateDeliverable?jasonDeliverableVo=" + URLEncoder.encode(jsonDeliverableVo, "UTF-8");
 
             //execute rest call
             HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
@@ -72,12 +73,12 @@ public class HiveUpdateDeliverable {
             //TODO: check status return in the string serviceReturn
 
         } catch (DeviceNotConnectedException e){
-            return false;
+            return "error";
 
         } catch (Exception e){
-
+            return "error";
         }
 
-        return true;
+        return serviceReturn;
     }
 }

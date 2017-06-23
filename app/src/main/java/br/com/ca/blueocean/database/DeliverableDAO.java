@@ -278,4 +278,22 @@ public class DeliverableDAO {
 
         db.execSQL(sql); //use the method execSQL do modify the database
     }
+
+    /**
+     * updateDeliverable
+     *
+     * @param deliverableVo
+     */
+    public void updateDeliverable(DeliverableVo deliverableVo) { //TODO: review to throw exception
+
+        SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
+
+        String sql = "UPDATE " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " SET "
+                +  DatabaseOpenHelper.KEY_DELIVERABLE_title + "='" + deliverableVo.getTitle() + "', "
+                +  DatabaseOpenHelper.KEY_DELIVERABLE_description + "='" + deliverableVo.getDescription() + "', "
+                +  DatabaseOpenHelper.KEY_DELIVERABLE_duedate + "='" + deliverableVo.getDuedate() + "' "
+                + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_iddeliverable + " = " + deliverableVo.getIddeliverable();
+
+        db.execSQL(sql); //use the method execSQL do modify the database
+    }
 }

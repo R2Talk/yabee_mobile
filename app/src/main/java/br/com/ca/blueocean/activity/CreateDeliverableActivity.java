@@ -118,8 +118,9 @@ public class CreateDeliverableActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 month=month+1;
-                ((TextView) findViewById(R.id.deliverableDateTextView)).setText("" + day + "/" + month + "/" + year);
                 date = year + "-" + month + "-" + day;
+                ((TextView) findViewById(R.id.deliverableDateTextView)).setText(date);
+
             }
         };
 

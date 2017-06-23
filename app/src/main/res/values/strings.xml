@@ -35,9 +35,11 @@
     <string name="wrongNameOrPwd">Nome de usuário ou senha inválidos.</string>
     <string name="user_already_exists">Ops! Já existe um usuário identificado por este e-mail.</string>
     <string name="all_fields_needed_for_account">Ops! Para criar sua conta todos os campos devem ser preenchidos.</string>
+    <string name="all_fields_needed_for_login">Ops! Para criar login informe o e-mail e senha.</string>
     <string name="all_fields_needed_for_initiative">Ops! Para criar a iniciativa todos os campos devem ser preenchidos.</string>
     <string name="initiative_already_exist">Ops! Já existe uma iniciativa com este título. Tente com outro.</string>
     <string name="fields_needed_for_deliverable">Para criar a entrega o título e a data devem ser preenchidos.</string>
+    <string name="fields_needed_for_update_deliverable">Para atualizar a entrega o título e a data devem ser preenchidos.</string>
     <string name="unexpected_error">Erro durante a execução. Provável indisponibilidade nos serviços da nuvem, tente mais tarde.</string>
 
     <string name="hello">Olá </string>
