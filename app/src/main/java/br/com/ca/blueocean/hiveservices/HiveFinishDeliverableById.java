@@ -2,16 +2,11 @@ package br.com.ca.blueocean.hiveservices;
 
 import android.content.Context;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
 import java.net.URLEncoder;
 
 import br.com.ca.blueocean.network.DeviceNotConnectedException;
 import br.com.ca.blueocean.network.HttpServiceRequester;
 import br.com.ca.blueocean.network.InternetDefaultServer;
-import br.com.ca.blueocean.vo.MessageVo;
 
 /**
  * Hive
@@ -22,14 +17,10 @@ import br.com.ca.blueocean.vo.MessageVo;
  *
  * @author Rodrigo Carvalho
  */
-public class HiveDeleteInitiativeById {
+public class HiveFinishDeliverableById {
 
     //App context
     Context context;
-    //possible returned states of network query login
-    public final int NOT_CONNECTED = 0;
-    public final int SUCCESS = 1;
-    public final int ERROR = 2;
 
     /**
      * Constructor
@@ -38,35 +29,36 @@ public class HiveDeleteInitiativeById {
      *
      * @param context
      */
-    public HiveDeleteInitiativeById(Context context){
+    public HiveFinishDeliverableById(Context context){
         this.context = context;
     }
 
     /**
-     * deleteInitiativeById
+     * finishDeliverableById
      *
      * @return
      */
-    public String deleteInitiativeById(String initiativeId)throws DeviceNotConnectedException, HiveUnexpectedReturnException, Exception {
+    public String finishDeliverableById(String deliverableId)throws DeviceNotConnectedException, HiveUnexpectedReturnException, Exception {
 
         String url;
-        String serviceReturn="";
+        String serviceReturn;
 
         try {
             //prepare URL
-            //
-            //TODO: change to the right method name
-            url = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/deleteInitiativeById?initiativeId=" + URLEncoder.encode(initiativeId, "UTF-8");
+            url = "http://" +  InternetDefaultServer.getDefaultServer() + "/AsapServer/finishDeliverable?deliverableId=" + URLEncoder.encode(deliverableId, "UTF-8");
 
             //execute rest call
             HttpServiceRequester httpServiceRequester = new HttpServiceRequester(context);
 
             serviceReturn = httpServiceRequester.executeHttpGetRequest(url);
 
-            //TODO: check status return in the string serviceReturn
+            // if unexpected return throws exception
+            if (serviceReturn == null) {
+                throw new HiveUnexpectedReturnException();
+            }
 
-        //} catch (DeviceNotConnectedException e){
-            //throw e;
+        } catch (DeviceNotConnectedException e){
+            throw e;
 
         } catch (Exception e){
             throw e;

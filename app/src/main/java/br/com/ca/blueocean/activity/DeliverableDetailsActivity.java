@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import br.com.ca.blueocean.database.DeliverableDAO;
 import br.com.ca.blueocean.hiveservices.HiveDeleteDeliverableById;
+import br.com.ca.blueocean.hiveservices.HiveFinishDeliverableById;
 import br.com.ca.blueocean.hiveservices.HiveResetDeliverablePriority;
 import br.com.ca.blueocean.hiveservices.HiveSetDeliverablePriority;
 import br.com.ca.blueocean.hiveservices.HiveUnexpectedReturnException;
@@ -39,23 +40,29 @@ import br.com.ca.shareview.R;
 /**
  * DeliverableDetailsActivity
  *
- * TODO:
- *
  * Show deliverable details(and permits call for edition.
  *
  * @author Rodrigo Carvalho
  */
 public class DeliverableDetailsActivity extends AppCompatActivity {
 
+    //BEWARE: The class define its all constants for identifying data parameters from previous activity
+    //BEWARE: Any activty that call this activity via Intent must reference these static constants
     public final static String EXTRA_DELIVERABLE_ID = "DELIVERABLE_ID"; //expected value to the activity initialization
 
+    /* class variables representing the deliverable data */
     private String deliverableId = null;
     private DeliverableVo thisDeliverableVo = null;
     private String prioritizeComment = null;
 
-    //used for identification of StartActivityForResults request
+    /* used for identification of StartActivityForResults request */
     public final int EDIT_DELIVERABLE_INTENT_CALL = 0;
 
+    /**
+     * onCreate
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,17 +71,14 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //
-        //Get parameters from previous activity
-        //
+        /* Get parameters from previous activity */
         Intent myIntent = getIntent(); // gets the previously created intent
         Bundle extras = myIntent.getExtras();
         deliverableId = extras.getString(EXTRA_DELIVERABLE_ID);
 
-        //use DAO to get deliverable by id
+        /* use DAO to get deliverable by id from local database */
         DeliverableDAO deliverableDAO = new DeliverableDAO(getApplicationContext());
         thisDeliverableVo = deliverableDAO.getDeliverableById(deliverableId);
-
         //set details view with deliverableVo values
         updateActivityDetailsView(thisDeliverableVo);
 
@@ -217,6 +221,27 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
 
                 return true;
 
+            case R.id.action_finish_deliverable:
+                // Use the Builder class for convenient dialog construction
+                AlertDialog.Builder builderFinishDialog = new AlertDialog.Builder(this);
+                builderFinishDialog.setMessage(R.string.dialog_finish_deliverable)
+                        .setPositiveButton(R.string.dialog_confirm, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //call delete deliverable handler
+                                onConfirmFinishDeliverableDialog();
+                            }
+                        })
+                        .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //do nothing
+                            }
+                        });
+                // Create the AlertDialog object and return it
+                AlertDialog finishAlertDialog = builderFinishDialog.create();
+                finishAlertDialog.show();
+
+                return true;
+
             case R.id.action_share:
                 String to = "";
                 String cc = "";
@@ -246,6 +271,17 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
     public void onConfirmDeleteDeliverableDialog(){
         //delete the deliverable
         new AsyncDeleteDeliverable().execute(deliverableId);
+    }
+
+    /**
+     * OnConfirmFinishDeliverableDialog
+     *
+     * BEWARE: This method should be called from Finish Dialog
+     *
+     */
+    public void onConfirmFinishDeliverableDialog(){
+        //delete the deliverable
+        new AsyncFinishDeliverable().execute(deliverableId);
     }
 
     /**
@@ -354,6 +390,130 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
 
             if (resultCode == RESULT_CANCELED) {
                 //If there's no result
+            }
+        }
+    }
+
+    //
+    //TODO: Need Refactory. All Async calls must reside in only one Async Function. Parameter will indicate the operation.
+    //
+    /********************************************************************/
+    /** ASYNC FINISH DELIVERABLE                                       **/
+    /********************************************************************/
+
+    /**
+     * AsyncFinishDeliverable
+     *
+     * <p/>
+     * Uses AsyncTask to create a task away from the main UI thread, and call methods that send message to rest server.
+     *
+     */
+    private class AsyncFinishDeliverable extends AsyncTask<String, Void, Integer> {
+        Resources res = getResources();
+        Context context = getApplicationContext();
+
+        public static final int SUCCESS = 0;
+        public static final int ERROR = 1;
+        public static final int DEVICE_NOT_CONNECTED = 2;
+
+        final ProgressDialog progressDialog = new ProgressDialog(DeliverableDetailsActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+
+        /**
+         * onPreExecute
+         *
+         * <p/>
+         * Executes in the original UI thread before starting new thread for background execution.
+         *
+         */
+        @Override
+        protected void onPreExecute() {
+            //show progress dialog
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage(res.getString(R.string.synchronizing));
+            progressDialog.show();
+        }
+
+        /**
+         * doInBackgroud
+         *
+         * <p/>
+         * AsyncExecution. Executes in its own thread in background.
+         *
+         * @param params
+         * @return
+         */
+        @Override
+        protected Integer doInBackground(String... params) {
+
+            int result = SUCCESS;
+
+            /* prepare hive service parameters */
+            String deliverableId = params[0];
+
+            try {
+
+                /* prepare hive service */
+                Context context = getApplicationContext();
+                HiveFinishDeliverableById hiveFinishDeliverableById = new HiveFinishDeliverableById(context);
+
+                //call hive service
+                hiveFinishDeliverableById.finishDeliverableById(deliverableId);
+
+                //actualize local database
+                DeliverableDAO deliverableDAO = new DeliverableDAO(context);
+                deliverableDAO.finishDeliverableById(deliverableId); //TODO: catch exception for inert exception - repeated value
+
+                result = SUCCESS;
+
+            } catch (DeviceNotConnectedException e){
+                result = DEVICE_NOT_CONNECTED;
+
+            } catch(HiveUnexpectedReturnException e){
+                result = ERROR;
+
+            } catch(Exception e){
+                result = ERROR;
+                //TODO: Unexpected error. Should log to enable analysis of the error
+            }
+
+            //return result of background thread execution
+            return result;
+        }
+
+        /**
+         * onPostExecute
+         *
+         * <p/>
+         * Executes in the original thread and receives the result of the background execution.
+         *
+         * @param result
+         */
+        @Override
+        protected void onPostExecute(Integer result) {
+            Context context = getApplicationContext();
+            progressDialog.dismiss();
+
+            if(result == SUCCESS) {
+
+                Intent resultIntent = new Intent();
+                setResult(Activity.RESULT_OK, resultIntent);
+
+                finish();
+
+            } else if (result == DEVICE_NOT_CONNECTED) {
+
+                Resources res = getResources();
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.deliverableDetailsLinearLayout);
+                Snackbar.make(linearLayout, res.getString(R.string.device_not_connect), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+            } else if (result == ERROR) {
+
+                Resources res = getResources();
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.deliverableDetailsLinearLayout);
+                Snackbar.make(linearLayout, res.getString(R.string.unexpected_error), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         }
     }

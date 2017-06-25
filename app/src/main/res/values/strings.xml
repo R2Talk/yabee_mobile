@@ -62,12 +62,13 @@
     <string name="menu_prioritize_deliverable">Priorizar</string>
     <string name="menu_toggle_join_deliverable">Seguir</string>
     <string name="menu_edit">Editar</string>
-    <string name="menu_conclude">Concluir</string>
+    <string name="menu_finish">Concluir</string>
     <string name="menu_delete">Excluir</string>
     <string name="menu_invite">Convidar</string>
 
     <string name="dialog_delete_initiative">Remover esta iniciativa?\n\nATENÇÃO: A INICIATIVA E TODAS AS ENTREGAS ASSOCIADAS SERÃO APAGADAS!</string>
     <string name="dialog_delete_deliverable">Remover esta entrega?</string>
+    <string name="dialog_finish_deliverable">Concluir esta entrega?</string>
     <string name="dialog_prioritize_deliverable">Priorizar esta entrega?</string>
     <string name="dialog_reset_deliverable_priority">Remover a prioridade desta entrega?</string>
     <string name="dialog_confirm">confirmar</string>

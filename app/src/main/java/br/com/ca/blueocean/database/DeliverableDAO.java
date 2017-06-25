@@ -111,7 +111,7 @@ public class DeliverableDAO {
         SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERBALE_INITIATIVE_idinititative + " = '" + initiativeId + "'";
+        String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE  " + DatabaseOpenHelper.KEY_DELIVERABLE_status + " = 'OPEN' AND " + DatabaseOpenHelper.KEY_DELIVERBALE_INITIATIVE_idinititative + " = '" + initiativeId + "'";
         Cursor cursor = db.rawQuery(selectQuery, null); // db.rawQuery(selectQuery, query_params)
 
         // looping through all rows and adding to list
@@ -155,7 +155,7 @@ public class DeliverableDAO {
         SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_iddeliverable + " = '" + deliverableId + "'";
+        String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE  " + DatabaseOpenHelper.KEY_DELIVERABLE_status + " = 'OPEN' AND " + DatabaseOpenHelper.KEY_DELIVERABLE_iddeliverable + " = '" + deliverableId + "'";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -203,10 +203,10 @@ public class DeliverableDAO {
 
         // Select All Query
         if (filter.equals("USER")) {
-            selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_ispriority + " = 'YES'" + " AND " + DatabaseOpenHelper.KEY_DELIVERABLE_prioritizedby + " = '" + userId + "'";
+            selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_status + " = 'OPEN' AND " + DatabaseOpenHelper.KEY_DELIVERABLE_ispriority + " = 'YES'" + " AND " + DatabaseOpenHelper.KEY_DELIVERABLE_prioritizedby + " = '" + userId + "'";
 
         } else if (filter.equals("ALL")) {
-            selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_ispriority + " = 'YES'";
+            selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_status + " = 'OPEN' AND " + DatabaseOpenHelper.KEY_DELIVERABLE_ispriority + " = 'YES'";
 
         } else {
             //throws exception  notRecognizedFilterException // TODO: define as database package exception
@@ -243,6 +243,22 @@ public class DeliverableDAO {
 
         // return Initiative list
         return deliverableVoList;
+    }
+
+    /**
+     * finishDeliverableById
+     *
+     * @param deliverableId
+     */
+    public void finishDeliverableById(String deliverableId) { //TODO: review to throw exception
+
+        SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
+
+        String sql = "UPDATE " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " SET "
+                +  DatabaseOpenHelper.KEY_DELIVERABLE_status + "='FINISHED' "
+                + " WHERE " + DatabaseOpenHelper.KEY_DELIVERABLE_iddeliverable + " = " + deliverableId;
+
+        db.execSQL(sql); //use the method execSQL do modify the database
     }
 
     /**

@@ -1,6 +1,7 @@
 package br.com.ca.blueocean.activity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +19,8 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.Calendar;
 
 import br.com.ca.blueocean.database.DeliverableDAO;
 import br.com.ca.blueocean.hiveservices.HiveCreateDeliverable;
@@ -42,6 +45,9 @@ public class CreateDeliverableActivity extends AppCompatActivity {
     private String description = null;
     private String date = null;
 
+    //date picker dialog
+    DatePickerDialog datePickerDialog;
+
     /**
      * onCreate
      *
@@ -55,20 +61,20 @@ public class CreateDeliverableActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //
-        //Get parameters from previous activity
-        //
+
+        /* Get parameters from previous activity */
         Intent myIntent = getIntent(); // gets the previously created intent
         Bundle extras = myIntent.getExtras();
-
         this.initiativeId = extras.getString(EXTRA_INITIATIVE_ID);
         this.userId = extras.getString(EXTRA_USER_ID);
 
+        /* create and set handler for Floating Action Button */
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_create_deliverable);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //check creation data
+
+                /* validate activity data for creation */
                 EditText titleEditText = (EditText) findViewById(R.id.titleEditText);
                 EditText descriptionEditText = (EditText) findViewById(R.id.descriptionEditText);
 
@@ -78,7 +84,7 @@ public class CreateDeliverableActivity extends AppCompatActivity {
                             .setAction("Action", null).show();
                 } else {
 
-                    //create deliverable
+                    /* create deliverable */
                     title = (((EditText) findViewById(R.id.titleEditText)).getText()).toString();
                     description = (((EditText) findViewById(R.id.descriptionEditText)).getText()).toString();
 
@@ -107,24 +113,38 @@ public class CreateDeliverableActivity extends AppCompatActivity {
     }
 
     /**
-     * onCalendarImageClick
+     * onCalendarClick
+     *
+     * Creates a Date Picker Dialog and get selected date value
+     *
+     * BEWARE: This is the model for every needed Date Picker Dialog
      *
      * @param view
      */
-    public void onCalendarImageClick(View view){
+    public void onCalendarClick(View view){
 
-        //BE WARE: Overwriting "onDataSet" method to get the values chosen in the date picker dialog.
-        DialogFragment newFragment = new DatePickerFragment(){
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                month=month+1;
-                date = year + "-" + month + "-" + day;
-                ((TextView) findViewById(R.id.deliverableDateTextView)).setText(date);
+        final Calendar c = Calendar.getInstance();
+        int c_year = c.get(Calendar.YEAR);
+        int c_month = c.get(Calendar.MONTH);
+        int c_day = c.get(Calendar.DAY_OF_MONTH);
 
-            }
-        };
+        datePickerDialog = new DatePickerDialog(CreateDeliverableActivity.this,
+                new DatePickerDialog.OnDateSetListener() {
 
-        newFragment.show(getSupportFragmentManager(), "datePicker");
+                    @Override
+                    public void onDateSet(DatePicker view,
+                                          int year, int month, int day) {
+                        month = month + 1;
+                        date = year + "-" + month + "-" + day;
+                        TextView textView = (TextView) findViewById(R.id.deliverableDateTextView);
+                        textView.setText(date);
+                    }
+                },
+                c_year,
+                c_month,
+                c_day);
+
+        datePickerDialog.show();
     }
 
     /**
@@ -173,6 +193,13 @@ public class CreateDeliverableActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(CreateDeliverableActivity.this,
                 R.style.AppTheme_Dark_Dialog);
 
+        /**
+         * onPreExecute
+         *
+         * <p/>
+         * Executes in the original UI thread before starting new thread for background execution.
+         *
+         */
         @Override
         protected void onPreExecute() {
             //show progress dialog
@@ -231,7 +258,6 @@ public class CreateDeliverableActivity extends AppCompatActivity {
 
             } catch(Exception e){
                 result = new CreateDeliverableAsyncResult(CreateDeliverableAsyncResult.ERROR, null);
-                //TODO: Its an unexpected error. Should log to enable analysis of the error
             }
 
             //return result of background thread execution

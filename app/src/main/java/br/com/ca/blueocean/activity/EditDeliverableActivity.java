@@ -36,12 +36,14 @@ import br.com.ca.shareview.R;
 
 public class EditDeliverableActivity extends AppCompatActivity  {
 
+    //BEWARE: The class define its all constants for identifying data parameters from previous activity
+    //BEWARE: Any activty that call this activity via Intent must reference these static constants
     public final static String EXTRA_DELIVERABLE_ID = "DELIVERABLE_ID"; //expected value to the activity initialization
     public final static String EXTRA_DELIVERABLE_TITLE = "DELIVERABLE_TITLE"; //expected value to the activity initialization
     public final static String EXTRA_DELIVERABLE_DESCRIPTION = "DELIVERABLE_DESCRIPTION"; //expected value to the activity initialization
     public final static String EXTRA_DELIVERABLE_DATE = "DELIVERABLE_DATE"; //expected value to the activity initialization
 
-    // create deliverable data
+    //class variables representing the deliverable data that's being edited
     private String deliverableId = null;
     private String title = null;
     private String description = null;
@@ -66,9 +68,7 @@ public class EditDeliverableActivity extends AppCompatActivity  {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //
-        //Get parameters from previous activity
-        //
+        /* Get parameters from previous activity */
         Intent myIntent = getIntent(); // gets the previously created intent
         Bundle extras = myIntent.getExtras();
 
@@ -78,48 +78,47 @@ public class EditDeliverableActivity extends AppCompatActivity  {
         description = extras.getString(EXTRA_DELIVERABLE_DESCRIPTION);
         dueDate = extras.getString(EXTRA_DELIVERABLE_DATE);
 
-        //
-        //Creates a DeliverableVo with only the original updatable data (read from the previous activity)
-        //
+        /* Initialize edit text fields (title, description, date) */
+        //Creates a DeliverableVo representing the original updatable data (read from the previous activity)
         thisDeliverableVo = new DeliverableVo(deliverableId, "", title, description, "", "",dueDate,
                 "", "", "", "", "", "", "", "");
-
-        //
-        //Initialize edit text fields (title, description, date)
-        //
+        //update activity views
         updateEditActivityDetailsView(thisDeliverableVo);
 
-        //
-        //Set event handler for update action
-        //
+        /* Set floating action button event handler for update action */
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_edit_deliverable);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //read current edition data (updated fields)
+
+                /* get update data from views updated fields) */
+                // get views references
                 EditText titleUpdateEditText = (EditText) findViewById(R.id.titleUpdateEditText);
                 EditText descriptionUpdateEditText = (EditText) findViewById(R.id.descriptionUpdateEditText);
                 TextView dueDateUpdateTextView = (TextView) findViewById(R.id.deliverableDueDateUpdateTextView);
-
+                // update thisDeviverableVo
                 thisDeliverableVo.setIddeliverable(deliverableId);
                 thisDeliverableVo.setTitle(titleUpdateEditText.getText().toString());
                 thisDeliverableVo.setDescription(descriptionUpdateEditText.getText().toString());
                 thisDeliverableVo.setDuedate(dueDateUpdateTextView.getText().toString());
 
+                /* validade */
                 if ((thisDeliverableVo.getTitle()).trim().equals("")|| (thisDeliverableVo.getDuedate()).trim().equals("")){
                     Resources res = getResources();
                     Snackbar.make(view, res.getString(R.string.fields_needed_for_update_deliverable), Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
 
+                    /* update */
                     //update deliverable using AsyncActivity
                     new AsyncUpdateDeliverable().execute(thisDeliverableVo.getIddeliverable(),thisDeliverableVo.getTitle(), thisDeliverableVo.getDescription(), thisDeliverableVo.getDuedate());
 
-                    //return to the caller Intent
+                    /* return to the caller Intent */
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra("DELIVERABLEVO", thisDeliverableVo);
                     setResult(Activity.RESULT_OK, resultIntent);
 
+                    /* finish activity */
                     finish();
                 }
             }
@@ -136,8 +135,7 @@ public class EditDeliverableActivity extends AppCompatActivity  {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // app icon in action bar clicked; goto parent activity.
-                this.finish();
+                this.finish(); // app icon in action bar clicked; goto parent activity.
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -145,10 +143,15 @@ public class EditDeliverableActivity extends AppCompatActivity  {
     }
 
     /**
+     * onCalendarClick
+     *
+     * Creates a Date Picker Dialog and get selected date value
+     *
+     * BEWARE: This is the model for every needed Date Picker Dialog
      *
      * @param view
      */
-    public void onCalendarUpdateImageClick(View view){
+    public void onCalendarClick(View view){
 
         final Calendar c = Calendar.getInstance();
         int c_year = c.get(Calendar.YEAR);
@@ -171,16 +174,16 @@ public class EditDeliverableActivity extends AppCompatActivity  {
                 c_day);
 
         datePickerDialog.show();
-
     }
 
     /**
      * updateEditActivityDetailsView
      *
+     * Actualize the view fields with deliverableVo data
      */
     private void updateEditActivityDetailsView(DeliverableVo deliverableVo){
 
-        //get text views
+        //get text views reference
         EditText deliverableTitleUpdateEditText = (EditText) findViewById(R.id.titleUpdateEditText);
         EditText deliverableDescriptionUpdateEditText = (EditText) findViewById(R.id.descriptionUpdateEditText);
         TextView deliverableDueDateUpdateEditText = (TextView) findViewById(R.id.deliverableDueDateUpdateTextView);
@@ -191,52 +194,35 @@ public class EditDeliverableActivity extends AppCompatActivity  {
         deliverableDueDateUpdateEditText.setText(deliverableVo.getDuedate());
     }
 
-
-    /**
-     * Inner Class that represents the return of background service execution
-     *
-     * TODO: candidate for refactoring into a generic helper class for use in all async task service execution.
-     *
-     */
-    private class EditDeliverableAsyncResult{
-
-        public static final int SUCCESS = 0;
-        public static final int ERROR = 1;
-        public static final int DEVICE_NOT_CONNECTED = 2;
-
-        int resultCode;
-        DeliverableVo deliverableVo = null;
-
-        EditDeliverableAsyncResult(int resultCode, DeliverableVo deliverableVo){
-            this.resultCode = resultCode;
-            this.deliverableVo = deliverableVo;
-        }
-
-        public int getResultCode() {
-            return resultCode;
-        }
-        public DeliverableVo getDeliverableVo() {
-            return deliverableVo;
-        }
-    }
-
     /**
      * AsyncUpdateDeliverable
      *
      * <p/>
-     * Uses AsyncTask to update a task away from the main UI thread, and send message to rest server.
+     * Uses AsyncTask to update a task away from the main UI thread
+     * BE WARE: It´s necessary because to send a message to rest server is a network operation and can´t execute in the main UI thread.
      *
      */
-    private class AsyncUpdateDeliverable extends AsyncTask<String, Void, String> {
+    private class AsyncUpdateDeliverable extends AsyncTask<String, Void, Integer> {
+
+        private static final int SUCCESS = 0;
+        private static final int ERROR = 1;
+
         Resources res = getResources();
         Context context = getApplicationContext();
 
         final ProgressDialog progressDialog = new ProgressDialog(EditDeliverableActivity.this,
                 R.style.AppTheme_Dark_Dialog);
 
+        /**
+         * onPreExecute
+         *
+         * <p/>
+         * Executes in the original UI thread before starting new thread for background execution.
+         *
+         */
         @Override
         protected void onPreExecute() {
-            //show progress dialog
+            /* show a progress dialog */
             progressDialog.setIndeterminate(true);
             progressDialog.setMessage(res.getString(R.string.synchronizing));
             progressDialog.show();
@@ -252,48 +238,35 @@ public class EditDeliverableActivity extends AppCompatActivity  {
          * @return
          */
         @Override
-        protected String doInBackground(String... params) {
+        protected Integer doInBackground(String... params) {
 
-            //prepare hive service parameters
+            //result
+            Integer result;
+
+            //get async task parameters
             String iddeliverable = params[0];
             String title = params[1];
             String description = params[2];
             String duedate = params[3];
-
-            String result="";
-
+            //prepare hive service parameter
             DeliverableVo updateDeliverableVo = new DeliverableVo(iddeliverable, "", title, description, "", "", duedate, "", "", "", "", "", "", "", "", "");
-            DeliverableVo deliverableVo = null;
-
-            //prepare hive service
-            Context context = getApplicationContext();
-            HiveUpdateDeliverable hiveUpdateDeliverable = new HiveUpdateDeliverable(context);
 
             try {
+                //prepare hive service
+                Context context = getApplicationContext();
+                HiveUpdateDeliverable hiveUpdateDeliverable = new HiveUpdateDeliverable(context);
+                hiveUpdateDeliverable.hiveUpdateDeliverable(updateDeliverableVo);
 
-                result = hiveUpdateDeliverable.hiveUpdateDeliverable(updateDeliverableVo);
+                //actualize local database with newly updated deliverable
+                DeliverableDAO deliverableDAO = new DeliverableDAO(context);
+                deliverableDAO.updateDeliverable(updateDeliverableVo);
 
-                //TODO: Catch exception insted of checking for result as ""
-                if (result.equals("")) {
-
-                    //actualize local database with newly updated deliverable
-                    DeliverableDAO deliverableDAO = new DeliverableDAO(context);
-                    deliverableDAO.updateDeliverable(updateDeliverableVo); //TODO: catch exception for local inert error
-
-                }
-
-            } /** catch (DeviceNotConnectedException e){
-                result = "error";
-
-            } catch(HiveUnexpectedReturnException e){
-                result = "error";
-
-            } */ catch(Exception e){
-                result = "error";
-                //TODO: Its an unexpected error. Should log to enable analysis of the error
+            } catch(Exception e){
+                result = new Integer(ERROR); //generic error
             }
 
-            //return result of background thread execution
+            //return success
+            result = new Integer(SUCCESS);
             return result;
         }
 
@@ -306,11 +279,16 @@ public class EditDeliverableActivity extends AppCompatActivity  {
          * @param result
          */
         @Override
-        protected void onPostExecute(String result) {
-            Context context = getApplicationContext();
-            progressDialog.dismiss();
+        protected void onPostExecute(Integer result) {
 
-            //TODO: CHECK FOR ERROR OR EXCEPTIONS
+            /* dismiss the progress dialog created in onPreExecute */
+            try {
+                Context context = getApplicationContext();
+                progressDialog.dismiss();
+            } catch(Exception e) {
+                //BEWARE: The lifecycle of the main thread s independet of the AsyncTask lifecycle, so the pregressDialog may no longer exist
+            }
+
             return;
         }
     }
