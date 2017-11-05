@@ -12,7 +12,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:elevation="2dp"
+    android:elevation="0dp"
     android:focusable="false"
     android:focusableInTouchMode="false"
     android:paddingLeft="10dp"
@@ -28,7 +28,7 @@
                 android:id="@+id/deliverable_titleTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textColor="#000000"
+                android:textColor="#a76666"
                 android:layout_marginBottom="3dp"
                 android:fontFamily="sans-serif-light" />
 
@@ -38,6 +38,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="due date"
                 android:id="@+id/deliverable_due_dateTextView"
+                android:textColor="#a76666"
                 android:layout_below="@+id/deliverable_titleTextView" />
 
             <ImageView
@@ -57,6 +58,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="InitiativeTitle"
         android:id="@+id/initiativeTitleTtextView"
+        android:textColor="#a76666"
         android:layout_below="@+id/deliverable_due_dateTextView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -92,6 +94,7 @@
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textSize="12sp"
+        android:textColor="#a76666"
         android:visibility="invisible" />
 
 

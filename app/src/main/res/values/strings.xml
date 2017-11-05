@@ -65,6 +65,13 @@
     <string name="menu_finish">Concluir</string>
     <string name="menu_delete">Excluir</string>
     <string name="menu_invite">Convidar</string>
+    <string name="menu_show_deliverables">Entregas</string>
+
+    <string name="tab_show_opened_deliverables">ABERTAS</string>
+    <string name="tab_show_finished_deliverables">CONCLUÍDAS</string>
+
+    <string name="content_activities_empty">0 ATIVIDADES CONCLUÍDAS</string>
+
 
     <string name="dialog_delete_initiative">Remover esta iniciativa?\n\nATENÇÃO: A INICIATIVA E TODAS AS ENTREGAS ASSOCIADAS SERÃO APAGADAS!</string>
     <string name="dialog_delete_deliverable">Remover esta entrega?</string>
@@ -163,6 +170,11 @@
     <string name="title_activity_welcome_screen">WelcomeScreenActivity</string>
     <string name="title_activity_create_initiative">CreateInitiativeActivity</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="show_opened_fragment">Opened Deliverables</string>
+    <string name="show_finished_fragment">Finished Deliverables</string>
+    <string name="title_activity_show_deliverables">Entregas</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 
 </resources>

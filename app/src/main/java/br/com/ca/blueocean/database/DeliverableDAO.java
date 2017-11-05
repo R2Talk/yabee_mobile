@@ -144,6 +144,47 @@ public class DeliverableDAO {
         return deliverableVoList;
     }
 
+    //
+    //return selected list of deliverables by initiative id
+    //
+    public List<DeliverableVo> selectFinishedDeliverablesByInitiativeId(String initiativeId){
+        List<DeliverableVo> deliverableVoList =  new ArrayList<DeliverableVo>();
+        SQLiteDatabase db = this.databaseOpenHelper.getReadableDatabase();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + DatabaseOpenHelper.DATABASE_TABLE_DELIVERABLE + " WHERE  " + DatabaseOpenHelper.KEY_DELIVERABLE_status + " = 'FINISHED' AND " + DatabaseOpenHelper.KEY_DELIVERBALE_INITIATIVE_idinititative + " = '" + initiativeId + "'";
+        Cursor cursor = db.rawQuery(selectQuery, null); // db.rawQuery(selectQuery, query_params)
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                DeliverableVo deliverableVo = new DeliverableVo(
+                        cursor.getString(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7),
+                        cursor.getString(8),
+                        cursor.getString(9),
+                        cursor.getString(10),
+                        cursor.getString(11),
+                        cursor.getString(12),
+                        cursor.getString(13),
+                        cursor.getString(14)
+                );
+
+                // Adding deliverable to list
+                deliverableVoList.add(deliverableVo);
+            } while (cursor.moveToNext());
+        }
+
+        // return Initiative list
+        return deliverableVoList;
+    }
+
     /**
      * getDeliverableById
      *

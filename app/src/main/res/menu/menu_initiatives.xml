@@ -29,4 +29,9 @@
         android:orderInCategory="600"
         app:showAsAction="never" />
 
+    <item android:id="@+id/action_show_deliverables"
+        android:title="@string/menu_show_deliverables"
+        android:orderInCategory="700"
+        app:showAsAction="never" />
+
 </menu>

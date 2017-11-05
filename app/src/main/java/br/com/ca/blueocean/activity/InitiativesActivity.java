@@ -68,8 +68,24 @@ public class InitiativesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
+
+                /*
                 //Intent
                 Intent intent = new Intent(InitiativesActivity.this, DeliverablesActivity.class);
+                //Intent Parameter
+                TextView initiativeTitle = (TextView) view.findViewById(R.id.titleTextView); //in click event, view of list item is received as a parameter
+                TextView initiativeId = (TextView) view.findViewById(R.id.initiativeIdTextView); //in click event, view of list item is received as a parameter
+
+                Bundle extras = new Bundle();
+                extras.putString(DeliverablesActivity.EXTRA_INITIATIVE_ID, initiativeId.getText().toString());
+                extras.putString(DeliverablesActivity.EXTRA_INITIATIVE_TITLE, initiativeTitle.getText().toString());
+                intent.putExtras(extras);
+                //Start Intent
+                startActivity(intent);
+                */
+
+                //Intent
+                Intent intent = new Intent(InitiativesActivity.this, ShowDeliverablesActivity.class);
                 //Intent Parameter
                 TextView initiativeTitle = (TextView) view.findViewById(R.id.titleTextView); //in click event, view of list item is received as a parameter
                 TextView initiativeId = (TextView) view.findViewById(R.id.initiativeIdTextView); //in click event, view of list item is received as a parameter
@@ -174,6 +190,10 @@ public class InitiativesActivity extends AppCompatActivity {
                 intent.putExtras(extras);
                 //2. Start Intent
                 startActivity(intent);
+                return true;
+
+            case id.action_show_deliverables:
+
                 return true;
 
             default:
