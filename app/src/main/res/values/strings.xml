@@ -1,6 +1,7 @@
 <resources>
 
-    <string name="app_name">Ya Bee</string>
+    <string name="app_name">yabee</string>
+    <string name="yabee">Yabee</string>
 
     <string name="info">Info</string>
     <string name="menu_info">Info</string>
@@ -13,7 +14,7 @@
     <string name="deliverablesActivityLabel">Entregas</string>
     <string name="initiativeReportActivityLabel">Report</string>
     <string name="userPrioritizedActivityLabel">Suas prioridades</string>
-    <string name="allPrioritizedActivityLabel">Todas as prioridades</string>
+    <string name="allPrioritizedActivityLabel">Prioridades</string>
 
     <string name="notifications">Notificações</string>
     <string name="action_settings">Configurações</string>
@@ -43,7 +44,7 @@
     <string name="unexpected_error">Erro durante a execução. Provável indisponibilidade nos serviços da nuvem, tente mais tarde.</string>
 
     <string name="hello">Olá </string>
-    <string name="welcome">\u2022  Planeje as suas iniciativas e tarefas.\n\u2022  Crie grupos de trabalho.\n\u2022  Compartilhe e envie mensagens.\n\u2022  Defina e acompanhe prioridades.</string>
+    <string name="welcome">\u2022  Planeje as suas iniciativas e tarefas.\n\u2022  Gerencie grupos de trabalho.\n\u2022  Defina e acompanhe prioridades.</string>
     <string name="touch_screen">Toque na tela para continuar.</string>
     <string name="next">próximo</string>
 
@@ -55,6 +56,9 @@
     <string name="menu_refresh_messages">Atualizar Mensagens</string>
     <string name="menu_show_messages">Mensagens</string>
     <string name="menu_show_priorities">Minhas Prioridades</string>
+    <string name="menu_show_assignment">Minhas Entregas</string>
+    <string name="menu_show_group">Todas as Entregas</string>
+    <string name="menu_show_forum">Forum</string>
     <string name="menu_show_all_priorities">Prioridades</string>
 
     <string name="menu_add_initiative">Criar Iniciativa</string>

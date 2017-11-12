@@ -13,6 +13,7 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/prioritized_deliverables_listView" />
+        android:id="@+id/prioritized_deliverables_listView"
+        android:divider="@null" />
 
 </RelativeLayout>

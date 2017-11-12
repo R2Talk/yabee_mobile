@@ -5,7 +5,7 @@
     android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardCornerRadius="2dp"
+    card_view:cardCornerRadius="5dp"
     card_view:cardElevation="2dp"
     card_view:cardUseCompatPadding="true">
 
@@ -47,7 +47,7 @@
                 android:layout_alignTop="@+id/deliverable_due_dateTextView"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="15dp"
-                android:src="@mipmap/ic_bookmark_black_24dp"
+                android:src="@drawable/ic_star_border"
                 android:longClickable="false"
                 android:visibility="invisible" />
 

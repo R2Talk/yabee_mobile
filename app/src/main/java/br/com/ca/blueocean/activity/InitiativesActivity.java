@@ -192,10 +192,6 @@ public class InitiativesActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
 
-            case id.action_show_deliverables:
-
-                return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }

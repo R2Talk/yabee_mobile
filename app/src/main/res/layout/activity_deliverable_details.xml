@@ -29,14 +29,16 @@
 
     <include layout="@layout/content_deliverable_details" />
 
-    <android.support.design.widget.FloatingActionButton android:id="@+id/fab_change_priority"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:src="@drawable/ic_action_bookmark"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_change_priority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_action_star" />
 
     </RelativeLayout>
 

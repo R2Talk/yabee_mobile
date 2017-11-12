@@ -22,7 +22,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="br.com.ca.blueocean.activity.InitiativesActivity"
-            android:label="@string/initiativesActivityLabel"
+            android:label="@string/yabee"
             android:screenOrientation="portrait" />
         <activity
             android:name="br.com.ca.blueocean.activity.SynchronizeInitiativesActivity"
