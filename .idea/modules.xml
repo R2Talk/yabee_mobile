@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ShareView.iml" filepath="$PROJECT_DIR$/ShareView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yabee.iml" filepath="$PROJECT_DIR$/yabee.iml" />
     </modules>
   </component>
 </project>
