@@ -7,7 +7,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_show_day_priorities"
+    tools:showIn="@layout/activity_show_prioritized_deliverables"
     tools:context="br.com.ca.blueocean.activity.ShowPrioritizedDeliverablesActivity">
 
     <ListView

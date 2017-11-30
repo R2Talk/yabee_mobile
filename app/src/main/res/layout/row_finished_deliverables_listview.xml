@@ -5,6 +5,7 @@
     android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    card_view:cardBackgroundColor="#D7CCC8"
     card_view:cardCornerRadius="2dp"
     card_view:cardElevation="2dp"
     card_view:cardUseCompatPadding="true">
@@ -18,7 +19,6 @@
     android:paddingLeft="10dp"
     android:paddingTop="2dp"
     android:paddingBottom="2dp">
-
 
             <TextView
                 android:layout_width="match_parent"

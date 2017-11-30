@@ -5,6 +5,7 @@
     android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    card_view:cardBackgroundColor="#FAFAFA"
     card_view:cardCornerRadius="5dp"
     card_view:cardElevation="2dp"
     card_view:cardUseCompatPadding="true">
@@ -36,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#000000"
                 android:text="due date"
                 android:id="@+id/deliverable_due_dateTextView"
                 android:layout_below="@+id/deliverable_titleTextView" />
