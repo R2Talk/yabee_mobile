@@ -35,7 +35,7 @@
         android:icon="@drawable/ic_share"
         android:title="@string/share"
         android:orderInCategory="600"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 
     <item android:id="@+id/action_finish_deliverable"
         android:title="@string/menu_finish"

@@ -307,10 +307,12 @@ public class DeliverableDetailsActivity extends AppCompatActivity {
         deliverablePriorityCommentsView.setText(deliverableVo.getPriorityComment());
 
         //set fields visibility
+        /*
         if ((deliverableVo.getCurrentusername() == null) || (deliverableVo.getCurrentusername().equals(""))){
             ImageView currentUserLabelImageView = (ImageView) findViewById(R.id.currentUserLabelImageView);
             currentUserLabelImageView.setVisibility(View.INVISIBLE);
         }
+        */
 
         if ((deliverableVo.getDescription() == null) || (deliverableVo.getDescription().equals(""))){
             TextView descriptionTextView = (TextView) findViewById(R.id.descriptionTextView);

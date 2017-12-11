@@ -15,6 +15,7 @@
     <string name="initiativeReportActivityLabel">Report</string>
     <string name="userPrioritizedActivityLabel">Suas prioridades</string>
     <string name="allPrioritizedActivityLabel">Prioridades</string>
+    <string name="editUserGroupActivityLabel">Grupo de Usuários</string>
 
     <string name="notifications">Notificações</string>
     <string name="action_settings">Configurações</string>
@@ -29,6 +30,8 @@
     <string name="password">senha</string>
     <string name="signup_phrase">Ainda não tem uma conta? Crie uma.</string>
     <string name="title_activity_login">Login</string>
+    <string name="type_include_user_email">Digite o e-mail a incluir nesse iniciativa</string>
+    <string name="initiative_group">Grupo da iniciativa</string>
 
     <string name="type_priority_reason">Comentário de priorização</string>
 
@@ -41,7 +44,7 @@
     <string name="initiative_already_exist">Ops! Já existe uma iniciativa com este título. Tente com outro.</string>
     <string name="fields_needed_for_deliverable">Para criar a entrega o título e a data devem ser preenchidos.</string>
     <string name="fields_needed_for_update_deliverable">Para atualizar a entrega o título e a data devem ser preenchidos.</string>
-    <string name="unexpected_error">Erro durante a execução. Provável indisponibilidade nos serviços da nuvem, tente mais tarde.</string>
+    <string name="unexpected_error">Indisponibilidade de rede ou serviços. Tente mais tarde.</string>
 
     <string name="hello">Olá </string>
     <string name="welcome">\u2022  Planeje as suas iniciativas e tarefas.\n\u2022  Gerencie grupos de trabalho.\n\u2022  Defina e acompanhe prioridades.</string>
@@ -152,13 +155,16 @@
     <string name="title_activity_show_info">Info</string>
     <string name="title_activity_create_deliverable">Criar Nova Entrega</string>
     <string name="title_activity_edit_deliverable">Editar Entrega</string>
+    <string name="title_activity_add_initiative_user">Incluir Usuário</string>
 
     <string name="button_synchronize">Sincronizar</string>
 
     <string name="entry_initiative_title">Título da iniciativa</string>
     <string name="entry_deliverable_title">Título da entrega</string>
     <string name="entry_deliverable_description">Descrição </string>
+    <string name="entry_deliverable_notes">Notas </string>
     <string name="entry_deliverable_dueDate">Selecione data da entrega</string>
+
 
     <string name="deliverable_code">Código </string>
     <string name="deliverable_description">Descrição </string>
@@ -179,6 +185,7 @@
     <string name="show_finished_fragment">Finished Deliverables</string>
     <string name="title_activity_show_deliverables">Entregas</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_edit_user_group">EditUserGroupActivity</string>
 
 
 </resources>

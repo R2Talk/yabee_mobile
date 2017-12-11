@@ -1,18 +1,14 @@
 package br.com.ca.blueocean.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -69,21 +65,6 @@ public class InitiativesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
-                /*
-                //Intent
-                Intent intent = new Intent(InitiativesActivity.this, DeliverablesActivity.class);
-                //Intent Parameter
-                TextView initiativeTitle = (TextView) view.findViewById(R.id.titleTextView); //in click event, view of list item is received as a parameter
-                TextView initiativeId = (TextView) view.findViewById(R.id.initiativeIdTextView); //in click event, view of list item is received as a parameter
-
-                Bundle extras = new Bundle();
-                extras.putString(DeliverablesActivity.EXTRA_INITIATIVE_ID, initiativeId.getText().toString());
-                extras.putString(DeliverablesActivity.EXTRA_INITIATIVE_TITLE, initiativeTitle.getText().toString());
-                intent.putExtras(extras);
-                //Start Intent
-                startActivity(intent);
-                */
-
                 //Intent
                 Intent intent = new Intent(InitiativesActivity.this, ShowDeliverablesActivity.class);
                 //Intent Parameter
@@ -109,6 +90,33 @@ public class InitiativesActivity extends AppCompatActivity {
                 startActivityForResult(intent, CREATE_INITIATIVE_INTENT_CALL);
             }
         });
+    }
+
+    /**
+     * OnAddPersonClick
+     *
+     * BEWARE: i
+     * This method is associated with the click event in the ImageView that is in the adapter row view of the ListView (see XML os layout definition).
+     * The ImagevIew must have an InitiativeVo as View Tag info.
+     *
+     * @param v
+     */
+    public void OnAddPersonClick(final View v) {
+        InitiativeVo initiativeVo = (InitiativeVo) v.getTag();
+        //Toast.makeText(this,initiativeVo.getInitiativeTitle(),Toast.LENGTH_SHORT).show();
+
+        //Intent
+        //1. Set Intent parameter signaling that all priorities must be shown
+        //intent = new Intent(InitiativesActivity.this, ShowInitiativeUsersActivity.class);
+        intent = new Intent(InitiativesActivity.this, ShowInitiativeUsersActivity.class);
+        //intent parameters
+        Bundle extras = new Bundle();
+        extras.putString(ShowInitiativeUsersActivity.EXTRA_INITIATIVE_ID, initiativeVo.getInitiativeId());
+        extras.putString(ShowInitiativeUsersActivity.EXTRA_INITIATIVE_TITLE, initiativeVo.getInitiativeTitle());
+        intent.putExtras(extras);
+        //2. Start Intent
+        startActivity(intent);
+
     }
 
     /**

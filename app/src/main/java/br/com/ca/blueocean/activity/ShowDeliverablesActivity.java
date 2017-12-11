@@ -136,13 +136,12 @@ public class ShowDeliverablesActivity extends AppCompatActivity implements ShowO
 
                 extras = new Bundle();
                 extras.putString(CreateDeliverableActivity.EXTRA_INITIATIVE_ID, initiativeId);
+                extras.putString(CreateDeliverableActivity.EXTRA_INITIATIVE_ID, initiativeId);
                 extras.putString(CreateDeliverableActivity.EXTRA_USER_ID, String.valueOf(userVo.getUserId()));
                 intent.putExtras(extras);
 
                 //Start Intent for result
                 startActivityForResult(intent, CREATE_DELIVERABLE_INTENT_CALL);
-
-
             }
         });
 

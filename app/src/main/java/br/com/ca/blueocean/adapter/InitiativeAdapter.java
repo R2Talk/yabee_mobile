@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import br.com.ca.blueocean.vo.InitiativeVo;
@@ -40,13 +41,18 @@ public class InitiativeAdapter extends ArrayAdapter<InitiativeVo> {
             // 2. Get rowInitiativesView from inflater
             View rowInitiativesView = inflater.inflate(R.layout.row_initiatives_listview, parent, false);
 
-            // 3. Get the two text view from the rowInitiativesView
+            // 3. Get the views from the rowInitiativesView
             TextView titleTextView = (TextView) rowInitiativesView.findViewById(R.id.titleTextView);
             TextView initiativeIdTextView = (TextView) rowInitiativesView.findViewById(R.id.initiativeIdTextView);
+            ImageView addPersonView = (ImageView) rowInitiativesView.findViewById(R.id.addPerson_imageView);
 
-            // 4. Set the text for textView
+            // 4. Set the row views content
             titleTextView.setText(itemsArrayList.get(position).getInitiativeTitle());
             initiativeIdTextView.setText(itemsArrayList.get(position).getInitiativeId());
+            //BEAWARE: Here, an initiativeVo object, representing the initiative in this row, is saved into ImageView Tag
+            //when the image receives a click, the handler can read the View Tag and discover which initiative is associated with the image cllicked
+            InitiativeVo initiativeVo = new InitiativeVo(itemsArrayList.get(position).getInitiativeId(), itemsArrayList.get(position).getInitiativeTitle(), "" );
+            addPersonView.setTag(initiativeVo);
 
             // 5. return rowInitiativesView
             return rowInitiativesView;

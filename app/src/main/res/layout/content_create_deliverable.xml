@@ -32,7 +32,7 @@
             android:ems="10"
             android:id="@+id/descriptionEditText"
             android:textColor="@color/accent"
-            android:hint="@string/entry_deliverable_description"
+            android:hint="@string/entry_deliverable_notes"
             android:inputType="textCapSentences|textMultiLine" />
 
     </android.support.design.widget.TextInputLayout>
