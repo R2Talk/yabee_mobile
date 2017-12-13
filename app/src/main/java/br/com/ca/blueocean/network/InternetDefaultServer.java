@@ -13,7 +13,7 @@ public class InternetDefaultServer {
         return defaultServer;
     }
 
-    //public static String defaultServer = "192.168.0.6:8080"; // local
+    //public static String defaultServer = "192.168.0.4:8080"; // local
     public static String defaultServer = "54.232.251.24:8080"; // remote Hive Server
 
 

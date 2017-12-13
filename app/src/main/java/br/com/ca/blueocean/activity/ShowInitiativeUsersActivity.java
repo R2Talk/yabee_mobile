@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 //import br.com.ca.yabee.R;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import br.com.ca.blueocean.adapter.InitiativeUsersAdapter;
 import br.com.ca.blueocean.hiveservices.HiveGetInitiativeUsers;
+import br.com.ca.blueocean.hiveservices.HiveRemoveUserFromInitiative;
 import br.com.ca.blueocean.hiveservices.HiveUnexpectedReturnException;
 import br.com.ca.blueocean.network.DeviceNotConnectedException;
 import br.com.ca.blueocean.vo.UserVo;
@@ -117,6 +119,34 @@ public class ShowInitiativeUsersActivity extends AppCompatActivity {
     }
 
     /**
+     * OnAddPersonClick
+     *
+     * BEWARE:
+     * This method is associated with the click event in the ImageView that is in the adapter row view of the ListView (see XML os layout definition).
+     * The ImageView must have an InitiativeVo as View Tag info.
+     *
+     * @param v
+     */
+    public void OnDeletePersonClick(final View v) {
+        UserVo userVo = (UserVo) v.getTag();
+
+        //Toast.makeText(this,userVo.getName(),Toast.LENGTH_SHORT).show();
+        new AsyncRemoveUserFromInitiative().execute(Integer.toString(userVo.getUserId()), initiativeId);
+
+    }
+
+    /**
+     * refreshInitiativeUsersListView
+     *
+     */
+    private void refreshInitiativesListView(){
+        //reload content
+        initiativeUsersAdapter.clear();
+        initiativeUsersAdapter.addAll(userVoArrayList);
+        initiativeUsersAdapter.notifyDataSetChanged();
+    }
+
+    /**
      * onActivityResult
      *
      * @param requestCode
@@ -128,18 +158,8 @@ public class ShowInitiativeUsersActivity extends AppCompatActivity {
 
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == AddInitiativeUserActivity.ADD_INITIATIVE_USER_INTENT_CALL) {
-
-            if(resultCode == RESULT_OK){
-                //Successful execution implies in initiative created in the cloud server and actualized in the local database
-                //Refresh list view with the actualized local database
-                //refreshInitiativesListView();;
-            }
-
-            if (resultCode == RESULT_CANCELED) {
-                //If there's no result
-            }
-        }
+        //Successful execution, refresh the initiative users ListView
+        new AsyncGetInitiativeUsers().execute(initiativeId);
     }
 
     /**
@@ -226,13 +246,114 @@ public class ShowInitiativeUsersActivity extends AppCompatActivity {
             if(result != null) {
                 userVoArrayList = result;
 
-                // 1. pass context and data to the custom adapter
-                //adapter = new InitiativeUsersAdapter(this, (ArrayList<UserVo>) getInitiativesList());
-                initiativeUsersAdapter = new InitiativeUsersAdapter(ShowInitiativeUsersActivity.this, userVoArrayList);
-                // 2. Get ListView from activity_main.xml
-                listView = (ListView) findViewById(R.id.initiativeUsersList);
-                // 3. setListAdapter
-                listView.setAdapter(initiativeUsersAdapter);
+                if(initiativeUsersAdapter != null){
+                    refreshInitiativesListView();
+                } else {
+                    // 1. pass context and data to the custom adapter
+                    //adapter = new InitiativeUsersAdapter(this, (ArrayList<UserVo>) getInitiativesList());
+                    initiativeUsersAdapter = new InitiativeUsersAdapter(ShowInitiativeUsersActivity.this, userVoArrayList);
+                    // 2. Get ListView from activity_main.xml
+                    listView = (ListView) findViewById(R.id.initiativeUsersList);
+                    // 3. setListAdapter
+                    listView.setAdapter(initiativeUsersAdapter);
+                }
+
+            } else  {
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.initiative_users_coordinatorlayout);
+                Snackbar.make(coordinatorLayout, res.getString(R.string.unexpected_error), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+            }
+        }
+    }
+
+    /**
+     * AsyncRemoveUserFromInitiative
+     *
+     * <p/>
+     * Uses AsyncTask to create a task away from the main UI thread, and send message to rest server.
+     *
+     */
+    private class AsyncRemoveUserFromInitiative extends AsyncTask<String, Void, ArrayList<UserVo>> {
+        Resources res = getResources();
+        Context context = getApplicationContext();
+
+        final ProgressDialog progressDialog = new ProgressDialog(ShowInitiativeUsersActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+
+        /**
+         * onPreExecute
+         *
+         * <p/>
+         * Executes in the original UI thread before starting new thread for background execution.
+         *
+         */
+        @Override
+        protected void onPreExecute() {
+            //show progress dialog
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage(res.getString(R.string.synchronizing));
+            progressDialog.show();
+        }
+
+        /**
+         * doInBackgroud
+         *
+         * <p/>
+         * AsyncExecution. Executes in its own thread in background.
+         *
+         * @param params
+         * @return
+         */
+        @Override
+        protected ArrayList<UserVo> doInBackground(String... params) {
+
+            //prepare hive service parameters
+            String userId = params[0];
+            String initiativeId = params[1];
+
+            //return value
+            ArrayList<UserVo> userVoList = null;
+
+            //prepare hive service
+            Context context = getApplicationContext();
+            HiveRemoveUserFromInitiative hiveRemoveUserFromInitiative = new HiveRemoveUserFromInitiative(context);
+            HiveGetInitiativeUsers hiveGetInitiativeUsers = new HiveGetInitiativeUsers(context);
+
+            try {
+                hiveRemoveUserFromInitiative.removeUserFromInitiative(userId, initiativeId);
+                userVoList = hiveGetInitiativeUsers.getInitiativeUsers(initiativeId);
+
+            }  /* catch (DeviceNotConnectedException e){
+                userVoList = null;
+
+            } catch(HiveUnexpectedReturnException e){
+                userVoList = null;
+
+            }  */ catch(Exception e){
+                userVoList = null;
+            }
+
+            //return result of background thread execution
+            return userVoList;
+        }
+
+        /**
+         * onPostExecute
+         *
+         * <p/>
+         * Executes in the original thread and receives the result of the background execution.
+         *
+         * @param result
+         */
+        @Override
+        protected void onPostExecute(ArrayList<UserVo> result) {
+            Context context = getApplicationContext();
+            progressDialog.dismiss();
+
+            if(result != null) {
+                userVoArrayList = result;
+                refreshInitiativesListView();
 
             } else  {
                 CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.initiative_users_coordinatorlayout);

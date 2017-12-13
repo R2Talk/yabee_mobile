@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ScrollView;
 
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import br.com.ca.blueocean.adapter.InitiativeUsersAdapter;
+import br.com.ca.blueocean.hiveservices.HiveAddInitiativeUser;
 import br.com.ca.blueocean.hiveservices.HiveGetKnownUsersByUserId;
 import br.com.ca.blueocean.users.CurrentUser;
 import br.com.ca.blueocean.users.UserManager;
@@ -46,8 +48,6 @@ public class AddInitiativeUserActivity extends AppCompatActivity {
     AutoCompleteTextView actv = null;
     String[] knownUsersEmails = null;
     ArrayAdapter<String> adapter = null;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +76,17 @@ public class AddInitiativeUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //get typed email
+                EditText userEmailEditText = (EditText) findViewById(R.id.autoCompleteTextView);
 
+                if ((userEmailEditText.getText().toString().trim().equals(""))){ //TODO: check email sintax
+                    Resources res = getResources();
+                    Snackbar.make(view,res.getString(R.string.all_fields_needed_for_add_user_into_initiative), Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                } else {
+                    //execute AsyncTask
+                    new AsyncAddInitiativeUser().execute(userEmailEditText.getText().toString().trim(), initiativeId);
+                }
 
             }
         });
@@ -215,6 +223,106 @@ public class AddInitiativeUserActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
 
             }
+        }
+    }
+
+
+    /**
+     * AsyncAddInitiativeUser
+     *
+     * <p/>
+     * Uses AsyncTask to create a task away from the main UI thread, and send message to rest server.
+     *
+     */
+    private class AsyncAddInitiativeUser extends AsyncTask<String, Void, String> {
+        Resources res = getResources();
+        Context context = getApplicationContext();
+
+        final ProgressDialog progressDialog = new ProgressDialog(AddInitiativeUserActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+
+        /**
+         * onPreExecute
+         *
+         * <p/>
+         * Executes in the original UI thread before starting new thread for background execution.
+         *
+         */
+        @Override
+        protected void onPreExecute() {
+            //show progress dialog
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage(res.getString(R.string.synchronizing));
+            progressDialog.show();
+        }
+
+        /**
+         * doInBackgroud
+         *
+         * <p/>
+         * AsyncExecution. Executes in its own thread in background.
+         *
+         * @param params
+         * @return
+         */
+        @Override
+        protected String doInBackground(String... params) {
+
+            //prepare hive service parameters
+            String userEmail = params[0];
+            String initiativeId = params[1];
+
+            //return value
+            String returnCode = null;
+
+            //prepare hive service
+            Context context = getApplicationContext();
+            HiveAddInitiativeUser hiveAddInitiativeUser = new HiveAddInitiativeUser(context);
+
+            try {
+                hiveAddInitiativeUser.addInitiativeUser(userEmail, initiativeId);
+                returnCode = "success";
+            }  /* catch (DeviceNotConnectedException e){
+                userVoList = null;
+
+            } catch(HiveUnexpectedReturnException e){
+                userVoList = null;
+
+            }  */ catch(Exception e){
+                returnCode = "failure";
+            }
+
+            //return result of background thread execution
+            return returnCode;
+        }
+
+        /**
+         * onPostExecute
+         *
+         * <p/>
+         * Executes in the original thread and receives the result of the background execution.
+         *
+         * @param result
+         */
+        @Override
+        protected void onPostExecute(String result) {
+            Context context = getApplicationContext();
+            progressDialog.dismiss();
+
+            /*
+            if(result != "sucsess") {
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.initiative_users_coordinatorlayout);
+                Snackbar.make(coordinatorLayout, res.getString(R.string.unexpected_error), Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+            }
+            */
+
+            Intent resultIntent = new Intent();
+            setResult(Activity.RESULT_OK, resultIntent);
+
+            finish();
+
         }
     }
 }

@@ -41,6 +41,7 @@
     <string name="all_fields_needed_for_account">Ops! Para criar sua conta todos os campos devem ser preenchidos.</string>
     <string name="all_fields_needed_for_login">Ops! Para criar login informe o e-mail e senha.</string>
     <string name="all_fields_needed_for_initiative">Ops! Para criar a iniciativa todos os campos devem ser preenchidos.</string>
+    <string name="all_fields_needed_for_add_user_into_initiative">Ops! Para incluir você precisa preencher o email.</string>
     <string name="initiative_already_exist">Ops! Já existe uma iniciativa com este título. Tente com outro.</string>
     <string name="fields_needed_for_deliverable">Para criar a entrega o título e a data devem ser preenchidos.</string>
     <string name="fields_needed_for_update_deliverable">Para atualizar a entrega o título e a data devem ser preenchidos.</string>
@@ -144,7 +145,7 @@
     <string name="message_from">de:</string>
     <string name="onDate">data</string>
 
-    <string name="create_initiative_error">Invelizmente não foi possível criar a iniciativa devido a problema técnico.</string>
+    <string name="create_initiative_error">Infelizmente não foi possível criar a iniciativa devido a problema técnico.</string>
 
     <string name="title_activity_send_message">Enviar mensagem</string>
 
