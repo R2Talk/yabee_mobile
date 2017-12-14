@@ -11,11 +11,13 @@
         android:orderInCategory="210"
         app:showAsAction="always" />
 
+    <!--
     <item android:id="@+id/action_group"
         android:icon="@drawable/ic_action_group"
         android:title="@string/menu_show_group"
         android:orderInCategory="220"
         app:showAsAction="always" />
+    -->
 
     <item android:id="@+id/action_show_all_priorities"
         android:icon="@drawable/ic_action_star"
@@ -23,11 +25,13 @@
         android:orderInCategory="300"
         app:showAsAction="always" />
 
+    <!--
     <item android:id="@+id/action_show_forum"
         android:icon="@drawable/ic_action_forum"
         android:title="@string/menu_show_forum"
         android:orderInCategory="300"
         app:showAsAction="never" />
+    -->
 
     <!--
     <item android:id="@+id/action_show_messages"

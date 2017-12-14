@@ -8,7 +8,7 @@
     <string name="opensessionfor">Sessão aberta para </string>
     <string name="lastsynch">Última sincronização em </string>
     <string name="yabeeversion">Versão </string>
-    <string name="developedBy">Developed By CA Blue Ocean</string>
+    <string name="developedBy">Developed By RCARVALHO</string>
 
     <string name="initiativesActivityLabel">Iniciativas</string>
     <string name="deliverablesActivityLabel">Entregas</string>
@@ -141,7 +141,7 @@
     <string name="send_message_to_group">Envie mensagem para o grupo.</string>
     <string name="send_message_ok">Mensegem enviada.</string>
     <string name="empty_message_not_permitted">Digite sua mensagem.</string>
-    <string name="send_message_error">Invelizmente não foi possível enviar a emsagem devido a problema técnico.</string>
+    <string name="send_message_error">Infelizmente não foi possível enviar a emsagem devido a problema técnico.</string>
     <string name="message_from">de:</string>
     <string name="onDate">data</string>
 
